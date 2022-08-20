@@ -12,10 +12,7 @@ function Footer() {
         <br />
         <br />
         Source avaliable on{" "}
-        <a
-          href="https://github.com/timmo001?tab=repositories&q=timmo-cms"
-          target="_blank"
-        >
+        <a href="https://github.com/timmo001/timmo-astro" target="_blank">
           GitHub
         </a>
       </small>
