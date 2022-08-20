@@ -12,6 +12,7 @@
   "devDependencies": {
     "@astrojs/preact": "1.0.2",
     "@astrojs/sitemap": "1.0.0",
+    "@astrojs/vercel": "1.0.0",
     "astro": "1.0.6",
     "astro-robots-txt": "0.3.7",
     "eslint": "8.22.0",
@@ -20,9 +21,5 @@
   },
   "dependencies": {
     "preact": "10.10.6"
-  },
-  "overrides": {
-    "react": "npm:@preact/compat@latest",
-    "react-dom": "npm:@preact/compat@latest"
   }
 }
