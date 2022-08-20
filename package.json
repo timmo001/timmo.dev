@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@astrojs/preact": "1.0.2",
+    "@astrojs/sitemap": "1.0.0",
     "astro": "1.0.6",
     "eslint": "8.22.0",
     "eslint-plugin-astro": "0.17.1",
