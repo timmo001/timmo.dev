@@ -9,8 +9,6 @@ import PostPreview from "../components/PostPreview/index.jsx";
 // Data Fetching: List all Markdown posts in the repo.
 const projects = await Astro.glob("./project/**/*.md");
 const general = await Astro.glob("./general/**/*.md");
-const featuredProject = projects[0];
-const featuredGeneralPost = general[0];
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -59,6 +57,7 @@ const featuredGeneralPost = general[0];
         align-items: flex-start;
         justify-content: flex-end;
         padding-left: 2rem;
+
         @media (min-width: $w-s) {
           padding-left: 4rem;
         }
@@ -216,19 +215,21 @@ const featuredGeneralPost = general[0];
           <a href="/about">Read more</a>
         </p>
       </div>
-      <div class="grid">
-        <div class="section">
-          <h3 class="sectionTitle">Projects</h3>
-          <PostPreview post={featuredProject} />
-          <div class="tac mt4">
-            <a href="/projects">
-              <Button>View All</Button>
-            </a>
-          </div>
+      <div class="section">
+        <h3 class="sectionTitle">Projects</h3>
+        <div class="grid">
+          {projects.slice(0, 2).map((post) => <PostPreview post={post} />)}
+        </div>
+        <div class="tac mt4">
+          <a href="/projects">
+            <Button>View All</Button>
+          </a>
         </div>
         <div class="section">
           <h3 class="sectionTitle">General</h3>
-          <PostPreview post={featuredGeneralPost} />
+          <div class="grid">
+            {general.slice(0, 2).map((post) => <PostPreview post={post} />)}
+          </div>
           <div class="tac mt4">
             <a href="/general">
               <Button>View All</Button>
