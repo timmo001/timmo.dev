@@ -4,11 +4,13 @@ import MainHead from "../components/MainHead.astro";
 import Button from "../components/Button/index.jsx";
 import Nav from "../components/Nav/index.jsx";
 import Footer from "../components/Footer/index.jsx";
-import PortfolioPreview from "../components/PortfolioPreview/index.jsx";
+import PostPreview from "../components/PostPreview/index.jsx";
 
 // Data Fetching: List all Markdown posts in the repo.
 const projects = await Astro.glob("./project/**/*.md");
+const general = await Astro.glob("./general/**/*.md");
 const featuredProject = projects[0];
+const featuredGeneralPost = general[0];
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -35,7 +37,7 @@ const featuredProject = projects[0];
         background-repeat: no-repeat;
 
         @media (min-width: $w-s) {
-          height: 34vw;
+          height: 32vw;
         }
       }
 
@@ -82,7 +84,7 @@ const featuredProject = projects[0];
         grid-gap: 2rem;
 
         @media (min-width: 1200px) {
-          grid-template-columns: 2fr 1fr;
+          grid-template-columns: 1fr 1fr;
         }
       }
 
@@ -199,10 +201,25 @@ const featuredProject = projects[0];
       </div>
     </header>
     <main class="wrapper mt4 mb4">
+      <div class="section">
+        <h3 class="sectionTitle">About me</h3>
+        <p class="bio">
+          My name is Aidan, but you may know me better as <a
+            href="https://github.com/timmo001"
+            target="_blank"
+          >
+            Timmo
+          </a> or <a href="https://twitter.com/timmo001" target="_blank">
+            @timmo001
+          </a>
+        </p><p>
+          <a href="/about">Read more</a>
+        </p>
+      </div>
       <div class="grid">
         <div class="section">
           <h3 class="sectionTitle">Projects</h3>
-          <PortfolioPreview project={featuredProject} />
+          <PostPreview project={featuredProject} />
           <div class="tac mt4">
             <a href="/projects">
               <Button>View All</Button>
@@ -210,18 +227,13 @@ const featuredProject = projects[0];
           </div>
         </div>
         <div class="section">
-          <h3 class="sectionTitle">About me</h3>
-          <p class="bio">
-            My name is Aidan, but you may know me better as <a
-              href="https://github.com/timmo001"
-              target="_blank"
-              >Timmo
-            </a> or <a href="https://twitter.com/timmo001" target="_blank"
-              >@timmo001
+          <h3 class="sectionTitle">General</h3>
+          <PostPreview project={featuredGeneralPost} />
+          <div class="tac mt4">
+            <a href="/general">
+              <Button>View All</Button>
             </a>
-          </p><p>
-            <a href="/about">Read more</a>
-          </p>
+          </div>
         </div>
       </div>
     </main>

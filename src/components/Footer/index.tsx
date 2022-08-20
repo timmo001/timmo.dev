@@ -1,7 +1,8 @@
-import { h } from "preact";
+import type { h } from "preact";
+
 import Styles from "./styles.module.scss";
 
-function Footer() {
+function Footer(): h.JSX.Element {
   return (
     <footer className={Styles.footer}>
       &copy; {new Date().getFullYear()} Aidan Timson

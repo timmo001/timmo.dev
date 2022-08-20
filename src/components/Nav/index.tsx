@@ -1,7 +1,8 @@
-import { h } from "preact";
+import type { h } from "preact";
+
 import Styles from "./styles.module.scss";
 
-function Nav() {
+function Nav(): h.JSX.Element {
   return (
     <nav className={Styles.nav}>
       <a className={Styles.logolink} href="/">

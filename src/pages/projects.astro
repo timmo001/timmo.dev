@@ -2,7 +2,7 @@
 import MainHead from "../components/MainHead.astro";
 import Footer from "../components/Footer/index.jsx";
 import Nav from "../components/Nav/index.jsx";
-import PortfolioPreview from "../components/PortfolioPreview/index.jsx";
+import PostPreview from "../components/PostPreview/index.jsx";
 
 const projects = (await Astro.glob("./project/**/*.md"))
   .filter(({ frontmatter }) => !!frontmatter.publishDate)
@@ -23,6 +23,10 @@ const projects = (await Astro.glob("./project/**/*.md"))
       .grid {
         display: grid;
         grid-gap: 3rem;
+
+        @media (min-width: 1200px) {
+          grid-template-columns: 1fr 1fr;
+        }
       }
     </style>
   </head>
@@ -31,7 +35,7 @@ const projects = (await Astro.glob("./project/**/*.md"))
     <div class="wrapper">
       <h1 class="title mt4 mb4">Projects</h1>
       <div class="grid">
-        {projects.map((project) => <PortfolioPreview project={project} />)}
+        {projects.map((post) => <PostPreview post={post} />)}
       </div>
     </div>
     <Footer />
