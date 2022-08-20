@@ -20,5 +20,9 @@
   },
   "dependencies": {
     "preact": "10.10.6"
+  },
+  "overrides": {
+    "react": "npm:@preact/compat@latest",
+    "react-dom": "npm:@preact/compat@latest"
   }
 }
