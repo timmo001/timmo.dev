@@ -11,14 +11,24 @@ import Nav from "../components/Nav/index.jsx";
       description="About Me - Aidan Timson (Timmo)"
     />
     <style lang="scss">
-      .heroImg {
-        max-height: 24rem;
-        object-fit: cover;
-        overflow: hidden;
+      .hero {
+        padding: 8rem;
+        display: flex;
+        background-color: var(--t-fg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 16vw;
+        color: white;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-        img {
-          width: 100%;
-        }
+        background-color: #607d8b;
+        background-image: url("/assets/logo-header.svg");
+        background-size: contain;
+        background-position-x: center;
+        background-position-y: top;
+        background-repeat: no-repeat;
       }
 
       .bio {
@@ -29,19 +39,18 @@ import Nav from "../components/Nav/index.jsx";
   </head>
   <body>
     <Nav />
+    <header class="hero"></header>
     <div class="wrapper">
-      <h1>Hello! 👋</h1>
-      <div class="heroImg">
-        <img width="1400" height="350" src="/assets/logo-header-thin.svg" />
-      </div>
       <div class="bio wrapper wrapper__readable mt8">
+        <h2>Hello! 👋</h2>
         <p>
           My name is Aidan, but you may know me better as <a
             href="https://github.com/timmo001"
             target="_blank"
-            >Timmo
-          </a> or <a href="https://twitter.com/timmo001" target="_blank"
-            >@timmo001
+          >
+            Timmo
+          </a> or <a href="https://twitter.com/timmo001" target="_blank">
+            @timmo001
           </a>
         </p>
         <h2 id="contact-social">Contact / Social</h2>
