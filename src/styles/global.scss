@@ -9,7 +9,8 @@
   --c-cyan: #26c6da;
   --c-teal: #26a69a;
   --c-gray: #e0e0e0;
-  --c-gray-dark: #212121;
+  --c-gray-dark: #424242;
+  --c-gray-darker: #212121;
   --c-green: #43a047;
   --c-purple: #8e24aa;
   --c-pink: #d81b60;
@@ -62,7 +63,7 @@
   --t-fg-translucent: var(--c-white-translucent);
   --t-fg-translucent-light: var(--c-white-translucent-light);
   --t-bg: var(--c-black);
-  --t-bg-light: var(--c-gray-dark);
+  --t-bg-light: var(--c-gray-darker);
   --t-bg-translucent: var(--c-black-translucent);
   --t-bg-translucent-light: var(--c-black-translucent-light);
   --t-subdue: var(--c-gray);
