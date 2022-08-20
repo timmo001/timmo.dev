@@ -9,7 +9,10 @@ const { content } = Astro.props;
 
 <html lang={content.lang || "en"}>
   <head>
-    <MainHead title={content.title} description={content.description} />
+    <MainHead
+      title={`${content.title} | Aidan Timson (Timmo)`}
+      description={content.description}
+    />
     <style lang="scss">
       .hero {
         padding: 8rem;
