@@ -1,9 +1,10 @@
 import type { h } from "preact";
+import type { MarkdownInstance } from "astro";
 
 import type { Post } from "../../types/post";
 import Styles from "./styles.module.scss";
 
-function PostPreview({ post }: { post: Post }): h.JSX.Element {
+function PostPreview({ post }: MarkdownInstance<Post>): h.JSX.Element {
   const { frontmatter } = post;
   return (
     <div className={Styles.card}>
@@ -17,7 +18,7 @@ function PostPreview({ post }: { post: Post }): h.JSX.Element {
         <p className={`${Styles.desc} mt0 mb2`}>{frontmatter.description}</p>
         <div className={Styles.tags}>
           Tagged:
-          {frontmatter.tags.map((t) => (
+          {frontmatter.tags.map((t: string) => (
             <div className={Styles.tag} data-tag={t}>
               {t}
             </div>

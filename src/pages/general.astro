@@ -35,7 +35,7 @@ const posts = (await Astro.glob("./general/**/*.md"))
     <div class="wrapper">
       <h1 class="title mt4 mb4">General</h1>
       <div class="grid">
-        {posts.map((post) => <PostPreview project={post} />)}
+        {posts.map((post) => <PostPreview post={post} />)}
       </div>
     </div>
     <Footer />

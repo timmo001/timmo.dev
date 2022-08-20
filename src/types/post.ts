@@ -1,4 +1,4 @@
-export interface Frontmatter {
+export interface Post {
   client: string;
   description: string;
   img: string;
@@ -6,9 +6,4 @@ export interface Frontmatter {
   publishDate: string;
   tags: Array<string>;
   title: string;
-}
-
-export interface Post {
-  frontmatter: Frontmatter;
-  url: string;
 }
