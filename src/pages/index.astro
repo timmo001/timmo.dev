@@ -1,0 +1,235 @@
+---
+// Component Imports
+import MainHead from "../components/MainHead.astro";
+import Button from "../components/Button/index.jsx";
+import Nav from "../components/Nav/index.jsx";
+import Footer from "../components/Footer/index.jsx";
+import PortfolioPreview from "../components/PortfolioPreview/index.jsx";
+
+// Data Fetching: List all Markdown posts in the repo.
+const projects = await Astro.glob("./project/**/*.md");
+const featuredProject = projects[0];
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<html lang="en">
+	<head>
+		<MainHead
+			title="Aidan Timson (Timmo)"
+			description="Aidan Timson (Timmo) - Tinkerer, Developer, PC Gamer, All Round Nerd."
+		/>
+		<style lang="scss">
+			$w-s: 750px;
+
+			.hero {
+				position: relative;
+				overflow: hidden;
+
+				background-color: #607d8b;
+				background-image: url("/assets/logo-header-short-top.svg");
+				background-size: contain;
+				background-position-x: center;
+				background-position-y: top;
+				background-repeat: no-repeat;
+
+				@media (min-width: $w-s) {
+					height: 42vw;
+				}
+			}
+
+			.img {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+
+			.overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 10;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: flex-end;
+				padding-left: 2rem;
+
+				@media (min-width: $w-s) {
+					padding-left: 4rem;
+				}
+			}
+
+			.title {
+				margin-bottom: 0.5rem;
+				margin-top: 0;
+
+				font-weight: 400;
+				font-size: var(--f-u8);
+				text-shadow: var(--s-4);
+				color: var(--c-fg-translucent-light);
+				letter-spacing: -0.0425em;
+
+				@media (min-width: $w-s) {
+					font-size: var(--f-u10);
+				}
+			}
+
+			.grid {
+				display: grid;
+				grid-gap: 2rem;
+
+				@media (min-width: 1200px) {
+					grid-template-columns: 2fr 1fr;
+				}
+			}
+
+			.sectionTitle {
+				font-weight: 700;
+				font-size: var(--f-u8);
+				margin-top: 4rem;
+				margin-bottom: 2rem;
+			}
+
+			.roles {
+				margin-bottom: 2rem;
+
+				@media (min-width: $w-s) {
+					margin-bottom: 3.8rem;
+				}
+			}
+
+			.role {
+				position: relative;
+				display: inline-block;
+				font-weight: 600;
+				color: var(--t-fg);
+				background-color: var(--t-bg-translucent);
+				padding: 0.25em 0.5em;
+				z-index: 2;
+				box-shadow: var(--s-4);
+				border-radius: 0.4rem;
+
+				@media (min-width: $w-s) {
+					font-size: var(--f-u3);
+				}
+
+				+ .role {
+					margin-left: 1em;
+				}
+
+				&:nth-of-type(1) {
+					.invert {
+						background-color: var(--c-purple);
+					}
+				}
+
+				&:nth-of-type(2) {
+					.invert {
+						background-color: var(--c-blue);
+					}
+				}
+
+				&:nth-of-type(3) {
+					.invert {
+						background-color: var(--c-teal);
+					}
+				}
+
+				&:hover {
+					.invert {
+						clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+					}
+				}
+			}
+
+			.invert {
+				position: absolute;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				pointer-events: none;
+				border-radius: 0.4rem;
+				clip-path: polygon(0% 100%, 100% 100%, 100% 200%, 0% 200%);
+				transition: clip-path cubic-bezier(0.4, 0, 0.5, 1) 150ms;
+			}
+
+			.desc {
+				font-size: var(--f-u2);
+				margin-top: 1.5rem;
+				margin-bottom: 0;
+			}
+
+			.bio {
+				line-height: 2;
+				margin-bottom: 2rem;
+
+				> span:first-of-type {
+					line-height: 1;
+					margin-bottom: 0.5em;
+					display: block;
+					font-weight: 700;
+					font-size: var(--f-u4);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Nav />
+		<header class="hero">
+			<div class="overlay">
+				<h1 class="title">Aidan Timson (Timmo)</h1>
+				<div class="roles">
+					<span class="role"
+						>🤖 Tinkerer <span class="invert">🤖 Tinkerer</span>
+					</span>&nbsp;
+					<span class="role"
+						>👩‍💻 Developer <span class="invert">👩‍💻 Developer</span>
+					</span>&nbsp;
+					<span class="role"
+						>🤓 All Round Nerd <span class="invert"
+							>🤓 All Round Nerd
+						</span>
+					</span>
+				</div>
+			</div>
+		</header>
+		<main class="wrapper mt4 mb4">
+			<div class="grid">
+				<div class="section">
+					<h3 class="sectionTitle">Projects</h3>
+					<PortfolioPreview project={featuredProject} />
+					<div class="tac mt4">
+						<a href="/projects">
+							<Button>View All</Button>
+						</a>
+					</div>
+				</div>
+				<div class="section">
+					<h3 class="sectionTitle">About me</h3>
+					<p class="bio">
+						My name is Aidan, but you may know me better as <a
+							href="https://github.com/timmo001"
+							target="_blank"
+							>Timmo
+						</a> or <a
+							href="https://twitter.com/timmo001"
+							target="_blank"
+							>@timmo001
+						</a>
+					</p><p>
+						<a href="/about">Read more</a>
+					</p>
+				</div>
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
