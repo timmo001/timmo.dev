@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/project.astro
+layout: ../../layouts/post.astro
 title: WLED Wake Up Lamp
 client: Self
 publishDate: 2022-03-15 00:00:00
