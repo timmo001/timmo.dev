@@ -17,7 +17,6 @@ function PostPreview({ post }: MarkdownInstance<Post>): h.JSX.Element {
       <div className="pa3">
         <p className={`${Styles.desc} mt0 mb2`}>{frontmatter.description}</p>
         <div className={Styles.tags}>
-          Tagged:
           {frontmatter.tags.map((t: string) => (
             <div className={Styles.tag} data-tag={t}>
               {t}
