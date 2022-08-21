@@ -20,6 +20,7 @@ function Nav(): h.JSX.Element {
       <a className={Styles.link} href="/general">
         General
       </a>
+      <div className={Styles.split} />
       <a
         className={Styles.social}
         href="https://dev.to/timmo001"

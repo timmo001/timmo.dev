@@ -1,15 +1,12 @@
 .nav {
   position: fixed;
+  display: flex;
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
   display: flex;
   align-items: center;
-  padding-top: 1rem;
-  padding-right: 2rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
+  padding: 1rem;
   background-color: var(--c-blue-grey);
   box-shadow: var(--s-2);
   z-index: 100;
@@ -52,10 +49,12 @@
   border-radius: 50%;
 }
 
+.split {
+  flex-grow: 1;
+}
+
 .social {
   display: block;
-  margin-left: auto;
-  margin-right: 0;
 
   + .social {
     margin-left: 1.4rem;
