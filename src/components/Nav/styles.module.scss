@@ -22,7 +22,7 @@
 }
 
 .link {
-  color: var(--t-subdue);
+  color: var(--t-fg);
   display: block;
   margin-left: 1rem;
   text-decoration: none;
@@ -31,6 +31,7 @@
   padding-top: 0.75em;
   padding-bottom: 0.75em;
 
+  &:active,
   &:focus,
   &:hover {
     color: var(--t-subdue);
@@ -44,7 +45,7 @@
   width: 2em;
   height: 2em;
   margin-right: 0.5rem;
-  color: var(--c-black);
+  color: var(--c-white);
   font-weight: 900;
   letter-spacing: -0.125rem;
   border: 3px solid currentColor;
@@ -54,6 +55,7 @@
 .social {
   display: block;
   margin-left: auto;
+  margin-right: 0;
 
   + .social {
     margin-left: 1.4rem;
@@ -64,10 +66,10 @@
   display: block;
   width: 1.6rem;
   height: 1.6rem;
-  fill: var(--t-subdue);
+  fill: var(--t-fg);
   transition: fill linear 150ms;
 
   &:hover {
-    fill: var(--t-active);
+    fill: var(--t-subdue);
   }
 }
