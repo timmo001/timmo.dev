@@ -4,6 +4,7 @@ title: WLED Wake Up Lamp
 client: Self
 publishDate: 2022-03-15 00:00:00
 img: https://res.cloudinary.com/dxpmd7aef/image/upload/v1661000308/IMG_20201025_165747_9d28149243_cropped_rbzrzv.jpg
+imgPosition: center 20%
 description: |
   Building a wake up light using WLED and Home Assistant.
 tags:
