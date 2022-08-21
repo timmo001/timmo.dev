@@ -33,7 +33,7 @@ const posts = (await Astro.glob("./general/**/*.md"))
     </style>
   </head>
   <body>
-    <Nav />
+    <Nav client:load />
     <Hero title="General" />
     <div class="wrapper">
       <div class="grid mt4">

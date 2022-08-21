@@ -76,7 +76,7 @@ const general = (await Astro.glob("./general/**/*.md"))
     </style>
   </head>
   <body>
-    <Nav />
+    <Nav client:load />
     <Hero />
     <main class="wrapper mt4 mb4">
       <div class="section">

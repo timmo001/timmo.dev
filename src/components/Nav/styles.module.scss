@@ -8,8 +8,12 @@
   align-items: center;
   padding: 1rem;
   background-color: var(--c-blue-grey);
-  box-shadow: var(--s-2);
   z-index: 100;
+  transition: opacity 150ms linear;
+}
+
+.navelevated {
+  box-shadow: var(--s-2);
 }
 
 .logolink {
@@ -27,6 +31,7 @@
   text-transform: uppercase;
   padding-top: 0.75em;
   padding-bottom: 0.75em;
+  transition: fill linear 150ms;
 
   &:active,
   &:focus,

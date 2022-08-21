@@ -1,10 +1,32 @@
 import type { h } from "preact";
+import { useEffect, useState } from "preact/hooks";
 
 import Styles from "./styles.module.scss";
 
 function Nav(): h.JSX.Element {
+  const [scrolledPastThreshold, setScrolledPastThreshold] =
+    useState<boolean>(false);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    if (position > 10) {
+      setScrolledPastThreshold(true);
+    } else {
+      setScrolledPastThreshold(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className={Styles.nav}>
+    <nav
+      className={`${Styles.nav} ${scrolledPastThreshold && Styles.navelevated}`}
+    >
       <a className={Styles.link} href="/">
         Home
       </a>
