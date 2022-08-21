@@ -34,7 +34,7 @@ const posts = (await Astro.glob("./software/**/*.md"))
   </head>
   <body>
     <Nav client:load />
-    <Hero title="Software" />
+    <Hero title="Software / Contributions" />
     <div class="wrapper">
       <div class="grid mt4">
         {posts.map((post) => <PostPreview post={post} />)}

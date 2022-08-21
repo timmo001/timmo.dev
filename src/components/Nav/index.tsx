@@ -34,7 +34,7 @@ function Nav(): h.JSX.Element {
         About Me
       </a>
       <a className={Styles.link} href="/software">
-        Software
+        Software / Contributions
       </a>
       <a className={Styles.link} href="/projects">
         Projects
