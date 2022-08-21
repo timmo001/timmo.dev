@@ -2,11 +2,11 @@
 // Component Imports
 import MainHead from "../components/MainHead.astro";
 
-import Button from "../components/Button";
-import Footer from "../components/Footer";
-import Hero from "../components/Hero";
-import Nav from "../components/Nav";
-import PostPreview from "../components/PostPreview";
+import Button from "../components/Button/index.jsx";
+import Footer from "../components/Footer/index.jsx";
+import Hero from "../components/Hero/index.jsx";
+import Nav from "../components/Nav/index.jsx";
+import PostPreview from "../components/PostPreview/index.jsx";
 
 // Data Fetching: List all Markdown posts in the repo.
 const software = (await Astro.glob("./software/**/*.md"))
@@ -76,7 +76,7 @@ const general = (await Astro.glob("./general/**/*.md"))
     </style>
   </head>
   <body>
-    <Nav />
+    <Nav client:load />
     <Hero />
     <main class="wrapper mt4 mb4">
       <div class="section">
