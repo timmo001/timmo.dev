@@ -20,4 +20,5 @@ function Footer(): h.JSX.Element {
     </footer>
   );
 }
+
 export default Footer;

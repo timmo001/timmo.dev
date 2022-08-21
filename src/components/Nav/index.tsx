@@ -5,8 +5,8 @@ import Styles from "./styles.module.scss";
 function Nav(): h.JSX.Element {
   return (
     <nav className={Styles.nav}>
-      <a className={Styles.logolink} href="/">
-        <img src="/assets/logo.png" alt="logo" width="34" />
+      <a className={Styles.link} href="/about">
+        Home
       </a>
       <a className={Styles.link} href="/about">
         About Me
@@ -75,4 +75,5 @@ function Nav(): h.JSX.Element {
     </nav>
   );
 }
+
 export default Nav;

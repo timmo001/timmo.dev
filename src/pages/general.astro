@@ -1,8 +1,10 @@
 ---
 import MainHead from "../components/MainHead.astro";
-import Footer from "../components/Footer/index.jsx";
-import Nav from "../components/Nav/index.jsx";
-import PostPreview from "../components/PostPreview/index.jsx";
+
+import Footer from "../components/Footer";
+import Hero from "../components/Hero";
+import Nav from "../components/Nav";
+import PostPreview from "../components/PostPreview";
 
 const posts = (await Astro.glob("./general/**/*.md"))
   .filter(({ frontmatter }) => !!frontmatter.publishDate)
@@ -32,9 +34,9 @@ const posts = (await Astro.glob("./general/**/*.md"))
   </head>
   <body>
     <Nav />
+    <Hero title="General" />
     <div class="wrapper">
-      <h1 class="title mt4 mb4">General</h1>
-      <div class="grid">
+      <div class="grid mt4">
         {posts.map((post) => <PostPreview post={post} />)}
       </div>
     </div>

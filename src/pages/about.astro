@@ -1,7 +1,9 @@
 ---
 import MainHead from "../components/MainHead.astro";
-import Footer from "../components/Footer/index.jsx";
-import Nav from "../components/Nav/index.jsx";
+
+import Footer from "../components/Footer";
+import Hero from "../components/Hero";
+import Nav from "../components/Nav";
 ---
 
 <html lang="en">
@@ -11,26 +13,6 @@ import Nav from "../components/Nav/index.jsx";
       description="About Me - Aidan Timson (Timmo)"
     />
     <style lang="scss">
-      .hero {
-        padding: 8rem;
-        display: flex;
-        background-color: var(--t-fg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        min-height: 16vw;
-        color: white;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        background-color: #607d8b;
-        background-image: url("/assets/logo-header.svg");
-        background-size: contain;
-        background-position-x: center;
-        background-position-y: top;
-        background-repeat: no-repeat;
-      }
-
       .bio {
         font-size: var(--f-u1);
         line-height: 2;
@@ -39,8 +21,8 @@ import Nav from "../components/Nav/index.jsx";
   </head>
   <body>
     <Nav />
-    <header class="hero"></header>
-    <div class="wrapper">
+    <Hero />
+    <main class="wrapper">
       <div class="bio wrapper wrapper__readable mt8">
         <h2>Hello! 👋</h2>
         <p>
@@ -131,7 +113,7 @@ import Nav from "../components/Nav/index.jsx";
           </a>
         </p>
       </div>
-    </div>
+    </main>
     <Footer />
   </body>
 </html>
