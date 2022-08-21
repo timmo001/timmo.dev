@@ -5,7 +5,7 @@ import Styles from "./styles.module.scss";
 function Nav(): h.JSX.Element {
   return (
     <nav className={Styles.nav}>
-      <a className={Styles.link} href="/about">
+      <a className={Styles.link} href="/">
         Home
       </a>
       <a className={Styles.link} href="/about">
