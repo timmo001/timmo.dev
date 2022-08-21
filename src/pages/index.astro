@@ -7,11 +7,27 @@ import Footer from "../components/Footer/index.jsx";
 import PostPreview from "../components/PostPreview/index.jsx";
 
 // Data Fetching: List all Markdown posts in the repo.
-const projects = await Astro.glob("./project/**/*.md");
-const general = await Astro.glob("./general/**/*.md");
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
+const software = (await Astro.glob("./software/**/*.md"))
+  .filter(({ frontmatter }) => !!frontmatter.publishDate)
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.publishDate).valueOf() -
+      new Date(a.frontmatter.publishDate).valueOf()
+  );
+const projects = (await Astro.glob("./project/**/*.md"))
+  .filter(({ frontmatter }) => !!frontmatter.publishDate)
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.publishDate).valueOf() -
+      new Date(a.frontmatter.publishDate).valueOf()
+  );
+const general = (await Astro.glob("./general/**/*.md"))
+  .filter(({ frontmatter }) => !!frontmatter.publishDate)
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.publishDate).valueOf() -
+      new Date(a.frontmatter.publishDate).valueOf()
+  );
 ---
 
 <html lang="en">
@@ -216,6 +232,17 @@ const general = await Astro.glob("./general/**/*.md");
         </p>
       </div>
       <div class="section">
+        <h3 class="sectionTitle">Software</h3>
+        <div class="grid">
+          {software.slice(0, 2).map((post) => <PostPreview post={post} />)}
+        </div>
+        <div class="tac mt4">
+          <a href="/software">
+            <Button>View All</Button>
+          </a>
+        </div>
+      </div>
+      <div class="section">
         <h3 class="sectionTitle">Projects</h3>
         <div class="grid">
           {projects.slice(0, 2).map((post) => <PostPreview post={post} />)}
@@ -225,16 +252,16 @@ const general = await Astro.glob("./general/**/*.md");
             <Button>View All</Button>
           </a>
         </div>
-        <div class="section">
-          <h3 class="sectionTitle">General</h3>
-          <div class="grid">
-            {general.slice(0, 2).map((post) => <PostPreview post={post} />)}
-          </div>
-          <div class="tac mt4">
-            <a href="/general">
-              <Button>View All</Button>
-            </a>
-          </div>
+      </div>
+      <div class="section">
+        <h3 class="sectionTitle">General</h3>
+        <div class="grid">
+          {general.slice(0, 2).map((post) => <PostPreview post={post} />)}
+        </div>
+        <div class="tac mt4">
+          <a href="/general">
+            <Button>View All</Button>
+          </a>
         </div>
       </div>
     </main>

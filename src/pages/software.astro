@@ -1,0 +1,43 @@
+---
+import MainHead from "../components/MainHead.astro";
+import Footer from "../components/Footer/index.jsx";
+import Nav from "../components/Nav/index.jsx";
+import PostPreview from "../components/PostPreview/index.jsx";
+
+const posts = (await Astro.glob("./software/**/*.md"))
+  .filter(({ frontmatter }) => !!frontmatter.publishDate)
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.publishDate).valueOf() -
+      new Date(a.frontmatter.publishDate).valueOf()
+  );
+---
+
+<html lang="en">
+  <head>
+    <MainHead
+      title="Software | Aidan Timson (Timmo)"
+      description="Aidan Timson's software"
+    />
+    <style lang="scss">
+      .grid {
+        display: grid;
+        grid-gap: 3rem;
+
+        @media (min-width: 1200px) {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Nav />
+    <div class="wrapper">
+      <h1 class="title mt4 mb4">Software</h1>
+      <div class="grid">
+        {posts.map((post) => <PostPreview post={post} />)}
+      </div>
+    </div>
+    <Footer />
+  </body>
+</html>

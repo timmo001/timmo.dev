@@ -10,7 +10,9 @@ function PostPreview({ post }: MarkdownInstance<Post>): h.JSX.Element {
     <div className={Styles.card}>
       <div
         className={Styles.titleCard}
-        style={`background-image:url(${frontmatter.img})`}
+        style={`background-image:url(${frontmatter.img}); background-size: ${
+          frontmatter.imgSize || "cover"
+        };`}
       >
         <h1 className={Styles.title}>{frontmatter.title}</h1>
       </div>
@@ -23,7 +25,11 @@ function PostPreview({ post }: MarkdownInstance<Post>): h.JSX.Element {
             </div>
           ))}
         </div>
-        <a className={Styles.link} href={post.url}>
+        <a
+          className={Styles.link}
+          href={frontmatter.url || post.url}
+          target={frontmatter.url ? "_blank" : "_self"}
+        >
           <span className={Styles.linkInner}>View</span>
         </a>
       </div>

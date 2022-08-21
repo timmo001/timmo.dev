@@ -25,8 +25,9 @@
 .titleCard {
   position: relative;
   background-size: cover;
-  background-position: 50% 100%;
-  padding-top: 37.5%;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding-top: 42%;
 }
 
 .desc {
