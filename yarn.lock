@@ -707,17 +707,17 @@ ast-types@0.14.2, ast-types@^0.14.2:
   dependencies:
     tslib "^2.0.1"
 
-astro-eslint-parser@^0.5.0:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/astro-eslint-parser/-/astro-eslint-parser-0.5.1.tgz#04bf6258db621bc1cbb9531cff22f85ec34df9e3"
-  integrity sha512-es63TAA7vjgV8aI5pUOXqoxa9JHelqzFSk1qOVSCGkeoAMayrr7BdFt9waVWyXyIcOjTXJlQa1pM832bEaCS2Q==
+astro-eslint-parser@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/astro-eslint-parser/-/astro-eslint-parser-0.6.0.tgz#9a973950cccf6eae2dda1f8c7d50e49d24fea60f"
+  integrity sha512-r19bK7HcXgLOxVEdw937TluMmi2LVqJq2eGfKADVRIDnMF2UhLa/H3K4E/C2OD9+4tGgrvOUU19Tjt4PV8lvFQ==
   dependencies:
     "@astrojs/compiler" "0.18.0 - 0.23.0 || ^0.23.0"
     "@typescript-eslint/types" "^5.25.0"
+    astrojs-compiler-sync "^0.2.0"
     debug "^4.3.4"
     eslint-visitor-keys "^3.0.0"
     espree "^9.0.0"
-    synckit "^0.8.0"
 
 astro-robots-txt@0.3.8:
   version "0.3.8"
@@ -788,6 +788,13 @@ astro@1.1.3:
     vite "3.0.9"
     yargs-parser "^21.0.1"
     zod "^3.17.3"
+
+astrojs-compiler-sync@^0.2.0:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/astrojs-compiler-sync/-/astrojs-compiler-sync-0.2.2.tgz#329282d78fa9125efef0854ae43cd2ad0eef8df1"
+  integrity sha512-R7+WVPLWir4EalhJGk0IbrA7bWg+8pFB2cmxP5WNnZd/fmcAN1TnSb9RV1SyAIea+cyzd5c9l5Iu5/T5rl+EMQ==
+  dependencies:
+    synckit "^0.8.0"
 
 babel-plugin-module-resolver@^4.1.0:
   version "4.1.0"
@@ -1300,13 +1307,13 @@ escape-string-regexp@^5.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-5.0.0.tgz#4683126b500b61762f2dbebace1806e8be31b1c8"
   integrity sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==
 
-eslint-plugin-astro@0.17.1:
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-astro/-/eslint-plugin-astro-0.17.1.tgz#dca0af761c95cd81b3575fa02d6a3b63e6c2d835"
-  integrity sha512-G2S2zAaDokH2v7O+nzcd0iFskGJ1ohANhQpsFwaAqDPyn+GolFl4zSCnoQefLZ+ONEeZkZ8Jp7Imvbo3FI3LOA==
+eslint-plugin-astro@0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-astro/-/eslint-plugin-astro-0.18.0.tgz#7b3143c37955f9de93444739602bd43e86802a37"
+  integrity sha512-TNh5KKyDP9xqavDbJs2dQa15lazeXlhHD06yhhEVGKcnkpO5wHIvNuz+DVp5gZsT4spnJH09MCuXitqsy0DqvQ==
   dependencies:
     "@typescript-eslint/types" "^5.25.0"
-    astro-eslint-parser "^0.5.0"
+    astro-eslint-parser "^0.6.0"
     eslint-utils "^3.0.0"
     postcss "^8.4.14"
     postcss-selector-parser "^6.0.10"
