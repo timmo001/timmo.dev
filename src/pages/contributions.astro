@@ -6,7 +6,7 @@ import Hero from "../components/Hero/index.jsx";
 import Nav from "../components/Nav/index.jsx";
 import PostPreview from "../components/PostPreview/index.jsx";
 
-const posts = (await Astro.glob("./software/**/*.md"))
+const posts = (await Astro.glob("./contributions/**/*.md"))
   .filter(({ frontmatter }) => !!frontmatter.publishDate)
   .sort(
     (a, b) =>
@@ -18,8 +18,8 @@ const posts = (await Astro.glob("./software/**/*.md"))
 <html lang="en">
   <head>
     <MainHead
-      title="Software | Aidan Timson (Timmo)"
-      description="Aidan Timson's software"
+      title="Contributions | Aidan Timson (Timmo)"
+      description="Aidan Timson's contributions"
     />
     <style lang="scss">
       .grid {
@@ -34,7 +34,7 @@ const posts = (await Astro.glob("./software/**/*.md"))
   </head>
   <body>
     <Nav client:load />
-    <Hero title="Software" />
+    <Hero title="Contributions" />
     <div class="wrapper">
       <div class="grid mt4">
         {posts.map((post) => <PostPreview post={post} />)}

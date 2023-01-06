@@ -9,6 +9,14 @@ import Nav from "../components/Nav/index.jsx";
 import PostPreview from "../components/PostPreview/index.jsx";
 
 // Data Fetching: List all Markdown posts in the repo.
+const contributions = (await Astro.glob("./contributions/**/*.md"))
+  .filter(({ frontmatter }) => !!frontmatter.publishDate)
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.publishDate).valueOf() -
+      new Date(a.frontmatter.publishDate).valueOf()
+  )
+  .slice(0, 6);
 const software = (await Astro.glob("./software/**/*.md"))
   .filter(({ frontmatter }) => !!frontmatter.publishDate)
   .sort(
@@ -115,6 +123,17 @@ const general = (await Astro.glob("./general/**/*.md"))
         </div>
         <div class="tac mt4">
           <a href="/projects">
+            <Button>View All</Button>
+          </a>
+        </div>
+      </div>
+      <div class="section">
+        <h3 class="sectionTitle">Contributions</h3>
+        <div class="grid">
+          {contributions.map((post) => <PostPreview post={post} />)}
+        </div>
+        <div class="tac mt4">
+          <a href="/contributions">
             <Button>View All</Button>
           </a>
         </div>
