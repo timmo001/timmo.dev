@@ -33,17 +33,14 @@ function Nav(): h.JSX.Element {
       <a className={Styles.link} href="/about">
         About Me
       </a>
-      <a className={Styles.link} href="/contributions">
-        Contributions
-      </a>
       <a className={Styles.link} href="/software">
         Software
       </a>
+      <a className={Styles.link} href="/contributions">
+        Contributions
+      </a>
       <a className={Styles.link} href="/projects">
         Projects
-      </a>
-      <a className={Styles.link} href="/general">
-        General
       </a>
       <div className={Styles.split} />
       <a
