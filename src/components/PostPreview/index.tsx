@@ -4,7 +4,11 @@ import type { MarkdownInstance } from "astro";
 import type { Post } from "../../types/post";
 import Styles from "./styles.module.scss";
 
-function PostPreview({ post }: MarkdownInstance<Post>): h.JSX.Element {
+function PostPreview({
+  post,
+}: {
+  post: MarkdownInstance<Post>;
+}): h.JSX.Element {
   const { frontmatter } = post;
   return (
     <div className={Styles.card}>

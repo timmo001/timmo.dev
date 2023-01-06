@@ -1,15 +1,17 @@
 ---
 // Component Imports
-import MainHead from "../components/MainHead.astro";
+import type { MarkdownInstance } from "astro";
 
+import type { Post } from "../types/post";
 import Button from "../components/Button/index.jsx";
 import Footer from "../components/Footer/index.jsx";
 import Hero from "../components/Hero/index.jsx";
+import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav/index.jsx";
 import PostPreview from "../components/PostPreview/index.jsx";
 
-// Data Fetching: List all Markdown posts in the repo.
-const software = (await Astro.glob("./software/**/*.md"))
+// Data Fetching
+const software = (await Astro.glob<Post>("./software/**/*.md"))
   .filter(({ frontmatter }) => !!frontmatter.publishDate)
   .sort(
     (a, b) =>
@@ -17,7 +19,7 @@ const software = (await Astro.glob("./software/**/*.md"))
       new Date(a.frontmatter.publishDate).valueOf()
   )
   .slice(0, 6);
-const contributions = (await Astro.glob("./contributions/**/*.md"))
+const contributions = (await Astro.glob<Post>("./contributions/**/*.md"))
   .filter(({ frontmatter }) => !!frontmatter.publishDate)
   .sort(
     (a, b) =>
@@ -25,7 +27,7 @@ const contributions = (await Astro.glob("./contributions/**/*.md"))
       new Date(a.frontmatter.publishDate).valueOf()
   )
   .slice(0, 6);
-const projects = (await Astro.glob("./project/**/*.md"))
+const projects = (await Astro.glob<Post>("./project/**/*.md"))
   .filter(({ frontmatter }) => !!frontmatter.publishDate)
   .sort(
     (a, b) =>

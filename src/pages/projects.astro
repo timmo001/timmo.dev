@@ -1,12 +1,18 @@
 ---
-import MainHead from "../components/MainHead.astro";
+// Component Imports
+import type { MarkdownInstance } from "astro";
 
+import type { Post } from "../types/post";
 import Footer from "../components/Footer/index.jsx";
 import Hero from "../components/Hero/index.jsx";
+import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav/index.jsx";
 import PostPreview from "../components/PostPreview/index.jsx";
 
-const projects = (await Astro.glob("./project/**/*.md"))
+// Data Fetching
+const posts: Array<MarkdownInstance<Post>> = (
+  await Astro.glob<Post>("./project/**/*.md")
+)
   .filter(({ frontmatter }) => !!frontmatter.publishDate)
   .sort(
     (a, b) =>
@@ -37,7 +43,7 @@ const projects = (await Astro.glob("./project/**/*.md"))
     <Hero title="Projects" />
     <div class="wrapper">
       <div class="grid mt4">
-        {projects.map((post) => <PostPreview post={post} />)}
+        {posts.map((post) => <PostPreview post={post} />)}
       </div>
     </div>
     <Footer />

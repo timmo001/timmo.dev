@@ -1,12 +1,18 @@
 ---
-import MainHead from "../components/MainHead.astro";
+// Component Imports
+import type { MarkdownInstance } from "astro";
 
+import type { Post } from "../types/post";
 import Footer from "../components/Footer/index.jsx";
 import Hero from "../components/Hero/index.jsx";
+import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav/index.jsx";
 import PostPreview from "../components/PostPreview/index.jsx";
 
-const posts = (await Astro.glob("./software/**/*.md"))
+// Data Fetching
+const posts: Array<MarkdownInstance<Post>> = (
+  await Astro.glob<Post>("./software/**/*.md")
+)
   .filter(({ frontmatter }) => !!frontmatter.publishDate)
   .sort(
     (a, b) =>
