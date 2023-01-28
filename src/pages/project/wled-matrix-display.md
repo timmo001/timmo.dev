@@ -27,7 +27,8 @@ The most recent release of WLED adds 2d matrix support which allows you display 
 
 - ESP32 or an equivalent ESP chip compatible with WLED.
 - 3x 8x32 WS2812B Matrix Displays (These are the ones I used from BTF-Lighting: [AliExpress](https://www.aliexpress.com/item/32390846029.html)).
-- 3d printed frame (Add published STL files here).
+- 3d printed frame (Add published STL files [here](https://www.thingiverse.com/thing:5818727)).
+- Diffusion Fabric (Used to diffuse the light from the LEDs and to save print effort. You can use whatever works for you).
 
 ## Setup
 
