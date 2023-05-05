@@ -3,7 +3,7 @@ layout: ../../layouts/post.astro
 title: CRM Webapp
 client: Self
 publishDate: 2023-05-02 00:00:00
-img: https://res.cloudinary.com/dxpmd7aef/image/upload/v1683275187/Screenshot_2023-05-05_092557_mtfqf9.png
+img: https://res.cloudinary.com/dxpmd7aef/image/upload/v1683275887/Screenshot_2023-05-05_093758_iwycdr.png
 imgPosition: center 20%
 description: |
   A CRM system using Next.js and Supabase.
