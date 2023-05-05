@@ -10,6 +10,7 @@ tags:
   - contribution
   - python
   - home assistant
+  - integration
   - ovo energy
   - energy
 url: https://www.home-assistant.io/integrations/ovo_energy

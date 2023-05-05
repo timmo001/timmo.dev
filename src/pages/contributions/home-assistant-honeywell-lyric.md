@@ -10,6 +10,7 @@ tags:
   - contribution
   - python
   - home assistant
+  - integration
   - honeywell lyric
   - thermostat
 url: https://www.home-assistant.io/integrations/lyric

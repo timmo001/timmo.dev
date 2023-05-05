@@ -10,5 +10,6 @@ tags:
   - contribution
   - python
   - home assistant
+  - integration
 url: https://www.home-assistant.io/integrations/system_bridge
 ---
