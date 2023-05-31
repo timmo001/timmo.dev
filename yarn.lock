@@ -54,10 +54,10 @@
     unist-util-visit "^4.1.0"
     vfile "^5.3.2"
 
-"@astrojs/preact@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@astrojs/preact/-/preact-2.2.0.tgz#7727434d3eddb4199f5cbe917b4fb552e01ac8fb"
-  integrity sha512-SP8ODC/ywPFytVF9jX0Nrf9JoMFgXdsRPritLV9v4zPnarIwypW0kIFgm3rjT4ot8CQQj9J5cztqmD+hrDOvMg==
+"@astrojs/preact@2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@astrojs/preact/-/preact-2.2.1.tgz#bf4a0c4f9cd6b1e860df097c5d98d975c99dab44"
+  integrity sha512-lObgrX/qfK2sEnGDWoyQ8KojFJ54FIKB4TeywWmgj4ZTg0yLnvvOz6ReyPQ8VfR/1MU+vWs22jE4cuZJ/vPnOA==
   dependencies:
     "@babel/core" ">=7.0.0-0 <8.0.0"
     "@babel/plugin-transform-react-jsx" "^7.17.12"
