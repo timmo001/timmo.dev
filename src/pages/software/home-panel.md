@@ -10,5 +10,5 @@ tags:
   - reactjs
   - typescript
   - home assistant
-url: https://home-panel-docs.timmo.dev
+url: https://github.com/timmo001/home-panel
 ---
