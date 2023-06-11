@@ -1,7 +1,7 @@
 ---
 title: Home Assistant - Supabase Export Integration
 client: Self
-publishDate: 2023-06-31 00:00:00
+publishDate: 2023-05-31 00:00:00
 img: null
 imgSize: cover
 description: |
