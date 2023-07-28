@@ -5,7 +5,10 @@ import Styles from "./styles.module.scss";
 function Hero({ title }: { title?: string }): h.JSX.Element {
   return (
     <header class={Styles.hero}>
-      <img src="/assets/logo-header-thin.png" />
+      <img
+        class={Styles.heroimage}
+        src="/assets/logo-square-wide-nobackground.png"
+      />
       <div class={Styles.overlay}>
         <h1 class={Styles.title}>{title || "Aidan Timson (Timmo)"}</h1>
         <div class={Styles.roles}>
