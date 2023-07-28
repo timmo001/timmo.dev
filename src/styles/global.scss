@@ -19,6 +19,8 @@
   --c-white: #ffffff;
   --c-white-translucent: #ffffffa0;
   --c-white-translucent-light: #ffffffc0;
+  --c-background-start: rgba(32, 21, 71, 1);
+  --c-background-end: rgba(5, 28, 44, 1);
 
   // (f)ont
   --f-u18: 11.390625em;
@@ -67,7 +69,7 @@
   --t-bg-translucent: var(--c-black-translucent);
   --t-bg-translucent-light: var(--c-black-translucent-light);
   --t-subdue: var(--c-gray);
-  --t-active: var(--c-blue-grey);
+  --t-active: var(--c-purple);
 
   // (s)hadow
   --s-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

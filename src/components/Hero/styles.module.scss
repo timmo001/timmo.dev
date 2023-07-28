@@ -4,14 +4,12 @@ $w-s: 750px;
   position: relative;
   overflow: hidden;
   margin-top: 68px;
-
-  background-color: #607d8b;
-  background-image: url("/assets/logo-header-short-top.svg");
-  background-size: contain;
-  background-position-x: center;
-  background-position-y: top;
-  background-repeat: no-repeat;
-
+  background: rgb(32, 21, 71);
+  background: linear-gradient(
+    180deg,
+    var(--c-background-start) 30%,
+    var(--c-background-end) 80%
+  );
   @media (min-width: $w-s) {
     height: 32vw;
   }
