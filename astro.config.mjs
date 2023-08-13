@@ -7,6 +7,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   experimental: {
     integrations: true,
+    viewTransitions: true,
   },
   integrations: [preact(), robotsTxt(), sitemap()],
   site: "https://timmo.dev",
