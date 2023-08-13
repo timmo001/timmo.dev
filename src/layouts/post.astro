@@ -89,7 +89,9 @@ const { content } = Astro.props;
       </div>
     </div>
     <div class="wrapper wrapper__readable">
-      <div class="content"><slot /></div>
+      <main class="content">
+        <slot />
+      </main>
     </div>
     <Footer />
   </body>
