@@ -6,7 +6,6 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   experimental: {
-    integrations: true,
     viewTransitions: true,
   },
   integrations: [preact(), robotsTxt(), sitemap()],
