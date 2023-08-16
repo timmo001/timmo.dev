@@ -17,11 +17,11 @@ function Hero({ title }: { title?: string }): h.JSX.Element {
           ) : (
             <>
               <span class={Styles.role}>
-                Tinkerer <span class={Styles.invert}>Tinkerer</span>
+                Software Developer <span class={Styles.invert}>Software Developer</span>
               </span>
               &nbsp;
               <span class={Styles.role}>
-                Software Developer <span class={Styles.invert}>Software Developer</span>
+                Tinkerer <span class={Styles.invert}>Tinkerer</span>
               </span>
               &nbsp;
               <span class={Styles.role}>
