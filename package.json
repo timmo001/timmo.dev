@@ -10,15 +10,15 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/preact": "2.2.2",
-    "@astrojs/sitemap": "2.0.2",
-    "astro": "2.10.9",
-    "astro-robots-txt": "0.5.0",
-    "eslint": "8.47.0",
-    "eslint-plugin-astro": "0.28.0",
-    "sass": "1.66.0"
+    "@astrojs/preact": "3.0.1",
+    "@astrojs/sitemap": "3.0.2",
+    "astro": "2.10.15",
+    "astro-robots-txt": "1.0.0",
+    "eslint": "8.51.0",
+    "eslint-plugin-astro": "0.29.1",
+    "sass": "1.69.4"
   },
   "dependencies": {
-    "preact": "10.17.0"
+    "preact": "10.18.1"
   }
 }
