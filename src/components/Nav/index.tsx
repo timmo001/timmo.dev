@@ -115,7 +115,7 @@ function Nav(): h.JSX.Element {
       </a>
       <a
         className={Styles.social}
-        href="mailto:contact@timmo.xyz"
+        href="mailto:aidan@timmo.dev"
         rel="me"
         target="_blank"
       >
