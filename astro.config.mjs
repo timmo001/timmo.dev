@@ -5,9 +5,6 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  experimental: {
-    viewTransitions: true,
-  },
   integrations: [preact(), robotsTxt(), sitemap()],
   site: "https://timmo.dev",
 });
