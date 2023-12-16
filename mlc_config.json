@@ -4,6 +4,9 @@
       "pattern": "^http://localhost"
     },
     {
+      "pattern": "^aidan@timmo"
+    },
+    {
       "pattern": "^contact@timmo"
     },
     {
