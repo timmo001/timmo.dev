@@ -10,7 +10,7 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/preact": "3.0.1",
+    "@astrojs/preact": "3.0.2",
     "@astrojs/sitemap": "3.0.4",
     "astro": "4.0.8",
     "astro-robots-txt": "1.0.0",
