@@ -15,10 +15,10 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@astrojs/compiler@^2.0.0", "@astrojs/compiler@^2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@astrojs/compiler/-/compiler-2.5.0.tgz#dba7a7a936aed98089b93505dda1c1011ba82746"
-  integrity sha512-ZDluNgMIJT+z+HJcZ6QEJ/KqaFkTkrb+Za6c6VZs8G/nb1LBErL14/iU5EVJ9yu25i4QCLweuBJ3m5df34gZJg==
+"@astrojs/compiler@^2.0.0", "@astrojs/compiler@^2.5.3":
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/@astrojs/compiler/-/compiler-2.5.3.tgz#eb34fa21cbd395f2b5493aa06d91dd9e9faf3bc2"
+  integrity sha512-jzj01BRv/fmo+9Mr2FhocywGzEYiyiP2GVHje1ziGNU6c97kwhYGsnvwMkHrncAy9T9Vi54cjaMK7UE4ClX4vA==
 
 "@astrojs/internal-helpers@0.2.1":
   version "0.2.1"
@@ -932,12 +932,12 @@ astro-robots-txt@1.0.0:
     valid-filename "^4.0.0"
     zod "^3.22.2"
 
-astro@4.3.2:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-4.3.2.tgz#03a84aef2d3a76a1b7e0c2adee28781f89a9fbff"
-  integrity sha512-SJotHzKG/I32ruYWItMRJjtmNQh14mVS7kahu3XfYyxvo6nx08PGJBTSPbqPrW1sjeQPHwcpVDFx3yMMK2kaxQ==
+astro@4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-4.3.3.tgz#3ba9f6b3090f10d000696a81a095ceb1f78db9f8"
+  integrity sha512-8Vfcv8LuCfzkLj+NMk7i7pu5o0MPyDkYqUYWELSwKxWf85zJSNU4oLg4DlEZWbVpm5LeTfVrpSGrZGy5n4grBg==
   dependencies:
-    "@astrojs/compiler" "^2.5.0"
+    "@astrojs/compiler" "^2.5.3"
     "@astrojs/internal-helpers" "0.2.1"
     "@astrojs/markdown-remark" "4.2.1"
     "@astrojs/telemetry" "3.0.4"
