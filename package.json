@@ -12,7 +12,7 @@
   "devDependencies": {
     "@astrojs/preact": "3.1.0",
     "@astrojs/sitemap": "3.1.0",
-    "astro": "4.4.1",
+    "astro": "4.4.2",
     "astro-robots-txt": "1.0.0",
     "eslint": "8.56.0",
     "eslint-plugin-astro": "0.31.4",
