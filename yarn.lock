@@ -937,10 +937,10 @@ astro-robots-txt@1.0.0:
     valid-filename "^4.0.0"
     zod "^3.22.2"
 
-astro@4.4.13:
-  version "4.4.13"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-4.4.13.tgz#889b418b823e3987fba542feb3c2d9e47d222773"
-  integrity sha512-kx2k2DJd9Os15zJBo8fK01/2F7/4wH6sAKmlBHlkGHIFm6CKSSzWCK/IWQ0DybNWtthK9A3HDZ4VYWv0BJDOBg==
+astro@4.4.15:
+  version "4.4.15"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-4.4.15.tgz#1eb10278189647ef72d4a9502a8434ad7905facb"
+  integrity sha512-RTiAnlO8hDp6GqMVvaeJxyuCJhHNEho09lHshMNQBqgRabYPOJGW0HZZrbLRGNOqN9I14ivhZIunYGgAaGQpWw==
   dependencies:
     "@astrojs/compiler" "^2.5.3"
     "@astrojs/internal-helpers" "0.2.1"
