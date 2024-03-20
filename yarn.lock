@@ -941,10 +941,10 @@ astro-robots-txt@1.0.0:
     valid-filename "^4.0.0"
     zod "^3.22.2"
 
-astro@4.5.6:
-  version "4.5.6"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-4.5.6.tgz#9994479970f8b47ae8447e28f0a85f097c1ab149"
-  integrity sha512-/pXr+tDvgps1x3w+9i48XzfNPDr4NrT89EJPeCTL57IjaTpitSQ8Oy10Fv6zAqXNLIUJ5j3P1c+fJx+taKIg0g==
+astro@4.5.7:
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-4.5.7.tgz#c9b4497783288d1b6864ce65b51e963a1e504d08"
+  integrity sha512-Ioeg3TV42dOJvf6GlmykeR3EKZ8+JcnZyJ/X9qDPzVf2OREmtvW0182YCDXQBqwXFRHndZRcHLqinAWjzZYh/A==
   dependencies:
     "@astrojs/compiler" "^2.7.0"
     "@astrojs/internal-helpers" "0.3.0"
