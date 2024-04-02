@@ -49,10 +49,10 @@
     unist-util-visit-parents "^6.0.0"
     vfile "^6.0.1"
 
-"@astrojs/preact@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@astrojs/preact/-/preact-3.1.1.tgz#59f68152908364d788b465e8f2074fa3fd20d990"
-  integrity sha512-ASgmVzh4wLyIyynp5CIfDwE45Vg/tIP+Y+5SnQtURmCP1qZpjdUbsw+bGQ0wCSXtjIbzCBa7Kw7Qn0g6WE2W2w==
+"@astrojs/preact@3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@astrojs/preact/-/preact-3.1.2.tgz#5dc05cc2fe15550a15a5b0f788960debf873076b"
+  integrity sha512-DIxlwbCkywakf+O3JtJ1h96cFOAY8fFXmkyl9aDuY36EYN3brhX+kmGFX87ZQGlzSD6SBXOscADILREhF33eFw==
   dependencies:
     "@babel/plugin-transform-react-jsx" "^7.22.5"
     "@babel/plugin-transform-react-jsx-development" "^7.22.5"
