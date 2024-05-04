@@ -1,4 +1,4 @@
-# Timmo - Astro Website
+# Timmo
 
 Website built with [Astro](https://astro.build).
 
