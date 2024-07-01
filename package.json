@@ -14,7 +14,7 @@
     "@astrojs/sitemap": "3.1.6",
     "astro": "4.11.3",
     "astro-robots-txt": "1.0.0",
-    "eslint": "9.5.0",
+    "eslint": "9.6.0",
     "eslint-plugin-astro": "1.2.2",
     "sass": "1.77.6"
   },
