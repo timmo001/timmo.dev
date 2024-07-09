@@ -15,7 +15,7 @@
     "astro": "4.11.5",
     "astro-robots-txt": "1.0.0",
     "eslint": "9.6.0",
-    "eslint-plugin-astro": "1.2.2",
+    "eslint-plugin-astro": "1.2.3",
     "sass": "1.77.6"
   },
   "dependencies": {
