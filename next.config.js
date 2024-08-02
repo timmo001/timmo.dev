@@ -5,6 +5,14 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  images: {
+    remotePatterns: [{ hostname: "utfs.io" }],
+  },
+  eslint: {
+    // ESLint is disabled during builds to avoid slowing down the build process.
+    ignoreDuringBuilds: true,
+  },
+};
 
 export default config;
