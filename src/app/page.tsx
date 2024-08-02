@@ -141,35 +141,41 @@ export default function Home() {
               title="Top Languages"
               height="74"
               width="100%"
-              style={{ border: 0, background: "transparent !important;" }}
+              style={{ border: 0, background: "transparent !important" }}
             ></iframe>
           </TextFadeInUp>
         </div>
         <div className="flex w-full flex-col gap-32">
-          <TextFadeInUp>
-            <div className="flex w-full flex-col items-center">
+          <div className="flex w-full flex-col items-center">
+            <TextFadeInUpGrab>
               <h3 className="mb-8 text-2xl font-bold leading-snug tracking-tight text-white">
                 GitHub Stats
               </h3>
+            </TextFadeInUpGrab>
+            <TextFadeInUp>
               <iframe
                 src="https://stats.timmo.dev/github/stats?background=transparent&padding=0"
                 title="Stats"
                 height="390"
                 width="780"
-                style={{ border: 0, background: "transparent !important;" }}
+                style={{ border: 0, background: "transparent !important" }}
               ></iframe>
+            </TextFadeInUp>
+            <TextFadeInUpGrab>
               <h4 className="mb-4 text-2xl font-normal leading-snug tracking-tight text-white">
                 Contribution Graph
               </h4>
+            </TextFadeInUpGrab>
+            <TextFadeInUp>
               <iframe
                 src="https://ghchart.rshah.org/timmo001"
                 title="timmo001"
                 height="120"
                 width="670"
-                style={{ border: 0, background: "transparent !important;" }}
+                style={{ border: 0, background: "transparent !important" }}
               ></iframe>
-            </div>
-          </TextFadeInUp>
+            </TextFadeInUp>
+          </div>
         </div>
       </div>
     </>
