@@ -9,6 +9,7 @@ export function TextFadeInUp({
       initial={{ opacity: 0, y: 15 }}
       transition={{ duration: 0.8 }}
       whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
     >
       {children}
     </motion.text>
@@ -33,6 +34,7 @@ export function TextFadeInUpGrab({
       initial={{ opacity: 0, y: 15 }}
       transition={{ duration: 0.5 }}
       whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
     >
       {children}
     </motion.text>
