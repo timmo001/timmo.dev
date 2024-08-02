@@ -35,7 +35,7 @@ export default function Home() {
       </header>
 
       <div className="container flex flex-col items-center justify-start gap-12 px-4 py-16">
-        <div className="grid-row grid gap-x-4 gap-y-40 sm:grid-cols-1 md:grid-cols-2">
+        <div className="grid-row grid gap-x-4 gap-y-36 pb-36 sm:grid-cols-1 md:grid-cols-2">
           <TextFadeInUpGrab>
             <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
               About Me
@@ -92,6 +92,83 @@ export default function Home() {
               </a>{" "}
               profile.
             </p>
+          </TextFadeInUp>
+          <TextFadeInUpGrab>
+            <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
+              System Bridge
+            </h3>
+          </TextFadeInUpGrab>
+          <TextFadeInUp>
+            <p className="text-xl font-normal leading-relaxed tracking-normal text-white">
+              System Bridge is a desktop application for controlling and
+              monitoring your desktops. The app is designed to be
+              cross-platform, easy to install and use, and directly integrate
+              with Home Assistant or your own application via its websocket API.
+              System Bridge started as a node application using electron, but
+              moved into a python application and then into Rust with a Python
+              backend, using the original Python code moved from a monorepo to
+              individual modules.
+            </p>
+          </TextFadeInUp>
+          <TextFadeInUpGrab>
+            <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
+              Other Personal Projects
+            </h3>
+          </TextFadeInUpGrab>
+          <TextFadeInUp>
+            <p className="text-xl font-normal leading-relaxed tracking-normal text-white">
+              You will also find a lot of smaller projects, which showcase my
+              passion for open-source and creating applications. The reason
+              could be 'this could be better', or 'can this be a thing' etc.
+              There isn't always a reason, it can be because I want to learn a
+              new language or use a framework that interests me and the best way
+              to learn a technology in my opinion is to use it and experience
+              what it is capable of.
+            </p>
+          </TextFadeInUp>
+          <TextFadeInUpGrab>
+            <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
+              Top Programming Languages
+            </h3>
+          </TextFadeInUpGrab>
+          <TextFadeInUp>
+            <p className="mb-8 text-xl font-normal leading-relaxed tracking-normal text-white">
+              I have experience in a variety of programming languages. My top
+              programming languages from GitHub are:
+            </p>
+            <iframe
+              src="https://stats.timmo.dev/github/topLanguages?background=transparent&padding=0"
+              title="Top Languages"
+              height="74"
+              width="100%"
+              style={{ border: 0, background: "transparent !important;" }}
+            ></iframe>
+          </TextFadeInUp>
+        </div>
+        <div className="flex w-full flex-col gap-32">
+          <TextFadeInUp>
+            <div className="flex w-full flex-col items-center">
+              <h3 className="mb-8 text-2xl font-bold leading-snug tracking-tight text-white">
+                GitHub Stats
+              </h3>
+              <iframe
+                src="https://stats.timmo.dev/github/stats?background=transparent&padding=0"
+                title="Stats"
+                height="390"
+                width="780"
+                style={{ border: 0, background: "transparent !important;" }}
+              ></iframe>
+              <h4 className="mb-4 text-2xl font-normal leading-snug tracking-tight text-white">
+                Contribution Graph
+              </h4>
+              <iframe
+                src="https://ghchart.rshah.org/timmo001"
+                title="timmo001"
+                height="120"
+                width="670"
+                style={{ border: 0, background: "transparent !important;" }}
+              ></iframe>
+            </div>
           </TextFadeInUp>
         </div>
       </div>
