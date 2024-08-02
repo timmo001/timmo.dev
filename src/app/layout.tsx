@@ -30,7 +30,7 @@ export default function RootLayout({
               backgroundImage: "url('/logo-square-wide-nobackground.png')",
             }}
           >
-            <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+            <h1 className="text-wrap text-4xl font-extrabold leading-snug tracking-tight text-white sm:text-[5rem]">
               Aidan Timson (
               <span className="text-[hsl(280,100%,70%)]">Timmo</span>)
             </h1>
