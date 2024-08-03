@@ -40,8 +40,8 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="container flex flex-col items-center justify-start bg-gradient-to-b from-slate-950 to-gray-950 px-4 py-16">
-        <div className="grid-row grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2">
+      <div className="flex w-full flex-col items-center justify-start bg-gradient-to-b from-slate-950 to-gray-950 px-4 py-16">
+        <div className="grid-row container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2">
           <TextFadeInUpGrab>
             <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
               About Me
@@ -154,7 +154,7 @@ export default function Home() {
           ></iframe>
         </TextFadeInUp>
 
-        <div className="mt-36 flex w-full flex-col gap-36">
+        <div className="container mt-36 flex w-full flex-col gap-36">
           <div className="flex w-full flex-col items-center">
             <TextFadeInUpGrab>
               <h3 className="mb-8 text-2xl font-bold leading-snug tracking-tight text-white">
