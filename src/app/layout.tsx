@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 import { ContactLinks } from "~/components/contactLinks";
 import { Navigation } from "~/components/navigation";
@@ -35,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body className="min-h-screen bg-background font-sans antialiased">
+        <Analytics />
         <ThemeProvider attribute="class" defaultTheme="dark">
           <TextFadeInUp>
             <div className="absolute flex w-full flex-row flex-wrap justify-between gap-4 px-4 py-2">
