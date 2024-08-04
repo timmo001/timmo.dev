@@ -10,6 +10,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Stats | Aidan Timson (Timmo)",
+  description: "Aggregated stats for Aidan Timson (Timmo/timmo001)",
 };
 
 export default async function Stats() {
