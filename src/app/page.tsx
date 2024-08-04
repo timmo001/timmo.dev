@@ -1,7 +1,4 @@
-import {
-  TextFadeInUp,
-  TextFadeInUpGrab,
-} from "~/components/animations/text";
+import { TextFadeInUp, TextFadeInUpGrab } from "~/components/animations/text";
 import { ContactLinks } from "~/components/contactLinks";
 
 export default function Home() {
