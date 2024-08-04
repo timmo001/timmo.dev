@@ -20,7 +20,7 @@ type Link = Array<{
   description: string;
 }>;
 
-const software: Link = [
+const projects: Link = [
   {
     title: "System Bridge",
     href: "https://system-bridge.timmo.dev",
@@ -100,7 +100,7 @@ export function Navigation() {
           <NavigationMenuTrigger>Software</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[500px] gap-3 p-4 md:w-[600px] md:grid-cols-2 lg:w-[700px]">
-              {software.map((component) => (
+              {projects.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
@@ -144,27 +144,27 @@ const ListItem = React.forwardRef<
 
   return (
     <li>
-      {/* <NavigationMenuLink asChild> */}
-      <a
-        ref={ref}
-        className={cn(
-          "block select-none space-y-1 rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent/80 hover:text-accent-foreground focus:bg-accent/80 focus:text-accent-foreground",
-          className,
-        )}
-        target={isExternal ? "_blank" : undefined}
-        {...props}
-      >
-        <div className="text-sm font-medium leading-none">
-          {title}
-          {isExternal && (
-            <ExternalLink className="mb-1 ms-1 inline-block h-3 w-3 text-slate-400" />
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent/80 hover:text-accent-foreground focus:bg-accent/80 focus:text-accent-foreground",
+            className,
           )}
-        </div>
-        <p className="line-clamp-3 text-sm leading-snug text-muted-foreground">
-          {children}
-        </p>
-      </a>
-      {/* </NavigationMenuLink> */}
+          target={isExternal ? "_blank" : undefined}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">
+            {title}
+            {isExternal && (
+              <ExternalLink className="mb-1 ms-1 inline-block h-3 w-3 text-slate-400" />
+            )}
+          </div>
+          <p className="line-clamp-3 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
     </li>
   );
 });
