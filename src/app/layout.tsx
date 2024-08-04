@@ -33,7 +33,7 @@ export default function RootLayout({
             <div className="absolute flex w-full flex-row justify-between gap-x-4 px-4 py-2">
               <Navigation />
               <div className="flex flex-row items-center gap-x-4">
-                <ContactLinks classes="h-8 w-8 fill-white transition-transform duration-300 ease-in-out hover:scale-105" />
+                <ContactLinks classes="h-7 w-7 fill-white transition-transform duration-300 ease-in-out hover:scale-110" />
               </div>
             </div>
           </TextFadeInUp>
