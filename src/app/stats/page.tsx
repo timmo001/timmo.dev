@@ -1,11 +1,16 @@
+import { type Metadata } from "next";
+
 import { TextFadeInUp, TextFadeInUpGrab } from "~/components/animations/text";
-import { ContactLinks } from "~/components/contactLinks";
 import GitHubStats from "~/components/github/stats";
 import GitHubTopLanguages from "~/components/github/topLanguages";
 import { getStats, getTopLanguages, USERNAME } from "~/lib/github";
 import { getUserData } from "~/server/github";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Stats | Aidan Timson (Timmo)",
+};
 
 export default async function Stats() {
   const { user } = await getUserData(USERNAME);

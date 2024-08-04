@@ -1,8 +1,13 @@
 "use client";
+import { type Metadata } from "next";
 import Link from "next/link";
 
 import { TextFadeInUpGrab } from "~/components/animations/text";
 import { Button } from "~/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Error | Aidan Timson (Timmo)",
+};
 
 export default function Error() {
   return (
