@@ -66,6 +66,7 @@ export default function Home() {
                 className="text-indigo-500"
                 href="https://www.home-assistant.io"
                 target="_blank"
+                aria-label="Home Assistant website"
               >
                 Home Assistant
               </a>
@@ -74,6 +75,7 @@ export default function Home() {
                 className="text-indigo-500"
                 href="https://github.com/hassio-addons"
                 target="_blank"
+                aria-label="Home Assistant Community Add-ons GitHub repository"
               >
                 Home Assistant Community Add-ons
               </a>{" "}
@@ -86,6 +88,7 @@ export default function Home() {
                 className="text-indigo-500"
                 href="https://github.com/timmo001"
                 target="_blank"
+                aria-label="GitHub profile"
               >
                 GitHub
               </a>{" "}
