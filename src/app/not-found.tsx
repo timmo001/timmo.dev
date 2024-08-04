@@ -15,7 +15,7 @@ export default function NotFound() {
         >
           <div className="flex flex-wrap items-baseline justify-start text-start">
             <TextFadeInUpGrab>
-              <span className="me-6 text-8xl font-bold leading-none tracking-tight text-white">
+              <span className="me-6 text-6xl font-bold leading-none tracking-tight text-white">
                 Page not found
               </span>
             </TextFadeInUpGrab>
