@@ -42,7 +42,7 @@ export default async function Stats() {
         <div className="container flex w-full flex-col items-center gap-16 text-center">
           <section>
             <TextFadeInUp>
-              <div className="grid grid-cols-4 gap-12">
+              <div className="grid grid-cols-2 gap-12 leading-snug tracking-tight sm:grid-cols-3 md:grid-cols-4">
                 <GitHubStats data={githubStats} />
               </div>
             </TextFadeInUp>
@@ -54,9 +54,11 @@ export default async function Stats() {
                 Top Languages
               </h3>
             </TextFadeInUpGrab>
-            <div className="grid grid-cols-6 gap-4">
-              <GitHubTopLanguages data={githubTopLanguages} />
-            </div>
+            <TextFadeInUp>
+              <div className="grid grid-cols-3 gap-4 leading-snug tracking-tight sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+                <GitHubTopLanguages data={githubTopLanguages} />
+              </div>
+            </TextFadeInUp>
           </section>
 
           <section>
