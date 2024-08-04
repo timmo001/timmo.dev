@@ -11,6 +11,7 @@ import { ThemeProvider } from "~/components/theme-provider";
 export const metadata: Metadata = {
   title: "Aidan Timson (Timmo)",
   description: "Personal website for Aidan Timson (Timmo)",
+  publisher: "Aidan Timson",
   keywords: [
     "Aidan Timson",
     "Timmo",
@@ -20,6 +21,9 @@ export const metadata: Metadata = {
     "Full-Stack Developer",
   ],
   icons: [{ rel: "icon", url: "/logo-letter-square-nobackground.png" }],
+  openGraph: {
+    images: [{ url: "/api/og" }],
+  },
 };
 
 export default function RootLayout({
