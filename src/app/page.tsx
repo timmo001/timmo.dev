@@ -149,17 +149,15 @@ export default function Home() {
               page.
             </p>
           </TextFadeInUp>
-        </div>
 
-        <div className="container mt-36 flex w-full flex-col gap-36">
-          <div className="flex w-full flex-col items-center">
+          <div className="col-span-2 mt-36 flex w-full flex-col items-center gap-8">
             <TextFadeInUpGrab>
               <h3 className="mb-8 text-2xl font-bold leading-snug tracking-tight text-white">
                 Contact
               </h3>
             </TextFadeInUpGrab>
             <TextFadeInUp>
-              <div className="flex w-full max-w-screen-md flex-row flex-wrap justify-center gap-x-24 gap-y-16">
+              <div className="flex w-full flex-row flex-wrap justify-center gap-x-24 gap-y-16">
                 <ContactLinks classes="h-32 w-32 fill-white transition-transform duration-300 ease-in-out hover:scale-110" />
               </div>
             </TextFadeInUp>
