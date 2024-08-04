@@ -1,18 +1,13 @@
 import {
   TextFadeInUp,
   TextFadeInUpGrab,
-} from "~/app/_components/animations/text";
-import { ContactLinks } from "~/app/_components/contactLinks";
+} from "~/components/animations/text";
+import { ContactLinks } from "~/components/contactLinks";
 
 export default function Home() {
   return (
     <>
       <header className="h-screen w-full bg-gradient-to-b from-violet-900 to-slate-950 p-4">
-        <TextFadeInUp>
-          <div className="absolute right-6 flex flex-row justify-end gap-x-4">
-            <ContactLinks classes="h-8 w-8 fill-white transition-transform duration-300 ease-in-out hover:scale-105" />
-          </div>
-        </TextFadeInUp>
         <div
           className="max-w-screen flex h-full w-full flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-16"
           style={{
