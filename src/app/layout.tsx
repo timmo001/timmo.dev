@@ -10,6 +10,7 @@ import { ThemeProvider } from "~/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "Aidan Timson (Timmo)",
+  applicationName: "Aidan Timson (Timmo)",
   description: "Personal website for Aidan Timson (Timmo)",
   publisher: "Aidan Timson",
   keywords: [
