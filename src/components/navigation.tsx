@@ -11,6 +11,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from "~/components/ui/navigation-menu";
 import { ExternalLink } from "lucide-react";
 
@@ -46,7 +47,7 @@ const projects: Link = [
       "A web frontend for controlling the home. Integrates with Home Assistant as an additional frontend.",
   },
   {
-    title: "Stats WebApp",
+    title: "Stats Webapp",
     href: "https://github.com/timmo001/stats.timmo.dev",
     description:
       "A small portal to display metrics, built with Next.js and deployed with Vercel.",
@@ -97,6 +98,13 @@ export function Navigation() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
+          <Link href="/" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              About Me
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <NavigationMenuTrigger>Software</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[500px] gap-3 p-4 md:w-[600px] md:grid-cols-2 lg:w-[700px]">
@@ -127,6 +135,13 @@ export function Navigation() {
               ))}
             </ul>
           </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link href="/stats" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Stats
+            </NavigationMenuLink>
+          </Link>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
