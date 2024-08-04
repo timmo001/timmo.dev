@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { TextFadeInUp, TextFadeInUpGrab } from "~/components/animations/text";
 import { ContactLinks } from "~/components/contactLinks";
 
@@ -132,52 +133,16 @@ export default function Home() {
           <TextFadeInUp>
             <p className="mb-8 text-xl font-normal leading-relaxed tracking-normal text-white">
               I have experience in a variety of programming languages. My top
-              programming languages from GitHub are:
+              programming languages can be found on the{" "}
+              <Link className="text-indigo-500" href="/stats">
+                stats
+              </Link>{" "}
+              page.
             </p>
           </TextFadeInUp>
         </div>
-        <TextFadeInUp>
-          <iframe
-            src="https://stats.timmo.dev/github/topLanguages?background=transparent&padding=0"
-            title="Top Languages"
-            height="74"
-            width="670"
-            style={{ border: 0, background: "transparent !important" }}
-          ></iframe>
-        </TextFadeInUp>
 
         <div className="container mt-36 flex w-full flex-col gap-36">
-          <div className="flex w-full flex-col items-center">
-            <TextFadeInUpGrab>
-              <h3 className="mb-8 text-2xl font-bold leading-snug tracking-tight text-white">
-                GitHub Stats
-              </h3>
-            </TextFadeInUpGrab>
-            <TextFadeInUp>
-              <iframe
-                src="https://stats.timmo.dev/github/stats?background=transparent&padding=0"
-                title="Stats"
-                height="390"
-                width="780"
-                style={{ border: 0, background: "transparent !important" }}
-              ></iframe>
-            </TextFadeInUp>
-            <TextFadeInUpGrab>
-              <h4 className="mb-4 text-2xl font-normal leading-snug tracking-tight text-white">
-                Contribution Graph
-              </h4>
-            </TextFadeInUpGrab>
-            <TextFadeInUp>
-              <iframe
-                src="https://ghchart.rshah.org/timmo001"
-                title="timmo001"
-                height="120"
-                width="670"
-                style={{ border: 0, background: "transparent !important" }}
-              ></iframe>
-            </TextFadeInUp>
-          </div>
-
           <div className="flex w-full flex-col items-center">
             <TextFadeInUpGrab>
               <h3 className="mb-8 text-2xl font-bold leading-snug tracking-tight text-white">
