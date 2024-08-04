@@ -59,6 +59,39 @@ const software: Link = [
   },
 ];
 
+const contributions: Link = [
+  {
+    title: "Home Assistant Integration | GoXLR Utility",
+    href: "https://github.com/timmo001/homeassistant-integration-goxlr-utility",
+    description:
+      "A third party application from @GoXLR-on-Linux that allows for control of the GoXLR on Linux, Mac and Windows.",
+  },
+  {
+    title: "Home Assistant Integration | System Bridge",
+    href: "https://www.home-assistant.io/integrations/system_bridge",
+    description:
+      "Integrates System Bridge into Home Assistant to control and monitor your desktops via websocket connection.",
+  },
+  {
+    title: "Home Assistant Integration | Azure DevOps",
+    href: "https://www.home-assistant.io/integrations/azure_devops",
+    description:
+      "Allows you to control and monitor your Azure DevOps instance in Home Assistant.",
+  },
+  {
+    title: "Home Assistant Integration | Honeywell Lyric",
+    href: "https://www.home-assistant.io/integrations/lyric",
+    description:
+      "Integrates the Lyric thermostat platform into Home Assistant via the cloud API.",
+  },
+  {
+    title: "Home Assistant Integration | OVO Energy",
+    href: "https://www.home-assistant.io/integrations/ovo_energy",
+    description:
+      "Integrates UK energy provider OVO Energy into Home Assistant to monitor your energy consumption and costs.",
+  },
+];
+
 export function Navigation() {
   return (
     <NavigationMenu>
@@ -66,8 +99,24 @@ export function Navigation() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Software</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+            <ul className="grid w-[500px] gap-3 p-4 md:w-[600px] md:grid-cols-2 lg:w-[700px]">
               {software.map((component) => (
+                <ListItem
+                  key={component.title}
+                  title={component.title}
+                  href={component.href}
+                >
+                  {component.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Contributions</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[500px] gap-3 p-4 md:w-[600px] md:grid-cols-2 lg:w-[700px]">
+              {contributions.map((component) => (
                 <ListItem
                   key={component.title}
                   title={component.title}
@@ -95,27 +144,27 @@ const ListItem = React.forwardRef<
 
   return (
     <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent/80 hover:text-accent-foreground focus:bg-accent/80 focus:text-accent-foreground",
-            className,
+      {/* <NavigationMenuLink asChild> */}
+      <a
+        ref={ref}
+        className={cn(
+          "block select-none space-y-1 rounded-xl p-3 leading-none no-underline outline-none transition-colors hover:bg-accent/80 hover:text-accent-foreground focus:bg-accent/80 focus:text-accent-foreground",
+          className,
+        )}
+        target={isExternal ? "_blank" : undefined}
+        {...props}
+      >
+        <div className="text-sm font-medium leading-none">
+          {title}
+          {isExternal && (
+            <ExternalLink className="mb-1 ms-1 inline-block h-3 w-3 text-slate-400" />
           )}
-          target={isExternal ? "_blank" : undefined}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">
-            {title}
-            {isExternal && (
-              <ExternalLink className="mb-1 ms-1 inline-block h-3 w-3 text-slate-400" />
-            )}
-          </div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
+        </div>
+        <p className="line-clamp-3 text-sm leading-snug text-muted-foreground">
+          {children}
+        </p>
+      </a>
+      {/* </NavigationMenuLink> */}
     </li>
   );
 });
