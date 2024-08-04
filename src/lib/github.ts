@@ -96,5 +96,5 @@ export function getTopLanguages(user: UserNode): Array<Language> {
     }
   }
 
-  return topLanguages.sort((a, b) => b.size - a.size).slice(0, 16);
+  return topLanguages.sort((a, b) => b.size - a.size).slice(0, 18);
 }
