@@ -76,7 +76,7 @@ export function getTopLanguages(user: UserNode): Array<Language> {
     for (const language of repo.languages.edges) {
       // Find the language in the topLanguages array
       const index = topLanguages.findIndex(
-        (topLanguage) => topLanguage.name === language.node.name
+        (topLanguage) => topLanguage.name === language.node.name,
       );
 
       // If the language is not in the topLanguages array, add it
@@ -89,7 +89,7 @@ export function getTopLanguages(user: UserNode): Array<Language> {
             ? getContrastColor(getRGBColorFromHex(language.node.color))
             : "white",
         });
-      } else {
+      } else if (topLanguages[index]) {
         // If the language is in the topLanguages array, update the size
         topLanguages[index].size += language.size;
       }
