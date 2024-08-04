@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   icons: [{ rel: "icon", url: "/logo-letter-square-nobackground.png" }],
   openGraph: {
-    images: [{ url: "/api/og" }],
+    images: [{ url: "/og.png" }],
   },
 };
 
