@@ -23,7 +23,9 @@ export const metadata: Metadata = {
   ],
   icons: [{ rel: "icon", url: "/logo-letter-square-nobackground.png" }],
   openGraph: {
+    siteName: "Aidan Timson (Timmo)",
     images: [{ url: "/og.png" }],
+    url: "https://timmo.dev",
   },
 };
 
