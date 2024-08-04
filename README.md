@@ -2,6 +2,8 @@
 
 Personal website, built with [Astro](https://astro.build/).
 
+[Open Website](https://timmo.dev)
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
