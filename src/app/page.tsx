@@ -5,7 +5,10 @@ import { ContactLinks } from "~/components/contactLinks";
 export default function Home() {
   return (
     <>
-      <header className="h-screen w-full bg-gradient-to-b from-violet-900 to-slate-950 p-4">
+      <header
+        className="h-screen w-full bg-gradient-to-b from-violet-900 to-slate-950 p-4"
+        role="banner"
+      >
         <div
           className="max-w-screen flex h-full w-full flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-16"
           style={{
@@ -33,7 +36,10 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="flex w-full flex-col items-center justify-start bg-gradient-to-b from-slate-950 to-gray-950 px-4 py-16">
+      <div
+        className="flex w-full flex-col items-center justify-start bg-gradient-to-b from-slate-950 to-gray-950 px-4 py-16"
+        role="main"
+      >
         <div className="grid-row container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2">
           <TextFadeInUpGrab>
             <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
