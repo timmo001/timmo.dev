@@ -48,14 +48,15 @@ export default function Home() {
           </TextFadeInUpGrab>
           <TextFadeInUp>
             <p className="text-start text-xl font-normal leading-relaxed tracking-normal text-white">
-              I am a developer with a passion for creating and maintaining
-              software. I have experience in full-stack development and have
-              worked on a variety of projects.
+              I am a full-stack software developer with a passion for creating
+              and maintaining software. I have experience in full-stack
+              development and have worked on a variety of projects.
               <br />
               <br />
               I'm a tinkerer, who has a vast interest for technology, automation
-              and software. I'm always looking to improve my skills and learn
-              new things.
+              and software. I am always looking to improve my skills and learn
+              new things, whether that be a new programming language, framework
+              or technology.
             </p>
           </TextFadeInUp>
           <TextFadeInUpGrab>
