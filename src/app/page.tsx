@@ -48,6 +48,27 @@ export default function Home() {
           </TextFadeInUpGrab>
           <TextFadeInUp>
             <p className="text-start text-xl font-normal leading-relaxed tracking-normal text-white">
+              My name is Aidan, but you might know me better as{" "}
+              <a
+                className="text-indigo-500"
+                href="https://github.com/timmo001"
+                target="_blank"
+                aria-label="GitHub profile"
+              >
+                Timmo
+              </a>{" "}
+              or{" "}
+              <a
+                className="text-indigo-500"
+                href="https://github.com/timmo001"
+                target="_blank"
+                aria-label="GitHub profile"
+              >
+                @timmo001
+              </a>
+              .
+              <br />
+              <br />
               I am a full-stack software developer with a passion for creating
               and maintaining software. I have experience in full-stack
               development and have worked on a variety of projects.
