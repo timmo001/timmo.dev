@@ -42,7 +42,7 @@ export default function Home() {
       >
         <div className="grid-row container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2">
           <TextFadeInUpGrab>
-            <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
+            <h3 className="text-3xl font-bold leading-snug tracking-tight text-white">
               About Me
             </h3>
           </TextFadeInUpGrab>
@@ -60,7 +60,7 @@ export default function Home() {
             </p>
           </TextFadeInUp>
           <TextFadeInUpGrab>
-            <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
+            <h3 className="text-3xl font-bold leading-snug tracking-tight text-white">
               Personal Projects / Open-Source Contributions
             </h3>
           </TextFadeInUpGrab>
@@ -102,12 +102,10 @@ export default function Home() {
               profile.
             </p>
           </TextFadeInUp>
-          <TextFadeInUpGrab>
-            <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
-              System Bridge
-            </h3>
-          </TextFadeInUpGrab>
           <TextFadeInUp>
+            <h4 className="mb-3 text-2xl font-bold leading-snug tracking-tight text-white">
+              System Bridge
+            </h4>
             <p className="text-start text-xl font-normal leading-relaxed tracking-normal text-white">
               System Bridge is a desktop application for controlling and
               monitoring your desktops. The app is designed to be
@@ -119,12 +117,10 @@ export default function Home() {
               individual modules.
             </p>
           </TextFadeInUp>
-          <TextFadeInUpGrab>
-            <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
-              Other Personal Projects
-            </h3>
-          </TextFadeInUpGrab>
           <TextFadeInUp>
+            <h4 className="mb-3 text-2xl font-bold leading-snug tracking-tight text-white">
+              Other Personal Projects
+            </h4>
             <p className="text-start text-xl font-normal leading-relaxed tracking-normal text-white">
               You will also find a lot of smaller projects, which showcase my
               passion for open-source and creating applications. The reason
@@ -136,7 +132,7 @@ export default function Home() {
             </p>
           </TextFadeInUp>
           <TextFadeInUpGrab>
-            <h3 className="text-2xl font-bold leading-snug tracking-tight text-white">
+            <h3 className="text-3xl font-bold leading-snug tracking-tight text-white">
               Top Programming Languages
             </h3>
           </TextFadeInUpGrab>
