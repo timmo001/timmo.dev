@@ -60,7 +60,7 @@ export default function Home() {
               or{" "}
               <a
                 className="text-indigo-500"
-                href="https://github.com/timmo001"
+                href="mailto:aidan@timmo.dev"
                 target="_blank"
                 aria-label="GitHub profile"
               >
