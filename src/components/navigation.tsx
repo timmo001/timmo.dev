@@ -101,7 +101,7 @@ const contributions: Link = [
     title: "Home Assistant Community Add-on | The Lounge",
     href: "https://github.com/hassio-addons/addon-thelounge",
     description:
-      "A self-hosted web-based IRC client. Part of the Home Assistant Community Add-ons project, originall setup by myself.",
+      "A self-hosted web-based IRC client. Part of the Home Assistant Community Add-ons project, original setup by myself.",
   }
 ];
 
