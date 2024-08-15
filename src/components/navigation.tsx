@@ -47,6 +47,12 @@ const projects: Link = [
       "A web frontend for controlling the home. Integrates with Home Assistant as an additional frontend.",
   },
   {
+    title: "Developer Utilities",
+    href: "https://github.com/timmo001/developer-utilities-webapp",
+    description:
+      "A webapp provides a collection of utilities for developers such as Base64 encoding, JSON formatting, JWT decoding, and more.",
+  },
+  {
     title: "Stats Webapp",
     href: "https://github.com/timmo001/stats.timmo.dev",
     description:
@@ -56,7 +62,7 @@ const projects: Link = [
     title: "GitHub Workflows (Actions)",
     href: "https://github.com/timmo001/workflows",
     description:
-      "A set of reusable workflows for GitHub Actions. I use these in my own CI/CD pipelines.",
+      "A set of reusable workflows for GitHub Actions. I use these in my own CI/CD pipelines shared across projects.",
   },
 ];
 
