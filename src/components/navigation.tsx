@@ -97,6 +97,12 @@ const contributions: Link = [
     description:
       "Integrates UK energy provider OVO Energy into Home Assistant to monitor your energy consumption and costs.",
   },
+  {
+    title: "Home Assistant Community Add-on | The Lounge",
+    href: "https://github.com/hassio-addons/addon-thelounge",
+    description:
+      "A self-hosted web-based IRC client. Part of the Home Assistant Community Add-ons project, originall setup by myself.",
+  }
 ];
 
 export function Navigation() {
