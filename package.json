@@ -10,7 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@radix-ui/react-navigation-menu": "1.2.10",
+    "@radix-ui/react-navigation-menu": "1.2.12",
     "@radix-ui/react-slot": "1.2.0",
     "@t3-oss/env-nextjs": "0.13.4",
     "@vercel/analytics": "1.5.0",
