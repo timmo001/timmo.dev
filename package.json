@@ -29,13 +29,13 @@
     "zod": "3.25.36"
   },
   "devDependencies": {
-    "@types/eslint": "8.56.10",
+    "@types/eslint": "9.6.1",
     "@types/node": "22.15.24",
     "@types/react": "18.3.13",
     "@types/react-dom": "18.3.1",
     "@typescript-eslint/eslint-plugin": "8.33.0",
     "@typescript-eslint/parser": "8.33.0",
-    "eslint": "9.8.0",
+    "eslint": "9.27.0",
     "eslint-config-next": "15.3.2",
     "postcss": "8.5.4",
     "prettier": "3.5.3",
