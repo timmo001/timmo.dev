@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       <header
-        className="h-screen w-full bg-gradient-to-b from-violet-900 to-slate-950 p-4"
+        className="h-screen w-full bg-linear-to-b from-violet-900 to-slate-950 p-4"
         role="banner"
       >
         <div

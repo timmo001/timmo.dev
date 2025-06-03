@@ -22,7 +22,7 @@ export default async function Stats() {
   return (
     <>
       <header
-        className="h-[50vh] min-h-96 w-full bg-gradient-to-b from-violet-900 to-slate-950 p-4"
+        className="h-[50vh] min-h-96 w-full bg-linear-to-b from-violet-900 to-slate-950 p-4"
         role="banner"
       >
         <div
@@ -48,7 +48,7 @@ export default async function Stats() {
       </header>
 
       <div
-        className="flex w-full flex-col items-center justify-start bg-gradient-to-b from-slate-950 to-gray-950 px-4 py-16"
+        className="flex w-full flex-col items-center justify-start bg-linear-to-b from-slate-950 to-gray-950 px-4 py-16"
         role="main"
       >
         <div className="container flex w-full flex-col items-center gap-16 text-center">

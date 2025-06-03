@@ -13,7 +13,7 @@ export default function Error() {
   return (
     <>
       <header
-        className="h-[50vh] min-h-96 w-full bg-gradient-to-b from-violet-900 to-slate-950 p-4"
+        className="h-[50vh] min-h-96 w-full bg-linear-to-b from-violet-900 to-slate-950 p-4"
         role="banner"
       >
         <div
