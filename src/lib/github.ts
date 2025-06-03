@@ -3,7 +3,7 @@ import { type Stat } from "~/types/github/stat";
 import { type UserNode } from "~/types/github/user";
 import { getContrastColor, getRGBColorFromHex } from "~/lib/color";
 
-export const USERNAME = process.env.GITHUB_USERNAME || "timmo001";
+export const USERNAME = process.env.GITHUB_USERNAME ?? "timmo001";
 
 export function getStats(user: UserNode): Array<Stat> {
   return [

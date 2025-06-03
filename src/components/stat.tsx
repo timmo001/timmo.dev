@@ -29,7 +29,7 @@ const iconMap: Record<string, ReactElement> = {
 
 export default function Stat({ data }: { data: StatItem }) {
   const icon = useMemo<ReactElement>(
-    () => iconMap[data.key] || <div />,
+    () => iconMap[data.key] ?? <div />,
     [data.key],
   );
 
