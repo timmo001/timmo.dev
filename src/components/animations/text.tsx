@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export function TextFadeInUp({
   children,
-}: Readonly<{ children: React.ReactNode }>): JSX.Element {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <motion.text
       initial={{ opacity: 0, y: 15 }}
@@ -18,7 +18,7 @@ export function TextFadeInUp({
 
 export function TextFadeInUpGrab({
   children,
-}: Readonly<{ children: React.ReactNode }>): JSX.Element {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <motion.text
       className="select-none"
