@@ -8,11 +8,13 @@
     "resolveJsonModule": true,
     "moduleDetection": "force",
     "isolatedModules": true,
+    "verbatimModuleSyntax": true,
 
     /* Strictness */
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "checkJs": true,
+    "forceConsistentCasingInFileNames": true,
 
     /* Bundled projects */
     "lib": ["dom", "dom.iterable", "ES2022"],
