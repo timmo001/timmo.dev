@@ -161,11 +161,11 @@ export function Navigation() {
 }
 
 const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
+  React.ComponentRef<"a">,
   React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, ...props }, ref) => {
   const isExternal = React.useMemo<boolean>(
-    () => props.href?.startsWith("http") || false,
+    () => props.href?.startsWith("http") ?? false,
     [props.href],
   );
 

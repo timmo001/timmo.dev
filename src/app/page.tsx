@@ -74,7 +74,7 @@ export default function Home() {
               development and have worked on a variety of projects.
               <br />
               <br />
-              I'm a tinkerer, who has a vast interest for technology, automation
+              I&apos;m a tinkerer, who has a vast interest for technology, automation
               and software. I am always looking to improve my skills and learn
               new things, whether that be a new programming language, framework
               or technology.
@@ -145,8 +145,8 @@ export default function Home() {
             <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
               You will also find a lot of smaller projects, which showcase my
               passion for open-source and creating applications. The reason
-              could be 'this could be better', or 'can this be a thing' etc.
-              There isn't always a reason, it can be because I want to learn a
+              could be &apos;this could be better&apos;, or &apos;can this be a thing&apos; etc.
+              There isn&apos;t always a reason, it can be because I want to learn a
               new language or use a framework that interests me and the best way
               to learn a technology in my opinion is to use it and experience
               what it is capable of.
