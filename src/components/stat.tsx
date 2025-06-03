@@ -8,9 +8,9 @@ import {
   Target,
   Users,
 } from "lucide-react";
-import { ReactElement, useMemo } from "react";
+import { type ReactElement, useMemo } from "react";
 
-import { Stat as StatItem } from "~/types/github/stat";
+import { type Stat as StatItem } from "~/types/github/stat";
 
 const iconProps = {
   className: "h-32 w-32",

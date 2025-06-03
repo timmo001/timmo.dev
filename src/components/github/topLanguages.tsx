@@ -1,4 +1,4 @@
-import { Language } from "~/types/github/language";
+import { type Language } from "~/types/github/language";
 import { USERNAME } from "~/lib/github";
 
 export default function GitHubTopLanguages({

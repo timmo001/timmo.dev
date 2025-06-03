@@ -1,7 +1,7 @@
 "use server";
 import { Octokit } from "octokit";
 
-import { User } from "~/types/github/user";
+import { type User } from "~/types/github/user";
 
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 

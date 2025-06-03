@@ -1,4 +1,4 @@
-import { Stat as StatItem } from "~/types/github/stat";
+import { type Stat as StatItem } from "~/types/github/stat";
 import Stat from "~/components/stat";
 
 export default function GitHubStats({

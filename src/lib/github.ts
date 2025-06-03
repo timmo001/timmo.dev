@@ -1,6 +1,6 @@
-import { Language } from "~/types/github/language";
-import { Stat } from "~/types/github/stat";
-import { UserNode } from "~/types/github/user";
+import { type Language } from "~/types/github/language";
+import { type Stat } from "~/types/github/stat";
+import { type UserNode } from "~/types/github/user";
 import { getContrastColor, getRGBColorFromHex } from "~/lib/color";
 
 export const USERNAME = process.env.GITHUB_USERNAME || "timmo001";
@@ -63,7 +63,7 @@ export function getStats(user: UserNode): Array<Stat> {
 }
 
 export function getTopLanguages(user: UserNode): Array<Language> {
-  let topLanguages: Array<{
+  const topLanguages: Array<{
     name: string;
     size: number;
     color: string;
