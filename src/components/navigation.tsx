@@ -102,7 +102,7 @@ const contributions: Link = [
     href: "https://github.com/hassio-addons/addon-thelounge",
     description:
       "A self-hosted web-based IRC client. Part of the Home Assistant Community Add-ons project, original setup by myself.",
-  }
+  },
 ];
 
 export function Navigation() {
@@ -175,19 +175,19 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-xl p-3 leading-none no-underline outline-hidden transition-colors hover:bg-accent/60 hover:text-accent-foreground focus:bg-accent/60 focus:text-accent-foreground",
+            "hover:bg-accent/60 hover:text-accent-foreground focus:bg-accent/60 focus:text-accent-foreground block space-y-1 rounded-xl p-3 leading-none no-underline outline-hidden transition-colors select-none",
             className,
           )}
           target={isExternal ? "_blank" : undefined}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">
+          <div className="text-sm leading-none font-medium">
             {title}
             {isExternal && (
-              <ExternalLink className="mb-1 ms-1 inline-block h-3 w-3 text-slate-400" />
+              <ExternalLink className="ms-1 mb-1 inline-block h-3 w-3 text-slate-400" />
             )}
           </div>
-          <p className="line-clamp-3 text-sm leading-snug text-muted-foreground">
+          <p className="text-muted-foreground line-clamp-3 text-sm leading-snug">
             {children}
           </p>
         </a>

@@ -26,19 +26,19 @@ export default async function Stats() {
         role="banner"
       >
         <div
-          className="max-w-screen flex h-full w-full flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+          className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
           style={{
             backgroundImage: "url('/logo-wide-nobackground.png')",
           }}
         >
           <div className="flex flex-wrap items-baseline justify-start text-start">
             <TextFadeInUpGrab>
-              <span className="me-6 text-8xl font-bold leading-none tracking-tight text-white">
+              <span className="me-6 text-8xl leading-none font-bold tracking-tight text-white">
                 Stats
               </span>
             </TextFadeInUpGrab>
             <TextFadeInUpGrab>
-              <span className="text-nowrap text-4xl font-bold leading-none tracking-normal">
+              <span className="text-4xl leading-none font-bold tracking-normal text-nowrap">
                 <span className="text-indigo-500">Timmo</span> /{" "}
                 <span className="text-indigo-500">@timmo001</span>
               </span>
@@ -62,7 +62,7 @@ export default async function Stats() {
 
           <section>
             <TextFadeInUpGrab>
-              <h3 className="mb-4 text-2xl font-normal leading-snug tracking-tight text-white">
+              <h3 className="mb-4 text-2xl leading-snug font-normal tracking-tight text-white">
                 Top Languages
               </h3>
             </TextFadeInUpGrab>
@@ -75,7 +75,7 @@ export default async function Stats() {
 
           <section>
             <TextFadeInUpGrab>
-              <h3 className="mb-4 text-2xl font-normal leading-snug tracking-tight text-white">
+              <h3 className="mb-4 text-2xl leading-snug font-normal tracking-tight text-white">
                 Contribution Graph
               </h3>
             </TextFadeInUpGrab>

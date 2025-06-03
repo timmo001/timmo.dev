@@ -8,7 +8,7 @@ export default async function Loading() {
         role="banner"
       >
         <div
-          className="max-w-screen flex h-full w-full flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+          className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
           style={{
             backgroundImage: "url('/logo-wide-nobackground.png')",
           }}
@@ -18,7 +18,7 @@ export default async function Loading() {
             role="main"
           >
             <TextFadeInUpGrab>
-              <span className="me-6 text-8xl font-bold leading-none tracking-tight text-white">
+              <span className="me-6 text-8xl leading-none font-bold tracking-tight text-white">
                 Page loading...
               </span>
             </TextFadeInUpGrab>

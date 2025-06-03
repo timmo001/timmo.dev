@@ -10,26 +10,26 @@ export default function Home() {
         role="banner"
       >
         <div
-          className="max-w-screen flex h-full w-full flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+          className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
           style={{
             backgroundImage: "url('/logo-wide-nobackground.png')",
           }}
         >
           <div className="flex flex-wrap items-baseline justify-start text-start">
             <TextFadeInUpGrab>
-              <span className="me-6 text-8xl font-bold leading-none tracking-tight text-white">
+              <span className="me-6 text-8xl leading-none font-bold tracking-tight text-white">
                 Aidan Timson
               </span>
             </TextFadeInUpGrab>
             <TextFadeInUpGrab>
-              <span className="text-nowrap text-4xl font-bold leading-none tracking-normal">
+              <span className="text-4xl leading-none font-bold tracking-normal text-nowrap">
                 <span className="text-indigo-500">Timmo</span> /{" "}
                 <span className="text-indigo-500">@timmo001</span>
               </span>
             </TextFadeInUpGrab>
           </div>
           <TextFadeInUpGrab>
-            <h2 className="mt-4 text-wrap text-3xl font-semibold leading-snug tracking-tight text-white">
+            <h2 className="mt-4 text-3xl leading-snug font-semibold tracking-tight text-wrap text-white">
               Software Developer
             </h2>
           </TextFadeInUpGrab>
@@ -42,12 +42,12 @@ export default function Home() {
       >
         <div className="grid-row container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2">
           <TextFadeInUpGrab>
-            <h3 className="text-3xl font-bold leading-snug tracking-tight text-white">
+            <h3 className="text-3xl leading-snug font-bold tracking-tight text-white">
               About Me
             </h3>
           </TextFadeInUpGrab>
           <TextFadeInUp>
-            <p className="text-start text-xl font-normal leading-relaxed tracking-normal text-white">
+            <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
               My name is Aidan, but you might know me better as{" "}
               <a
                 className="text-indigo-500"
@@ -81,12 +81,12 @@ export default function Home() {
             </p>
           </TextFadeInUp>
           <TextFadeInUpGrab>
-            <h3 className="text-3xl font-bold leading-snug tracking-tight text-white">
+            <h3 className="text-3xl leading-snug font-bold tracking-tight text-white">
               Personal Projects / Open-Source Contributions
             </h3>
           </TextFadeInUpGrab>
           <TextFadeInUp>
-            <p className="text-start text-xl font-normal leading-relaxed tracking-normal text-white">
+            <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
               I am very passionate about open-source projects and the
               open-source community. Alongside my own personal projects, I have
               contributed to projects such as{" "}
@@ -124,10 +124,10 @@ export default function Home() {
             </p>
           </TextFadeInUp>
           <TextFadeInUp>
-            <h4 className="mb-3 text-2xl font-bold leading-snug tracking-tight text-white">
+            <h4 className="mb-3 text-2xl leading-snug font-bold tracking-tight text-white">
               System Bridge
             </h4>
-            <p className="text-start text-xl font-normal leading-relaxed tracking-normal text-white">
+            <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
               System Bridge is a desktop application for controlling and
               monitoring your desktops. The app is designed to be
               cross-platform, easy to install and use, and directly integrate
@@ -139,10 +139,10 @@ export default function Home() {
             </p>
           </TextFadeInUp>
           <TextFadeInUp>
-            <h4 className="mb-3 text-2xl font-bold leading-snug tracking-tight text-white">
+            <h4 className="mb-3 text-2xl leading-snug font-bold tracking-tight text-white">
               Other Personal Projects
             </h4>
-            <p className="text-start text-xl font-normal leading-relaxed tracking-normal text-white">
+            <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
               You will also find a lot of smaller projects, which showcase my
               passion for open-source and creating applications. The reason
               could be 'this could be better', or 'can this be a thing' etc.
@@ -153,12 +153,12 @@ export default function Home() {
             </p>
           </TextFadeInUp>
           <TextFadeInUpGrab>
-            <h3 className="text-3xl font-bold leading-snug tracking-tight text-white">
+            <h3 className="text-3xl leading-snug font-bold tracking-tight text-white">
               Top Programming Languages
             </h3>
           </TextFadeInUpGrab>
           <TextFadeInUp>
-            <p className="mb-8 text-xl font-normal leading-relaxed tracking-normal text-white">
+            <p className="mb-8 text-xl leading-relaxed font-normal tracking-normal text-white">
               I have experience in a variety of programming languages. My top
               programming languages can be found on the{" "}
               <Link className="text-indigo-500" href="/stats">
@@ -170,7 +170,7 @@ export default function Home() {
 
           <div className="col-span-2 mt-36 flex w-full flex-col items-center gap-8">
             <TextFadeInUpGrab>
-              <h3 className="mb-8 text-2xl font-bold leading-snug tracking-tight text-white">
+              <h3 className="mb-8 text-2xl leading-snug font-bold tracking-tight text-white">
                 Contact
               </h3>
             </TextFadeInUpGrab>

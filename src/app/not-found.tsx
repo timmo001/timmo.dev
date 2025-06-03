@@ -16,7 +16,7 @@ export default function NotFound() {
         role="banner"
       >
         <div
-          className="max-w-screen flex h-full w-full flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+          className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
           style={{
             backgroundImage: "url('/logo-wide-nobackground.png')",
           }}
@@ -26,7 +26,7 @@ export default function NotFound() {
             role="main"
           >
             <TextFadeInUpGrab>
-              <span className="me-6 text-6xl font-bold leading-none tracking-tight text-white">
+              <span className="me-6 text-6xl leading-none font-bold tracking-tight text-white">
                 Page not found
               </span>
             </TextFadeInUpGrab>
