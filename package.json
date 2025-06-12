@@ -29,7 +29,7 @@
     "zod": "3.25.61"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.8",
+    "@tailwindcss/postcss": "^4.1.10",
     "@types/eslint": "9.6.1",
     "@types/node": "24.0.0",
     "@types/react": "19.1.7",
