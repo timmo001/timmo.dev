@@ -16,7 +16,7 @@ importers:
         version: 1.2.3(@types/react@19.1.7)(react@19.1.0)
       '@t3-oss/env-nextjs':
         specifier: 0.13.8
-        version: 0.13.8(typescript@5.8.3)(zod@3.25.61)
+        version: 0.13.8(typescript@5.8.3)(zod@3.25.63)
       '@vercel/analytics':
         specifier: 1.5.0
         version: 1.5.0(next@15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
@@ -57,8 +57,8 @@ importers:
         specifier: 1.0.7
         version: 1.0.7(tailwindcss@4.1.8)
       zod:
-        specifier: 3.25.61
-        version: 3.25.61
+        specifier: 3.25.63
+        version: 3.25.63
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.1.8
@@ -2355,8 +2355,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@3.25.61:
-    resolution: {integrity: sha512-fzfJgUw78LTNnHujj9re1Ov/JJQkRZZGDMcYqSx7Hp4rPOkKywaFHq0S6GoHeXs0wGNE/sIOutkXgnwzrVOGCQ==}
+  zod@3.25.63:
+    resolution: {integrity: sha512-3ttCkqhtpncYXfP0f6dsyabbYV/nEUW+Xlu89jiXbTBifUfjaSqXOG6JnQPLtqt87n7KAmnMqcjay6c0Wq0Vbw==}
 
 snapshots:
 
@@ -2899,17 +2899,17 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@t3-oss/env-core@0.13.8(typescript@5.8.3)(zod@3.25.61)':
+  '@t3-oss/env-core@0.13.8(typescript@5.8.3)(zod@3.25.63)':
     optionalDependencies:
       typescript: 5.8.3
-      zod: 3.25.61
+      zod: 3.25.63
 
-  '@t3-oss/env-nextjs@0.13.8(typescript@5.8.3)(zod@3.25.61)':
+  '@t3-oss/env-nextjs@0.13.8(typescript@5.8.3)(zod@3.25.63)':
     dependencies:
-      '@t3-oss/env-core': 0.13.8(typescript@5.8.3)(zod@3.25.61)
+      '@t3-oss/env-core': 0.13.8(typescript@5.8.3)(zod@3.25.63)
     optionalDependencies:
       typescript: 5.8.3
-      zod: 3.25.61
+      zod: 3.25.63
 
   '@tailwindcss/node@4.1.8':
     dependencies:
@@ -4735,4 +4735,4 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@3.25.61: {}
+  zod@3.25.63: {}
