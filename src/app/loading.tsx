@@ -1,30 +1,32 @@
-import { TextFadeInUpGrab } from "~/components/animations/text";
+import { TextTypewriter } from "~/components/animations/text";
+import {
+  FadeInContainer,
+  ScaleInContainer,
+} from "~/components/animations/containers";
+import { SpinnerLoader, PulseLoader } from "~/components/animations/loading";
 
-export default function Home() {
+export default function Loading() {
   return (
-    <>
-      <header
-        className="h-screen w-full bg-linear-to-b from-violet-900 to-slate-950 p-4"
-        role="banner"
-      >
-        <div
-          className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
-          style={{
-            backgroundImage: "url('/logo-wide-nobackground.png')",
-          }}
-        >
-          <div
-            className="flex flex-wrap items-baseline justify-start text-start"
-            role="main"
-          >
-            <TextFadeInUpGrab>
-              <span className="me-6 text-8xl leading-none font-bold tracking-tight text-white">
-                Page loading...
-              </span>
-            </TextFadeInUpGrab>
-          </div>
+    <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-linear-to-b from-violet-900 to-slate-950 p-4">
+      <FadeInContainer className="relative z-10">
+        <div className="flex flex-col items-center gap-8">
+          <ScaleInContainer delay={0.2}>
+            <SpinnerLoader size={64} color="#6366f1" />
+          </ScaleInContainer>
+          <TextTypewriter
+            text="Loading..."
+            className="text-4xl font-semibold text-white"
+          />
+          <FadeInContainer delay={0.8}>
+            <p className="text-center text-lg text-gray-300">
+              Please wait while we load the content.
+            </p>
+          </FadeInContainer>
+          <FadeInContainer delay={1.2}>
+            <PulseLoader size={8} color="#818cf8" />
+          </FadeInContainer>
         </div>
-      </header>
-    </>
+      </FadeInContainer>
+    </div>
   );
 }

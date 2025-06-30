@@ -1,38 +1,47 @@
 import Link from "next/link";
-import { TextFadeInUp, TextFadeInUpGrab } from "~/components/animations/text";
+import {
+  TextFadeInUp,
+  TextFadeInUpGrab,
+  TextTypewriter,
+  TextWave,
+  TextSlideInLeft,
+} from "~/components/animations/text";
+import {
+  FadeInContainer,
+  SlideInContainer,
+  StaggerContainer,
+} from "~/components/animations/containers";
 import { ContactLinks } from "~/components/contactLinks";
 
 export default function Home() {
   return (
     <>
       <header
-        className="h-screen w-full bg-linear-to-b from-violet-900 to-slate-950 p-4"
+        className="relative h-screen w-full overflow-hidden bg-linear-to-b from-violet-900 to-slate-950 p-4"
         role="banner"
       >
         <div
-          className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+          className="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
           style={{
             backgroundImage: "url('/logo-wide-nobackground.png')",
           }}
         >
           <div className="flex flex-wrap items-baseline justify-start text-start">
-            <TextFadeInUpGrab>
-              <span className="me-6 text-8xl leading-none font-bold tracking-tight text-white">
-                Aidan Timson
-              </span>
-            </TextFadeInUpGrab>
-            <TextFadeInUpGrab>
+            <TextWave
+              text="Aidan Timson"
+              className="me-6 text-8xl leading-none font-bold tracking-tight text-white"
+            />
+            <SlideInContainer direction="right" delay={1}>
               <span className="text-4xl leading-none font-bold tracking-normal text-nowrap">
                 <span className="text-indigo-500">Timmo</span> /{" "}
                 <span className="text-indigo-500">@timmo001</span>
               </span>
-            </TextFadeInUpGrab>
+            </SlideInContainer>
           </div>
-          <TextFadeInUpGrab>
-            <h2 className="mt-4 text-3xl leading-snug font-semibold tracking-tight text-wrap text-white">
-              Software Developer
-            </h2>
-          </TextFadeInUpGrab>
+          <TextTypewriter
+            text="Software Developer"
+            className="mt-4 text-3xl leading-snug font-semibold tracking-tight text-wrap text-white"
+          />
         </div>
       </header>
 
@@ -40,17 +49,20 @@ export default function Home() {
         className="flex w-full flex-col items-center justify-start bg-linear-to-b from-slate-950 to-gray-950 px-4 py-16"
         role="main"
       >
-        <div className="grid-row container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2">
-          <TextFadeInUpGrab>
+        <StaggerContainer
+          className="grid-row container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2"
+          staggerDelay={0.2}
+        >
+          <TextSlideInLeft>
             <h3 className="text-3xl leading-snug font-bold tracking-tight text-white">
               About Me
             </h3>
-          </TextFadeInUpGrab>
-          <TextFadeInUp>
+          </TextSlideInLeft>
+          <FadeInContainer delay={0.3}>
             <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
               My name is Aidan, but you might know me better as{" "}
               <a
-                className="text-indigo-500"
+                className="text-indigo-500 transition-colors hover:text-indigo-400"
                 href="https://github.com/timmo001"
                 target="_blank"
                 aria-label="GitHub profile"
@@ -59,7 +71,7 @@ export default function Home() {
               </a>{" "}
               or{" "}
               <a
-                className="text-indigo-500"
+                className="text-indigo-500 transition-colors hover:text-indigo-400"
                 href="mailto:aidan@timmo.dev"
                 target="_blank"
                 aria-label="GitHub profile"
@@ -74,12 +86,12 @@ export default function Home() {
               development and have worked on a variety of projects.
               <br />
               <br />
-              I&apos;m a tinkerer, who has a vast interest for technology, automation
-              and software. I am always looking to improve my skills and learn
-              new things, whether that be a new programming language, framework
-              or technology.
+              I&apos;m a tinkerer, who has a vast interest for technology,
+              automation and software. I am always looking to improve my skills
+              and learn new things, whether that be a new programming language,
+              framework or technology.
             </p>
-          </TextFadeInUp>
+          </FadeInContainer>
           <TextFadeInUpGrab>
             <h3 className="text-3xl leading-snug font-bold tracking-tight text-white">
               Personal Projects / Open-Source Contributions
@@ -145,11 +157,11 @@ export default function Home() {
             <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
               You will also find a lot of smaller projects, which showcase my
               passion for open-source and creating applications. The reason
-              could be &apos;this could be better&apos;, or &apos;can this be a thing&apos; etc.
-              There isn&apos;t always a reason, it can be because I want to learn a
-              new language or use a framework that interests me and the best way
-              to learn a technology in my opinion is to use it and experience
-              what it is capable of.
+              could be &apos;this could be better&apos;, or &apos;can this be a
+              thing&apos; etc. There isn&apos;t always a reason, it can be
+              because I want to learn a new language or use a framework that
+              interests me and the best way to learn a technology in my opinion
+              is to use it and experience what it is capable of.
             </p>
           </TextFadeInUp>
           <TextFadeInUpGrab>
@@ -167,19 +179,19 @@ export default function Home() {
               page.
             </p>
           </TextFadeInUp>
+        </StaggerContainer>
 
-          <div className="col-span-2 mt-36 flex w-full flex-col items-center gap-8">
-            <TextFadeInUpGrab>
-              <h3 className="mb-8 text-2xl leading-snug font-bold tracking-tight text-white">
-                Contact
-              </h3>
-            </TextFadeInUpGrab>
-            <TextFadeInUp>
-              <div className="flex w-full flex-row flex-wrap justify-center gap-x-24 gap-y-16">
-                <ContactLinks classes="h-32 w-32 fill-white transition-transform duration-300 ease-in-out hover:scale-110" />
-              </div>
-            </TextFadeInUp>
-          </div>
+        <div className="col-span-full mt-36 flex w-full flex-col items-center gap-8">
+          <TextFadeInUpGrab>
+            <h3 className="mb-8 text-2xl leading-snug font-bold tracking-tight text-white">
+              Contact
+            </h3>
+          </TextFadeInUpGrab>
+          <TextFadeInUp>
+            <div className="flex w-full flex-row flex-wrap justify-center gap-x-24 gap-y-16">
+              <ContactLinks classes="h-32 w-32 fill-white transition-transform duration-300 ease-in-out hover:scale-110" />
+            </div>
+          </TextFadeInUp>
         </div>
       </div>
     </>
