@@ -5,14 +5,14 @@ export function TextFadeInUp({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <motion.text
+    <motion.span
       initial={{ opacity: 0, y: 15 }}
       transition={{ duration: 0.8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
       {children}
-    </motion.text>
+    </motion.span>
   );
 }
 
@@ -20,7 +20,7 @@ export function TextFadeInUpGrab({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <motion.text
+    <motion.span
       className="select-none"
       drag
       dragConstraints={{
@@ -37,7 +37,7 @@ export function TextFadeInUpGrab({
       viewport={{ once: true }}
     >
       {children}
-    </motion.text>
+    </motion.span>
   );
 }
 
