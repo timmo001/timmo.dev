@@ -180,7 +180,7 @@ export default function Home() {
             </p>
           </TextFadeInUp>
 
-          <div className="col-span-2 mt-36 flex w-full flex-col items-center gap-8">
+          <div className="col-span-full mt-36 flex w-full flex-col items-center gap-8">
             <TextFadeInUpGrab>
               <h3 className="mb-8 text-2xl leading-snug font-bold tracking-tight text-white">
                 Contact
