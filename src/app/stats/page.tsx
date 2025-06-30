@@ -37,7 +37,6 @@ export default async function Stats() {
         className="relative h-[50vh] min-h-96 w-full bg-linear-to-b from-violet-900 to-slate-950 p-4 overflow-hidden"
         role="banner"
       >
-        <FloatingParticles count={30} />
         <div
           className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16 relative z-10"
           style={{

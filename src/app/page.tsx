@@ -4,17 +4,12 @@ import {
   TextFadeInUpGrab, 
   TextTypewriter, 
   TextWave,
-  TextSlideInLeft,
-  TextSlideInRight,
-  TextGlow 
-} from "~/components/animations/text";
+  TextSlideInLeft} from "~/components/animations/text";
 import { 
   FadeInContainer, 
   SlideInContainer, 
-  ScaleInContainer, 
   StaggerContainer 
 } from "~/components/animations/containers";
-import { StarField, GeometricShapes } from "~/components/animations/particles";
 import { ContactLinks } from "~/components/contactLinks";
 
 export default function Home() {
@@ -24,8 +19,6 @@ export default function Home() {
         className="relative h-screen w-full bg-linear-to-b from-violet-900 to-slate-950 p-4 overflow-hidden"
         role="banner"
       >
-        <StarField count={100} />
-        <GeometricShapes count={8} />
         <div
           className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16 relative z-10"
           style={{

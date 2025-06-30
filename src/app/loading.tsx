@@ -1,12 +1,10 @@
 import { TextTypewriter } from "~/components/animations/text";
 import { FadeInContainer, ScaleInContainer } from "~/components/animations/containers";
 import { SpinnerLoader, PulseLoader } from "~/components/animations/loading";
-import { FloatingParticles } from "~/components/animations/particles";
 
 export default function Loading() {
   return (
     <div className="relative flex h-screen w-full flex-col items-center justify-center bg-linear-to-b from-violet-900 to-slate-950 p-4 overflow-hidden">
-      <FloatingParticles count={20} />
       <FadeInContainer className="relative z-10">
         <div className="flex flex-col items-center gap-8">
           <ScaleInContainer delay={0.2}>
