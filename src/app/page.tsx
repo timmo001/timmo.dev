@@ -1,14 +1,15 @@
 import Link from "next/link";
-import { 
-  TextFadeInUp, 
-  TextFadeInUpGrab, 
-  TextTypewriter, 
+import {
+  TextFadeInUp,
+  TextFadeInUpGrab,
+  TextTypewriter,
   TextWave,
-  TextSlideInLeft} from "~/components/animations/text";
-import { 
-  FadeInContainer, 
-  SlideInContainer, 
-  StaggerContainer 
+  TextSlideInLeft,
+} from "~/components/animations/text";
+import {
+  FadeInContainer,
+  SlideInContainer,
+  StaggerContainer,
 } from "~/components/animations/containers";
 import { ContactLinks } from "~/components/contactLinks";
 
@@ -16,11 +17,11 @@ export default function Home() {
   return (
     <>
       <header
-        className="relative h-screen w-full bg-linear-to-b from-violet-900 to-slate-950 p-4 overflow-hidden"
+        className="relative h-screen w-full overflow-hidden bg-linear-to-b from-violet-900 to-slate-950 p-4"
         role="banner"
       >
         <div
-          className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16 relative z-10"
+          className="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
           style={{
             backgroundImage: "url('/logo-wide-nobackground.png')",
           }}
@@ -48,7 +49,10 @@ export default function Home() {
         className="flex w-full flex-col items-center justify-start bg-linear-to-b from-slate-950 to-gray-950 px-4 py-16"
         role="main"
       >
-        <StaggerContainer className="grid-row container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2" staggerDelay={0.2}>
+        <StaggerContainer
+          className="grid-row container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2"
+          staggerDelay={0.2}
+        >
           <TextSlideInLeft>
             <h3 className="text-3xl leading-snug font-bold tracking-tight text-white">
               About Me
@@ -58,7 +62,7 @@ export default function Home() {
             <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
               My name is Aidan, but you might know me better as{" "}
               <a
-                className="text-indigo-500 hover:text-indigo-400 transition-colors"
+                className="text-indigo-500 transition-colors hover:text-indigo-400"
                 href="https://github.com/timmo001"
                 target="_blank"
                 aria-label="GitHub profile"
@@ -67,7 +71,7 @@ export default function Home() {
               </a>{" "}
               or{" "}
               <a
-                className="text-indigo-500 hover:text-indigo-400 transition-colors"
+                className="text-indigo-500 transition-colors hover:text-indigo-400"
                 href="mailto:aidan@timmo.dev"
                 target="_blank"
                 aria-label="GitHub profile"
@@ -82,10 +86,10 @@ export default function Home() {
               development and have worked on a variety of projects.
               <br />
               <br />
-              I&apos;m a tinkerer, who has a vast interest for technology, automation
-              and software. I am always looking to improve my skills and learn
-              new things, whether that be a new programming language, framework
-              or technology.
+              I&apos;m a tinkerer, who has a vast interest for technology,
+              automation and software. I am always looking to improve my skills
+              and learn new things, whether that be a new programming language,
+              framework or technology.
             </p>
           </FadeInContainer>
           <TextFadeInUpGrab>
@@ -153,11 +157,11 @@ export default function Home() {
             <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
               You will also find a lot of smaller projects, which showcase my
               passion for open-source and creating applications. The reason
-              could be &apos;this could be better&apos;, or &apos;can this be a thing&apos; etc.
-              There isn&apos;t always a reason, it can be because I want to learn a
-              new language or use a framework that interests me and the best way
-              to learn a technology in my opinion is to use it and experience
-              what it is capable of.
+              could be &apos;this could be better&apos;, or &apos;can this be a
+              thing&apos; etc. There isn&apos;t always a reason, it can be
+              because I want to learn a new language or use a framework that
+              interests me and the best way to learn a technology in my opinion
+              is to use it and experience what it is capable of.
             </p>
           </TextFadeInUp>
           <TextFadeInUpGrab>
