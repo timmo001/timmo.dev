@@ -46,7 +46,7 @@ export default function RootLayout({
         <Analytics />
         <ThemeProvider attribute="class" defaultTheme="dark">
           <TextFadeInUp>
-            <div className="absolute flex w-full flex-row flex-wrap justify-between gap-4 px-4 py-2">
+            <div className="absolute z-50 flex w-full flex-row flex-wrap justify-between gap-4 px-4 py-2">
               <Navigation />
               <div className="ms-4 flex flex-row items-center gap-x-4">
                 <ContactLinks classes="h-7 w-7 fill-white transition-transform duration-300 ease-in-out hover:scale-110" />
