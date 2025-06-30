@@ -7,7 +7,7 @@ export function TextFadeInUp({
   return (
     <motion.span
       initial={{ opacity: 0, y: 15 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.6 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
