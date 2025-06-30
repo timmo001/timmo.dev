@@ -34,8 +34,15 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body className="bg-background min-h-screen font-sans antialiased">
+    <html
+      lang="en"
+      className={`${GeistSans.variable}`}
+      suppressHydrationWarning
+    >
+      <body
+        className="bg-background min-h-screen font-sans antialiased"
+        suppressHydrationWarning
+      >
         <Analytics />
         <ThemeProvider attribute="class" defaultTheme="dark">
           <TextFadeInUp>
