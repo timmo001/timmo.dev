@@ -1,18 +1,12 @@
 import { type Metadata } from "next";
 
-import { 
-  TextFadeInUp, 
-  TextFadeInUpGrab, 
-  TextTypewriter,
-  TextWave 
-} from "~/components/animations/text";
-import { 
-  FadeInContainer, 
-  SlideInContainer, 
-  ScaleInContainer, 
-  StaggerContainer 
+import { TextWave } from "~/components/animations/text";
+import {
+  FadeInContainer,
+  SlideInContainer,
+  ScaleInContainer,
+  StaggerContainer,
 } from "~/components/animations/containers";
-import { FloatingParticles } from "~/components/animations/particles";
 import GitHubStats from "~/components/github/stats";
 import GitHubTopLanguages from "~/components/github/topLanguages";
 import { getStats, getTopLanguages, USERNAME } from "~/lib/github";
@@ -34,11 +28,11 @@ export default async function Stats() {
   return (
     <>
       <header
-        className="relative h-[50vh] min-h-96 w-full bg-linear-to-b from-violet-900 to-slate-950 p-4 overflow-hidden"
+        className="relative h-[50vh] min-h-96 w-full overflow-hidden bg-linear-to-b from-violet-900 to-slate-950 p-4"
         role="banner"
       >
         <div
-          className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16 relative z-10"
+          className="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
           style={{
             backgroundImage: "url('/logo-wide-nobackground.png')",
           }}
