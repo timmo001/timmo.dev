@@ -1,38 +1,53 @@
 import Link from "next/link";
-import { TextFadeInUp, TextFadeInUpGrab } from "~/components/animations/text";
+import { 
+  TextFadeInUp, 
+  TextFadeInUpGrab, 
+  TextTypewriter, 
+  TextWave,
+  TextSlideInLeft,
+  TextSlideInRight,
+  TextGlow 
+} from "~/components/animations/text";
+import { 
+  FadeInContainer, 
+  SlideInContainer, 
+  ScaleInContainer, 
+  StaggerContainer 
+} from "~/components/animations/containers";
+import { StarField, GeometricShapes } from "~/components/animations/particles";
 import { ContactLinks } from "~/components/contactLinks";
 
 export default function Home() {
   return (
     <>
       <header
-        className="h-screen w-full bg-linear-to-b from-violet-900 to-slate-950 p-4"
+        className="relative h-screen w-full bg-linear-to-b from-violet-900 to-slate-950 p-4 overflow-hidden"
         role="banner"
       >
+        <StarField count={100} />
+        <GeometricShapes count={8} />
         <div
-          className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+          className="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16 relative z-10"
           style={{
             backgroundImage: "url('/logo-wide-nobackground.png')",
           }}
         >
           <div className="flex flex-wrap items-baseline justify-start text-start">
-            <TextFadeInUpGrab>
-              <span className="me-6 text-8xl leading-none font-bold tracking-tight text-white">
-                Aidan Timson
-              </span>
-            </TextFadeInUpGrab>
-            <TextFadeInUpGrab>
+            <TextWave
+              text="Aidan Timson"
+              className="me-6 text-8xl leading-none font-bold tracking-tight text-white"
+            />
+            <SlideInContainer direction="right" delay={1}>
               <span className="text-4xl leading-none font-bold tracking-normal text-nowrap">
                 <span className="text-indigo-500">Timmo</span> /{" "}
                 <span className="text-indigo-500">@timmo001</span>
               </span>
-            </TextFadeInUpGrab>
+            </SlideInContainer>
           </div>
-          <TextFadeInUpGrab>
-            <h2 className="mt-4 text-3xl leading-snug font-semibold tracking-tight text-wrap text-white">
-              Software Developer
-            </h2>
-          </TextFadeInUpGrab>
+          <TextTypewriter
+            text="Software Developer"
+            className="mt-4 text-3xl leading-snug font-semibold tracking-tight text-wrap text-white"
+          />
         </div>
       </header>
 
@@ -40,17 +55,17 @@ export default function Home() {
         className="flex w-full flex-col items-center justify-start bg-linear-to-b from-slate-950 to-gray-950 px-4 py-16"
         role="main"
       >
-        <div className="grid-row container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2">
-          <TextFadeInUpGrab>
+        <StaggerContainer className="grid-row container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2" staggerDelay={0.2}>
+          <TextSlideInLeft>
             <h3 className="text-3xl leading-snug font-bold tracking-tight text-white">
               About Me
             </h3>
-          </TextFadeInUpGrab>
-          <TextFadeInUp>
+          </TextSlideInLeft>
+          <FadeInContainer delay={0.3}>
             <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
               My name is Aidan, but you might know me better as{" "}
               <a
-                className="text-indigo-500"
+                className="text-indigo-500 hover:text-indigo-400 transition-colors"
                 href="https://github.com/timmo001"
                 target="_blank"
                 aria-label="GitHub profile"
@@ -59,7 +74,7 @@ export default function Home() {
               </a>{" "}
               or{" "}
               <a
-                className="text-indigo-500"
+                className="text-indigo-500 hover:text-indigo-400 transition-colors"
                 href="mailto:aidan@timmo.dev"
                 target="_blank"
                 aria-label="GitHub profile"
@@ -79,7 +94,7 @@ export default function Home() {
               new things, whether that be a new programming language, framework
               or technology.
             </p>
-          </TextFadeInUp>
+          </FadeInContainer>
           <TextFadeInUpGrab>
             <h3 className="text-3xl leading-snug font-bold tracking-tight text-white">
               Personal Projects / Open-Source Contributions
@@ -180,7 +195,7 @@ export default function Home() {
               </div>
             </TextFadeInUp>
           </div>
-        </div>
+        </StaggerContainer>
       </div>
     </>
   );

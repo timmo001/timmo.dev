@@ -1,4 +1,6 @@
 export function ContactLinks({ classes }: Readonly<{ classes: string }>) {
+  const linkClasses = `${classes} transition-all duration-300 hover:scale-110 hover:rotate-3 hover:drop-shadow-lg`;
+  
   return (
     <>
       <a
@@ -6,9 +8,10 @@ export function ContactLinks({ classes }: Readonly<{ classes: string }>) {
         rel="me"
         target="_blank"
         aria-label="DEV profile"
+        className="group"
       >
         <svg
-          className={classes}
+          className={linkClasses}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -20,9 +23,10 @@ export function ContactLinks({ classes }: Readonly<{ classes: string }>) {
         rel="me"
         target="_blank"
         aria-label="GitHub profile"
+        className="group"
       >
         <svg
-          className={classes}
+          className={linkClasses}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -34,6 +38,7 @@ export function ContactLinks({ classes }: Readonly<{ classes: string }>) {
         rel="me"
         target="_blank"
         aria-label="Home Assistant Community profile"
+        className="group"
       >
         <svg
           className={classes}

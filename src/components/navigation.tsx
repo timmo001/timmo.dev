@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 import { cn } from "~/lib/utils";
 import {
@@ -107,8 +108,13 @@ const contributions: Link = [
 
 export function Navigation() {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <NavigationMenu>
+        <NavigationMenuList>
         <NavigationMenuItem>
           <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -157,6 +163,7 @@ export function Navigation() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
+    </motion.div>
   );
 }
 
