@@ -1,10 +1,13 @@
 import { TextTypewriter } from "~/components/animations/text";
-import { FadeInContainer, ScaleInContainer } from "~/components/animations/containers";
+import {
+  FadeInContainer,
+  ScaleInContainer,
+} from "~/components/animations/containers";
 import { SpinnerLoader, PulseLoader } from "~/components/animations/loading";
 
 export default function Loading() {
   return (
-    <div className="relative flex h-screen w-full flex-col items-center justify-center bg-linear-to-b from-violet-900 to-slate-950 p-4 overflow-hidden">
+    <div className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-linear-to-b from-violet-900 to-slate-950 p-4">
       <FadeInContainer className="relative z-10">
         <div className="flex flex-col items-center gap-8">
           <ScaleInContainer delay={0.2}>
@@ -15,7 +18,7 @@ export default function Loading() {
             className="text-4xl font-semibold text-white"
           />
           <FadeInContainer delay={0.8}>
-            <p className="text-lg text-gray-300 text-center">
+            <p className="text-center text-lg text-gray-300">
               Please wait while we load the content.
             </p>
           </FadeInContainer>

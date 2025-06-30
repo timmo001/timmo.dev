@@ -1,6 +1,6 @@
 export function ContactLinks({ classes }: Readonly<{ classes: string }>) {
   const linkClasses = `${classes} transition-all duration-300 hover:scale-110 hover:rotate-3 hover:drop-shadow-lg`;
-  
+
   return (
     <>
       <a

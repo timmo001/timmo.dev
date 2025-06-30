@@ -112,9 +112,7 @@ export function Navigation() {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/">
-              About Me
-            </Link>
+            <Link href="/">About Me</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
@@ -151,9 +149,7 @@ export function Navigation() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link href="/stats">
-              Stats
-            </Link>
+            <Link href="/stats">Stats</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>

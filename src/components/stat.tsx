@@ -37,7 +37,7 @@ export default function Stat({ data }: { data: StatItem }) {
 
   return (
     <motion.a
-      className="grid grid-cols-1 justify-items-center fill-white cursor-pointer"
+      className="grid cursor-pointer grid-cols-1 justify-items-center fill-white"
       href={data.url}
       target="_blank"
       rel="noopener noreferrer"
@@ -48,7 +48,7 @@ export default function Stat({ data }: { data: StatItem }) {
       whileHover={{
         scale: 1.1,
         y: -5,
-        transition: { type: "spring", stiffness: 300, damping: 20 }
+        transition: { type: "spring", stiffness: 300, damping: 20 },
       }}
       whileTap={{ scale: 0.95 }}
     >
@@ -57,7 +57,7 @@ export default function Stat({ data }: { data: StatItem }) {
       >
         {icon}
       </motion.div>
-      <motion.h3 
+      <motion.h3
         className="mt-2 text-3xl font-light"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -66,7 +66,7 @@ export default function Stat({ data }: { data: StatItem }) {
       >
         {data.title}
       </motion.h3>
-      <motion.span 
+      <motion.span
         className="text-3xl font-medium"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -76,7 +76,7 @@ export default function Stat({ data }: { data: StatItem }) {
         {data.value}
       </motion.span>
       {data.secondaryValue ? (
-        <motion.span 
+        <motion.span
           className="text-base font-normal"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

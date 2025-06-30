@@ -142,7 +142,7 @@ export function SkeletonLoader({
 }>) {
   return (
     <motion.div
-      className={`bg-gray-300 rounded ${className}`}
+      className={`rounded bg-gray-300 ${className}`}
       animate={{
         opacity: [0.5, 1, 0.5],
       }}

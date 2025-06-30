@@ -7,14 +7,16 @@ I've significantly enhanced the website with a variety of creative animations us
 ### 1. Text Animations (`src/components/animations/text.tsx`)
 
 #### Enhanced Existing Animations:
+
 - **TextFadeInUp**: Smooth fade and slide up animation
 - **TextFadeInUpGrab**: Draggable text with fade animation
 
 #### New Creative Text Animations:
+
 - **TextTypewriter**: Character-by-character typewriter effect with spring animations
 - **TextWave**: Staggered wave animation where each letter animates individually with hover bounce effects
 - **TextSlideInLeft**: Text slides in from the left with spring physics
-- **TextSlideInRight**: Text slides in from the right with spring physics  
+- **TextSlideInRight**: Text slides in from the right with spring physics
 - **TextGlow**: Text with animated glow effect on hover
 
 ### 2. Container & Layout Animations (`src/components/animations/containers.tsx`)
@@ -61,6 +63,7 @@ I've significantly enhanced the website with a variety of creative animations us
 ## 🎨 Implementation Highlights
 
 ### Homepage Enhancements:
+
 - **Hero Section**: Added star field and geometric shapes background
 - **Name Animation**: Converted "Aidan Timson" to wave animation with individual letter hover effects
 - **Typewriter Effect**: "Software Developer" now types out character by character
@@ -68,20 +71,24 @@ I've significantly enhanced the website with a variety of creative animations us
 - **Enhanced Hover Effects**: All links now have improved hover animations
 
 ### Stats Page Enhancements:
+
 - **Floating Particles**: Added particle background to header
 - **Staggered Stats**: GitHub stats now animate in with stagger effect
 - **Enhanced Stat Cards**: Each stat has hover animations with rotation and lift effects
 - **Improved Loading**: Better loading states with animated components
 
 ### Navigation Enhancements:
+
 - **Smooth Entry**: Navigation slides down on page load
 - **Enhanced Menu Items**: Improved hover states and transitions
 
 ### Contact Links Enhancements:
+
 - **Multi-layered Hover Effects**: Scale, rotate, and glow effects combined
 - **Smooth Transitions**: All social media icons have enhanced hover animations
 
 ### Loading States:
+
 - **Creative Loading Pages**: Replaced simple spinners with engaging particle backgrounds and typewriter effects
 - **Multiple Loading Patterns**: Different loaders for different contexts
 

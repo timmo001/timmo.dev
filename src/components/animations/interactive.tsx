@@ -134,7 +134,7 @@ export function MagneticHover({
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        
+
         e.currentTarget.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
       }}
       onMouseLeave={(e) => {
@@ -179,11 +179,11 @@ export function BounceOnClick({
       className={className}
       whileTap={{
         y: [0, -10, 0],
-        transition: { 
-          type: "spring", 
-          stiffness: 500, 
+        transition: {
+          type: "spring",
+          stiffness: 500,
           damping: 10,
-          duration: 0.3 
+          duration: 0.3,
         },
       }}
     >
