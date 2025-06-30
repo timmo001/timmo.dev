@@ -9,7 +9,7 @@ import {
   Users,
 } from "lucide-react";
 import { type ReactElement, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 import { type Stat as StatItem } from "~/types/github/stat";
 

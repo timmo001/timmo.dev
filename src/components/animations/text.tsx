@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 export function TextFadeInUp({
   children,
@@ -60,7 +60,7 @@ export function TextTypewriter({
       opacity: 1,
       x: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 12,
         stiffness: 100,
       },
@@ -69,7 +69,7 @@ export function TextTypewriter({
       opacity: 0,
       x: 20,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 12,
         stiffness: 100,
       },
@@ -115,7 +115,7 @@ export function TextWave({
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 8,
         stiffness: 200,
       },
