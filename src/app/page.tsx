@@ -5,12 +5,12 @@ import {
   TextTypewriter,
   TextWave,
   TextSlideInLeft,
-} from "~/components/animations/text";
+} from "~/components/ui/animations/text";
 import {
   FadeInContainer,
   SlideInContainer,
   StaggerContainer,
-} from "~/components/animations/containers";
+} from "~/components/ui/animations/containers";
 import { ContactLinks } from "~/components/contactLinks";
 
 export default function Home() {

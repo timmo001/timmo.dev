@@ -1,9 +1,9 @@
-import { TextTypewriter } from "~/components/animations/text";
+import { TextTypewriter } from "~/components/ui/animations/text";
 import {
   FadeInContainer,
   ScaleInContainer,
-} from "~/components/animations/containers";
-import { SpinnerLoader, PulseLoader } from "~/components/animations/loading";
+} from "~/components/ui/animations/containers";
+import { SpinnerLoader, PulseLoader } from "~/components/ui/animations/loading";
 
 export default function Loading() {
   return (

@@ -1,12 +1,12 @@
 import { type Metadata } from "next";
 
-import { TextWave } from "~/components/animations/text";
+import { TextWave } from "~/components/ui/animations/text";
 import {
   FadeInContainer,
   SlideInContainer,
   ScaleInContainer,
   StaggerContainer,
-} from "~/components/animations/containers";
+} from "~/components/ui/animations/containers";
 import GitHubStats from "~/components/github/stats";
 import GitHubTopLanguages from "~/components/github/topLanguages";
 import { getStats, getTopLanguages, USERNAME } from "~/lib/github";

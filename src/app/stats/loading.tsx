@@ -1,4 +1,4 @@
-import { TextFadeInUpGrab } from "~/components/animations/text";
+import { TextFadeInUpGrab } from "~/components/ui/animations/text";
 
 export default async function Loading() {
   return (

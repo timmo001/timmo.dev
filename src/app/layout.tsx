@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import { ContactLinks } from "~/components/contactLinks";
 import { Navigation } from "~/components/navigation";
-import { TextFadeInUp } from "~/components/animations/text";
+import { TextFadeInUp } from "~/components/ui/animations/text";
 import { ThemeProvider } from "~/components/theme-provider";
 
 export const metadata: Metadata = {
