@@ -12,6 +12,7 @@ import {
   StaggerContainer,
 } from "~/components/ui/animations/containers";
 import { ContactLinks } from "~/components/contactLinks";
+import { SectionBlock } from "~/components/section-block";
 
 export default function Home() {
   return (
@@ -59,7 +60,7 @@ export default function Home() {
             </h3>
           </TextSlideInLeft>
           <FadeInContainer delay={0.3}>
-            <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
+            <SectionBlock>
               My name is Aidan, but you might know me better as{" "}
               <a
                 className="text-indigo-500 transition-colors hover:text-indigo-400"
@@ -90,7 +91,7 @@ export default function Home() {
               automation and software. I am always looking to improve my skills
               and learn new things, whether that be a new programming language,
               framework or technology.
-            </p>
+            </SectionBlock>
           </FadeInContainer>
           <TextFadeInUpGrab>
             <h3 className="text-3xl leading-snug font-bold tracking-tight text-white">
@@ -98,7 +99,7 @@ export default function Home() {
             </h3>
           </TextFadeInUpGrab>
           <TextFadeInUp>
-            <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
+            <SectionBlock>
               I am very passionate about open-source projects and the
               open-source community. Alongside my own personal projects, I have
               contributed to projects such as{" "}
@@ -133,13 +134,10 @@ export default function Home() {
                 GitHub
               </a>{" "}
               profile.
-            </p>
+            </SectionBlock>
           </TextFadeInUp>
           <TextFadeInUp>
-            <h4 className="mb-3 text-2xl leading-snug font-bold tracking-tight text-white">
-              System Bridge
-            </h4>
-            <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
+            <SectionBlock heading="System Bridge">
               System Bridge is a desktop application for controlling and
               monitoring your desktops. The app is designed to be
               cross-platform, easy to install and use, and directly integrate
@@ -148,13 +146,10 @@ export default function Home() {
               moved into a python application and then into Rust with a Python
               backend, using the original Python code moved from a monorepo to
               individual modules.
-            </p>
+            </SectionBlock>
           </TextFadeInUp>
           <TextFadeInUp>
-            <h4 className="mb-3 text-2xl leading-snug font-bold tracking-tight text-white">
-              Other Personal Projects
-            </h4>
-            <p className="text-start text-xl leading-relaxed font-normal tracking-normal text-white">
+            <SectionBlock heading="Other Personal Projects">
               You will also find a lot of smaller projects, which showcase my
               passion for open-source and creating applications. The reason
               could be &apos;this could be better&apos;, or &apos;can this be a
@@ -162,7 +157,7 @@ export default function Home() {
               because I want to learn a new language or use a framework that
               interests me and the best way to learn a technology in my opinion
               is to use it and experience what it is capable of.
-            </p>
+            </SectionBlock>
           </TextFadeInUp>
           <TextFadeInUpGrab>
             <h3 className="text-3xl leading-snug font-bold tracking-tight text-white">
