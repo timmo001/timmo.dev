@@ -31,7 +31,7 @@ export default function Home() {
               text="Aidan Timson"
               className="me-6 text-8xl leading-none font-bold tracking-tight text-white"
             />
-            <SlideInContainer direction="right" delay={1}>
+            <SlideInContainer direction="right" delay={1.2}>
               <span className="text-4xl leading-none font-bold tracking-normal text-nowrap">
                 <span className="text-indigo-500">Timmo</span> /{" "}
                 <span className="text-indigo-500">@timmo001</span>
