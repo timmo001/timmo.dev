@@ -34,8 +34,8 @@ export default function Home() {
             />
             <SlideInContainer direction="right" delay={1.2}>
               <span className="text-4xl leading-none font-bold tracking-normal text-nowrap">
-                <span className="text-indigo-500">Timmo</span> /{" "}
-                <span className="text-indigo-500">@timmo001</span>
+                <span className="text-gray-200">Timmo</span> /{" "}
+                <span className="text-gray-200">@timmo001</span>
               </span>
             </SlideInContainer>
           </div>
