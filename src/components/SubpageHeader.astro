@@ -3,10 +3,9 @@ import AnimatedText from "~/components/AnimatedText.astro";
 
 type Props = {
   title: string;
-  showSubtitle?: boolean;
 };
 
-const { title, showSubtitle = true } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <header
@@ -17,20 +16,10 @@ const { title, showSubtitle = true } = Astro.props;
     class="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat px-4 pt-4 sm:px-8 sm:pt-8 md:px-16 md:pt-16"
     style="background-image: url('/logo-wide-nobackground.png')"
   >
-    <div class="flex w-full min-w-0 flex-col items-start gap-2 text-start sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-6">
+    <div class="w-full min-w-0 text-start">
       <h1 class="hero-title">
         <AnimatedText text={title} />
       </h1>
-      {
-        showSubtitle && (
-          <p
-            class="hero-subtitle hero-reveal text-indigo-400"
-            style="animation-delay: 0.4s"
-          >
-            <span>Timmo</span> / <span>@timmo001</span>
-          </p>
-        )
-      }
     </div>
   </div>
 </header>

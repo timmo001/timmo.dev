@@ -179,7 +179,7 @@
 }
 
 @utility hero-subtitle {
-  @apply w-full min-w-0 text-2xl leading-snug font-bold tracking-normal sm:text-3xl md:text-4xl;
+  @apply w-full min-w-0 text-lg leading-snug font-bold tracking-normal text-gray-200 sm:text-xl md:text-2xl;
 }
 
 @utility hero-tagline {
