@@ -1,0 +1,20 @@
+---
+const year = new Date().getFullYear();
+const repoUrl = "https://github.com/timmo001/timmo.dev";
+---
+
+<footer
+  class="w-full px-4 py-6 text-center text-sm text-muted-foreground"
+>
+  <p>
+    © {year} Aidan Timson ·{" "}
+    <a
+      href={repoUrl}
+      class="text-indigo-500/80 transition-colors hover:text-indigo-400"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Source code
+    </a>
+  </p>
+</footer>

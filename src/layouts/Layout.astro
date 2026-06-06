@@ -2,6 +2,7 @@
 import Analytics from "@vercel/analytics/astro";
 
 import ContactLinks from "~/components/ContactLinks.astro";
+import Footer from "~/components/Footer.astro";
 import Navigation from "~/components/Navigation.astro";
 
 import "../styles/global.css";
@@ -35,7 +36,7 @@ const {
     <meta property="og:url" content="https://timmo.dev" />
     <link rel="icon" href="/logo-letter-square-nobackground.png" />
   </head>
-  <body class="bg-background min-h-screen font-sans antialiased text-white">
+  <body class="flex min-h-screen flex-col bg-gray-950 font-sans antialiased text-white">
     <header class="absolute z-50 flex w-full flex-row flex-wrap justify-between gap-4 px-4 py-2">
       <Navigation />
       <div class="ms-4 flex flex-row items-center gap-x-4">
@@ -44,9 +45,10 @@ const {
         />
       </div>
     </header>
-    <main class="flex min-h-screen flex-col items-center justify-start">
+    <main class="flex flex-1 flex-col items-center justify-start">
       <slot />
     </main>
+    <Footer />
     <Analytics />
   </body>
 </html>
