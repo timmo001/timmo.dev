@@ -7,26 +7,25 @@ import Layout from "~/layouts/Layout.astro";
 
 <Layout>
   <header
-    class="relative h-screen w-full overflow-hidden bg-linear-to-b from-violet-900 to-gray-950 p-4"
+    class="relative h-screen w-full overflow-x-clip bg-linear-to-b from-violet-900 to-gray-950 p-4"
     role="banner"
   >
     <div
-      class="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+      class="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-4 sm:p-8 md:p-16"
       style="background-image: url('/logo-wide-nobackground.png')"
     >
-      <div class="flex flex-wrap items-baseline justify-start text-start">
-        <h1 class="me-6 text-6xl leading-none font-bold tracking-tight text-white">
+      <div class="flex w-full min-w-0 flex-col items-start gap-2 text-start sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-6">
+        <h1 class="hero-title">
           <AnimatedText text="Aidan Timson" />
         </h1>
-        <span
-          class="hero-reveal text-4xl leading-none font-bold tracking-normal text-nowrap"
+        <p
+          class="hero-subtitle hero-reveal text-gray-200"
           style="animation-delay: 0.45s"
         >
-          <span class="text-gray-200">Timmo</span> /{" "}
-          <span class="text-gray-200">@timmo001</span>
-        </span>
+          <span>Timmo</span> / <span>@timmo001</span>
+        </p>
       </div>
-      <p class="mt-4 text-3xl leading-snug font-semibold tracking-tight text-white">
+      <p class="hero-tagline mt-4 w-full min-w-0">
         <AnimatedText
           text="Software Developer"
           delayPerLetter={0.015}

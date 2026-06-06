@@ -1,18 +1,86 @@
 ---
+import ContactLinks from "~/components/ContactLinks.astro";
+
 const navLinkClass =
   "inline-flex h-10 w-max items-center justify-center rounded-2xl px-4 py-2 text-sm font-medium transition-all hover:text-slate-900 focus:text-slate-900 focus:outline-hidden dark:hover:text-slate-50 dark:focus:text-slate-50";
+
+const mobileNavLinkClass =
+  "flex min-h-11 w-full items-center rounded-2xl px-4 py-2 text-base font-medium transition-colors hover:bg-white/10 focus:bg-white/10 focus:outline-hidden";
+
+const navItems = [
+  { href: "/", label: "About Me" },
+  { href: "/projects", label: "Projects & contributions" },
+  { href: "/stats", label: "Stats" },
+] as const;
+
+const socialIconClass =
+  "h-6 w-6 fill-white transition-transform duration-300 ease-in-out hover:scale-110";
 ---
 
-<nav aria-label="Main navigation" class="relative z-10 flex max-w-max flex-1 items-center">
-  <ul class="flex list-none flex-wrap items-center gap-1">
-    <li>
-      <a href="/" class={navLinkClass}>About Me</a>
-    </li>
-    <li>
-      <a href="/projects" class={navLinkClass}>Projects & contributions</a>
-    </li>
-    <li>
-      <a href="/stats" class={navLinkClass}>Stats</a>
-    </li>
-  </ul>
-</nav>
+<div class="relative flex w-full items-center md:w-auto md:flex-1">
+  <button
+    type="button"
+    class="inline-flex h-10 w-10 items-center justify-center rounded-2xl text-white transition-colors hover:bg-white/10 focus:bg-white/10 focus:outline-hidden md:hidden"
+    data-mobile-nav-toggle
+    aria-expanded="false"
+    aria-controls="mobile-nav-panel"
+    aria-label="Open menu"
+  >
+    <svg
+      class="h-6 w-6"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      aria-hidden="true"
+    >
+      <path d="M4 7h16M4 12h16M4 17h16"></path>
+    </svg>
+  </button>
+
+  <nav
+    aria-label="Main navigation"
+    class="relative z-10 hidden max-w-max flex-1 items-center md:flex"
+  >
+    <ul class="flex list-none items-center gap-1">
+      {
+        navItems.map((item) => (
+          <li>
+            <a href={item.href} class={navLinkClass}>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div
+    id="mobile-nav-panel"
+    data-mobile-nav-panel
+    hidden
+    class="absolute start-0 top-full z-50 mt-2 w-[min(100vw-2rem,20rem)] rounded-2xl border border-white/10 bg-gray-950/95 p-4 shadow-xl backdrop-blur-sm md:hidden"
+  >
+    <nav aria-label="Main navigation">
+      <ul class="flex list-none flex-col gap-1">
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href} class={mobileNavLinkClass}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div
+      class="mt-4 flex flex-wrap items-center gap-3 border-t border-white/10 pt-4"
+      aria-label="Social links"
+    >
+      <ContactLinks classes={socialIconClass} />
+    </div>
+  </div>
+</div>

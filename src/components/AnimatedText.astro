@@ -35,7 +35,7 @@ const wordGroups: Array<Array<LetterSpan>> = words.map((word, wordIndex) => {
           {"\u00A0"}
         </span>
       )}
-      <span class="inline-block whitespace-nowrap">
+      <span class="inline-block max-w-full break-words">
         {letters.map(({ char, delay }) => (
           <span class="hero-letter inline-block" style={`animation-delay: ${delay}s`}>
             {char}

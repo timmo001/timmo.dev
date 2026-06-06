@@ -10,26 +10,25 @@ const { title, showSubtitle = true } = Astro.props;
 ---
 
 <header
-  class="relative h-[50vh] min-h-96 w-full overflow-hidden bg-linear-to-b from-violet-900 to-gray-950 p-4"
+  class="relative h-[50vh] min-h-72 w-full overflow-x-clip bg-linear-to-b from-violet-900 to-gray-950 p-4 sm:min-h-96"
   role="banner"
 >
   <div
-    class="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+    class="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat px-4 pt-4 sm:px-8 sm:pt-8 md:px-16 md:pt-16"
     style="background-image: url('/logo-wide-nobackground.png')"
   >
-    <div class="flex flex-wrap items-baseline justify-start text-start">
-      <h1 class="me-6 text-6xl leading-none font-bold tracking-tight text-white">
+    <div class="flex w-full min-w-0 flex-col items-start gap-2 text-start sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-6">
+      <h1 class="hero-title">
         <AnimatedText text={title} />
       </h1>
       {
         showSubtitle && (
-          <span
-            class="hero-reveal text-4xl leading-none font-bold tracking-normal text-nowrap"
+          <p
+            class="hero-subtitle hero-reveal text-indigo-400"
             style="animation-delay: 0.4s"
           >
-            <span class="text-indigo-400">Timmo</span> /{" "}
-            <span class="text-indigo-400">@timmo001</span>
-          </span>
+            <span>Timmo</span> / <span>@timmo001</span>
+          </p>
         )
       }
     </div>
