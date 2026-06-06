@@ -13,6 +13,30 @@
 @theme {
   --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
 
+  /* Fluid type scale — holds defaults on small screens, grows on large viewports */
+  --text-base: clamp(1rem, 0.95rem + 0.15vw, 1.125rem);
+  --text-base--line-height: 1.5;
+  --text-lg: clamp(1.125rem, 1.05rem + 0.25vw, 1.3125rem);
+  --text-lg--line-height: 1.75;
+  --text-xl: clamp(1.25rem, 1.1rem + 0.4vw, 1.5rem);
+  --text-xl--line-height: 1.75;
+  --text-2xl: clamp(1.5rem, 1.3rem + 0.6vw, 1.875rem);
+  --text-2xl--line-height: 1.33;
+  --text-3xl: clamp(1.875rem, 1.5rem + 1.2vw, 2.625rem);
+  --text-3xl--line-height: 1.2;
+  --text-4xl: clamp(2.25rem, 1.75rem + 1.8vw, 3.5rem);
+  --text-4xl--line-height: 1.1;
+  --text-5xl: clamp(3rem, 2.25rem + 2.5vw, 4.5rem);
+  --text-5xl--line-height: 1;
+  --text-6xl: clamp(3.75rem, 2.75rem + 3.2vw, 5.75rem);
+  --text-6xl--line-height: 1;
+  --text-7xl: clamp(4.5rem, 3rem + 4vw, 7.5rem);
+  --text-7xl--line-height: 1;
+  --text-8xl: clamp(3.5rem, 2rem + 6vw, 9rem);
+  --text-8xl--line-height: 1;
+  --text-9xl: clamp(4.5rem, 2.5rem + 8vw, 12rem);
+  --text-9xl--line-height: 1;
+
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
@@ -84,12 +108,8 @@
 @utility container {
   margin-inline: auto;
   padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
-    max-width: none;
-  }
-  @media (width >= 1400px) {
-    max-width: 1400px;
-  }
+  width: 100%;
+  max-width: clamp(1400px, 66.67vw, 2560px);
 }
 
 @layer base {
@@ -155,11 +175,11 @@
 }
 
 @utility section-heading {
-  @apply text-5xl leading-snug font-bold tracking-tight text-white;
+  @apply text-4xl leading-snug font-bold tracking-tight text-white;
 }
 
 @utility section-subtext {
-  @apply text-start text-xl leading-relaxed font-normal tracking-normal text-gray-300;
+  @apply text-start text-base leading-relaxed font-normal tracking-normal text-gray-300;
 }
 
 @media (prefers-reduced-motion: no-preference) {
