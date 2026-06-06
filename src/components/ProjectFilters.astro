@@ -39,6 +39,9 @@ const pickers: Array<Picker> = [
 
 const optionClass =
   "flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm text-gray-200 transition-colors hover:bg-white/10 aria-pressed:bg-white/10 aria-pressed:text-white";
+
+const clearClass =
+  "filter-clear hidden cursor-pointer appearance-none border-0 bg-transparent p-0 text-gray-400 transition-colors hover:text-white";
 ---
 
 <div
@@ -63,58 +66,108 @@ const optionClass =
     </svg>
     <input
       id="project-search"
-      type="search"
+      type="text"
+      role="searchbox"
       placeholder="Filter..."
       autocomplete="off"
-      class="w-full rounded-full border border-white/15 bg-white/5 py-2.5 pl-10 pr-4 text-sm text-gray-100 placeholder:text-gray-500 transition-colors focus:border-indigo-500/60 focus:outline-none"
+      class="w-full rounded-xl border border-white/15 bg-white/5 py-2.5 pl-10 pr-10 text-sm text-gray-100 placeholder:text-gray-500 transition-colors focus:border-indigo-500/60 focus:outline-none"
       data-filter-search
     />
+    <button
+      type="button"
+      class:list={[clearClass, "absolute right-3 top-1/2 -translate-y-1/2"]}
+      aria-label="Clear search"
+      data-filter-search-clear
+    >
+      <svg
+        class="h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
   </div>
 
   <div class="flex gap-3">
     {
       pickers.map((picker) => (
-        <div class="relative flex-1 sm:w-48 sm:flex-none" data-picker={picker.key}>
-          <button
-            type="button"
-            class="flex w-full items-center justify-between gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-gray-200 transition-colors hover:border-indigo-500/40 aria-expanded:border-indigo-500/60"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            data-picker-trigger
-          >
-            <span class="flex items-center gap-2">
-              {picker.label}
-              <span
-                class="hidden min-w-5 items-center justify-center rounded-full bg-indigo-500/80 px-1.5 text-xs font-semibold text-white"
-                data-picker-count
-              >
-                0
+        <div class="relative w-full sm:w-48" data-picker={picker.key}>
+          <div class="flex items-center rounded-xl border border-white/15 bg-white/5">
+            <button
+              type="button"
+              class="flex min-w-0 flex-1 items-center gap-2 px-4 py-2.5 text-sm text-gray-200 transition-colors hover:text-white aria-expanded:text-white"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              data-picker-trigger
+            >
+              <span class="flex items-center gap-2">
+                {picker.label}
+                <span
+                  class="hidden min-w-5 items-center justify-center rounded-full bg-indigo-500/80 px-1.5 text-xs font-semibold text-white"
+                  data-picker-count
+                >
+                  0
+                </span>
               </span>
-            </span>
-            <svg
-              class="h-4 w-4 text-gray-400"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+            </button>
+            <button
+              type="button"
+              class:list={[clearClass, "shrink-0 px-2 py-2.5"]}
+              aria-label={`Clear ${picker.label.toLowerCase()} filter`}
+              data-picker-clear
+            >
+              <svg
+                class="h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M18 6 6 18"></path>
+                <path d="m6 6 12 12"></path>
+              </svg>
+            </button>
+            <span
+              class="pointer-events-none shrink-0 pr-3 text-gray-400"
               aria-hidden="true"
             >
-              <path d="m6 9 6 6 6-6" />
-            </svg>
-          </button>
+              <svg
+                class="h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </span>
+          </div>
 
           <div
-            class="absolute left-0 right-0 top-full z-20 mt-2 hidden flex-col gap-2 rounded-md border border-white/15 bg-[#0d0d12] p-2 shadow-xl"
+            class="absolute left-0 right-0 top-full z-20 mt-2 hidden flex-col gap-2 rounded-xl border border-white/15 bg-[#0d0d12] p-2 shadow-xl"
             data-picker-panel
           >
             <input
-              type="search"
+              type="text"
+              role="searchbox"
               placeholder={`Search ${picker.label.toLowerCase()}...`}
               autocomplete="off"
-              class="w-full rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-gray-100 placeholder:text-gray-500 focus:border-indigo-500/60 focus:outline-none"
+              class="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-gray-100 placeholder:text-gray-500 focus:border-indigo-500/60 focus:outline-none"
               data-picker-search
             />
             <ul class="flex max-h-64 flex-col gap-0.5 overflow-y-auto" data-picker-list>
@@ -142,28 +195,6 @@ const optionClass =
       ))
     }
   </div>
-
-  <button
-    type="button"
-    class="hidden items-center gap-1.5 text-xs font-medium text-gray-400 transition-colors hover:text-white"
-    data-filter-reset
-  >
-    <svg
-      class="h-3.5 w-3.5"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M18 6 6 18"></path>
-      <path d="m6 6 12 12"></path>
-    </svg>
-    Clear
-  </button>
 </div>
 
 <p

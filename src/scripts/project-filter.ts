@@ -208,13 +208,15 @@ export function initProjectFilter(): void {
   root.dataset.filterInit = "true";
 
   const searchInput = root.querySelector<HTMLInputElement>("[data-filter-search]");
+  const searchClearButton = root.querySelector<HTMLButtonElement>(
+    "[data-filter-search-clear]",
+  );
   const tagButtons = Array.from(
     root.querySelectorAll<HTMLButtonElement>("[data-filter-tag]"),
   );
   const stackButtons = Array.from(
     root.querySelectorAll<HTMLButtonElement>("[data-filter-stack]"),
   );
-  const resetButton = root.querySelector<HTMLButtonElement>("[data-filter-reset]");
   const pickers = Array.from(root.querySelectorAll<HTMLElement>("[data-picker]"));
 
   const cards = Array.from(
@@ -278,6 +280,19 @@ export function initProjectFilter(): void {
     }
   }
 
+  function updateClearButtons(): void {
+    const hasSearchText = (searchInput?.value.length ?? 0) > 0;
+    searchClearButton?.classList.toggle("hidden", !hasSearchText);
+
+    for (const picker of pickers) {
+      const clearButton = picker.querySelector<HTMLButtonElement>(
+        "[data-picker-clear]",
+      );
+      const count = picker.querySelectorAll('[aria-pressed="true"]').length;
+      clearButton?.classList.toggle("hidden", count === 0);
+    }
+  }
+
   function applyFilters(): void {
     const query = searchInput?.value.trim() ?? "";
 
@@ -320,12 +335,20 @@ export function initProjectFilter(): void {
       setVisible(emptyState, hasActiveFilter && visibleCount === 0);
     }
 
-    if (resetButton) {
-      resetButton.classList.toggle("hidden", !hasActiveFilter);
-      resetButton.classList.toggle("inline-flex", hasActiveFilter);
-    }
-
+    updateClearButtons();
     updatePickerCounts();
+  }
+
+  function clearPickerSelection(pickerKey: string): void {
+    const isTagPicker = pickerKey === "tag";
+    const buttons = isTagPicker ? tagButtons : stackButtons;
+    const selected = isTagPicker ? selectedTags : selectedStack;
+
+    selected.clear();
+    for (const button of buttons) {
+      button.setAttribute("aria-pressed", "false");
+    }
+    applyFilters();
   }
 
   function toggleSelection(
@@ -343,36 +366,41 @@ export function initProjectFilter(): void {
     applyFilters();
   }
 
+  function setPickerOpen(picker: HTMLElement, open: boolean): void {
+    const trigger = picker.querySelector<HTMLButtonElement>("[data-picker-trigger]");
+    const panel = picker.querySelector<HTMLElement>("[data-picker-panel]");
+    trigger?.setAttribute("aria-expanded", String(open));
+    panel?.classList.toggle("hidden", !open);
+    panel?.classList.toggle("flex", open);
+  }
+
   function closeAllPickers(except?: HTMLElement): void {
     for (const picker of pickers) {
       if (picker === except) {
         continue;
       }
-      const trigger = picker.querySelector<HTMLButtonElement>("[data-picker-trigger]");
-      const panel = picker.querySelector<HTMLElement>("[data-picker-panel]");
-      trigger?.setAttribute("aria-expanded", "false");
-      if (panel) {
-        panel.style.display = "none";
-      }
+      setPickerOpen(picker, false);
     }
   }
 
   for (const picker of pickers) {
+    const pickerKey = picker.dataset.picker ?? "";
+    const clearButton = picker.querySelector<HTMLButtonElement>(
+      "[data-picker-clear]",
+    );
     const trigger = picker.querySelector<HTMLButtonElement>("[data-picker-trigger]");
-    const panel = picker.querySelector<HTMLElement>("[data-picker-panel]");
     const pickerSearch = picker.querySelector<HTMLInputElement>("[data-picker-search]");
     const options = Array.from(
       picker.querySelectorAll<HTMLElement>("[data-picker-option]"),
     );
 
-    trigger?.addEventListener("click", () => {
+    trigger?.addEventListener("click", (event) => {
+      event.stopPropagation();
       const isOpen = trigger.getAttribute("aria-expanded") === "true";
       closeAllPickers(picker);
-      trigger.setAttribute("aria-expanded", String(!isOpen));
-      if (panel) {
-        panel.style.display = isOpen ? "none" : "flex";
-      }
-      if (!isOpen) {
+      const nextOpen = !isOpen;
+      setPickerOpen(picker, nextOpen);
+      if (nextOpen) {
         pickerSearch?.focus();
       }
     });
@@ -383,6 +411,11 @@ export function initProjectFilter(): void {
         const label = option.dataset.label ?? "";
         setVisible(option, query.length === 0 || label.includes(query));
       }
+    });
+
+    clearButton?.addEventListener("click", (event) => {
+      event.stopPropagation();
+      clearPickerSelection(pickerKey);
     });
   }
 
@@ -401,6 +434,14 @@ export function initProjectFilter(): void {
 
   searchInput?.addEventListener("input", applyFilters);
 
+  searchClearButton?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (searchInput) {
+      searchInput.value = "";
+    }
+    applyFilters();
+  });
+
   for (const button of tagButtons) {
     const value = button.dataset.filterTag ?? "";
     button.addEventListener("click", () =>
@@ -414,18 +455,6 @@ export function initProjectFilter(): void {
       toggleSelection(button, value, selectedStack),
     );
   }
-
-  resetButton?.addEventListener("click", () => {
-    if (searchInput) {
-      searchInput.value = "";
-    }
-    selectedTags.clear();
-    selectedStack.clear();
-    for (const button of [...tagButtons, ...stackButtons]) {
-      button.setAttribute("aria-pressed", "false");
-    }
-    applyFilters();
-  });
 
   applyFilters();
 }
