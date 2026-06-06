@@ -7,90 +7,167 @@ export type NavItem = {
 
 export const projects: Array<NavItem> = [
   {
+    title: "Dotfiles",
+    tags: ["TUI", "CLI", "OpenCode", "Omarchy", "Stow"],
+    href: "https://github.com/timmo001/dotfiles",
+    description:
+      "Stow-managed Arch/Omarchy dotfiles rooted at ~/.config/dotfiles. Includes the dot CLI (Bun, Effect, OpenTUI) with a TUI dashboard for git, GitHub workflow runs, notifications, omarchy menus, and AI commit suggestions. Optional private overlays and Omarchy repo sync for Hyprland, Waybar, and Ghostty.",
+  },
+  {
+    title: "Waybar config",
+    tags: ["Omarchy", "Waybar", "Home Assistant"],
+    href: "https://github.com/timmo001/omarchy-waybar",
+    description:
+      "Waybar config for Omarchy with desktop and laptop layouts. Custom modules surface git notifications, workflow runs, and diff status via the dot CLI, and Home Assistant entity watches through go-automate's bridge — heating, doorbell, air quality, rain, and more.",
+  },
+  {
+    title: "OpenCode Config",
+    tags: ["Skills", "Agents", "Plugins", "Commands"],
+    href: "https://github.com/timmo001/opencode-config",
+    description:
+      "Shared OpenCode skills, agents, plugins, and commands. Published automatically from dotfiles via a GitHub Actions workflow when OpenCode config or skills change.",
+  },
+  {
+    title: "Go Automate",
+    tags: ["TUI", "CLI", "Home Assistant", "Automation", "WebSocket"],
+    href: "https://github.com/timmo001/go-automate",
+    description:
+      "A utility to run common tasks — keyboard shortcuts and patched apps on Linux to trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging.",
+  },
+  {
     title: "System Bridge",
+    tags: ["TUI", "CLI", "Desktop App", "Web App", "Home Assistant", "WebSocket"],
     href: "https://system-bridge.timmo.dev",
     description:
-      "A desktop application for controlling and monitoring your desktops.",
+      "A bridge for your systems — a cross-platform app for Linux and Windows that exposes system information and control via an API and WebSocket server. Integrates with Home Assistant for monitoring desktops and sending commands.",
   },
   {
-    title: "Home Assistant Assist Desktop",
+    title: "GitHub Workflows",
+    tags: ["CI/CD", "GitHub Actions"],
+    href: "https://github.com/timmo001/workflows",
     description:
-      "Use Home Assistant Assist on the desktop. Compatible with Windows, MacOS, and Linux.",
-    href: "https://github.com/timmo001/home-assistant-assist-desktop",
+      "GitHub Actions workflows shared between my projects — linting, testing, CodeQL, container and language builds, Home Assistant card validation, Dependabot and Renovate automerge, release drafting, and more. Open for reuse and contribution.",
   },
   {
-    title: "LetMeKnow",
-    href: "https://github.com/timmo001/letmeknow",
+    title: "Home Assistant TUI",
+    tags: ["TUI", "CLI", "Home Assistant"],
+    href: "https://github.com/timmo001/home-assistant-tui",
     description:
-      "A server and client application for sending notifications via websockets using Home Assistant or your own service.",
+      "A terminal UI for Home Assistant built with OpenTUI and Effect. Browse entities by domain and area, search with fuzzy matching, and view favorites from your Home Assistant frontend config.",
+  },
+  {
+    title: "Dashboard Maintenance",
+    tags: ["HACS", "Home Assistant Dashboard"],
+    href: "https://github.com/timmo001/ha-dashboard-maintenance",
+    description:
+      "A custom Home Assistant dashboard and view strategy for maintenance dashboards. Surfaces battery-powered devices that need attention and links through to device pages.",
+  },
+  {
+    title: "Calendar Agenda",
+    tags: ["HACS", "Home Assistant Card"],
+    href: "https://github.com/timmo001/ha-card-calendar-agenda",
+    description:
+      "A custom Home Assistant card for displaying calendar events in a simple agenda view.",
+  },
+  {
+    title: "Energy Breakdown",
+    tags: ["HACS", "Home Assistant Card"],
+    href: "https://github.com/timmo001/ha-card-energy-breakdown",
+    description:
+      "A custom Home Assistant card for visualizing current energy usage with a breakdown by area and entity.",
+  },
+  {
+    title: "Tile Popup",
+    tags: ["HACS", "Home Assistant Card"],
+    href: "https://github.com/timmo001/ha-card-tile-popup",
+    description:
+      "A custom Home Assistant card that displays a tile which opens a popup containing other cards.",
+  },
+  {
+    title: "Anchor",
+    tags: ["HACS", "Home Assistant Card"],
+    href: "https://github.com/timmo001/ha-card-anchor",
+    description:
+      "A custom Home Assistant card to create a link to an area of your dashboard.",
+  },
+  {
+    title: "Weather Forecast",
+    tags: ["HACS", "Home Assistant Card Feature"],
+    href: "https://github.com/timmo001/ha-card-feature-weather-forecast",
+    description:
+      "A card feature to show weather forecast on compatible Home Assistant cards.",
+  },
+  {
+    title: "State",
+    tags: ["HACS", "Home Assistant Card Feature"],
+    href: "https://github.com/timmo001/ha-card-feature-state",
+    description:
+      "A custom Home Assistant card feature for displaying entity state on compatible cards.",
+  },
+  {
+    title: "Weather",
+    tags: ["Web App", "Forecast"],
+    href: "https://weather.timmo.dev",
+    description:
+      "A progressive web app for current conditions and forecasts powered by Tomorrow.io. Set your location via coordinates or browser geolocation, browse hourly and daily outlooks across five days, and switch between dark and light themes.",
+  },
+  {
+    title: "Pouch",
+    tags: ["Web App", "Lists", "Notes"],
+    href: "https://pouch.timmo.dev",
+    description:
+      "Store your favorite things — a web app for organizing lists and notepads into groups with drag-and-drop reordering and real-time sync across devices. Built with Next.js, Convex, and Clerk authentication.",
   },
   {
     title: "Home Panel",
+    tags: ["Archived", "Home Assistant", "Web App", "WebSocket"],
     href: "https://github.com/timmo001/home-panel",
     description:
-      "A web frontend for controlling the home. Integrates with Home Assistant as an additional frontend.",
-  },
-  {
-    title: "Developer Utilities",
-    href: "https://github.com/timmo001/developer-utilities-webapp",
-    description:
-      "A webapp provides a collection of utilities for developers such as Base64 encoding, JSON formatting, JWT decoding, and more.",
-  },
-  {
-    title: "Stats Webapp",
-    href: "https://github.com/timmo001/stats.timmo.dev",
-    description:
-      "A small portal to display metrics, built with Next.js and deployed with Vercel.",
-  },
-  {
-    title: "GitHub Workflows (Actions)",
-    href: "https://github.com/timmo001/workflows",
-    description:
-      "A set of reusable workflows for GitHub Actions. I use these in my own CI/CD pipelines shared across projects.",
+      "A web frontend for controlling the home, integrated with Home Assistant as an additional frontend. Archived and no longer maintained — Home Assistant dashboards surpassed what it offered.",
   },
 ];
 
 export const contributions: Array<NavItem> = [
   {
-    title: "GoXLR Utility",
-    tags: ["Home Assistant Integration"],
-    href: "https://github.com/timmo001/homeassistant-integration-goxlr-utility",
+    title: "Home Assistant Frontend",
+    tags: ["Home Assistant"],
+    href: "https://github.com/home-assistant/frontend",
     description:
-      "A third party application from @GoXLR-on-Linux that allows for control of the GoXLR on Linux, Mac and Windows.",
+      "I am one of the core maintainers of the Home Assistant frontend for the Open Home Foundation.",
   },
   {
     title: "System Bridge",
     tags: ["Home Assistant Integration"],
     href: "https://www.home-assistant.io/integrations/system_bridge",
     description:
-      "Integrates System Bridge into Home Assistant to control and monitor your desktops via websocket connection.",
-  },
-  {
-    title: "Azure DevOps",
-    tags: ["Home Assistant Integration"],
-    href: "https://www.home-assistant.io/integrations/azure_devops",
-    description:
-      "Allows you to control and monitor your Azure DevOps instance in Home Assistant.",
+      "The core Home Assistant integration for System Bridge — local push via Zeroconf with binary sensors, media players, notify, sensors, and update platforms. Monitor system data and send commands such as opening URLs or sending keypresses.",
   },
   {
     title: "Honeywell Lyric",
     tags: ["Home Assistant Integration"],
     href: "https://www.home-assistant.io/integrations/lyric",
     description:
-      "Integrates the Lyric thermostat platform into Home Assistant via the cloud API.",
+      "Integrates Honeywell Lyric thermostats into Home Assistant via the cloud API. Supports climate control, select entities, and sensors through config flow and DHCP discovery.",
+  },
+  {
+    title: "GoXLR Utility",
+    tags: ["Home Assistant Integration"],
+    href: "https://github.com/timmo001/homeassistant-integration-goxlr-utility",
+    description:
+      "A HACS integration for GoXLR Utility — the third-party app from @GoXLR-on-Linux for controlling the GoXLR on Linux, macOS, and Windows. Exposes binary sensors, media players with volume control, and profile sensors. Does not connect to the official GoXLR application.",
   },
   {
     title: "OVO Energy",
     tags: ["Home Assistant Integration"],
     href: "https://www.home-assistant.io/integrations/ovo_energy",
     description:
-      "Integrates UK energy provider OVO Energy into Home Assistant to monitor your energy consumption and costs.",
+      "Monitors UK OVO Energy consumption and billing data in Home Assistant. Config flow setup with sensors for energy usage, costs, and account information.",
   },
   {
-    title: "The Lounge",
-    tags: ["Home Assistant Community Add-on"],
-    href: "https://github.com/hassio-addons/addon-thelounge",
+    title: "Azure DevOps",
+    tags: ["Home Assistant Integration"],
+    href: "https://www.home-assistant.io/integrations/azure_devops",
     description:
-      "A self-hosted web-based IRC client. Part of the Home Assistant Community Add-ons project, original setup by myself.",
+      "Cloud polling integration for Azure DevOps with config flow setup. Provides sensors for latest builds, work items per type and state, and other project activity so you can monitor your instance from Home Assistant.",
   },
 ];

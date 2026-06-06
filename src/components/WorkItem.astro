@@ -5,6 +5,7 @@ import { type NavItem } from "~/data/navigation";
 type Props = NavItem;
 
 const { title, href, description, tags } = Astro.props;
+const sortedTags = tags?.toSorted((a, b) => a.localeCompare(b));
 ---
 
 <a
@@ -15,9 +16,9 @@ const { title, href, description, tags } = Astro.props;
 >
   <h4 class="text-lg font-bold leading-snug text-indigo-400">{title}</h4>
   {
-    tags && tags.length > 0 && (
+    sortedTags && sortedTags.length > 0 && (
       <div class="mt-2 flex flex-wrap gap-1.5">
-        {tags.map((tag) => (
+        {sortedTags.map((tag) => (
           <TagChip label={tag} />
         ))}
       </div>
