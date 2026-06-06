@@ -13,7 +13,7 @@
 @theme {
   --font-sans: "Geist Sans", ui-sans-serif, system-ui, sans-serif;
 
-  /* Fluid type scale — holds defaults on small screens, grows on large viewports */
+  /* Fluid type scale: holds defaults on small screens, grows on large viewports */
   --text-base: clamp(1rem, 0.95rem + 0.15vw, 1.125rem);
   --text-base--line-height: 1.5;
   --text-lg: clamp(1.125rem, 1.05rem + 0.25vw, 1.3125rem);
@@ -176,6 +176,14 @@
 
 @utility section-heading {
   @apply text-4xl leading-snug font-bold tracking-tight text-white;
+}
+
+@utility subsection-heading {
+  @apply text-2xl leading-snug font-semibold tracking-tight text-white/90;
+}
+
+@utility subsubsection-heading {
+  @apply text-xl leading-snug font-medium tracking-tight text-white/75;
 }
 
 @utility section-subtext {

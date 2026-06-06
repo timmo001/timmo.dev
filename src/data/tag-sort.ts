@@ -2,11 +2,12 @@ const DEFAULT_TAG_WEIGHT = 100;
 
 const tagWeights: Record<string, number> = {
   HACS: 0,
-  "Home Assistant Integration": 1,
-  "Home Assistant Card": 2,
-  "Home Assistant Card Feature": 3,
-  "Home Assistant Dashboard": 4,
-  "Desktop App": 5,
+  Contribution: 1,
+  "Home Assistant Integration": 2,
+  "Home Assistant Card": 3,
+  "Home Assistant Card Feature": 4,
+  "Home Assistant Dashboard": 5,
+  "Desktop App": 6,
   TUI: 7,
   CLI: 8,
   Omarchy: 10,
@@ -25,8 +26,7 @@ const tagWeights: Record<string, number> = {
   Stow: 40,
   "CI/CD": 50,
   "GitHub Actions": 51,
-  "Web App": 55,
-  Archived: 60,
+  Archive: 60,
 };
 
 function getTagSortWeight(label: string): number {

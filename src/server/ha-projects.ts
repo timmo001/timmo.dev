@@ -48,13 +48,6 @@ const HA_PROJECTS_QUERY = `query ($login: String!) {
             }
           }
         }
-        languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
-          edges {
-            node {
-              name
-            }
-          }
-        }
       }
     }
   }
@@ -91,7 +84,6 @@ function mapRepoToHaProject(
     url: repo.url,
     isArchived: repo.isArchived,
     lastUpdatedAt: getLastUpdatedAt(repo),
-    languageNames: repo.languages.edges.map((edge) => edge.node.name),
   };
 }
 

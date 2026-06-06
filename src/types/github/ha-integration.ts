@@ -1,16 +1,24 @@
-import { type HaProjectKind } from "~/lib/ha-project-kinds";
+export type HaIntegrationSource = "core" | "custom";
 
-export type { HaProjectKind };
-
-export type GitHubHaProject = {
-  name: string;
+export type GitHubHaIntegration = {
+  key: string;
+  source: HaIntegrationSource;
+  title: string;
   description: string | null;
-  url: string;
+  href: string;
   isArchived: boolean;
   lastUpdatedAt: string | null;
+  languageNames: Array<string>;
 };
 
-export type HaProjectsQueryResult = {
+export type HaCoreManifest = {
+  domain: string;
+  name: string;
+  documentation?: string;
+  codeowners?: Array<string>;
+};
+
+export type HaIntegrationsQueryResult = {
   user: {
     repositories: {
       nodes: Array<{
@@ -33,6 +41,13 @@ export type HaProjectsQueryResult = {
               target?: {
                 committedDate?: string;
               };
+            };
+          }>;
+        };
+        languages: {
+          edges: Array<{
+            node: {
+              name: string;
             };
           }>;
         };

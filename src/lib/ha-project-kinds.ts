@@ -35,6 +35,33 @@ export function getHaProjectPrefix(kind: HaProjectKind): string {
   return KIND_PREFIX[kind];
 }
 
+const HA_SUBSECTION_REPO_NAMES = new Set(["home-assistant-tui"]);
+
+export function isHaSubsectionNavItem(href: string): boolean {
+  if (getHaProjectKindFromHref(href) !== null) {
+    return true;
+  }
+
+  try {
+    const repoName = new URL(href).pathname.split("/").filter(Boolean).at(-1);
+    return repoName !== undefined && HA_SUBSECTION_REPO_NAMES.has(repoName);
+  } catch {
+    return false;
+  }
+}
+
+function getHaProjectKindFromHref(href: string): HaProjectKind | null {
+  try {
+    const repoName = new URL(href).pathname.split("/").filter(Boolean).at(-1);
+    if (!repoName) {
+      return null;
+    }
+    return getHaProjectKind(repoName);
+  } catch {
+    return null;
+  }
+}
+
 export function getRepoNameFromHref(href: string): string | null {
   try {
     const { pathname } = new URL(href);

@@ -12,7 +12,7 @@ export const tagStyles: Record<string, TagStyle> = {
   Agents: {
     backgroundColor: "#8b5cf6",
   },
-  Archived: {
+  Archive: {
     backgroundColor: "#64748b",
   },
   Automation: {
@@ -29,6 +29,9 @@ export const tagStyles: Record<string, TagStyle> = {
   },
   Commands: {
     backgroundColor: "#4f46e5",
+  },
+  Contribution: {
+    backgroundColor: "#059669",
   },
   Convex: {
     backgroundColor: "#d97706",
@@ -143,9 +146,6 @@ export const tagStyles: Record<string, TagStyle> = {
   },
   YAML: {
     backgroundColor: "#cb171e",
-  },
-  "Web App": {
-    backgroundColor: "#4338ca",
   },
   WebSocket: {
     backgroundColor: "#0f766e",
