@@ -56,6 +56,7 @@ export async function getUserData(user: string): Promise<UserDataResult> {
     }
     repositories(
       first: 100
+      privacy: PUBLIC
       isFork: false
       orderBy: { field: UPDATED_AT, direction: DESC }
     ) {

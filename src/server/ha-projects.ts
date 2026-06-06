@@ -18,7 +18,7 @@ const haProjectsCache = new Map<string, CacheEntry>();
 
 const HA_PROJECTS_QUERY = `query ($login: String!) {
   user(login: $login) {
-    repositories(first: 100, isFork: false, orderBy: { field: UPDATED_AT, direction: DESC }) {
+    repositories(first: 100, privacy: PUBLIC, isFork: false, orderBy: { field: UPDATED_AT, direction: DESC }) {
       nodes {
         name
         description

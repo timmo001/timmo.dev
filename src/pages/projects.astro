@@ -10,19 +10,15 @@ import { mergeProjectsWithHaGitHub } from "~/lib/ha-projects";
 const { projects, haProjects, haGitHubSynced } =
   await mergeProjectsWithHaGitHub(staticProjects);
 
-const webAppHrefs = [
-  "https://weather.timmo.dev",
-  "https://pouch.timmo.dev",
-  "https://github.com/timmo001/home-panel",
-] as const;
-
-function isWebAppProject(item: NavItem): boolean {
-  return webAppHrefs.includes(item.href as (typeof webAppHrefs)[number]);
+function isArchivedItem(item: NavItem): boolean {
+  return item.tags?.includes("Archive") ?? false;
 }
 
-const webAppProjects = webAppHrefs
-  .map((href) => projects.find((item) => item.href === href))
-  .filter((item): item is NavItem => item !== undefined);
+function sortArchivedLast(items: Array<NavItem>): Array<NavItem> {
+  return items.toSorted(
+    (left, right) => Number(isArchivedItem(left)) - Number(isArchivedItem(right)),
+  );
+}
 
 function hasHacsTag(item: NavItem): boolean {
   return item.tags?.includes("HACS") ?? false;
@@ -48,28 +44,31 @@ const staticIntegrations = contributions.filter(
   (item) => item.href !== "https://github.com/home-assistant/frontend",
 );
 
-const { integrations: integrationItems, integrationsSynced } =
+const { integrations: rawIntegrationItems, integrationsSynced } =
   await mergeIntegrationsWithGitHub(staticIntegrations);
+const integrationItems = sortArchivedLast(rawIntegrationItems);
 
-const leadingHaItems = dedupeByHref([
-  ...(frontendContribution ? [frontendContribution] : []),
-  ...haProjects.filter((item) => !hasHacsTag(item)),
-]);
+const leadingHaItems = sortArchivedLast(
+  dedupeByHref([
+    ...(frontendContribution ? [frontendContribution] : []),
+    ...haProjects.filter((item) => !hasHacsTag(item)),
+  ]),
+);
 
-const hacsItems = dedupeByHref(haProjects.filter(hasHacsTag));
+const hacsItems = sortArchivedLast(dedupeByHref(haProjects.filter(hasHacsTag)));
 
 const homeAssistantHrefs = new Set(
   [...leadingHaItems, ...hacsItems, ...integrationItems].map(
     (item) => item.href,
   ),
 );
-const contributionTitles = new Set(contributions.map((item) => item.title));
+const contributionHrefs = new Set(contributions.map((item) => item.href));
 
-const activeProjects = projects.filter(
-  (item) =>
-    !isWebAppProject(item) &&
-    !homeAssistantHrefs.has(item.href) &&
-    !contributionTitles.has(item.title),
+const activeProjects = sortArchivedLast(
+  projects.filter(
+    (item) =>
+      !homeAssistantHrefs.has(item.href) && !contributionHrefs.has(item.href),
+  ),
 );
 
 const hasHomeAssistantSection =
@@ -292,21 +291,6 @@ const hasHomeAssistantSection =
                   </div>
                 ) : null
               }
-            </div>
-          ) : null
-        }
-
-        {
-          webAppProjects.length > 0 ? (
-            <div class="flex flex-col gap-8">
-              <h4 id="web-apps-heading" class="reveal subsection-heading">
-                Web apps
-              </h4>
-              <div
-                class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-              >
-                {webAppProjects.map((item) => <WorkItem {...item} />)}
-              </div>
             </div>
           ) : null
         }

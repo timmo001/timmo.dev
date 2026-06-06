@@ -21,7 +21,7 @@ const CORE_INTEGRATION_SEARCH_QUERY =
 
 const HA_INTEGRATIONS_QUERY = `query ($login: String!) {
   user(login: $login) {
-    repositories(first: 100, isFork: false, orderBy: { field: UPDATED_AT, direction: DESC }) {
+    repositories(first: 100, privacy: PUBLIC, isFork: false, orderBy: { field: UPDATED_AT, direction: DESC }) {
       nodes {
         name
         description

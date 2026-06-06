@@ -56,6 +56,38 @@ export const projects: Array<NavItem> = [
       "GitHub Actions workflows shared between my projects, including linting, testing, CodeQL, container and language builds, Home Assistant card validation, Dependabot and Renovate automerge, release drafting, and more. Open for reuse and contribution.",
   },
   {
+    title: "Weather",
+    tags: ["Forecast"],
+    stack: ["TypeScript", "Next.js", "React", "Tailwind"],
+    href: "https://weather.timmo.dev",
+    description:
+      "A progressive web app for current conditions and forecasts powered by Tomorrow.io. Set your location via coordinates or browser geolocation, browse hourly and daily outlooks across five days, and switch between dark and light themes.",
+  },
+  {
+    title: "Pouch",
+    tags: ["Archive", "Lists", "Notes"],
+    stack: ["TypeScript", "Next.js", "React", "Convex", "Tailwind"],
+    href: "https://pouch.timmo.dev",
+    description:
+      "Store your favorite things: a web app for organizing lists and notepads into groups with drag-and-drop reordering and real-time sync across devices. Built with Next.js, Convex, and Clerk authentication.",
+  },
+  {
+    title: "Home Panel",
+    tags: ["Archive", "Home Assistant", "WebSocket"],
+    stack: ["TypeScript", "Next.js", "React", "MUI", "Prisma"],
+    href: "https://github.com/timmo001/home-panel",
+    description:
+      "A web frontend for controlling the home, integrated with Home Assistant as an additional frontend. Archived and no longer maintained. Home Assistant dashboards surpassed what it offered.",
+  },
+  {
+    title: "Go Commands",
+    tags: ["Archive", "CLI", "Home Assistant", "MQTT"],
+    stack: ["Go"],
+    href: "https://github.com/timmo001/go-commands",
+    description:
+      "Run commands on your machine via MQTT and Home Assistant. Trigger shell commands remotely from automations or other integrations.",
+  },
+  {
     title: "Home Assistant TUI",
     tags: ["TUI", "CLI", "Home Assistant"],
     stack: ["TypeScript", "Bun", "Effect", "OpenTUI"],
@@ -118,30 +150,6 @@ export const projects: Array<NavItem> = [
     href: "https://github.com/timmo001/ha-card-feature-state",
     description:
       "A custom Home Assistant card feature for displaying entity state on compatible cards.",
-  },
-  {
-    title: "Weather",
-    tags: ["Forecast"],
-    stack: ["TypeScript", "Next.js", "React", "Tailwind"],
-    href: "https://weather.timmo.dev",
-    description:
-      "A progressive web app for current conditions and forecasts powered by Tomorrow.io. Set your location via coordinates or browser geolocation, browse hourly and daily outlooks across five days, and switch between dark and light themes.",
-  },
-  {
-    title: "Pouch",
-    tags: ["Archive", "Lists", "Notes"],
-    stack: ["TypeScript", "Next.js", "React", "Convex", "Tailwind"],
-    href: "https://pouch.timmo.dev",
-    description:
-      "Store your favorite things: a web app for organizing lists and notepads into groups with drag-and-drop reordering and real-time sync across devices. Built with Next.js, Convex, and Clerk authentication.",
-  },
-  {
-    title: "Home Panel",
-    tags: ["Archive", "Home Assistant", "WebSocket"],
-    stack: ["TypeScript", "Next.js", "React", "MUI", "Prisma"],
-    href: "https://github.com/timmo001/home-panel",
-    description:
-      "A web frontend for controlling the home, integrated with Home Assistant as an additional frontend. Archived and no longer maintained. Home Assistant dashboards surpassed what it offered.",
   },
 ];
 
