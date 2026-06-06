@@ -14,6 +14,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://astro.build/config
 export default defineConfig({
   site: "https://timmo.dev",
+  redirects: {
+    "/work": "/projects",
+    "/what-i-do": "/projects",
+    "/projects-and-contributions": "/projects",
+  },
   integrations: [sitemap()],
   adapter: vercel({
     isr: {

@@ -2,6 +2,7 @@ export type NavItem = {
   title: string;
   href: string;
   description: string;
+  tags?: Array<string>;
 };
 
 export const projects: Array<NavItem> = [

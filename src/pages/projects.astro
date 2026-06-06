@@ -1,0 +1,85 @@
+---
+import SectionBlock from "~/components/SectionBlock.astro";
+import SubpageHeader from "~/components/SubpageHeader.astro";
+import WorkItem from "~/components/WorkItem.astro";
+import Layout from "~/layouts/Layout.astro";
+import { contributions, projects } from "~/data/navigation";
+---
+
+<Layout
+  title="Projects & contributions | Aidan Timson (Timmo)"
+  description="What I'm building and contributing to — projects and open-source work by Aidan Timson (Timmo/timmo001)"
+>
+  <SubpageHeader title="Projects & contributions" />
+  <div
+    class="flex w-full flex-col items-center justify-start px-4 py-16"
+    role="main"
+  >
+    <div class="container flex w-full flex-col gap-36 px-2">
+      <section aria-labelledby="building-heading" class="flex flex-col gap-16">
+        <div class="grid gap-x-4 gap-y-8 md:grid-cols-2">
+          <h3
+            id="building-heading"
+            class="reveal text-3xl leading-snug font-bold tracking-tight text-white"
+          >
+            What I'm building
+          </h3>
+          <div class="reveal">
+            <SectionBlock>
+              I like making things that solve problems I actually have — desktop
+              apps, home automation tools, developer utilities, and side projects
+              that often start as "can this be a thing?".
+              <br />
+              <br />
+              Sometimes there's a clear reason. Sometimes I'm just curious about a
+              language or framework and want to learn by using it.
+            </SectionBlock>
+          </div>
+        </div>
+
+        <div
+          class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
+          {projects.map((item) => <WorkItem {...item} />)}
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="contributing-heading"
+        class="border-t border-white/10 pt-36"
+      >
+        <div class="flex flex-col gap-16">
+          <div class="grid gap-x-4 gap-y-8 md:grid-cols-2">
+            <h3
+              id="contributing-heading"
+              class="reveal text-3xl leading-snug font-bold tracking-tight text-white"
+            >
+              What I contribute to
+            </h3>
+            <div class="reveal">
+              <SectionBlock>
+                I'm passionate about open-source and give back where I can. Most of my
+                contributions sit around{" "}
+                <a
+                  class="text-indigo-500 transition-colors hover:text-indigo-400"
+                  href="https://www.home-assistant.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Home Assistant
+                </a>
+                — integrations, add-ons, and glue between the tools I use every day.
+              </SectionBlock>
+            </div>
+          </div>
+
+          <div
+            class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
+            {contributions.map((item) => <WorkItem {...item} />)}
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

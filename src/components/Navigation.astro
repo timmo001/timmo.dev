@@ -1,6 +1,4 @@
 ---
-import { contributions, projects } from "~/data/navigation";
-
 const navLinkClass =
   "inline-flex h-10 w-max items-center justify-center rounded-2xl px-4 py-2 text-sm font-medium transition-all hover:text-slate-900 focus:text-slate-900 focus:outline-hidden dark:hover:text-slate-50 dark:focus:text-slate-50";
 ---
@@ -10,95 +8,8 @@ const navLinkClass =
     <li>
       <a href="/" class={navLinkClass}>About Me</a>
     </li>
-    <li class="relative">
-      <details class="nav-dropdown group">
-        <summary class={`${navLinkClass} cursor-pointer list-none [&::-webkit-details-marker]:hidden`}>
-          Software
-        </summary>
-        <div class="nav-dropdown-panel">
-          <ul class="grid w-[min(100vw-2rem,700px)] gap-3 p-4 sm:grid-cols-2">
-            {
-              projects.map((item) => (
-                <li>
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="hover:bg-accent/60 hover:text-accent-foreground focus:bg-accent/60 focus:text-accent-foreground block space-y-1 rounded-xl p-3 leading-none no-underline outline-hidden transition-colors select-none"
-                  >
-                    <div class="text-sm leading-none font-medium">
-                      {item.title}
-                      <svg
-                        class="ms-1 mb-1 inline-block h-3 w-3 text-slate-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                      </svg>
-                    </div>
-                    <p class="text-muted-foreground line-clamp-3 text-sm leading-snug">
-                      {item.description}
-                    </p>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </details>
-    </li>
-    <li class="relative">
-      <details class="nav-dropdown group">
-        <summary class={`${navLinkClass} cursor-pointer list-none [&::-webkit-details-marker]:hidden`}>
-          Contributions
-        </summary>
-        <div class="nav-dropdown-panel">
-          <ul class="grid w-[min(100vw-2rem,700px)] gap-3 p-4 sm:grid-cols-2">
-            {
-              contributions.map((item) => (
-                <li>
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="hover:bg-accent/60 hover:text-accent-foreground focus:bg-accent/60 focus:text-accent-foreground block space-y-1 rounded-xl p-3 leading-none no-underline outline-hidden transition-colors select-none"
-                  >
-                    <div class="text-sm leading-none font-medium">
-                      {item.title}
-                      <svg
-                        class="ms-1 mb-1 inline-block h-3 w-3 text-slate-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                      </svg>
-                    </div>
-                    <p class="text-muted-foreground line-clamp-3 text-sm leading-snug">
-                      {item.description}
-                    </p>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-      </details>
+    <li>
+      <a href="/projects" class={navLinkClass}>Projects & contributions</a>
     </li>
     <li>
       <a href="/stats" class={navLinkClass}>Stats</a>
