@@ -168,7 +168,7 @@ export const contributions: Array<NavItem> = [
     stack: ["Python"],
     href: "https://www.home-assistant.io/integrations/system_bridge",
     description:
-      "The core Home Assistant integration for System Bridge with local push via Zeroconf, binary sensors, media players, notify, sensors, and update platforms. Monitor system data and send commands such as opening URLs or sending keypresses.",
+      "Core integration for System Bridge with local push via Zeroconf, binary sensors, media players, notify, sensors, and update platforms. Monitor system data and send commands such as opening URLs or sending keypresses.",
   },
   {
     title: "Honeywell Lyric",
@@ -176,15 +176,15 @@ export const contributions: Array<NavItem> = [
     stack: ["Python"],
     href: "https://www.home-assistant.io/integrations/lyric",
     description:
-      "Integrates Honeywell Lyric thermostats into Home Assistant via the cloud API. Supports climate control, select entities, and sensors through config flow and DHCP discovery.",
+      "Connects Honeywell Lyric thermostats via the cloud API. Climate control, select entities, and sensors through config flow and DHCP discovery.",
   },
   {
     title: "GoXLR Utility",
-    tags: ["Home Assistant Integration", "HACS"],
+    tags: ["Archive", "Home Assistant Integration", "HACS"],
     stack: ["Python"],
     href: "https://github.com/timmo001/homeassistant-integration-goxlr-utility",
     description:
-      "A HACS integration for GoXLR Utility, the third-party app from @GoXLR-on-Linux for controlling the GoXLR on Linux, macOS, and Windows. Exposes binary sensors, media players with volume control, and profile sensors. Does not connect to the official GoXLR application.",
+      "Connects GoXLR Utility, the third-party app from @GoXLR-on-Linux for controlling the GoXLR. Binary sensors, media players with volume control, and profile sensors. Does not connect to the official GoXLR application. I no longer use it.",
   },
   {
     title: "OVO Energy",
@@ -192,7 +192,7 @@ export const contributions: Array<NavItem> = [
     stack: ["Python"],
     href: "https://www.home-assistant.io/integrations/ovo_energy",
     description:
-      "Monitors UK OVO Energy consumption and billing data in Home Assistant. Config flow setup with sensors for energy usage, costs, and account information.",
+      "Monitors OVO Energy accounts in the UK via config flow, with sensors for electricity and gas consumption, costs, and latest meter readings.",
   },
   {
     title: "Azure DevOps",
@@ -200,6 +200,14 @@ export const contributions: Array<NavItem> = [
     stack: ["Python"],
     href: "https://www.home-assistant.io/integrations/azure_devops",
     description:
-      "Cloud polling integration for Azure DevOps with config flow setup. Provides sensors for latest builds, work items per type and state, and other project activity so you can monitor your instance from Home Assistant.",
+      "Cloud polling via config flow with sensors for latest builds, work items by type and state, and other project activity from your Azure DevOps instance.",
+  },
+  {
+    title: "GitHub",
+    tags: ["Contribution", "Home Assistant Integration"],
+    stack: ["Python"],
+    href: "https://www.home-assistant.io/integrations/github",
+    description:
+      "OAuth-backed monitoring for repositories you own or have starred. Sensors for latest commits, issues, pull requests, releases, tags, and diagnostics such as stars, forks, and open discussions, updated from repository events.",
   },
 ];
