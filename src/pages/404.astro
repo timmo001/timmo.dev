@@ -1,0 +1,28 @@
+---
+import Layout from "~/layouts/Layout.astro";
+---
+
+<Layout title="Not Found | Aidan Timson (Timmo)">
+  <header
+    class="h-[50vh] min-h-96 w-full bg-linear-to-b from-violet-900 to-slate-950 p-4"
+    role="banner"
+  >
+    <div
+      class="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+      style="background-image: url('/logo-wide-nobackground.png')"
+    >
+      <div class="flex flex-wrap items-baseline justify-start text-start" role="main">
+        <span class="hero-reveal me-6 text-6xl leading-none font-bold tracking-tight text-white">
+          Page not found
+        </span>
+      </div>
+      <a
+        href="/"
+        class="hero-reveal mt-10 inline-flex h-10 items-center justify-center rounded-2xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+        style="animation-delay: 0.1s"
+      >
+        Return Home
+      </a>
+    </div>
+  </header>
+</Layout>

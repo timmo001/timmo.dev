@@ -1,9 +1,9 @@
-"use server";
 import { Octokit } from "octokit";
 
+import { env } from "~/env";
 import { type User } from "~/types/github/user";
 
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+const octokit = new Octokit({ auth: env.GITHUB_TOKEN });
 
 export async function getUserData(user: string): Promise<User> {
   const query = `query ($login: String!) {

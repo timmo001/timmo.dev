@@ -1,0 +1,26 @@
+---
+import StatIcon from "~/components/StatIcon.astro";
+import { type Stat } from "~/types/github/stat";
+
+type Props = Stat;
+
+const { key, url, title, value, secondaryValue } = Astro.props;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="stat-card reveal grid cursor-pointer grid-cols-1 justify-items-center fill-white"
+>
+  <StatIcon statKey={key} />
+  <h3 class="mt-2 text-3xl font-light">{title}</h3>
+  <span class="text-3xl font-medium">{value}</span>
+  {
+    secondaryValue ? (
+      <span class="text-base font-normal">{secondaryValue}</span>
+    ) : (
+      <span class="h-6" aria-hidden="true" />
+    )
+  }
+</a>

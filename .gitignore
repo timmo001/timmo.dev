@@ -13,10 +13,9 @@
 /prisma/db.sqlite-journal
 db.sqlite
 
-# next.js
-/.next/
-/out/
-next-env.d.ts
+# astro
+.astro/
+/dist/
 
 # production
 /build

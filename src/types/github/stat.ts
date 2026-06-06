@@ -1,7 +1,7 @@
-export interface Stat {
+export type Stat = {
   key: string;
   url: string;
   title: string;
   value: string | number;
   secondaryValue?: string | number;
-}
+};

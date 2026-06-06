@@ -1,0 +1,185 @@
+---
+import ContactLinks from "~/components/ContactLinks.astro";
+import SectionBlock from "~/components/SectionBlock.astro";
+import Layout from "~/layouts/Layout.astro";
+
+const titleLetters = [... "Aidan Timson"];
+const taglineLetters = [... "Software Developer"];
+---
+
+<Layout>
+  <header
+    class="relative h-screen w-full overflow-hidden bg-linear-to-b from-violet-900 to-slate-950 p-4"
+    role="banner"
+  >
+    <div
+      class="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+      style="background-image: url('/logo-wide-nobackground.png')"
+    >
+      <div class="flex flex-wrap items-baseline justify-start text-start">
+        <h1 class="me-6 text-8xl leading-none font-bold tracking-tight text-white">
+          {
+            titleLetters.map((letter, index) => (
+              <span
+                class="hero-letter inline-block"
+                style={`animation-delay: ${index * 0.03}s`}
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </span>
+            ))
+          }
+        </h1>
+        <span
+          class="hero-reveal text-4xl leading-none font-bold tracking-normal text-nowrap"
+          style="animation-delay: 0.45s"
+        >
+          <span class="text-gray-200">Timmo</span> /{" "}
+          <span class="text-gray-200">@timmo001</span>
+        </span>
+      </div>
+      <p class="mt-4 text-3xl leading-snug font-semibold tracking-tight text-wrap text-white">
+        {
+          taglineLetters.map((letter, index) => (
+            <span
+              class="hero-letter inline-block"
+              style={`animation-delay: ${0.35 + index * 0.015}s`}
+            >
+              {letter === " " ? "\u00A0" : letter}
+            </span>
+          ))
+        }
+      </p>
+    </div>
+  </header>
+
+  <div
+    class="flex w-full flex-col items-center justify-start bg-linear-to-b from-slate-950 to-gray-950 px-4 py-16"
+    role="main"
+  >
+    <div
+      class="stagger-grid container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2"
+    >
+      <h3 class="reveal text-3xl leading-snug font-bold tracking-tight text-white">
+        About Me
+      </h3>
+      <div class="reveal">
+        <SectionBlock>
+          My name is Aidan, but you might know me better as{" "}
+          <a
+            class="text-indigo-500 transition-colors hover:text-indigo-400"
+            href="https://github.com/timmo001"
+            target="_blank"
+            aria-label="GitHub profile"
+          >
+            Timmo
+          </a>{" "}
+          or{" "}
+          <a
+            class="text-indigo-500 transition-colors hover:text-indigo-400"
+            href="mailto:aidan@timmo.dev"
+            target="_blank"
+            aria-label="Email"
+          >
+            @timmo001
+          </a>
+          .
+          <br />
+          <br />
+          I am a full-stack software developer with a passion for creating and
+          maintaining software. I have experience in full-stack development and
+          have worked on a variety of projects.
+          <br />
+          <br />
+          I'm a tinkerer, who has a vast interest for technology, automation and
+          software. I am always looking to improve my skills and learn new things,
+          whether that be a new programming language, framework or technology.
+        </SectionBlock>
+      </div>
+
+      <h3 class="reveal text-3xl leading-snug font-bold tracking-tight text-white">
+        Personal Projects / Open-Source Contributions
+      </h3>
+      <div class="reveal">
+        <SectionBlock>
+          I am very passionate about open-source projects and the open-source
+          community. Alongside my own personal projects, I have contributed to
+          projects such as{" "}
+          <a
+            class="text-indigo-500"
+            href="https://www.home-assistant.io"
+            target="_blank"
+            aria-label="Home Assistant website"
+          >
+            Home Assistant
+          </a>
+          , the{" "}
+          <a
+            class="text-indigo-500"
+            href="https://github.com/hassio-addons"
+            target="_blank"
+            aria-label="Home Assistant Community Add-ons GitHub repository"
+          >
+            Home Assistant Community Add-ons
+          </a>{" "}
+          project and others.
+          <br />
+          <br />
+          For a comprehensive view of my contributions to open-source projects
+          and other creations, please visit my website and{" "}
+          <a
+            class="text-indigo-500"
+            href="https://github.com/timmo001"
+            target="_blank"
+            aria-label="GitHub profile"
+          >
+            GitHub
+          </a>{" "}
+          profile.
+        </SectionBlock>
+      </div>
+
+      <div class="reveal">
+        <SectionBlock heading="System Bridge">
+          System Bridge is a desktop application for controlling and monitoring
+          your desktops. The app is designed to be cross-platform, easy to install
+          and use, and directly integrate with Home Assistant or your own
+          application via its websocket API. System Bridge started as a node
+          application using electron, but moved into a python application and then
+          into Rust with a Python backend, using the original Python code moved
+          from a monorepo to individual modules.
+        </SectionBlock>
+      </div>
+
+      <div class="reveal">
+        <SectionBlock heading="Other Personal Projects">
+          You will also find a lot of smaller projects, which showcase my passion
+          for open-source and creating applications. The reason could be 'this
+          could be better', or 'can this be a thing' etc. There isn't always a
+          reason, it can be because I want to learn a new language or use a
+          framework that interests me and the best way to learn a technology in my
+          opinion is to use it and experience what it is capable of.
+        </SectionBlock>
+      </div>
+
+      <h3 class="reveal text-3xl leading-snug font-bold tracking-tight text-white">
+        Top Programming Languages
+      </h3>
+      <p class="reveal mb-8 text-xl leading-relaxed font-normal tracking-normal text-white">
+        I have experience in a variety of programming languages. My top programming
+        languages can be found on the{" "}
+        <a class="text-indigo-500" href="/stats">stats</a> page.
+      </p>
+    </div>
+
+    <div class="col-span-full mt-36 flex w-full flex-col items-center gap-8">
+      <h3 class="reveal mb-8 text-2xl leading-snug font-bold tracking-tight text-white">
+        Contact
+      </h3>
+      <div class="reveal flex w-full flex-row flex-wrap justify-center gap-x-24 gap-y-16">
+        <ContactLinks
+          classes="h-32 w-32 fill-white transition-transform duration-300 ease-in-out hover:scale-110"
+        />
+      </div>
+    </div>
+  </div>
+</Layout>
