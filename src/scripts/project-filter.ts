@@ -139,11 +139,16 @@ function scoreEntry(entry: FilterEntry, query: string): number {
   return score;
 }
 
+function getGroupGrid(group: HTMLElement): HTMLElement {
+  return group.querySelector<HTMLElement>(".stagger-grid") ?? group;
+}
+
 function reorderGroup(
   group: HTMLElement,
   query: string,
   entryByElement: Map<HTMLElement, FilterEntry>,
 ): void {
+  const grid = getGroupGrid(group);
   const cards = Array.from(
     group.querySelectorAll<HTMLElement>("[data-work-item]"),
   );
@@ -169,7 +174,7 @@ function reorderGroup(
   });
 
   for (const card of [...visible, ...hidden]) {
-    group.appendChild(card);
+    grid.appendChild(card);
   }
 }
 
