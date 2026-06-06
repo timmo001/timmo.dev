@@ -13,7 +13,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   site: "https://timmo.dev",
   integrations: [sitemap()],
-  adapter: vercel(),
+  adapter: vercel({
+    isr: {
+      expiration: 60 * 60,
+    },
+  }),
   vite: {
     plugins: [tailwindcss()],
     resolve: {

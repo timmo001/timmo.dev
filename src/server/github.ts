@@ -5,7 +5,20 @@ import { type User } from "~/types/github/user";
 
 const octokit = new Octokit({ auth: env.GITHUB_TOKEN });
 
+const CACHE_TTL_MS = 60 * 60 * 1000;
+
+type CacheEntry = {
+  value: User;
+  expiresAt: number;
+};
+
+const userCache = new Map<string, CacheEntry>();
+
 export async function getUserData(user: string): Promise<User> {
+  const cached = userCache.get(user);
+  if (cached && cached.expiresAt > Date.now()) {
+    return cached.value;
+  }
   const query = `query ($login: String!) {
   user(login: $login) {
     id
@@ -68,9 +81,16 @@ export async function getUserData(user: string): Promise<User> {
 }`;
 
   try {
-    return await octokit.graphql<User>(query, {
+    const result = await octokit.graphql<User>(query, {
       login: user,
     });
+
+    userCache.set(user, {
+      value: result,
+      expiresAt: Date.now() + CACHE_TTL_MS,
+    });
+
+    return result;
   } catch (error) {
     console.error(error);
     throw error;

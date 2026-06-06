@@ -1,63 +1,23 @@
 ---
 export const prerender = false;
 
-import GitHubStats from "~/components/GitHubStats.astro";
-import SubpageHeader from "~/components/SubpageHeader.astro";
-import TopLanguages from "~/components/TopLanguages.astro";
+import StatsContent from "~/components/StatsContent.astro";
+import StatsLoading from "~/components/StatsLoading.astro";
 import Layout from "~/layouts/Layout.astro";
-import { getStats, getTopLanguages, USERNAME } from "~/lib/github";
-import { getUserData } from "~/server/github";
 
-const { user } = await getUserData(USERNAME);
-const [githubStats, githubTopLanguages] = await Promise.all([
-  getStats(user),
-  getTopLanguages(user),
-]);
+const STATS_CACHE_SECONDS = 60 * 60;
+
+Astro.response.headers.set(
+  "Cache-Control",
+  `public, s-maxage=${STATS_CACHE_SECONDS}, stale-while-revalidate=${STATS_CACHE_SECONDS * 24}`,
+);
 ---
 
 <Layout
   title="Stats | Aidan Timson (Timmo)"
   description="Aggregated stats for Aidan Timson (Timmo/timmo001)"
 >
-  <SubpageHeader title="Stats" />
-  <div
-    class="flex w-full flex-col items-center justify-start px-4 py-16"
-    role="main"
-  >
-    <div class="container flex w-full flex-col items-center gap-16 text-center">
-      <section>
-        <div
-          class="stagger-stats grid grid-cols-2 gap-12 leading-snug tracking-tight sm:grid-cols-3 md:grid-cols-4"
-        >
-          <GitHubStats stats={githubStats} />
-        </div>
-      </section>
-
-      <section>
-        <h3 class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white">
-          Top Languages
-        </h3>
-        <div
-          class="grid grid-cols-3 gap-4 leading-snug tracking-tight sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
-        >
-          <TopLanguages languages={githubTopLanguages} />
-        </div>
-      </section>
-
-      <section>
-        <h3 class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white">
-          Contribution Graph
-        </h3>
-        <div class="reveal">
-          <iframe
-            src="https://ghchart.rshah.org/timmo001"
-            title="timmo001"
-            height="120"
-            width="670"
-            style="border: 0; background: transparent !important"
-          ></iframe>
-        </div>
-      </section>
-    </div>
-  </div>
+  <StatsContent server:defer>
+    <StatsLoading slot="fallback" />
+  </StatsContent>
 </Layout>
