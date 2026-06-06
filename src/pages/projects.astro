@@ -1,9 +1,12 @@
 ---
+import ProjectFilters from "~/components/ProjectFilters.astro";
 import SectionBlock from "~/components/SectionBlock.astro";
 import SubpageHeader from "~/components/SubpageHeader.astro";
 import WorkItem from "~/components/WorkItem.astro";
 import Layout from "~/layouts/Layout.astro";
 import { contributions, projects as staticProjects, type NavItem } from "~/data/navigation";
+import { sortStack } from "~/data/stack-sort";
+import { sortTags } from "~/data/tag-sort";
 import { mergeIntegrationsWithGitHub } from "~/lib/ha-integrations";
 import { mergeProjectsWithHaGitHub } from "~/lib/ha-projects";
 
@@ -75,6 +78,22 @@ const hasHomeAssistantSection =
   leadingHaItems.length > 0 ||
   hacsItems.length > 0 ||
   integrationItems.length > 0;
+
+const filterableItems = [
+  ...activeProjects,
+  ...leadingHaItems,
+  ...hacsItems,
+  ...integrationItems,
+];
+
+const filterTags = sortTags([
+  ...new Set(filterableItems.flatMap((item) => item.tags ?? [])),
+]).toSorted(
+  (left, right) => Number(left === "Archive") - Number(right === "Archive"),
+);
+const filterStack = sortStack([
+  ...new Set(filterableItems.flatMap((item) => item.stack ?? [])),
+]);
 ---
 
 <Layout
@@ -87,15 +106,9 @@ const hasHomeAssistantSection =
     role="main"
   >
     <div class="container flex w-full flex-col gap-36 px-2">
-      <section aria-label="Introduction" class="flex flex-col gap-16">
-        <div class="reveal px-12 pb-4 md:px-24 md:pb-8">
+      <section aria-label="Introduction" class="flex flex-col gap-8">
+        <div class="reveal px-6 md:px-12">
           <SectionBlock>
-            Sometimes there's a clear reason. Sometimes I'm just curious about a
-            language or framework and want to learn by using it. I like making things that solve problems I actually have, including desktop
-            apps, home automation tools, developer utilities, and side projects
-            that often start as "can this be a thing?".
-            <br />
-            <br />
             Most of my open-source work is in{" "}
             <a
               class="text-link"
@@ -172,15 +185,18 @@ const hasHomeAssistantSection =
           </SectionBlock>
         </div>
 
+        <ProjectFilters tags={filterTags} stack={filterStack} />
+
         <div
           class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          data-filter-group="active"
         >
           {activeProjects.map((item) => <WorkItem {...item} />)}
         </div>
 
         {
           hasHomeAssistantSection ? (
-            <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-8" data-filter-section>
               <h4
                 id="home-assistant-heading"
                 class="reveal subsection-heading"
@@ -192,6 +208,7 @@ const hasHomeAssistantSection =
                 leadingHaItems.length > 0 ? (
                   <div
                     class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                    data-filter-group="ha-leading"
                   >
                     {leadingHaItems.map((item) => <WorkItem {...item} />)}
                   </div>
@@ -200,7 +217,7 @@ const hasHomeAssistantSection =
 
               {
                 hacsItems.length > 0 ? (
-                  <div class="flex flex-col gap-6">
+                  <div class="flex flex-col gap-6" data-filter-group="ha-hacs">
                     <h5
                       id="community-heading"
                       class="reveal subsubsection-heading inline-flex items-center gap-2"
@@ -243,7 +260,7 @@ const hasHomeAssistantSection =
 
               {
                 integrationItems.length > 0 ? (
-                  <div class="flex flex-col gap-6">
+                  <div class="flex flex-col gap-6" data-filter-group="ha-integrations">
                     <h5
                       id="integrations-heading"
                       class="reveal subsubsection-heading inline-flex items-center gap-2"
@@ -291,3 +308,10 @@ const hasHomeAssistantSection =
     </div>
   </div>
 </Layout>
+
+<script>
+  import { initProjectFilter } from "~/scripts/project-filter";
+
+  initProjectFilter();
+  document.addEventListener("astro:page-load", initProjectFilter);
+</script>
