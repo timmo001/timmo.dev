@@ -52,37 +52,43 @@ export const projects: Array<NavItem> = [
 
 export const contributions: Array<NavItem> = [
   {
-    title: "Home Assistant Integration | GoXLR Utility",
+    title: "GoXLR Utility",
+    tags: ["Home Assistant Integration"],
     href: "https://github.com/timmo001/homeassistant-integration-goxlr-utility",
     description:
       "A third party application from @GoXLR-on-Linux that allows for control of the GoXLR on Linux, Mac and Windows.",
   },
   {
-    title: "Home Assistant Integration | System Bridge",
+    title: "System Bridge",
+    tags: ["Home Assistant Integration"],
     href: "https://www.home-assistant.io/integrations/system_bridge",
     description:
       "Integrates System Bridge into Home Assistant to control and monitor your desktops via websocket connection.",
   },
   {
-    title: "Home Assistant Integration | Azure DevOps",
+    title: "Azure DevOps",
+    tags: ["Home Assistant Integration"],
     href: "https://www.home-assistant.io/integrations/azure_devops",
     description:
       "Allows you to control and monitor your Azure DevOps instance in Home Assistant.",
   },
   {
-    title: "Home Assistant Integration | Honeywell Lyric",
+    title: "Honeywell Lyric",
+    tags: ["Home Assistant Integration"],
     href: "https://www.home-assistant.io/integrations/lyric",
     description:
       "Integrates the Lyric thermostat platform into Home Assistant via the cloud API.",
   },
   {
-    title: "Home Assistant Integration | OVO Energy",
+    title: "OVO Energy",
+    tags: ["Home Assistant Integration"],
     href: "https://www.home-assistant.io/integrations/ovo_energy",
     description:
       "Integrates UK energy provider OVO Energy into Home Assistant to monitor your energy consumption and costs.",
   },
   {
-    title: "Home Assistant Community Add-on | The Lounge",
+    title: "The Lounge",
+    tags: ["Home Assistant Community Add-on"],
     href: "https://github.com/hassio-addons/addon-thelounge",
     description:
       "A self-hosted web-based IRC client. Part of the Home Assistant Community Add-ons project, original setup by myself.",

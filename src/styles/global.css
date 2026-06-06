@@ -140,6 +140,10 @@
   }
 }
 
+@utility text-link {
+  @apply text-indigo-400 transition-colors hover:text-indigo-300;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .hero-letter,
   .hero-reveal {
