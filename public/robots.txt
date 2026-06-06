@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /og
+Allow: /stats
+Disallow: /private/
+
+Sitemap: https://timmo.dev/sitemap-index.xml

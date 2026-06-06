@@ -1,0 +1,47 @@
+---
+type Props = {
+  text: string;
+  delayPerLetter?: number;
+  startDelay?: number;
+};
+
+const { text, delayPerLetter = 0.03, startDelay = 0 } = Astro.props;
+
+const words = text.split(/ +/).filter(Boolean);
+let letterOffset = 0;
+
+type LetterSpan = { char: string; delay: number };
+
+const wordGroups: Array<Array<LetterSpan>> = words.map((word, wordIndex) => {
+  const letters = [...word].map((char) => {
+    const delay = startDelay + letterOffset * delayPerLetter;
+    letterOffset += 1;
+    return { char, delay };
+  });
+
+  if (wordIndex < words.length - 1) {
+    letterOffset += 1;
+  }
+
+  return letters;
+});
+---
+
+{
+  wordGroups.map((letters, groupIndex) => (
+    <>
+      {groupIndex > 0 && (
+        <span class="inline-block" aria-hidden="true">
+          {"\u00A0"}
+        </span>
+      )}
+      <span class="inline-block whitespace-nowrap">
+        {letters.map(({ char, delay }) => (
+          <span class="hero-letter inline-block" style={`animation-delay: ${delay}s`}>
+            {char}
+          </span>
+        ))}
+      </span>
+    </>
+  ))
+}

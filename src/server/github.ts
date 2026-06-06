@@ -1,11 +1,39 @@
-"use server";
 import { Octokit } from "octokit";
 
-import { type User } from "~/types/github/user";
+import { addCacheExpiry, isCacheValid } from "~/lib/dates";
+import { env } from "~/env";
+import { STATS_CACHE_TTL_MS } from "~/lib/stats-cache";
+import { type User, type UserNode } from "~/types/github/user";
 
-const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+function getOctokit(): Octokit {
+  if (!env.GITHUB_TOKEN) {
+    throw new Error("GITHUB_TOKEN is not configured");
+  }
 
-export async function getUserData(user: string): Promise<User> {
+  return new Octokit({ auth: env.GITHUB_TOKEN });
+}
+
+type CacheEntry = {
+  value: User;
+  expiresAt: number;
+  fetchedAt: number;
+};
+
+type UserDataResult = {
+  user: UserNode;
+  fetchedAt: Date;
+};
+
+const userCache = new Map<string, CacheEntry>();
+
+export async function getUserData(user: string): Promise<UserDataResult> {
+  const cached = userCache.get(user);
+  if (cached && isCacheValid(cached.expiresAt)) {
+    return {
+      user: cached.value.user,
+      fetchedAt: new Date(cached.fetchedAt),
+    };
+  }
   const query = `query ($login: String!) {
   user(login: $login) {
     id
@@ -28,6 +56,7 @@ export async function getUserData(user: string): Promise<User> {
     }
     repositories(
       first: 100
+      privacy: PUBLIC
       isFork: false
       orderBy: { field: UPDATED_AT, direction: DESC }
     ) {
@@ -68,9 +97,24 @@ export async function getUserData(user: string): Promise<User> {
 }`;
 
   try {
-    return await octokit.graphql<User>(query, {
+    const result = await getOctokit().graphql<User>(query, {
       login: user,
     });
+
+    const fetchedAt = Date.now();
+
+    const expiresAt = addCacheExpiry(fetchedAt, STATS_CACHE_TTL_MS);
+
+    userCache.set(user, {
+      value: result,
+      expiresAt,
+      fetchedAt,
+    });
+
+    return {
+      user: result.user,
+      fetchedAt: new Date(fetchedAt),
+    };
   } catch (error) {
     console.error(error);
     throw error;

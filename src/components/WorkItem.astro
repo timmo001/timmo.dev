@@ -1,0 +1,43 @@
+---
+import TagChip from "~/components/TagChip.astro";
+import { type NavItem } from "~/data/navigation";
+import { sortStack } from "~/data/stack-sort";
+import { sortTags } from "~/data/tag-sort";
+
+type Props = NavItem;
+
+const { title, href, description, tags, stack } = Astro.props;
+const sortedTags = tags ? sortTags(tags) : undefined;
+const sortedStack = stack ? sortStack(stack) : undefined;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="reveal flex w-full flex-col rounded-xl border border-white/10 p-5 text-start transition-colors hover:border-indigo-500/40 hover:bg-white/5"
+>
+  <h4 class="text-lg font-bold leading-snug text-indigo-400">{title}</h4>
+  {
+    sortedTags && sortedTags.length > 0 && (
+      <div class="mt-2 flex flex-wrap gap-1.5">
+        {sortedTags.map((tag) => (
+          <TagChip label={tag} />
+        ))}
+      </div>
+    )
+  }
+  <p class="mt-4 text-sm leading-relaxed text-gray-300">{description}</p>
+  {
+    sortedStack && sortedStack.length > 0 && (
+      <>
+        <hr class="my-4 border-0 border-t border-white/10" />
+        <div class="flex flex-wrap gap-1.5">
+          {sortedStack.map((item) => (
+            <TagChip label={item} />
+          ))}
+        </div>
+      </>
+    )
+  }
+</a>

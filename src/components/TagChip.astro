@@ -1,0 +1,19 @@
+---
+import { getTagStyle } from "~/data/tag-styles";
+import { getContrastColor, getRGBColorFromHex } from "~/lib/color";
+
+type Props = {
+  label: string;
+};
+
+const { label } = Astro.props;
+const { backgroundColor } = getTagStyle(label);
+const textColor = getContrastColor(getRGBColorFromHex(backgroundColor));
+---
+
+<span
+  class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium leading-tight"
+  style={`color: ${textColor}; background-color: ${backgroundColor}`}
+>
+  {label}
+</span>

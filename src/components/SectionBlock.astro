@@ -1,0 +1,18 @@
+---
+type Props = {
+  heading?: string;
+  headingClassName?: string;
+  paragraphClassName?: string;
+};
+
+const {
+  heading,
+  headingClassName = "mb-3 text-3xl leading-snug font-bold tracking-tight text-white",
+  paragraphClassName = "section-subtext",
+} = Astro.props;
+---
+
+{heading && <h4 class={headingClassName}>{heading}</h4>}
+<p class={paragraphClassName}>
+  <slot />
+</p>

@@ -1,0 +1,129 @@
+---
+import AnimatedText from "~/components/AnimatedText.astro";
+import ContactLinks from "~/components/ContactLinks.astro";
+import SectionBlock from "~/components/SectionBlock.astro";
+import Layout from "~/layouts/Layout.astro";
+---
+
+<Layout>
+  <header
+    class="relative h-screen w-full overflow-hidden bg-linear-to-b from-violet-900 to-gray-950 p-4"
+    role="banner"
+  >
+    <div
+      class="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat p-8 md:p-16"
+      style="background-image: url('/logo-wide-nobackground.png')"
+    >
+      <div class="flex flex-wrap items-baseline justify-start text-start">
+        <h1 class="me-6 text-6xl leading-none font-bold tracking-tight text-white">
+          <AnimatedText text="Aidan Timson" />
+        </h1>
+        <span
+          class="hero-reveal text-4xl leading-none font-bold tracking-normal text-nowrap"
+          style="animation-delay: 0.45s"
+        >
+          <span class="text-gray-200">Timmo</span> /{" "}
+          <span class="text-gray-200">@timmo001</span>
+        </span>
+      </div>
+      <p class="mt-4 text-3xl leading-snug font-semibold tracking-tight text-white">
+        <AnimatedText
+          text="Software Developer"
+          delayPerLetter={0.015}
+          startDelay={0.35}
+        />
+      </p>
+    </div>
+  </header>
+
+  <div
+    class="flex w-full flex-col items-center justify-start px-4 py-16"
+    role="main"
+  >
+    <div
+      class="stagger-grid container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2"
+    >
+      <h3 class="reveal section-heading">
+        About Me
+      </h3>
+      <div class="reveal">
+        <SectionBlock>
+          My name is Aidan, but you might know me better as{" "}
+          <a
+            class="text-link"
+            href="https://github.com/timmo001"
+            target="_blank"
+            aria-label="GitHub profile"
+          >
+            Timmo
+          </a>{" "}
+          <span class="whitespace-nowrap">
+            or{" "}
+            <a
+              class="text-link"
+              href="mailto:aidan@timmo.dev"
+              target="_blank"
+              aria-label="Email"
+            >
+              @timmo001
+            </a>.
+          </span>
+          <br />
+          <br />
+          I am a full-stack software developer with a passion for creating and
+          maintaining software. I am one of the core maintainers of the Home
+          Assistant frontend for the Open Home Foundation, working across desktop apps, home automation,
+          and developer tooling.
+          <br />
+          <br />
+          I'm a tinkerer with a strong interest in technology, automation, and
+          software. I am always looking to improve my skills and learn new
+          things, whether that be a new programming language, framework, or
+          technology.
+        </SectionBlock>
+      </div>
+
+      <h3 class="reveal section-heading">
+        Projects & contributions
+      </h3>
+      <div class="reveal">
+        <SectionBlock>
+          See my{" "}
+          <a class="text-link" href="/projects">
+            projects & contributions
+          </a>{" "}
+          page for what I am building and contributing to, or browse my{" "}
+          <a
+            class="text-link"
+            href="https://github.com/timmo001"
+            target="_blank"
+            aria-label="GitHub profile"
+          >
+            GitHub
+          </a>{" "}
+          profile.
+        </SectionBlock>
+      </div>
+
+      <h3 class="reveal section-heading">
+        Top Programming Languages
+      </h3>
+      <p class="reveal section-subtext mb-8">
+        I have experience in a variety of programming languages. My top programming
+        languages can be found on the{" "}
+        <a class="text-link" href="/stats">stats</a> page.
+      </p>
+    </div>
+
+    <div class="col-span-full mt-36 flex w-full flex-col items-center gap-8">
+      <h3 class="reveal section-heading mb-8">
+        Contact
+      </h3>
+      <div class="reveal flex w-full flex-row flex-wrap justify-center gap-x-24 gap-y-16">
+        <ContactLinks
+          classes="h-32 w-32 fill-white transition-transform duration-300 ease-in-out hover:scale-110"
+        />
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,12 @@
+---
+import Stat from "~/components/Stat.astro";
+import { type Stat as StatItem } from "~/types/github/stat";
+
+type Props = {
+  stats: Array<StatItem>;
+};
+
+const { stats } = Astro.props;
+---
+
+{stats.map((stat) => <Stat {...stat} />)}

@@ -1,0 +1,46 @@
+---
+export const prerender = false;
+
+import StatsContent from "~/components/StatsContent.astro";
+import StatsLoading from "~/components/StatsLoading.astro";
+import Layout from "~/layouts/Layout.astro";
+import { STATS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
+
+Astro.response.headers.set(
+  "Cache-Control",
+  `public, s-maxage=${STATS_CACHE_TTL_SECONDS}, stale-while-revalidate=${STATS_CACHE_TTL_SECONDS * 24}`,
+);
+---
+
+<Layout
+  title="Stats | Aidan Timson (Timmo)"
+  description="Aggregated stats for Aidan Timson (Timmo/timmo001)"
+>
+  <StatsContent server:defer>
+    <StatsLoading slot="fallback" />
+  </StatsContent>
+</Layout>
+
+<script>
+  import { formatCacheTimes } from "~/scripts/format-cache-times";
+
+  let formatTimer: ReturnType<typeof setTimeout>;
+
+  function scheduleFormatCacheTimes(): void {
+    clearTimeout(formatTimer);
+    formatTimer = setTimeout(() => {
+      void formatCacheTimes();
+    }, 0);
+  }
+
+  scheduleFormatCacheTimes();
+  document.addEventListener("astro:page-load", scheduleFormatCacheTimes);
+
+  const main = document.querySelector("main");
+  if (main) {
+    new MutationObserver(scheduleFormatCacheTimes).observe(main, {
+      childList: true,
+      subtree: true,
+    });
+  }
+</script>

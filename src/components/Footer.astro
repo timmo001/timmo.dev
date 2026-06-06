@@ -1,0 +1,23 @@
+---
+import { getCurrentYear } from "~/lib/dates";
+
+const year = getCurrentYear();
+const repoUrl = "https://github.com/timmo001/timmo.dev";
+---
+
+<footer
+  class="w-full px-4 py-6 text-center text-sm text-muted-foreground"
+>
+  <p class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+    <span>© {year} Aidan Timson</span>
+    <span aria-hidden="true">·</span>
+    <a
+      href={repoUrl}
+      class="text-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Source code
+    </a>
+  </p>
+</footer>
