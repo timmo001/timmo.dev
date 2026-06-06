@@ -13,7 +13,7 @@ export const projects: Array<NavItem> = [
     stack: ["TypeScript", "Bash", "Python", "Lua", "Bun", "Effect", "OpenTUI"],
     href: "https://github.com/timmo001/dotfiles",
     description:
-      "Stow-managed Arch/Omarchy dotfiles rooted at ~/.config/dotfiles. Includes the dot CLI (Bun, Effect, OpenTUI) with a TUI dashboard for git, GitHub workflow runs, notifications, omarchy menus, and AI commit suggestions. Optional private overlays and Omarchy repo sync for Hyprland, Waybar, and Ghostty.",
+      "Public Arch/Omarchy dotfiles with GNU Stow and a compiled dot CLI. Machine bootstrap, multi-repo git tooling, GitHub workflow and notification inboxes, Omarchy desktop sync, optional private overlays, and OpenCode agent publishing.",
   },
   {
     title: "OpenCode Config",
@@ -21,7 +21,7 @@ export const projects: Array<NavItem> = [
     stack: ["TypeScript", "Bun"],
     href: "https://github.com/timmo001/opencode-config",
     description:
-      "Shared OpenCode skills, agents, plugins, and commands. Published automatically from dotfiles via a GitHub Actions workflow when OpenCode config or skills change.",
+      "Shared OpenCode skills, agents, plugins, and commands, published from dotfiles for standalone browsing and install. Branch-context workflows, permission-scoped agents, refactor commands, env protection, and skills for TypeScript, codebase diagnostics, and Home Assistant frontend work.",
   },
   {
     title: "Waybar Config",

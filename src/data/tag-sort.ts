@@ -1,6 +1,7 @@
 const DEFAULT_TAG_WEIGHT = 100;
 
 const tagWeights: Record<string, number> = {
+  Archive: -1,
   HACS: 0,
   Contribution: 1,
   "Home Assistant Integration": 2,
@@ -26,7 +27,6 @@ const tagWeights: Record<string, number> = {
   Stow: 40,
   "CI/CD": 50,
   "GitHub Actions": 51,
-  Archive: 60,
 };
 
 function getTagSortWeight(label: string): number {
