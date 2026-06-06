@@ -1,23 +1,31 @@
 import { Octokit } from "octokit";
 
 import { env } from "~/env";
-import { type User } from "~/types/github/user";
+import { STATS_CACHE_TTL_MS } from "~/lib/stats-cache";
+import { type User, type UserNode } from "~/types/github/user";
 
 const octokit = new Octokit({ auth: env.GITHUB_TOKEN });
-
-const CACHE_TTL_MS = 60 * 60 * 1000;
 
 type CacheEntry = {
   value: User;
   expiresAt: number;
+  fetchedAt: number;
+};
+
+type UserDataResult = {
+  user: UserNode;
+  fetchedAt: Date;
 };
 
 const userCache = new Map<string, CacheEntry>();
 
-export async function getUserData(user: string): Promise<User> {
+export async function getUserData(user: string): Promise<UserDataResult> {
   const cached = userCache.get(user);
   if (cached && cached.expiresAt > Date.now()) {
-    return cached.value;
+    return {
+      user: cached.value.user,
+      fetchedAt: new Date(cached.fetchedAt),
+    };
   }
   const query = `query ($login: String!) {
   user(login: $login) {
@@ -85,12 +93,20 @@ export async function getUserData(user: string): Promise<User> {
       login: user,
     });
 
+    const fetchedAt = Date.now();
+
+    const expiresAt = fetchedAt + STATS_CACHE_TTL_MS;
+
     userCache.set(user, {
       value: result,
-      expiresAt: Date.now() + CACHE_TTL_MS,
+      expiresAt,
+      fetchedAt,
     });
 
-    return result;
+    return {
+      user: result.user,
+      fetchedAt: new Date(fetchedAt),
+    };
   } catch (error) {
     console.error(error);
     throw error;

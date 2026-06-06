@@ -2,14 +2,22 @@
 import GitHubStats from "~/components/GitHubStats.astro";
 import SubpageHeader from "~/components/SubpageHeader.astro";
 import TopLanguages from "~/components/TopLanguages.astro";
+import { format } from "date-fns";
+import { enGB } from "date-fns/locale";
+
 import { getStats, getTopLanguages, USERNAME } from "~/lib/github";
+import { STATS_CACHE_TTL_LABEL } from "~/lib/stats-cache";
 import { getUserData } from "~/server/github";
 
-const { user } = await getUserData(USERNAME);
+const { user, fetchedAt } = await getUserData(USERNAME);
 const [githubStats, githubTopLanguages] = await Promise.all([
   getStats(user),
   getTopLanguages(user),
 ]);
+
+function formatCacheTimeFallback(date: Date): string {
+  return format(date, "PPp", { locale: enGB });
+}
 ---
 
 <SubpageHeader title="Stats" />
@@ -53,3 +61,17 @@ const [githubStats, githubTopLanguages] = await Promise.all([
     </section>
   </div>
 </div>
+<section
+  aria-label="Cache status"
+  class="flex w-full flex-col items-center gap-1 px-4 pb-6 text-center text-muted-foreground"
+>
+  <p class="text-sm">
+    Last updated{" "}
+    <time datetime={fetchedAt.toISOString()} data-local-time>
+      {formatCacheTimeFallback(fetchedAt)}
+    </time>
+  </p>
+  <p class="max-w-md text-xs leading-snug text-muted-foreground/70">
+    Cached for {STATS_CACHE_TTL_LABEL} across GraphQL, server memory, and CDN (ISR).
+  </p>
+</section>

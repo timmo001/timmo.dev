@@ -4,12 +4,11 @@ export const prerender = false;
 import StatsContent from "~/components/StatsContent.astro";
 import StatsLoading from "~/components/StatsLoading.astro";
 import Layout from "~/layouts/Layout.astro";
-
-const STATS_CACHE_SECONDS = 60 * 60;
+import { STATS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
 
 Astro.response.headers.set(
   "Cache-Control",
-  `public, s-maxage=${STATS_CACHE_SECONDS}, stale-while-revalidate=${STATS_CACHE_SECONDS * 24}`,
+  `public, s-maxage=${STATS_CACHE_TTL_SECONDS}, stale-while-revalidate=${STATS_CACHE_TTL_SECONDS * 24}`,
 );
 ---
 
@@ -21,3 +20,27 @@ Astro.response.headers.set(
     <StatsLoading slot="fallback" />
   </StatsContent>
 </Layout>
+
+<script>
+  import { formatCacheTimes } from "~/scripts/format-cache-times";
+
+  let formatTimer: ReturnType<typeof setTimeout>;
+
+  function scheduleFormatCacheTimes(): void {
+    clearTimeout(formatTimer);
+    formatTimer = setTimeout(() => {
+      void formatCacheTimes();
+    }, 0);
+  }
+
+  scheduleFormatCacheTimes();
+  document.addEventListener("astro:page-load", scheduleFormatCacheTimes);
+
+  const main = document.querySelector("main");
+  if (main) {
+    new MutationObserver(scheduleFormatCacheTimes).observe(main, {
+      childList: true,
+      subtree: true,
+    });
+  }
+</script>

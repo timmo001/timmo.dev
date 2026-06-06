@@ -7,6 +7,8 @@ import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
+import { STATS_CACHE_TTL_SECONDS } from "./src/lib/stats-cache.ts";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
@@ -15,7 +17,7 @@ export default defineConfig({
   integrations: [sitemap()],
   adapter: vercel({
     isr: {
-      expiration: 60 * 60,
+      expiration: STATS_CACHE_TTL_SECONDS,
     },
   }),
   vite: {
