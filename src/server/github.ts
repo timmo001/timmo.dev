@@ -1,5 +1,6 @@
 import { Octokit } from "octokit";
 
+import { addCacheExpiry, isCacheValid } from "~/lib/dates";
 import { env } from "~/env";
 import { STATS_CACHE_TTL_MS } from "~/lib/stats-cache";
 import { type User, type UserNode } from "~/types/github/user";
@@ -21,7 +22,7 @@ const userCache = new Map<string, CacheEntry>();
 
 export async function getUserData(user: string): Promise<UserDataResult> {
   const cached = userCache.get(user);
-  if (cached && cached.expiresAt > Date.now()) {
+  if (cached && isCacheValid(cached.expiresAt)) {
     return {
       user: cached.value.user,
       fetchedAt: new Date(cached.fetchedAt),
@@ -95,7 +96,7 @@ export async function getUserData(user: string): Promise<UserDataResult> {
 
     const fetchedAt = Date.now();
 
-    const expiresAt = fetchedAt + STATS_CACHE_TTL_MS;
+    const expiresAt = addCacheExpiry(fetchedAt, STATS_CACHE_TTL_MS);
 
     userCache.set(user, {
       value: result,

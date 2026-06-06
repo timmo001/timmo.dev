@@ -1,6 +1,7 @@
-import { format } from "date-fns";
 import { type Locale } from "date-fns";
 import { enGB, enUS } from "date-fns/locale";
+
+import { formatIsoDateTime } from "~/lib/dates";
 
 const localeLoaders: Record<string, () => Promise<Locale>> = {
   enGB: async () => enGB,
@@ -45,6 +46,6 @@ export async function formatCacheTimes(): Promise<void> {
     const iso = element.getAttribute("datetime");
     if (!iso) return;
 
-    element.textContent = format(new Date(iso), "PPp", { locale });
+    element.textContent = formatIsoDateTime(iso, locale);
   });
 }

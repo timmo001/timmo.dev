@@ -2,9 +2,7 @@
 import GitHubStats from "~/components/GitHubStats.astro";
 import SubpageHeader from "~/components/SubpageHeader.astro";
 import TopLanguages from "~/components/TopLanguages.astro";
-import { format } from "date-fns";
-import { enGB } from "date-fns/locale";
-
+import { formatDateTimeFallback } from "~/lib/dates";
 import { getStats, getTopLanguages, USERNAME } from "~/lib/github";
 import { STATS_CACHE_TTL_LABEL } from "~/lib/stats-cache";
 import { getUserData } from "~/server/github";
@@ -14,10 +12,6 @@ const [githubStats, githubTopLanguages] = await Promise.all([
   getStats(user),
   getTopLanguages(user),
 ]);
-
-function formatCacheTimeFallback(date: Date): string {
-  return format(date, "PPp", { locale: enGB });
-}
 ---
 
 <SubpageHeader title="Stats" />
@@ -68,7 +62,7 @@ function formatCacheTimeFallback(date: Date): string {
   <p class="text-sm">
     Last updated{" "}
     <time datetime={fetchedAt.toISOString()} data-local-time>
-      {formatCacheTimeFallback(fetchedAt)}
+      {formatDateTimeFallback(fetchedAt)}
     </time>
   </p>
   <p class="max-w-md text-xs leading-snug text-muted-foreground/70">
