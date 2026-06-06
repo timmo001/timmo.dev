@@ -31,10 +31,6 @@ export function getHaProjectKind(repoName: string): HaProjectKind | null {
   return null;
 }
 
-export function getHaProjectPrefix(kind: HaProjectKind): string {
-  return KIND_PREFIX[kind];
-}
-
 const HA_SUBSECTION_REPO_NAMES = new Set(["home-assistant-tui"]);
 
 export function isHaSubsectionNavItem(href: string): boolean {

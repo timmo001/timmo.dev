@@ -132,15 +132,13 @@ function buildHaProjectBlock(
     .map((entry) => entry.item);
 }
 
-export type MergedProjects = {
+export async function mergeProjectsWithHaGitHub(
+  staticProjects: Array<NavItem>,
+): Promise<{
   projects: Array<NavItem>;
   haProjects: Array<NavItem>;
   haGitHubSynced: boolean;
-};
-
-export async function mergeProjectsWithHaGitHub(
-  staticProjects: Array<NavItem>,
-): Promise<MergedProjects> {
+}> {
   const haStatic = staticProjects.filter(isHaProjectNavItem);
   const haExtras = staticProjects.filter(
     (item) => isHaSubsectionItem(item) && !isHaProjectNavItem(item),

@@ -2,15 +2,15 @@ import { addMilliseconds, format, getYear, isAfter, parseISO } from "date-fns";
 import { type Locale } from "date-fns";
 import { enGB } from "date-fns/locale";
 
-export const DATE_TIME_FORMAT = "PPp";
+const DATE_TIME_FORMAT = "PPp";
 
-export const fallbackLocale = enGB;
+const fallbackLocale = enGB;
 
 export function getCurrentYear(): number {
   return getYear(new Date());
 }
 
-export function formatDateTime(date: Date, locale: Locale = enGB): string {
+function formatDateTime(date: Date, locale: Locale = enGB): string {
   return format(date, DATE_TIME_FORMAT, { locale });
 }
 

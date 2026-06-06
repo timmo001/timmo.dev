@@ -1,7 +1,3 @@
-import { type HaProjectKind } from "~/lib/ha-project-kinds";
-
-export type { HaProjectKind };
-
 export type GitHubHaProject = {
   name: string;
   description: string | null;

@@ -1,4 +1,4 @@
-export type TagStyle = {
+type TagStyle = {
   backgroundColor: string;
 };
 
@@ -8,7 +8,7 @@ const HA_CARD = "#29B6F6";
 const HA_CARD_FEATURE = "#4FC3F7";
 const HA_DASHBOARD = "#039BE5";
 
-export const tagStyles: Record<string, TagStyle> = {
+const tagStyles: Record<string, TagStyle> = {
   Agents: {
     backgroundColor: "#8b5cf6",
   },

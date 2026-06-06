@@ -63,7 +63,7 @@ const HA_INTEGRATIONS_QUERY = `query ($login: String!) {
   }
 }`;
 
-export type HaIntegrationsFetchResult = {
+type HaIntegrationsFetchResult = {
   integrations: Array<GitHubHaIntegration>;
   coreSynced: boolean;
   customSynced: boolean;

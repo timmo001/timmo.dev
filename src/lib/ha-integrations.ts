@@ -192,14 +192,12 @@ function buildIntegrationBlock(
     .map((entry) => entry.item);
 }
 
-export type MergedIntegrations = {
-  integrations: Array<NavItem>;
-  integrationsSynced: boolean;
-};
-
 export async function mergeIntegrationsWithGitHub(
   staticIntegrations: Array<NavItem>,
-): Promise<MergedIntegrations> {
+): Promise<{
+  integrations: Array<NavItem>;
+  integrationsSynced: boolean;
+}> {
   const fetchResult = await fetchHaIntegrationsFromGitHub();
   const integrations = buildIntegrationBlock(
     staticIntegrations,
