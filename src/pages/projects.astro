@@ -182,7 +182,7 @@ const hasHomeAssistantSection =
         </div>
 
         <div
-          class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
           {activeProjects.map((item) => <WorkItem {...item} />)}
         </div>
@@ -200,7 +200,7 @@ const hasHomeAssistantSection =
               {
                 leadingHaItems.length > 0 ? (
                   <div
-                    class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                    class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                   >
                     {leadingHaItems.map((item) => <WorkItem {...item} />)}
                   </div>
@@ -242,7 +242,7 @@ const hasHomeAssistantSection =
                       </span>
                     </h5>
                     <div
-                      class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                      class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                     >
                       {hacsItems.map((item) => <WorkItem {...item} />)}
                     </div>
@@ -285,7 +285,7 @@ const hasHomeAssistantSection =
                       </span>
                     </h5>
                     <div
-                      class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                      class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                     >
                       {integrationItems.map((item) => <WorkItem {...item} />)}
                     </div>
@@ -303,7 +303,7 @@ const hasHomeAssistantSection =
                 Web apps
               </h4>
               <div
-                class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
               >
                 {webAppProjects.map((item) => <WorkItem {...item} />)}
               </div>
