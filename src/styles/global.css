@@ -138,10 +138,28 @@
   body {
     @apply bg-gray-950 text-foreground;
   }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+    text-wrap: pretty;
+  }
 }
 
 @utility text-link {
   @apply text-indigo-400 transition-colors hover:text-indigo-300;
+}
+
+@utility section-heading {
+  @apply text-5xl leading-snug font-bold tracking-tight text-white;
+}
+
+@utility section-subtext {
+  @apply text-start text-xl leading-relaxed font-normal tracking-normal text-gray-300;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -1,11 +1,12 @@
 ---
+import AnimatedText from "~/components/AnimatedText.astro";
+
 type Props = {
   title: string;
   showSubtitle?: boolean;
 };
 
 const { title, showSubtitle = true } = Astro.props;
-const letters = [...title];
 ---
 
 <header
@@ -18,16 +19,7 @@ const letters = [...title];
   >
     <div class="flex flex-wrap items-baseline justify-start text-start">
       <h1 class="me-6 text-8xl leading-none font-bold tracking-tight text-white">
-        {
-          letters.map((letter, index) => (
-            <span
-              class="hero-letter inline-block"
-              style={`animation-delay: ${index * 0.03}s`}
-            >
-              {letter === " " ? "\u00A0" : letter}
-            </span>
-          ))
-        }
+        <AnimatedText text={title} />
       </h1>
       {
         showSubtitle && (

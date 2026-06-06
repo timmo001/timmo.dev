@@ -1,0 +1,17 @@
+---
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["w-full", className]} data-masonry-grid>
+  <slot />
+</div>
+
+<script>
+  import { setupMasonryGrids } from "~/scripts/masonry-grid";
+
+  setupMasonryGrids();
+</script>

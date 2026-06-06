@@ -2,93 +2,158 @@ export type TagStyle = {
   backgroundColor: string;
 };
 
-const HOME_ASSISTANT_BLUE = "#03A9F4";
-const HACS_PURPLE = "#41BDF5";
-const INDIGO = "#6366f1";
+const HA_BLUE = "#03A9F4";
+const HA_INTEGRATION = "#0277BD";
+const HA_CARD = "#29B6F6";
+const HA_CARD_FEATURE = "#4FC3F7";
+const HA_DASHBOARD = "#039BE5";
 
 export const tagStyles: Record<string, TagStyle> = {
   Agents: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#8b5cf6",
   },
   Archived: {
     backgroundColor: "#64748b",
   },
   Automation: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#c026d3",
+  },
+  Bash: {
+    backgroundColor: "#3d7c3f",
+  },
+  Bun: {
+    backgroundColor: "#3b3b3b",
   },
   CLI: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#52525b",
   },
   Commands: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#4f46e5",
+  },
+  Convex: {
+    backgroundColor: "#d97706",
+  },
+  CSS: {
+    backgroundColor: "#1572B6",
   },
   "CI/CD": {
-    backgroundColor: INDIGO,
+    backgroundColor: "#ea580c",
   },
   "Desktop App": {
-    backgroundColor: INDIGO,
+    backgroundColor: "#b45309",
+  },
+  Effect: {
+    backgroundColor: "#be185d",
   },
   Forecast: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#0284c7",
+  },
+  Go: {
+    backgroundColor: "#00758F",
   },
   "GitHub Actions": {
     backgroundColor: "#24292f",
   },
   HACS: {
-    backgroundColor: HACS_PURPLE,
+    backgroundColor: "#6d28d9",
+  },
+  JavaScript: {
+    backgroundColor: "#c9a227",
+  },
+  JSONC: {
+    backgroundColor: "#8b8000",
+  },
+  MUI: {
+    backgroundColor: "#007fff",
   },
   "Home Assistant": {
-    backgroundColor: HOME_ASSISTANT_BLUE,
+    backgroundColor: HA_BLUE,
   },
   "Home Assistant Card": {
-    backgroundColor: HOME_ASSISTANT_BLUE,
+    backgroundColor: HA_CARD,
   },
   "Home Assistant Card Feature": {
-    backgroundColor: HOME_ASSISTANT_BLUE,
+    backgroundColor: HA_CARD_FEATURE,
   },
   "Home Assistant Dashboard": {
-    backgroundColor: HOME_ASSISTANT_BLUE,
+    backgroundColor: HA_DASHBOARD,
   },
   "Home Assistant Integration": {
-    backgroundColor: HOME_ASSISTANT_BLUE,
+    backgroundColor: HA_INTEGRATION,
+  },
+  Lit: {
+    backgroundColor: "#324fff",
   },
   Lists: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#db2777",
+  },
+  Lua: {
+    backgroundColor: "#1e3a8a",
+  },
+  "Next.js": {
+    backgroundColor: "#171717",
   },
   Notes: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#e11d48",
+  },
+  OpenTUI: {
+    backgroundColor: "#059669",
   },
   Omarchy: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#7e22ce",
   },
   OpenCode: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#ea580c",
   },
   Plugins: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#6366f1",
+  },
+  Prisma: {
+    backgroundColor: "#2d3748",
+  },
+  Python: {
+    backgroundColor: "#3572A5",
+  },
+  React: {
+    backgroundColor: "#087ea4",
   },
   Skills: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#9333ea",
   },
   Stow: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#78716c",
+  },
+  Tailwind: {
+    backgroundColor: "#06b6d4",
   },
   TUI: {
     backgroundColor: "#7c3aed",
   },
+  TypeScript: {
+    backgroundColor: "#3178c6",
+  },
+  Vite: {
+    backgroundColor: "#646cff",
+  },
+  "Web Components": {
+    backgroundColor: "#0d9488",
+  },
   Waybar: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#2563eb",
+  },
+  YAML: {
+    backgroundColor: "#cb171e",
   },
   "Web App": {
-    backgroundColor: INDIGO,
+    backgroundColor: "#4338ca",
   },
   WebSocket: {
-    backgroundColor: INDIGO,
+    backgroundColor: "#0f766e",
   },
 };
 
 const defaultTagStyle: TagStyle = {
-  backgroundColor: INDIGO,
+  backgroundColor: "#6366f1",
 };
 
 export function getTagStyle(label: string): TagStyle {
