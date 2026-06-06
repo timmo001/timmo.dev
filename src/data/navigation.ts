@@ -101,7 +101,7 @@ export const projects: Array<NavItem> = [
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-dashboard-maintenance",
     description:
-      "A custom Home Assistant dashboard and view strategy for maintenance dashboards. Surfaces battery-powered devices that need attention and links through to device pages.",
+      "A dashboard for keeping on top of your home: low batteries, repairs, updates, offline devices, and stale sensors. Overview at a glance with room-by-room views, and a summary tile you can add elsewhere.",
   },
   {
     title: "Calendar Agenda",
@@ -109,7 +109,7 @@ export const projects: Array<NavItem> = [
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-calendar-agenda",
     description:
-      "A custom Home Assistant card for displaying calendar events in a simple agenda view.",
+      "Shows upcoming calendar events in a simple list. Pick one or more calendars, choose how far ahead to look, and optionally collapse duplicate events across calendars.",
   },
   {
     title: "Energy Breakdown",
@@ -117,7 +117,7 @@ export const projects: Array<NavItem> = [
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-energy-breakdown",
     description:
-      "A custom Home Assistant card for visualizing current energy usage with a breakdown by area and entity.",
+      "Shows what is using power right now, broken down by room and device. Browse from a whole-home view down to individual entities, with current usage and today's total.",
   },
   {
     title: "Tile Popup",
@@ -125,7 +125,7 @@ export const projects: Array<NavItem> = [
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-tile-popup",
     description:
-      "A custom Home Assistant card that displays a tile which opens a popup containing other cards.",
+      "A tile on your dashboard that opens a panel with more cards inside. Useful for hiding controls or extra detail behind a single tap.",
   },
   {
     title: "Anchor",
@@ -133,7 +133,7 @@ export const projects: Array<NavItem> = [
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-anchor",
     description:
-      "A custom Home Assistant card to create a link to an area of your dashboard.",
+      "Lets you link to a specific place on a long dashboard. Open a URL with an anchor to jump straight to the section you want.",
   },
   {
     title: "Weather Forecast",
@@ -141,7 +141,7 @@ export const projects: Array<NavItem> = [
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-feature-weather-forecast",
     description:
-      "A card feature to show weather forecast on compatible Home Assistant cards.",
+      "Adds a forecast strip to tile cards for weather entities. Choose how many periods to show and whether temperatures are rounded.",
   },
   {
     title: "State",
@@ -149,7 +149,7 @@ export const projects: Array<NavItem> = [
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-feature-state",
     description:
-      "A custom Home Assistant card feature for displaying entity state on compatible cards.",
+      "Shows an entity's state on a tile card, including attributes or extra details like area name. Adjustable text size in the editor.",
   },
 ];
 

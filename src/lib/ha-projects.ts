@@ -33,8 +33,8 @@ function mergeHaProject(
     `https://github.com/timmo001/${repoName}`;
 
   const description =
+    staticItem?.description?.trim() ||
     githubItem?.description?.trim() ||
-    staticItem?.description ||
     "";
 
   return {
