@@ -1,7 +1,6 @@
 ---
 import SectionBlock from "~/components/SectionBlock.astro";
 import SubpageHeader from "~/components/SubpageHeader.astro";
-import MasonryGrid from "~/components/MasonryGrid.astro";
 import WorkItem from "~/components/WorkItem.astro";
 import Layout from "~/layouts/Layout.astro";
 import { contributions, projects as staticProjects, type NavItem } from "~/data/navigation";
@@ -182,9 +181,11 @@ const hasHomeAssistantSection =
           </div>
         </div>
 
-        <MasonryGrid class="stagger-grid">
+        <div
+          class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
           {activeProjects.map((item) => <WorkItem {...item} />)}
-        </MasonryGrid>
+        </div>
 
         {
           hasHomeAssistantSection ? (
@@ -198,9 +199,11 @@ const hasHomeAssistantSection =
 
               {
                 leadingHaItems.length > 0 ? (
-                  <MasonryGrid class="stagger-grid">
+                  <div
+                    class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                  >
                     {leadingHaItems.map((item) => <WorkItem {...item} />)}
-                  </MasonryGrid>
+                  </div>
                 ) : null
               }
 
@@ -238,9 +241,11 @@ const hasHomeAssistantSection =
                         </svg>
                       </span>
                     </h5>
-                    <MasonryGrid class="stagger-grid">
+                    <div
+                      class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                    >
                       {hacsItems.map((item) => <WorkItem {...item} />)}
-                    </MasonryGrid>
+                    </div>
                   </div>
                 ) : null
               }
@@ -279,9 +284,11 @@ const hasHomeAssistantSection =
                         </svg>
                       </span>
                     </h5>
-                    <MasonryGrid class="stagger-grid">
+                    <div
+                      class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                    >
                       {integrationItems.map((item) => <WorkItem {...item} />)}
-                    </MasonryGrid>
+                    </div>
                   </div>
                 ) : null
               }
@@ -295,9 +302,11 @@ const hasHomeAssistantSection =
               <h4 id="web-apps-heading" class="reveal subsection-heading">
                 Web apps
               </h4>
-              <MasonryGrid class="stagger-grid">
+              <div
+                class="stagger-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              >
                 {webAppProjects.map((item) => <WorkItem {...item} />)}
-              </MasonryGrid>
+              </div>
             </div>
           ) : null
         }
