@@ -5,7 +5,13 @@ import { env } from "~/env";
 import { STATS_CACHE_TTL_MS } from "~/lib/stats-cache";
 import { type User, type UserNode } from "~/types/github/user";
 
-const octokit = new Octokit({ auth: env.GITHUB_TOKEN });
+function getOctokit(): Octokit {
+  if (!env.GITHUB_TOKEN) {
+    throw new Error("GITHUB_TOKEN is not configured");
+  }
+
+  return new Octokit({ auth: env.GITHUB_TOKEN });
+}
 
 type CacheEntry = {
   value: User;
@@ -90,7 +96,7 @@ export async function getUserData(user: string): Promise<UserDataResult> {
 }`;
 
   try {
-    const result = await octokit.graphql<User>(query, {
+    const result = await getOctokit().graphql<User>(query, {
       login: user,
     });
 

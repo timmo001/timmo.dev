@@ -4,7 +4,10 @@ import SubpageHeader from "~/components/SubpageHeader.astro";
 import MasonryGrid from "~/components/MasonryGrid.astro";
 import WorkItem from "~/components/WorkItem.astro";
 import Layout from "~/layouts/Layout.astro";
-import { contributions, projects } from "~/data/navigation";
+import { contributions, projects as staticProjects } from "~/data/navigation";
+import { mergeProjectsWithHaGitHub } from "~/lib/ha-projects";
+
+const projects = await mergeProjectsWithHaGitHub(staticProjects);
 ---
 
 <Layout

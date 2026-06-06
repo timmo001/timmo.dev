@@ -1,7 +1,10 @@
 import { z } from "zod";
 
 const envSchema = z.object({
-  GITHUB_TOKEN: z.string().min(1),
+  GITHUB_TOKEN: z
+    .string()
+    .optional()
+    .transform((value) => (value?.trim() ? value : undefined)),
   GITHUB_USERNAME: z.string().default("timmo001"),
 });
 
