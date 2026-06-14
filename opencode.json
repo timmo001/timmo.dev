@@ -25,6 +25,14 @@
       "repository": "timmo001/workflows",
       "description": "Shared GitHub Actions workflows: linting, testing, CodeQL, container and language builds, Home Assistant card validation, Dependabot and Renovate automerge, and release drafting."
     },
+    "weather": {
+      "repository": "timmo001/weather.timmo.dev",
+      "description": "Progressive web app for current conditions and a five-day forecast powered by Tomorrow.io, with coordinate or geolocation location and dark/light themes."
+    },
+    "pouch": {
+      "repository": "timmo001/pouch",
+      "description": "Web app for organising lists and notepads into groups with drag-and-drop reordering and real-time sync, built with Next.js, Convex, and Clerk auth."
+    },
     "home-panel": {
       "repository": "timmo001/home-panel",
       "description": "Archived web frontend for controlling the home, integrated with Home Assistant as an additional frontend. No longer maintained."
