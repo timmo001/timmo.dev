@@ -1,0 +1,77 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "references": {
+    "dotfiles": {
+      "repository": "timmo001/dotfiles",
+      "description": "Public Arch/Omarchy dotfiles with GNU Stow and a compiled dot CLI: machine bootstrap, multi-repo git tooling, GitHub workflow and notification inboxes, Omarchy desktop sync, optional private overlays, and OpenCode agent publishing."
+    },
+    "opencode-config": {
+      "repository": "timmo001/opencode-config",
+      "description": "Shared OpenCode skills, agents, plugins, and commands published from dotfiles: branch-context workflows, permission-scoped agents, refactor commands, env protection, and skills for TypeScript, codebase diagnostics, and Home Assistant frontend work."
+    },
+    "omarchy-waybar": {
+      "repository": "timmo001/omarchy-waybar",
+      "description": "Waybar config for Omarchy with desktop and laptop layouts. Custom modules surface git notifications, workflow runs, and diff status via the dot CLI, plus Home Assistant entity watches through go-automate's bridge."
+    },
+    "go-automate": {
+      "repository": "timmo001/go-automate",
+      "description": "Utility to run common tasks and trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging."
+    },
+    "workflows": {
+      "repository": "timmo001/workflows",
+      "description": "Shared GitHub Actions workflows: linting, testing, CodeQL, container and language builds, Home Assistant card validation, Dependabot and Renovate automerge, and release drafting."
+    },
+    "home-panel": {
+      "repository": "timmo001/home-panel",
+      "description": "Archived web frontend for controlling the home, integrated with Home Assistant as an additional frontend. No longer maintained."
+    },
+    "go-commands": {
+      "repository": "timmo001/go-commands",
+      "description": "Archived CLI to run commands on your machine via MQTT and Home Assistant, triggering shell commands remotely from automations."
+    },
+    "home-assistant-tui": {
+      "repository": "timmo001/home-assistant-tui",
+      "description": "Terminal UI for Home Assistant built with OpenTUI and Effect. Browse entities by domain and area, fuzzy search, and view favourites from your Home Assistant frontend config."
+    },
+    "ha-dashboard-maintenance": {
+      "repository": "timmo001/ha-dashboard-maintenance",
+      "description": "Home Assistant dashboard (HACS) for low batteries, repairs, updates, offline devices, and stale sensors, with room-by-room views and a summary tile."
+    },
+    "ha-card-calendar-agenda": {
+      "repository": "timmo001/ha-card-calendar-agenda",
+      "description": "Home Assistant card (HACS) showing upcoming calendar events in a list, with multi-calendar selection, look-ahead window, and optional duplicate collapsing."
+    },
+    "ha-card-energy-breakdown": {
+      "repository": "timmo001/ha-card-energy-breakdown",
+      "description": "Home Assistant card (HACS) showing current power usage broken down by room and device, from a whole-home view down to individual entities."
+    },
+    "ha-card-tile-popup": {
+      "repository": "timmo001/ha-card-tile-popup",
+      "description": "Home Assistant card (HACS): a dashboard tile that opens a panel with more cards inside, for hiding controls or detail behind a single tap."
+    },
+    "ha-card-anchor": {
+      "repository": "timmo001/ha-card-anchor",
+      "description": "Home Assistant card (HACS) that links to a specific place on a long dashboard, opening a URL with an anchor to jump to a section."
+    },
+    "ha-card-feature-weather-forecast": {
+      "repository": "timmo001/ha-card-feature-weather-forecast",
+      "description": "Home Assistant tile card feature (HACS) adding a forecast strip to weather entities, with configurable period count and temperature rounding."
+    },
+    "ha-card-feature-state": {
+      "repository": "timmo001/ha-card-feature-state",
+      "description": "Home Assistant tile card feature (HACS) showing an entity's state, attributes, or extra detail like area name, with adjustable text size."
+    },
+    "homeassistant-integration-goxlr-utility": {
+      "repository": "timmo001/homeassistant-integration-goxlr-utility",
+      "description": "Archived Home Assistant integration (HACS) connecting GoXLR Utility: binary sensors, media players with volume control, and profile sensors."
+    },
+    "home-assistant-frontend": {
+      "repository": "home-assistant/frontend",
+      "description": "Home Assistant frontend (Lit web components, TypeScript). Timmo is a core maintainer; reference for HA frontend implementation details and conventions."
+    },
+    "home-assistant-core": {
+      "repository": "home-assistant/core",
+      "description": "Home Assistant core (Python). Home of the contributed integrations referenced by the site: System Bridge, Honeywell Lyric, OVO Energy, Azure DevOps, and GitHub."
+    }
+  }
+}
