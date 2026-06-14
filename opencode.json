@@ -17,6 +17,10 @@
       "repository": "timmo001/go-automate",
       "description": "Utility to run common tasks and trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging."
     },
+    "system-bridge": {
+      "repository": "timmo001/system-bridge",
+      "description": "Cross-platform app for Linux and Windows that exposes system information and control via an API and WebSocket server, integrating with Home Assistant for monitoring desktops and sending commands."
+    },
     "workflows": {
       "repository": "timmo001/workflows",
       "description": "Shared GitHub Actions workflows: linting, testing, CodeQL, container and language builds, Home Assistant card validation, Dependabot and Renovate automerge, and release drafting."
