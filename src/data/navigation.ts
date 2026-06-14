@@ -11,7 +11,7 @@ export const projects: Array<NavItem> = [
     title: "Dotfiles",
     tags: ["TUI", "CLI", "OpenCode", "Omarchy", "Stow"],
     stack: ["TypeScript", "Bash", "Python", "Lua", "Bun", "Effect", "OpenTUI"],
-    href: "https://github.com/timmo001/dotfiles",
+    href: "https://dotfiles.timmo.dev",
     description:
       "Public Arch/Omarchy dotfiles with GNU Stow and a compiled dot CLI. Machine bootstrap, multi-repo git tooling, GitHub workflow and notification inboxes, Omarchy desktop sync, optional private overlays, and OpenCode agent publishing.",
   },
@@ -35,7 +35,7 @@ export const projects: Array<NavItem> = [
     title: "Go Automate",
     tags: ["TUI", "CLI", "Home Assistant", "Automation", "WebSocket"],
     stack: ["Go", "TypeScript", "Bun", "Effect", "OpenTUI"],
-    href: "https://github.com/timmo001/go-automate",
+    href: "https://go-automate.timmo.dev",
     description:
       "A utility to run common tasks: keyboard shortcuts and patched apps on Linux to trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging.",
   },
