@@ -4,8 +4,8 @@ Personal website for Aidan Timson (Timmo), built with [Astro](https://astro.buil
 
 ## Stack
 
-- Astro 6
-- Tailwind CSS v4
+- Astro
+- Tailwind CSS
 - Vercel adapter (on-demand rendering for `/stats`)
 - GitHub GraphQL API via Octokit
 
