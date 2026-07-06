@@ -10,7 +10,15 @@ export const projects: Array<NavItem> = [
   {
     title: "Dotfiles",
     tags: ["TUI", "CLI", "OpenCode", "Omarchy", "Stow"],
-    stack: ["TypeScript", "Bash", "Python", "Lua", "Bun", "Effect", "OpenTUI"],
+    stack: [
+      "TypeScript",
+      "Shell",
+      "Lua",
+      "Effect",
+      "OpenTUI",
+      "Astro",
+      "Starlight",
+    ],
     href: "https://dotfiles.timmo.dev",
     description:
       "Public Arch/Omarchy dotfiles with GNU Stow and a compiled dot CLI. Machine bootstrap, multi-repo git tooling, GitHub workflow and notification inboxes, Omarchy desktop sync, optional private overlays, and OpenCode agent publishing.",
@@ -18,7 +26,7 @@ export const projects: Array<NavItem> = [
   {
     title: "OpenCode Config",
     tags: ["Skills", "Agents", "Plugins", "Commands"],
-    stack: ["TypeScript", "Bun"],
+    stack: ["Markdown", "TypeScript"],
     href: "https://github.com/timmo001/opencode-config",
     description:
       "Shared OpenCode skills, agents, plugins, and commands, published from dotfiles for standalone browsing and install. Branch-context workflows, permission-scoped agents, refactor commands, env protection, and skills for TypeScript, codebase diagnostics, and Home Assistant frontend work.",
@@ -26,7 +34,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Waybar Config",
     tags: ["Omarchy", "Waybar", "Home Assistant"],
-    stack: ["JSONC", "CSS"],
+    stack: ["Shell", "JSONC", "CSS"],
     href: "https://github.com/timmo001/omarchy-waybar",
     description:
       "Waybar config for Omarchy with desktop and laptop layouts. Custom modules surface git notifications, workflow runs, and diff status via the dot CLI, and Home Assistant entity watches through go-automate's bridge for heating, doorbell, air quality, rain, and more.",
@@ -34,7 +42,15 @@ export const projects: Array<NavItem> = [
   {
     title: "Go Automate",
     tags: ["TUI", "CLI", "Home Assistant", "Automation", "WebSocket"],
-    stack: ["Go", "TypeScript", "Bun", "Effect", "OpenTUI"],
+    stack: [
+      "Go",
+      "TypeScript",
+      "Effect",
+      "OpenTUI",
+      "Bubble Tea",
+      "Astro",
+      "Starlight",
+    ],
     href: "https://go-automate.timmo.dev",
     description:
       "A utility to run common tasks: keyboard shortcuts and patched apps on Linux to trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging.",
@@ -42,7 +58,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Context",
     tags: ["CLI", "MCP", "OpenCode", "Git", "Stack"],
-    stack: ["TypeScript", "Bun", "Effect", "Astro", "Starlight"],
+    stack: ["TypeScript", "Effect", "Astro", "Starlight"],
     href: "https://context.timmo.dev",
     description:
       "A standalone CLI and read-only MCP server for deterministic repository context. Gives humans and agents branch, pull request, working-tree, stack, tooling, and framework facts in one snapshot, with generated CLI and MCP docs.",
@@ -50,7 +66,16 @@ export const projects: Array<NavItem> = [
   {
     title: "System Bridge",
     tags: ["TUI", "CLI", "Desktop App", "Home Assistant", "WebSocket"],
-    stack: ["Go", "TypeScript", "Bun", "Lit", "Effect", "OpenTUI", "Vite"],
+    stack: [
+      "Go",
+      "TypeScript",
+      "Lit",
+      "Effect",
+      "OpenTUI",
+      "Tailwind",
+      "Astro",
+      "Starlight",
+    ],
     href: "https://system-bridge.timmo.dev",
     description:
       "A bridge for your systems: a cross-platform app for Linux and Windows that exposes system information and control via an API and WebSocket server. Integrates with Home Assistant for monitoring desktops and sending commands.",
@@ -98,7 +123,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Home Assistant TUI",
     tags: ["TUI", "CLI", "Home Assistant"],
-    stack: ["TypeScript", "Bun", "Effect", "OpenTUI"],
+    stack: ["TypeScript", "Effect", "OpenTUI"],
     href: "https://github.com/timmo001/home-assistant-tui",
     description:
       "A terminal UI for Home Assistant built with OpenTUI and Effect. Browse entities by domain and area, search with fuzzy matching, and view favorites from your Home Assistant frontend config.",
@@ -173,7 +198,7 @@ export const contributions: Array<NavItem> = [
   {
     title: "System Bridge",
     tags: ["Contribution", "Home Assistant Integration"],
-    stack: ["Python"],
+    stack: ["Python", "Home Assistant"],
     href: "https://www.home-assistant.io/integrations/system_bridge",
     description:
       "Core integration for System Bridge with local push via Zeroconf, binary sensors, media players, notify, sensors, and update platforms. Monitor system data and send commands such as opening URLs or sending keypresses.",
@@ -181,7 +206,7 @@ export const contributions: Array<NavItem> = [
   {
     title: "Honeywell Lyric",
     tags: ["Contribution", "Home Assistant Integration"],
-    stack: ["Python"],
+    stack: ["Python", "Home Assistant"],
     href: "https://www.home-assistant.io/integrations/lyric",
     description:
       "Connects Honeywell Lyric thermostats via the cloud API. Climate control, select entities, and sensors through config flow and DHCP discovery.",
@@ -189,7 +214,7 @@ export const contributions: Array<NavItem> = [
   {
     title: "GoXLR Utility",
     tags: ["Archive", "Home Assistant Integration", "HACS"],
-    stack: ["Python"],
+    stack: ["Python", "Home Assistant"],
     href: "https://github.com/timmo001/homeassistant-integration-goxlr-utility",
     description:
       "Connects GoXLR Utility, the third-party app from @GoXLR-on-Linux for controlling the GoXLR. Binary sensors, media players with volume control, and profile sensors. Does not connect to the official GoXLR application. I no longer use it.",
@@ -197,7 +222,7 @@ export const contributions: Array<NavItem> = [
   {
     title: "OVO Energy",
     tags: ["Contribution", "Home Assistant Integration"],
-    stack: ["Python"],
+    stack: ["Python", "Home Assistant"],
     href: "https://www.home-assistant.io/integrations/ovo_energy",
     description:
       "Monitors OVO Energy accounts in the UK via config flow, with sensors for electricity and gas consumption, costs, and latest meter readings.",
@@ -205,7 +230,7 @@ export const contributions: Array<NavItem> = [
   {
     title: "Azure DevOps",
     tags: ["Contribution", "Home Assistant Integration"],
-    stack: ["Python"],
+    stack: ["Python", "Home Assistant"],
     href: "https://www.home-assistant.io/integrations/azure_devops",
     description:
       "Cloud polling via config flow with sensors for latest builds, work items by type and state, and other project activity from your Azure DevOps instance.",
@@ -213,7 +238,7 @@ export const contributions: Array<NavItem> = [
   {
     title: "GitHub",
     tags: ["Contribution", "Home Assistant Integration"],
-    stack: ["Python"],
+    stack: ["Python", "Home Assistant"],
     href: "https://www.home-assistant.io/integrations/github",
     description:
       "OAuth-backed monitoring for repositories you own or have starred. Sensors for latest commits, issues, pull requests, releases, tags, and diagnostics such as stars, forks, and open discussions, updated from repository events.",

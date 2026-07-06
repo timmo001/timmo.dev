@@ -8,7 +8,9 @@ const languageLabels = new Set([
   "JavaScript",
   "JSONC",
   "Lua",
+  "Markdown",
   "Python",
+  "Shell",
   "TypeScript",
   "YAML",
 ]);

@@ -18,11 +18,11 @@ const tagStyles: Record<string, TagStyle> = {
   Automation: {
     backgroundColor: "#c026d3",
   },
-  Bash: {
-    backgroundColor: "#3d7c3f",
+  Astro: {
+    backgroundColor: "#bc52ee",
   },
-  Bun: {
-    backgroundColor: "#3b3b3b",
+  "Bubble Tea": {
+    backgroundColor: "#ff75b7",
   },
   CLI: {
     backgroundColor: "#52525b",
@@ -99,6 +99,9 @@ const tagStyles: Record<string, TagStyle> = {
   Lua: {
     backgroundColor: "#1e3a8a",
   },
+  Markdown: {
+    backgroundColor: "#374151",
+  },
   "Next.js": {
     backgroundColor: "#171717",
   },
@@ -129,8 +132,14 @@ const tagStyles: Record<string, TagStyle> = {
   Skills: {
     backgroundColor: "#9333ea",
   },
+  Shell: {
+    backgroundColor: "#3d7c3f",
+  },
   Stack: {
     backgroundColor: "#0f766e",
+  },
+  Starlight: {
+    backgroundColor: "#7c3aed",
   },
   Stow: {
     backgroundColor: "#78716c",
@@ -143,9 +152,6 @@ const tagStyles: Record<string, TagStyle> = {
   },
   TypeScript: {
     backgroundColor: "#3178c6",
-  },
-  Vite: {
-    backgroundColor: "#646cff",
   },
   "Web Components": {
     backgroundColor: "#0d9488",
