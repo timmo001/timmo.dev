@@ -40,6 +40,14 @@ export const projects: Array<NavItem> = [
       "A utility to run common tasks: keyboard shortcuts and patched apps on Linux to trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging.",
   },
   {
+    title: "Context",
+    tags: ["CLI", "MCP", "OpenCode", "Git", "Stack"],
+    stack: ["TypeScript", "Bun", "Effect", "Astro", "Starlight"],
+    href: "https://context.timmo.dev",
+    description:
+      "A standalone CLI and read-only MCP server for deterministic repository context. Gives humans and agents branch, pull request, working-tree, stack, tooling, and framework facts in one snapshot, with generated CLI and MCP docs.",
+  },
+  {
     title: "System Bridge",
     tags: ["TUI", "CLI", "Desktop App", "Home Assistant", "WebSocket"],
     stack: ["Go", "TypeScript", "Bun", "Lit", "Effect", "OpenTUI", "Vite"],
