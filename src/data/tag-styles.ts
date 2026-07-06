@@ -51,6 +51,9 @@ const tagStyles: Record<string, TagStyle> = {
   Forecast: {
     backgroundColor: "#0284c7",
   },
+  Git: {
+    backgroundColor: "#f05032",
+  },
   Go: {
     backgroundColor: "#00758F",
   },
@@ -68,6 +71,9 @@ const tagStyles: Record<string, TagStyle> = {
   },
   MUI: {
     backgroundColor: "#007fff",
+  },
+  MCP: {
+    backgroundColor: "#2563eb",
   },
   "Home Assistant": {
     backgroundColor: HA_BLUE,
@@ -122,6 +128,9 @@ const tagStyles: Record<string, TagStyle> = {
   },
   Skills: {
     backgroundColor: "#9333ea",
+  },
+  Stack: {
+    backgroundColor: "#0f766e",
   },
   Stow: {
     backgroundColor: "#78716c",
