@@ -64,6 +64,14 @@ export const projects: Array<NavItem> = [
       "A standalone CLI and read-only MCP server for deterministic repository context. Gives humans and agents branch, pull request, working-tree, stack, tooling, and framework facts in one snapshot, with generated CLI and MCP docs.",
   },
   {
+    title: "Notes",
+    tags: ["CLI", "MCP", "OpenCode", "Markdown", "Handoffs"],
+    stack: ["TypeScript", "Effect", "Astro", "Starlight"],
+    href: "https://notes.timmo.dev",
+    description:
+      "A standalone CLI and MCP server for repo-scoped Markdown notes. Gives humans and agents safe note reads and writes, handoff-tagged notes, and generated CLI and MCP docs.",
+  },
+  {
     title: "System Bridge",
     tags: ["TUI", "CLI", "Desktop App", "Home Assistant", "WebSocket"],
     stack: [
