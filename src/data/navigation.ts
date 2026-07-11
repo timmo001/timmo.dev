@@ -73,7 +73,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "System Bridge",
-    tags: ["TUI", "CLI", "Desktop App", "Home Assistant", "WebSocket"],
+    tags: ["TUI", "CLI", "Desktop App", "Home Assistant", "MCP", "WebSocket"],
     stack: [
       "Go",
       "TypeScript",
