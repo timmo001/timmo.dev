@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 
-import { env } from "~/env";
+import { getEnv } from "~/env";
 import { getHaProjectKind } from "~/lib/ha-project-kinds";
 import { addCacheExpiry, isCacheValid } from "~/lib/dates";
 import { STATS_CACHE_TTL_MS } from "~/lib/stats-cache";
@@ -88,6 +88,7 @@ function mapRepoToHaProject(
 }
 
 export async function fetchHaProjectsFromGitHub(): Promise<Array<GitHubHaProject> | null> {
+  const env = getEnv();
   const token = env.GITHUB_TOKEN;
   if (!token) {
     return null;

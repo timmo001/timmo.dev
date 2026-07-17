@@ -3,15 +3,17 @@ import GitHubStats from "~/components/GitHubStats.astro";
 import SubpageHeader from "~/components/SubpageHeader.astro";
 import TopLanguages from "~/components/TopLanguages.astro";
 import { formatDateTimeFallback } from "~/lib/dates";
-import { getStats, getTopLanguages, USERNAME } from "~/lib/github";
 import { STATS_CACHE_TTL_LABEL } from "~/lib/stats-cache";
-import { getUserData } from "~/server/github";
+import type { Language } from "~/types/github/language";
+import type { Stat } from "~/types/github/stat";
 
-const { user, fetchedAt } = await getUserData(USERNAME);
-const [githubStats, githubTopLanguages] = await Promise.all([
-  getStats(user),
-  getTopLanguages(user),
-]);
+type Props = {
+  githubStats: Array<Stat>;
+  githubTopLanguages: Array<Language>;
+  fetchedAt: Date;
+};
+
+const { githubStats, githubTopLanguages, fetchedAt } = Astro.props;
 ---
 
 <SubpageHeader title="Stats" />
@@ -29,7 +31,9 @@ const [githubStats, githubTopLanguages] = await Promise.all([
     </section>
 
     <section>
-      <h3 class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white">
+      <h3
+        class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white"
+      >
         Top Languages
       </h3>
       <div
@@ -40,7 +44,9 @@ const [githubStats, githubTopLanguages] = await Promise.all([
     </section>
 
     <section>
-      <h3 class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white">
+      <h3
+        class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white"
+      >
         Contribution Graph
       </h3>
       <div class="reveal">
@@ -49,8 +55,7 @@ const [githubStats, githubTopLanguages] = await Promise.all([
           title="timmo001"
           height="120"
           width="670"
-          style="border: 0; background: transparent !important"
-        ></iframe>
+          style="border: 0; background: transparent !important"></iframe>
       </div>
     </section>
   </div>
@@ -66,6 +71,6 @@ const [githubStats, githubTopLanguages] = await Promise.all([
     </time>
   </p>
   <p class="max-w-md text-xs leading-snug text-muted-foreground/70">
-    Cached for {STATS_CACHE_TTL_LABEL} across GraphQL, server memory, and CDN (ISR).
+    Cached for {STATS_CACHE_TTL_LABEL} across GraphQL, server memory, and the CDN.
   </p>
 </section>

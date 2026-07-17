@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "timmo-dev",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-07-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": true,
+  "routes": [{ "pattern": "timmo.dev", "custom_domain": true }],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist",
+  },
+  "cache": {
+    "enabled": true,
+  },
+}

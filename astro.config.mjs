@@ -2,12 +2,10 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
-import vercel from "@astrojs/vercel";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "astro/config";
-
-import { STATS_CACHE_TTL_SECONDS } from "./src/lib/stats-cache.ts";
+import { defineConfig, sessionDrivers } from "astro/config";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -20,11 +18,10 @@ export default defineConfig({
     "/projects-and-contributions": "/projects",
   },
   integrations: [sitemap()],
-  adapter: vercel({
-    isr: {
-      expiration: STATS_CACHE_TTL_SECONDS,
-    },
-  }),
+  adapter: cloudflare({ imageService: "compile" }),
+  session: {
+    driver: sessionDrivers.lruCache({ max: 100 }),
+  },
   vite: {
     plugins: [tailwindcss()],
     resolve: {

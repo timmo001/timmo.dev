@@ -1,3 +1,4 @@
+import { env } from "cloudflare:workers";
 import { z } from "zod";
 
 const envSchema = z.object({
@@ -8,7 +9,9 @@ const envSchema = z.object({
   GITHUB_USERNAME: z.string().default("timmo001"),
 });
 
-export const env = envSchema.parse({
-  GITHUB_TOKEN: import.meta.env.GITHUB_TOKEN,
-  GITHUB_USERNAME: import.meta.env.GITHUB_USERNAME,
-});
+export function getEnv() {
+  return envSchema.parse({
+    GITHUB_TOKEN: env.GITHUB_TOKEN,
+    GITHUB_USERNAME: env.GITHUB_USERNAME,
+  });
+}

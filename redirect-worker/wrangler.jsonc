@@ -1,0 +1,13 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "timmo-dev-www-redirect",
+  "main": "./index.ts",
+  "compatibility_date": "2026-07-17",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "www.timmo.dev",
+      "custom_domain": true
+    }
+  ]
+}

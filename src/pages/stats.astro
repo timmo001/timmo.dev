@@ -2,9 +2,14 @@
 export const prerender = false;
 
 import StatsContent from "~/components/StatsContent.astro";
-import StatsLoading from "~/components/StatsLoading.astro";
 import Layout from "~/layouts/Layout.astro";
+import { getStats, getTopLanguages, getUsername } from "~/lib/github";
 import { STATS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
+import { getUserData } from "~/server/github";
+
+const { user, fetchedAt } = await getUserData(getUsername());
+const githubStats = getStats(user);
+const githubTopLanguages = getTopLanguages(user);
 
 Astro.response.headers.set(
   "Cache-Control",
@@ -16,9 +21,7 @@ Astro.response.headers.set(
   title="Stats | Aidan Timson (Timmo)"
   description="Aggregated stats for Aidan Timson (Timmo/timmo001)"
 >
-  <StatsContent server:defer>
-    <StatsLoading slot="fallback" />
-  </StatsContent>
+  <StatsContent {githubStats} {githubTopLanguages} {fetchedAt} />
 </Layout>
 
 <script>

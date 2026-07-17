@@ -1,11 +1,12 @@
 import { Octokit } from "octokit";
 
 import { addCacheExpiry, isCacheValid } from "~/lib/dates";
-import { env } from "~/env";
+import { getEnv } from "~/env";
 import { STATS_CACHE_TTL_MS } from "~/lib/stats-cache";
 import { type User, type UserNode } from "~/types/github/user";
 
 function getOctokit(): Octokit {
+  const env = getEnv();
   if (!env.GITHUB_TOKEN) {
     throw new Error("GITHUB_TOKEN is not configured");
   }
@@ -24,6 +25,12 @@ type UserDataResult = {
   fetchedAt: Date;
 };
 
+type LanguageData = {
+  user: {
+    repositories: Pick<UserNode["repositories"], "nodes">;
+  };
+};
+
 const userCache = new Map<string, CacheEntry>();
 
 export async function getUserData(user: string): Promise<UserDataResult> {
@@ -36,18 +43,6 @@ export async function getUserData(user: string): Promise<UserDataResult> {
   }
   const query = `query ($login: String!) {
   user(login: $login) {
-    id
-    name
-    avatarUrl
-    bio
-    email
-    login
-    contributionsCollection {
-      totalCommitContributions
-      totalIssueContributions
-      totalPullRequestContributions
-      totalPullRequestReviewContributions
-    }
     followers {
       totalCount
     }
@@ -55,16 +50,29 @@ export async function getUserData(user: string): Promise<UserDataResult> {
       totalCount
     }
     repositories(
-      first: 100
+      first: 1
       privacy: PUBLIC
       isFork: false
       orderBy: { field: UPDATED_AT, direction: DESC }
     ) {
       totalCount
-      totalDiskUsage
+      nodes { name }
+    }
+    starredRepositories {
+      totalCount
+    }
+    watching {
+      totalCount
+    }
+  }
+}`;
+
+  const languageQuery = `query ($login: String!) {
+  user(login: $login) {
+    repositories(first: 10, privacy: PUBLIC, isFork: false, orderBy: { field: UPDATED_AT, direction: DESC }) {
       nodes {
         name
-        languages(first: 100, orderBy: { field: SIZE, direction: DESC }) {
+        languages(first: 5, orderBy: { field: SIZE, direction: DESC }) {
           edges {
             size
             node {
@@ -75,31 +83,16 @@ export async function getUserData(user: string): Promise<UserDataResult> {
         }
       }
     }
-    starredRepositories {
-      totalCount
-    }
-    socialAccounts(first: 100) {
-      nodes {
-        displayName
-        provider
-        url
-      }
-    }
-    status {
-      message
-      emoji
-      emojiHTML
-    }
-    watching {
-      totalCount
-    }
   }
 }`;
 
   try {
-    const result = await getOctokit().graphql<User>(query, {
+    const octokit = getOctokit();
+    const result = await octokit.graphql<User>(query, { login: user });
+    const languageData = await octokit.graphql<LanguageData>(languageQuery, {
       login: user,
     });
+    result.user.repositories.nodes = languageData.user.repositories.nodes;
 
     const fetchedAt = Date.now();
 

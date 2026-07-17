@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 
-import { env } from "~/env";
+import { getEnv } from "~/env";
 import { addCacheExpiry, isCacheValid } from "~/lib/dates";
 import {
   CUSTOM_INTEGRATION_PREFIX,
@@ -76,8 +76,11 @@ type CacheEntry = {
 
 const haIntegrationsCache = new Map<string, CacheEntry>();
 
-function isTimmoCodeowner(codeowners: Array<string> | undefined): boolean {
-  const handle = `@${env.GITHUB_USERNAME.toLowerCase()}`;
+function isTimmoCodeowner(
+  codeowners: Array<string> | undefined,
+  username: string,
+): boolean {
+  const handle = `@${username.toLowerCase()}`;
   return codeowners?.some((owner) => owner.toLowerCase() === handle) ?? false;
 }
 
@@ -123,6 +126,7 @@ async function fetchCoreIntegrationDomains(
 
 async function fetchCoreManifest(
   domain: string,
+  username: string,
 ): Promise<HaCoreManifest | null> {
   const response = await fetch(`${HA_CORE_MANIFEST_BASE}/${domain}/manifest.json`);
 
@@ -132,7 +136,7 @@ async function fetchCoreManifest(
 
   const manifest = (await response.json()) as HaCoreManifest;
 
-  if (!isTimmoCodeowner(manifest.codeowners)) {
+  if (!isTimmoCodeowner(manifest.codeowners, username)) {
     return null;
   }
 
@@ -141,9 +145,12 @@ async function fetchCoreManifest(
 
 async function fetchCoreIntegrations(
   octokit: Octokit,
+  username: string,
 ): Promise<Array<GitHubHaIntegration>> {
   const domains = await fetchCoreIntegrationDomains(octokit);
-  const manifests = await Promise.all(domains.map(fetchCoreManifest));
+  const manifests = await Promise.all(
+    domains.map((domain) => fetchCoreManifest(domain, username)),
+  );
 
   return manifests
     .filter((manifest): manifest is HaCoreManifest => manifest !== null)
@@ -182,10 +189,11 @@ function mapCustomIntegrationRepo(
 
 async function fetchCustomIntegrations(
   octokit: Octokit,
+  username: string,
 ): Promise<Array<GitHubHaIntegration>> {
   const result = await octokit.graphql<HaIntegrationsQueryResult>(
     HA_INTEGRATIONS_QUERY,
-    { login: env.GITHUB_USERNAME },
+    { login: username },
   );
 
   return result.user.repositories.nodes
@@ -194,6 +202,7 @@ async function fetchCustomIntegrations(
 }
 
 export async function fetchHaIntegrationsFromGitHub(): Promise<HaIntegrationsFetchResult | null> {
+  const env = getEnv();
   const token = env.GITHUB_TOKEN;
   if (!token) {
     return null;
@@ -211,7 +220,9 @@ export async function fetchHaIntegrationsFromGitHub(): Promise<HaIntegrationsFet
   let customSynced = false;
 
   try {
-    integrations.push(...(await fetchCoreIntegrations(octokit)));
+    integrations.push(
+      ...(await fetchCoreIntegrations(octokit, env.GITHUB_USERNAME)),
+    );
     coreSynced = true;
   } catch (error) {
     console.warn(
@@ -221,7 +232,9 @@ export async function fetchHaIntegrationsFromGitHub(): Promise<HaIntegrationsFet
   }
 
   try {
-    integrations.push(...(await fetchCustomIntegrations(octokit)));
+    integrations.push(
+      ...(await fetchCustomIntegrations(octokit, env.GITHUB_USERNAME)),
+    );
     customSynced = true;
   } catch (error) {
     console.warn(

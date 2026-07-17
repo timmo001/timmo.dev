@@ -4,4 +4,6 @@ packages:
 
 allowBuilds:
   esbuild: true
+  sharp: true
+  workerd: true
 minimumReleaseAgeStrict: true

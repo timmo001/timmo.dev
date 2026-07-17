@@ -1,64 +1,40 @@
-import { env } from "~/env";
+import { getEnv } from "~/env";
 import { getContrastColor, getRGBColorFromHex } from "~/lib/color";
 import { type Language } from "~/types/github/language";
 import { type Stat } from "~/types/github/stat";
 import { type UserNode } from "~/types/github/user";
 
-export const USERNAME = env.GITHUB_USERNAME;
+export function getUsername() {
+  return getEnv().GITHUB_USERNAME;
+}
 
 export function getStats(user: UserNode): Array<Stat> {
+  const username = getUsername();
   return [
     {
       key: "repositories",
-      url: `https://github.com/${USERNAME}?tab=repositories`,
+      url: `https://github.com/${username}?tab=repositories`,
       title: "Repositories",
       value: user.repositories.totalCount,
-      secondaryValue: `(${
-        Math.round((user.repositories.totalDiskUsage / 1024 / 1024) * 100) / 100
-      } GB)`,
     },
     {
       key: "followers",
-      url: `https://github.com/${USERNAME}?tab=followers`,
+      url: `https://github.com/${username}?tab=followers`,
       title: "Followers",
       value: user.followers.totalCount,
       secondaryValue: `(${user.following.totalCount} following)`,
     },
     {
       key: "watching",
-      url: `https://github.com/${USERNAME}?tab=following`,
+      url: `https://github.com/${username}?tab=following`,
       title: "Watching",
       value: user.watching.totalCount,
     },
     {
       key: "starredRepositories",
-      url: `https://github.com/${USERNAME}?tab=stars`,
+      url: `https://github.com/${username}?tab=stars`,
       title: "Stars",
       value: user.starredRepositories.totalCount,
-    },
-    {
-      key: "contributions",
-      url: `https://github.com/${USERNAME}?tab=overview`,
-      title: "Contributions",
-      value: user.contributionsCollection.totalCommitContributions,
-    },
-    {
-      key: "issues",
-      url: `https://github.com/${USERNAME}?tab=overview`,
-      title: "Issues",
-      value: user.contributionsCollection.totalIssueContributions,
-    },
-    {
-      key: "pullRequests",
-      url: `https://github.com/${USERNAME}?tab=overview`,
-      title: "Pull Requests",
-      value: user.contributionsCollection.totalPullRequestContributions,
-    },
-    {
-      key: "reviews",
-      url: `https://github.com/${USERNAME}?tab=overview`,
-      title: "Reviews",
-      value: user.contributionsCollection.totalPullRequestReviewContributions,
     },
   ];
 }
@@ -74,7 +50,7 @@ export function getTopLanguages(user: UserNode): Array<Language> {
   // Loop through the top repositories
   for (const repo of user.repositories.nodes) {
     // Loop through the languages of the repository
-    for (const language of repo.languages.edges) {
+    for (const language of repo.languages?.edges ?? []) {
       // Find the language in the topLanguages array
       const index = topLanguages.findIndex(
         (topLanguage) => topLanguage.name === language.node.name,

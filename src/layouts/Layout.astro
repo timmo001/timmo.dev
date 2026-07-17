@@ -1,6 +1,4 @@
 ---
-import Analytics from "@vercel/analytics/astro";
-
 import ContactLinks from "~/components/ContactLinks.astro";
 import Footer from "~/components/Footer.astro";
 import Navigation from "~/components/Navigation.astro";
@@ -36,8 +34,12 @@ const {
     <meta property="og:url" content="https://timmo.dev" />
     <link rel="icon" href="/logo-letter-square-nobackground.png" />
   </head>
-  <body class="flex min-h-svh flex-col bg-gray-950 font-sans antialiased text-white">
-    <header class="absolute z-50 flex w-full items-center justify-between gap-4 px-4 py-2">
+  <body
+    class="flex min-h-svh flex-col bg-gray-950 font-sans antialiased text-white"
+  >
+    <header
+      class="absolute z-50 flex w-full items-center justify-between gap-4 px-4 py-2"
+    >
       <Navigation />
       <div class="hidden shrink-0 flex-row items-center gap-x-4 md:flex">
         <ContactLinks
@@ -49,7 +51,6 @@ const {
       <slot />
     </main>
     <Footer />
-    <Analytics />
   </body>
 </html>
 
