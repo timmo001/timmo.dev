@@ -13,6 +13,8 @@
 - Dev server: `pnpm dev`.
 - Production build / main verification: `pnpm build`.
 - Preview the built Worker locally: `pnpm preview`.
+- Deploy from Cloudflare Builds: `pnpm deploy:cloudflare`.
+- Upload a preview version from Cloudflare Builds: `pnpm deploy:preview`.
 - Typecheck: `pnpm typecheck`.
 - Format check: `pnpm format`.
 - Validate the Worker bundle without deploying: `pnpm deploy:dry-run`.

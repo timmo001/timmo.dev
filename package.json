@@ -11,7 +11,9 @@
     "build": "astro build",
     "preview": "pnpm build && wrangler dev",
     "deploy": "pnpm build && wrangler deploy",
+    "deploy:cloudflare": "wrangler deploy && wrangler deploy --config redirect-worker/wrangler.jsonc",
     "deploy:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "deploy:preview": "wrangler versions upload",
     "typecheck": "astro check",
     "format": "prettier --plugin=prettier-plugin-astro --check package.json astro.config.mjs wrangler.jsonc README.md AGENTS.md pnpm-workspace.yaml src/env.ts src/layouts/Layout.astro src/components/StatsContent.astro",
     "astro": "astro"
