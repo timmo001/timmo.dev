@@ -4,6 +4,10 @@ import type { Language } from "~/types/github/language";
 
 const FONT_FAMILY =
   "system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif";
+const CARD_WIDTH = 470;
+const CARD_HEIGHT = 200;
+const CARD_PADDING = 24;
+const CARD_CONTENT_WIDTH = CARD_WIDTH - CARD_PADDING * 2;
 
 function escapeXml(value: string): string {
   return value.replace(
@@ -29,7 +33,7 @@ function cardStart(
   <title id="title">${escapeXml(title)}</title>
   <desc id="description">${escapeXml(description)}</desc>
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="12" fill="#030712" stroke="#1f2937"/>
-  <style>text { font-family: ${FONT_FAMILY}; } .heading { fill: #f9fafb; font-size: 18px; font-weight: 600; } .label { fill: #9ca3af; font-size: 12px; } .value { fill: #f9fafb; font-size: 14px; font-weight: 600; }</style>`;
+  <style>text { font-family: ${FONT_FAMILY}; } .heading { fill: #f9fafb; font-size: 18px; font-weight: 600; } .label { fill: #9ca3af; font-size: 12px; } .value { fill: #f9fafb; font-size: 16px; font-weight: 600; }</style>`;
 }
 
 export function renderStatsCard(
@@ -38,24 +42,24 @@ export function renderStatsCard(
   year: number,
 ): string {
   const items = [
-    ["Total Stars", stats.totalStars],
-    [`Total Commits (${year})`, stats.totalCommits],
-    ["Total PRs", stats.totalPullRequests],
-    ["Total Issues", stats.totalIssues],
+    ["Stars", stats.totalStars],
+    [`Commits in ${year}`, stats.totalCommits],
+    ["Pull requests", stats.totalPullRequests],
+    ["Issues", stats.totalIssues],
   ] as const;
   const rows = items
     .map(([label, value], index) => {
       const column = index % 2;
       const row = Math.floor(index / 2);
-      const x = 24 + column * 220;
-      const y = 77 + row * 38;
-      return `<text class="label" x="${x}" y="${y}">${escapeXml(label)}</text><text class="value" x="${x + 145}" y="${y}" text-anchor="end">${value.toLocaleString("en-GB")}</text>`;
+      const x = CARD_PADDING + column * (CARD_CONTENT_WIDTH / 2 + 8);
+      const y = 82 + row * 58;
+      return `<text class="label" x="${x}" y="${y}">${escapeXml(label)}</text><text class="value" x="${x}" y="${y + 24}">${value.toLocaleString("en-GB")}</text>`;
     })
     .join("");
 
-  return `${cardStart(470, 195, `${username}'s GitHub stats`, `GitHub activity statistics for ${username}`)}
+  return `${cardStart(CARD_WIDTH, CARD_HEIGHT, `${username}'s GitHub stats`, `GitHub activity statistics for ${username}`)}
   <text class="heading" x="24" y="36">${escapeXml(username)}&apos;s GitHub stats</text>
-  <rect x="24" y="50" width="422" height="2" rx="1" fill="#818cf8"/>
+  <rect x="${CARD_PADDING}" y="50" width="${CARD_CONTENT_WIDTH}" height="2" rx="1" fill="#818cf8"/>
   ${rows}
 </svg>`;
 }
@@ -74,13 +78,13 @@ export function renderLanguagesCard(
       const percentage =
         totalSize === 0 ? 0 : (language.size / totalSize) * 100;
       const y = 72 + index * 24;
-      return `<circle cx="24" cy="${y - 4}" r="5" fill="${escapeXml(language.color || "#9ca3af")}"/><text class="value" x="38" y="${y}">${escapeXml(language.name)}</text><text class="label" x="326" y="${y}" text-anchor="end">${percentage.toFixed(1)}%</text>`;
+      return `<circle cx="24" cy="${y - 4}" r="5" fill="${escapeXml(language.color || "#9ca3af")}"/><text class="value" x="38" y="${y}">${escapeXml(language.name)}</text><text class="label" x="446" y="${y}" text-anchor="end">${percentage.toFixed(1)}%</text>`;
     })
     .join("");
 
-  return `${cardStart(350, 195, `${username}'s top languages`, `Most-used public repository languages for ${username}`)}
+  return `${cardStart(CARD_WIDTH, CARD_HEIGHT, `${username}'s top languages`, `Most-used public repository languages for ${username}`)}
   <text class="heading" x="24" y="36">Top Languages</text>
-  <rect x="24" y="50" width="302" height="2" rx="1" fill="#818cf8"/>
+  <rect x="${CARD_PADDING}" y="50" width="${CARD_CONTENT_WIDTH}" height="2" rx="1" fill="#818cf8"/>
   ${rows}
 </svg>`;
 }
