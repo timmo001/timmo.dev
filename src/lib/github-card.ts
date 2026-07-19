@@ -106,13 +106,47 @@ export function renderReadmeCard(
   languages: Array<Language>,
   year: number,
 ): string {
-  return `${cardStart(CARD_WIDTH, 365, `${username}'s GitHub stats`, `GitHub activity statistics and top languages for ${username}`)}
+  const statsItems = [
+    ["Stars", stats.totalStars],
+    [`Commits in ${year}`, stats.totalCommits],
+    ["Pull requests", stats.totalPullRequests],
+    ["Issues", stats.totalIssues],
+    ["Public repositories", stats.publicRepositories],
+    ["Followers", stats.followers],
+  ] as const;
+  const statsRows = statsItems
+    .map(([label, value], index) => {
+      const column = index % 3;
+      const row = Math.floor(index / 3);
+      const x = 32 + column * 220;
+      const y = 82 + row * 58;
+      return `<text class="label" x="${x}" y="${y}">${escapeXml(label)}</text><text class="value" x="${x}" y="${y + 24}">${value.toLocaleString("en-GB")}</text>`;
+    })
+    .join("");
+  const displayedLanguages = languages.slice(0, 6);
+  const totalSize = displayedLanguages.reduce(
+    (total, language) => total + language.size,
+    0,
+  );
+  const languageRows = displayedLanguages
+    .map((language, index) => {
+      const column = index % 2;
+      const row = Math.floor(index / 2);
+      const x = 40 + column * 330;
+      const y = 248 + row * 28;
+      const percentage =
+        totalSize === 0 ? 0 : (language.size / totalSize) * 100;
+      return `<circle cx="${x}" cy="${y - 4}" r="5" fill="${escapeXml(language.color || "#9ca3af")}"/><text class="value" x="${x + 16}" y="${y}">${escapeXml(language.name)}</text><text class="label" x="${x + 276}" y="${y}" text-anchor="end">${percentage.toFixed(1)}%</text>`;
+    })
+    .join("");
+
+  return `${cardStart(700, 325, `${username}'s GitHub stats`, `GitHub activity statistics and top languages for ${username}`)}
   <text class="heading" x="24" y="36">${escapeXml(username)}&apos;s GitHub stats</text>
-  <rect x="${CARD_PADDING}" y="50" width="${CARD_CONTENT_WIDTH}" height="2" rx="1" fill="#818cf8"/>
-  ${renderStatItems(stats, year)}
+  <rect x="24" y="50" width="652" height="2" rx="1" fill="#818cf8"/>
+  ${statsRows}
   <text class="subheading" x="24" y="205">Top Languages</text>
-  <rect x="${CARD_PADDING}" y="218" width="${CARD_CONTENT_WIDTH}" height="1" rx="0.5" fill="#374151"/>
-  ${renderLanguageItems(languages, 246)}
+  <rect x="24" y="218" width="652" height="1" rx="0.5" fill="#374151"/>
+  ${languageRows}
 </svg>`;
 }
 

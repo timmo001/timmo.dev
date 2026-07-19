@@ -53,6 +53,8 @@ export type ProfileStats = {
   totalCommits: number;
   totalPullRequests: number;
   totalIssues: number;
+  publicRepositories: number;
+  followers: number;
 };
 
 type LanguageData = {
@@ -176,20 +178,24 @@ export async function getProfileStats(user: string): Promise<ProfileStats> {
     return response.json<T>();
   };
   const year = new Date().getUTCFullYear();
-  const [repositories, commits, pullRequests, issues] = await Promise.all([
-    requestJson<Array<{ stargazers_count: number }>>(
-      `https://api.github.com/users/${encodeURIComponent(user)}/repos?per_page=100&type=owner`,
-    ),
-    requestJson<{ total_count: number }>(
-      `https://api.github.com/search/commits?per_page=1&q=author:${encodeURIComponent(user)}+committer-date:>=${year}-01-01`,
-    ),
-    requestJson<{ total_count: number }>(
-      `https://api.github.com/search/issues?per_page=1&q=author:${encodeURIComponent(user)}+type:pr`,
-    ),
-    requestJson<{ total_count: number }>(
-      `https://api.github.com/search/issues?per_page=1&q=author:${encodeURIComponent(user)}+type:issue`,
-    ),
-  ]);
+  const [profile, repositories, commits, pullRequests, issues] =
+    await Promise.all([
+      requestJson<{ public_repos: number; followers: number }>(
+        `https://api.github.com/users/${encodeURIComponent(user)}`,
+      ),
+      requestJson<Array<{ stargazers_count: number }>>(
+        `https://api.github.com/users/${encodeURIComponent(user)}/repos?per_page=100&type=owner`,
+      ),
+      requestJson<{ total_count: number }>(
+        `https://api.github.com/search/commits?per_page=1&q=author:${encodeURIComponent(user)}+committer-date:>=${year}-01-01`,
+      ),
+      requestJson<{ total_count: number }>(
+        `https://api.github.com/search/issues?per_page=1&q=author:${encodeURIComponent(user)}+type:pr`,
+      ),
+      requestJson<{ total_count: number }>(
+        `https://api.github.com/search/issues?per_page=1&q=author:${encodeURIComponent(user)}+type:issue`,
+      ),
+    ]);
   const value = {
     totalStars: repositories.reduce(
       (total, repository) => total + repository.stargazers_count,
@@ -198,6 +204,8 @@ export async function getProfileStats(user: string): Promise<ProfileStats> {
     totalCommits: commits.total_count,
     totalPullRequests: pullRequests.total_count,
     totalIssues: issues.total_count,
+    publicRepositories: profile.public_repos,
+    followers: profile.followers,
   };
   profileCache.set(user, {
     value,
