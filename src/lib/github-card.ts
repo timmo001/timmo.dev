@@ -4,7 +4,7 @@ import type { Language } from "~/types/github/language";
 
 const FONT_FAMILY =
   "system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif";
-const CARD_WIDTH = 470;
+const CARD_WIDTH = 440;
 const CARD_HEIGHT = 200;
 const CARD_PADDING = 24;
 const CARD_CONTENT_WIDTH = CARD_WIDTH - CARD_PADDING * 2;
@@ -78,7 +78,7 @@ export function renderLanguagesCard(
       const percentage =
         totalSize === 0 ? 0 : (language.size / totalSize) * 100;
       const y = 72 + index * 24;
-      return `<circle cx="24" cy="${y - 4}" r="5" fill="${escapeXml(language.color || "#9ca3af")}"/><text class="value" x="38" y="${y}">${escapeXml(language.name)}</text><text class="label" x="446" y="${y}" text-anchor="end">${percentage.toFixed(1)}%</text>`;
+      return `<circle cx="32" cy="${y - 4}" r="5" fill="${escapeXml(language.color || "#9ca3af")}"/><text class="value" x="48" y="${y}">${escapeXml(language.name)}</text><text class="label" x="408" y="${y}" text-anchor="end">${percentage.toFixed(1)}%</text>`;
     })
     .join("");
 
