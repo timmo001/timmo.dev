@@ -40,12 +40,7 @@ export function getStats(user: UserNode): Array<Stat> {
 }
 
 export function getTopLanguages(user: UserNode): Array<Language> {
-  const topLanguages: Array<{
-    name: string;
-    size: number;
-    color: string;
-    contrastColor: string;
-  }> = [];
+  const topLanguages: Array<Language> = [];
 
   // Loop through the top repositories
   for (const repo of user.repositories.nodes) {

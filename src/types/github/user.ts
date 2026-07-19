@@ -20,6 +20,7 @@ export interface Repositories extends Count {
 
 export interface RepositoriesNodeElement {
   name: string;
+  stargazerCount: number;
   languages?: Languages;
 }
 

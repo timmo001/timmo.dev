@@ -35,3 +35,13 @@ pnpm preview
 The Worker is configured in `wrangler.jsonc`. `pnpm deploy` builds and deploys
 it; deployment can create or update the configured custom domain, so run it
 only when that change is intended.
+
+## GitHub Profile Cards
+
+The Worker publishes cached SVG cards for use in the GitHub profile README:
+
+- `https://timmo.dev/github/stats.svg`
+- `https://timmo.dev/github/top-languages.svg`
+
+Both endpoints use the existing `GITHUB_TOKEN` Worker secret and configured
+`GITHUB_USERNAME`.
