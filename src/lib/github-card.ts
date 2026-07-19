@@ -33,13 +33,13 @@ function cardStart(
   <title id="title">${escapeXml(title)}</title>
   <desc id="description">${escapeXml(description)}</desc>
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="12" fill="#030712" stroke="#1f2937"/>
-  <style>text { font-family: ${FONT_FAMILY}; } .heading { fill: #f9fafb; font-size: 18px; font-weight: 600; } .label { fill: #9ca3af; font-size: 12px; } .value { fill: #f9fafb; font-size: 16px; font-weight: 600; }</style>`;
+  <style>text { font-family: ${FONT_FAMILY}; } .heading { fill: #f9fafb; font-size: 18px; font-weight: 600; } .subheading { fill: #f9fafb; font-size: 14px; font-weight: 600; } .label { fill: #9ca3af; font-size: 12px; } .value { fill: #f9fafb; font-size: 16px; font-weight: 600; }</style>`;
 }
 
-export function renderStatsCard(
-  username: string,
+function renderStatItems(
   stats: ProfileStats,
   year: number,
+  yOffset = 0,
 ): string {
   const items = [
     ["Stars", stats.totalStars],
@@ -47,20 +47,45 @@ export function renderStatsCard(
     ["Pull requests", stats.totalPullRequests],
     ["Issues", stats.totalIssues],
   ] as const;
-  const rows = items
+  return items
     .map(([label, value], index) => {
       const column = index % 2;
       const row = Math.floor(index / 2);
       const x = CARD_PADDING + column * (CARD_CONTENT_WIDTH / 2 + 8);
-      const y = 82 + row * 58;
+      const y = 82 + row * 58 + yOffset;
       return `<text class="label" x="${x}" y="${y}">${escapeXml(label)}</text><text class="value" x="${x}" y="${y + 24}">${value.toLocaleString("en-GB")}</text>`;
     })
     .join("");
+}
 
+function renderLanguageItems(
+  languages: Array<Language>,
+  firstRowY = 72,
+): string {
+  const displayedLanguages = languages.slice(0, 5);
+  const totalSize = displayedLanguages.reduce(
+    (total, language) => total + language.size,
+    0,
+  );
+  return displayedLanguages
+    .map((language, index) => {
+      const percentage =
+        totalSize === 0 ? 0 : (language.size / totalSize) * 100;
+      const y = firstRowY + index * 24;
+      return `<circle cx="32" cy="${y - 4}" r="5" fill="${escapeXml(language.color || "#9ca3af")}"/><text class="value" x="48" y="${y}">${escapeXml(language.name)}</text><text class="label" x="408" y="${y}" text-anchor="end">${percentage.toFixed(1)}%</text>`;
+    })
+    .join("");
+}
+
+export function renderStatsCard(
+  username: string,
+  stats: ProfileStats,
+  year: number,
+): string {
   return `${cardStart(CARD_WIDTH, CARD_HEIGHT, `${username}'s GitHub stats`, `GitHub activity statistics for ${username}`)}
   <text class="heading" x="24" y="36">${escapeXml(username)}&apos;s GitHub stats</text>
   <rect x="${CARD_PADDING}" y="50" width="${CARD_CONTENT_WIDTH}" height="2" rx="1" fill="#818cf8"/>
-  ${rows}
+  ${renderStatItems(stats, year)}
 </svg>`;
 }
 
@@ -68,24 +93,26 @@ export function renderLanguagesCard(
   username: string,
   languages: Array<Language>,
 ): string {
-  const displayedLanguages = languages.slice(0, 5);
-  const totalSize = displayedLanguages.reduce(
-    (total, language) => total + language.size,
-    0,
-  );
-  const rows = displayedLanguages
-    .map((language, index) => {
-      const percentage =
-        totalSize === 0 ? 0 : (language.size / totalSize) * 100;
-      const y = 72 + index * 24;
-      return `<circle cx="32" cy="${y - 4}" r="5" fill="${escapeXml(language.color || "#9ca3af")}"/><text class="value" x="48" y="${y}">${escapeXml(language.name)}</text><text class="label" x="408" y="${y}" text-anchor="end">${percentage.toFixed(1)}%</text>`;
-    })
-    .join("");
-
   return `${cardStart(CARD_WIDTH, CARD_HEIGHT, `${username}'s top languages`, `Most-used public repository languages for ${username}`)}
   <text class="heading" x="24" y="36">Top Languages</text>
   <rect x="${CARD_PADDING}" y="50" width="${CARD_CONTENT_WIDTH}" height="2" rx="1" fill="#818cf8"/>
-  ${rows}
+  ${renderLanguageItems(languages)}
+</svg>`;
+}
+
+export function renderReadmeCard(
+  username: string,
+  stats: ProfileStats,
+  languages: Array<Language>,
+  year: number,
+): string {
+  return `${cardStart(CARD_WIDTH, 365, `${username}'s GitHub stats`, `GitHub activity statistics and top languages for ${username}`)}
+  <text class="heading" x="24" y="36">${escapeXml(username)}&apos;s GitHub stats</text>
+  <rect x="${CARD_PADDING}" y="50" width="${CARD_CONTENT_WIDTH}" height="2" rx="1" fill="#818cf8"/>
+  ${renderStatItems(stats, year)}
+  <text class="subheading" x="24" y="205">Top Languages</text>
+  <rect x="${CARD_PADDING}" y="218" width="${CARD_CONTENT_WIDTH}" height="1" rx="0.5" fill="#374151"/>
+  ${renderLanguageItems(languages, 246)}
 </svg>`;
 }
 
