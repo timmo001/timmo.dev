@@ -1,42 +1,10 @@
 import { getEnv } from "~/env";
 import { getContrastColor, getRGBColorFromHex } from "~/lib/color";
 import { type Language } from "~/types/github/language";
-import { type Stat } from "~/types/github/stat";
 import { type UserNode } from "~/types/github/user";
 
 export function getUsername() {
   return getEnv().GITHUB_USERNAME;
-}
-
-export function getStats(user: UserNode): Array<Stat> {
-  const username = getUsername();
-  return [
-    {
-      key: "repositories",
-      url: `https://github.com/${username}?tab=repositories`,
-      title: "Repositories",
-      value: user.repositories.totalCount,
-    },
-    {
-      key: "followers",
-      url: `https://github.com/${username}?tab=followers`,
-      title: "Followers",
-      value: user.followers.totalCount,
-      secondaryValue: `(${user.following.totalCount} following)`,
-    },
-    {
-      key: "watching",
-      url: `https://github.com/${username}?tab=following`,
-      title: "Watching",
-      value: user.watching.totalCount,
-    },
-    {
-      key: "starredRepositories",
-      url: `https://github.com/${username}?tab=stars`,
-      title: "Stars",
-      value: user.starredRepositories.totalCount,
-    },
-  ];
 }
 
 export function getTopLanguages(user: UserNode): Array<Language> {

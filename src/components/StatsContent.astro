@@ -22,15 +22,15 @@ const { githubStats, githubTopLanguages, fetchedAt } = Astro.props;
   role="main"
 >
   <div class="container flex w-full flex-col items-center gap-16 text-center">
-    <section>
+    <section class="w-full max-w-6xl">
       <div
-        class="stagger-stats grid grid-cols-2 gap-12 leading-snug tracking-tight sm:grid-cols-3 md:grid-cols-4"
+        class="stagger-stats grid w-full grid-cols-[repeat(2,auto)] justify-around gap-y-12 leading-snug tracking-tight sm:grid-cols-[repeat(3,auto)]"
       >
         <GitHubStats stats={githubStats} />
       </div>
     </section>
 
-    <section>
+    <section class="w-full max-w-6xl">
       <h3
         class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white"
       >

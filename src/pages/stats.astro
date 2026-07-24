@@ -3,12 +3,54 @@ export const prerender = false;
 
 import StatsContent from "~/components/StatsContent.astro";
 import Layout from "~/layouts/Layout.astro";
-import { getStats, getTopLanguages, getUsername } from "~/lib/github";
+import { getTopLanguages, getUsername } from "~/lib/github";
 import { STATS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
-import { getUserData } from "~/server/github";
+import { getProfileStats, getUserData } from "~/server/github";
 
-const { user, fetchedAt } = await getUserData(getUsername());
-const githubStats = getStats(user);
+const username = getUsername();
+const [{ user, fetchedAt }, profileStats] = await Promise.all([
+  getUserData(username),
+  getProfileStats(username),
+]);
+const githubStats = [
+  {
+    key: "contributions",
+    url: `https://github.com/${username}`,
+    title: "Commits",
+    value: profileStats.totalCommits,
+  },
+  {
+    key: "pullRequests",
+    url: `https://github.com/pulls?q=is%3Apr+author%3A${username}`,
+    title: "Pull requests",
+    value: profileStats.totalPullRequests,
+  },
+  {
+    key: "issues",
+    url: `https://github.com/issues?q=is%3Aissue+author%3A${username}`,
+    title: "Issues",
+    value: profileStats.totalIssues,
+  },
+  {
+    key: "repositories",
+    url: `https://github.com/${username}?tab=repositories`,
+    title: "Repositories",
+    value: profileStats.publicRepositories,
+  },
+  {
+    key: "stars",
+    url: `https://github.com/${username}?tab=repositories`,
+    title: "Stars",
+    value: profileStats.totalStars,
+  },
+  {
+    key: "followers",
+    url: `https://github.com/${username}?tab=followers`,
+    title: "Followers",
+    value: profileStats.followers,
+    secondaryValue: `(${user.following.totalCount} following)`,
+  },
+];
 const githubTopLanguages = getTopLanguages(user);
 
 Astro.response.headers.set(
