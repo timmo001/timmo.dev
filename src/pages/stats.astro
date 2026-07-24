@@ -12,43 +12,44 @@ const [{ user, fetchedAt }, profileStats] = await Promise.all([
   getUserData(username),
   getProfileStats(username),
 ]);
+const formatNumber = (value: number) => value.toLocaleString("en-GB");
 const githubStats = [
   {
     key: "contributions",
     url: `https://github.com/${username}`,
     title: "Commits",
-    value: profileStats.totalCommits,
+    value: formatNumber(profileStats.totalCommits),
   },
   {
     key: "pullRequests",
     url: `https://github.com/pulls?q=is%3Apr+author%3A${username}`,
     title: "Pull requests",
-    value: profileStats.totalPullRequests,
+    value: formatNumber(profileStats.totalPullRequests),
   },
   {
     key: "issues",
     url: `https://github.com/issues?q=is%3Aissue+author%3A${username}`,
     title: "Issues",
-    value: profileStats.totalIssues,
+    value: formatNumber(profileStats.totalIssues),
   },
   {
     key: "repositories",
     url: `https://github.com/${username}?tab=repositories`,
     title: "Repositories",
-    value: profileStats.publicRepositories,
+    value: formatNumber(profileStats.publicRepositories),
   },
   {
     key: "stars",
     url: `https://github.com/${username}?tab=repositories`,
     title: "Stars",
-    value: profileStats.totalStars,
+    value: formatNumber(profileStats.totalStars),
   },
   {
     key: "followers",
     url: `https://github.com/${username}?tab=followers`,
     title: "Followers",
-    value: profileStats.followers,
-    secondaryValue: `(${user.following.totalCount} following)`,
+    value: formatNumber(profileStats.followers),
+    secondaryValue: `(${formatNumber(user.following.totalCount)} following)`,
   },
 ];
 const githubTopLanguages = getTopLanguages(user);
