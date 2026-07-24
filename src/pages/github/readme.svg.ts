@@ -17,12 +17,7 @@ export const GET = (async () => {
     const stats = await getProfileStats(username);
     const { user } = await getUserData(username);
     return svgResponse(
-      renderReadmeCard(
-        username,
-        stats,
-        getTopLanguages(user),
-        new Date().getUTCFullYear(),
-      ),
+      renderReadmeCard(username, stats, getTopLanguages(user)),
     );
   } catch {
     return svgResponse(renderErrorCard("GitHub stats"), 60);

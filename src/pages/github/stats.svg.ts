@@ -15,11 +15,7 @@ export const GET = (async () => {
 
   try {
     return svgResponse(
-      renderStatsCard(
-        username,
-        await getProfileStats(username),
-        new Date().getUTCFullYear(),
-      ),
+      renderStatsCard(username, await getProfileStats(username)),
     );
   } catch {
     return svgResponse(renderErrorCard("GitHub stats"), 60);
