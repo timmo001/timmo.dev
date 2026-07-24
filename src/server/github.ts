@@ -82,6 +82,7 @@ type RepositoryContribution = {
     description: string | null;
     isArchived: boolean;
     isPrivate: boolean;
+    visibility: "PUBLIC" | "PRIVATE" | "INTERNAL";
   };
   contributions: {
     totalCount: number;
@@ -135,6 +136,7 @@ export async function getCurrentActivity(
           description
           isArchived
           isPrivate
+          visibility
         }
         contributions(first: 100, orderBy: { field: OCCURRED_AT, direction: DESC }) {
           totalCount
@@ -151,6 +153,7 @@ export async function getCurrentActivity(
           description
           isArchived
           isPrivate
+          visibility
         }
         contributions(first: 1, orderBy: { direction: DESC }) {
           totalCount
@@ -166,6 +169,7 @@ export async function getCurrentActivity(
           description
           isArchived
           isPrivate
+          visibility
         }
         contributions(first: 1, orderBy: { direction: DESC }) {
           totalCount
@@ -201,6 +205,7 @@ export async function getCurrentActivity(
       if (
         contribution.repository.isArchived ||
         contribution.repository.isPrivate ||
+        contribution.repository.visibility !== "PUBLIC" ||
         contribution.repository.nameWithOwner.toLowerCase() ===
           `${user}/timmo.dev`.toLowerCase()
       ) {
@@ -256,7 +261,7 @@ export async function getCurrentActivity(
           right.latestActivityAt.getTime() - left.latestActivityAt.getTime() ||
           (left.nameWithOwner < right.nameWithOwner ? -1 : 1),
       )
-      .slice(0, 6),
+      .slice(0, 9),
     from,
     to,
     fetchedAt,
