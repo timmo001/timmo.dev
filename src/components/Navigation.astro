@@ -9,6 +9,7 @@ const mobileNavLinkClass =
 
 const navItems = [
   { href: "/", label: "About Me" },
+  { href: "/activity", label: "Current activity" },
   { href: "/projects", label: "Projects & contributions" },
   { href: "/stats", label: "Stats" },
 ] as const;
@@ -20,7 +21,7 @@ const socialIconClass =
 <div class="relative flex w-full items-center md:w-auto md:flex-1">
   <button
     type="button"
-    class="inline-flex h-10 w-10 items-center justify-center rounded-2xl text-white transition-colors hover:bg-white/10 focus:bg-white/10 focus:outline-hidden md:hidden"
+    class="inline-flex h-10 w-10 items-center justify-center rounded-2xl text-white transition-colors hover:bg-white/10 focus:bg-white/10 focus:outline-hidden lg:hidden"
     data-mobile-nav-toggle
     aria-expanded="false"
     aria-controls="mobile-nav-panel"
@@ -42,7 +43,7 @@ const socialIconClass =
 
   <nav
     aria-label="Main navigation"
-    class="relative z-10 hidden max-w-max flex-1 items-center md:flex"
+    class="relative z-10 hidden max-w-max flex-1 items-center lg:flex"
   >
     <ul class="flex list-none items-center gap-1">
       {
@@ -61,7 +62,7 @@ const socialIconClass =
     id="mobile-nav-panel"
     data-mobile-nav-panel
     hidden
-    class="absolute start-0 top-full z-50 mt-2 w-[min(100svw-2rem,20rem)] rounded-2xl border border-white/10 bg-gray-950/95 p-4 shadow-xl backdrop-blur-sm md:hidden"
+    class="absolute start-0 top-full z-50 mt-2 w-[min(100svw-2rem,20rem)] rounded-2xl border border-white/10 bg-gray-950/95 p-4 shadow-xl backdrop-blur-sm lg:hidden"
   >
     <nav aria-label="Main navigation">
       <ul class="flex list-none flex-col gap-1">

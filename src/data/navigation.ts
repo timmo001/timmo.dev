@@ -1,6 +1,7 @@
 export type NavItem = {
   title: string;
   href: string;
+  githubHref?: string;
   description: string;
   tags?: Array<string>;
   stack?: Array<string>;
@@ -20,6 +21,7 @@ export const projects: Array<NavItem> = [
       "Starlight",
     ],
     href: "https://dotfiles.timmo.dev",
+    githubHref: "https://github.com/timmo001/dotfiles",
     description:
       "Public Arch/Omarchy dotfiles with GNU Stow and a compiled dot CLI. Machine bootstrap, multi-repo git tooling, GitHub workflow and notification inboxes, Omarchy desktop sync, optional private overlays, and OpenCode agent publishing.",
   },
@@ -52,6 +54,7 @@ export const projects: Array<NavItem> = [
       "Starlight",
     ],
     href: "https://go-automate.timmo.dev",
+    githubHref: "https://github.com/timmo001/go-automate",
     description:
       "A utility to run common tasks: keyboard shortcuts and patched apps on Linux to trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging.",
   },
@@ -60,6 +63,7 @@ export const projects: Array<NavItem> = [
     tags: ["CLI", "MCP", "OpenCode", "Git", "Stack"],
     stack: ["TypeScript", "Effect", "Astro", "Starlight"],
     href: "https://context.timmo.dev",
+    githubHref: "https://github.com/timmo001/context",
     description:
       "A standalone CLI and read-only MCP server for deterministic repository context. Gives humans and agents branch, pull request, working-tree, stack, tooling, and framework facts in one snapshot, with generated CLI and MCP docs.",
   },
@@ -68,6 +72,7 @@ export const projects: Array<NavItem> = [
     tags: ["CLI", "MCP", "OpenCode", "Markdown", "Handoffs"],
     stack: ["TypeScript", "Effect", "Astro", "Starlight"],
     href: "https://notes.timmo.dev",
+    githubHref: "https://github.com/timmo001/notes",
     description:
       "A standalone CLI and MCP server for repo-scoped Markdown notes. Gives humans and agents safe note reads and writes, handoff-tagged notes, and generated CLI and MCP docs.",
   },
@@ -85,6 +90,7 @@ export const projects: Array<NavItem> = [
       "Starlight",
     ],
     href: "https://system-bridge.timmo.dev",
+    githubHref: "https://github.com/timmo001/system-bridge",
     description:
       "A bridge for your systems: a cross-platform app for Linux and Windows that exposes system information and control via an API and WebSocket server. Integrates with Home Assistant for monitoring desktops and sending commands.",
   },
@@ -101,6 +107,7 @@ export const projects: Array<NavItem> = [
     tags: ["Forecast"],
     stack: ["TypeScript", "Next.js", "React", "Tailwind"],
     href: "https://weather.timmo.dev",
+    githubHref: "https://github.com/timmo001/weather.timmo.dev",
     description:
       "A progressive web app for current conditions and forecasts powered by Tomorrow.io. Set your location via coordinates or browser geolocation, browse hourly and daily outlooks across five days, and switch between dark and light themes.",
   },
@@ -109,6 +116,7 @@ export const projects: Array<NavItem> = [
     tags: ["Archive", "Lists", "Notes"],
     stack: ["TypeScript", "Next.js", "React", "Convex", "Tailwind"],
     href: "https://pouch.timmo.dev",
+    githubHref: "https://github.com/timmo001/pouch",
     description:
       "Store your favorite things: a web app for organizing lists and notepads into groups with drag-and-drop reordering and real-time sync across devices. Built with Next.js, Convex, and Clerk authentication.",
   },

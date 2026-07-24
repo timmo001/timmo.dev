@@ -1,0 +1,89 @@
+---
+import TagChip from "~/components/TagChip.astro";
+import { sortStack } from "~/data/stack-sort";
+import { sortTags } from "~/data/tag-sort";
+
+type Props = {
+  title: string;
+  nameWithOwner: string;
+  href: string;
+  description: string;
+  commits: number;
+  pullRequests: number;
+  reviews: number;
+  tags?: Array<string>;
+  stack?: Array<string>;
+};
+
+const {
+  title,
+  nameWithOwner,
+  href,
+  description,
+  commits,
+  pullRequests,
+  reviews,
+  tags,
+  stack,
+} = Astro.props;
+const metrics = [
+  { count: commits, singular: "commit", plural: "commits" },
+  { count: pullRequests, singular: "pull request", plural: "pull requests" },
+  { count: reviews, singular: "review", plural: "reviews" },
+];
+const sortedTags = tags ? sortTags(tags) : undefined;
+const sortedStack = stack ? sortStack(stack) : undefined;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="reveal row-span-3 grid w-full grid-rows-subgrid gap-y-0 rounded-xl border border-white/10 p-6 text-start transition-colors hover:border-indigo-500/40 hover:bg-white/5 focus-visible:border-indigo-400 focus-visible:outline-none"
+>
+  <div class="min-h-0 pb-3">
+    <h2 class="text-xl font-bold leading-snug text-indigo-400">{title}</h2>
+    <p class="mt-1 truncate text-xs text-white/45">{nameWithOwner}</p>
+
+    {
+      sortedTags && sortedTags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          {sortedTags.map((tag) => (
+            <TagChip label={tag} />
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  <dl class="grid grid-cols-3 gap-4 border-y border-white/10 py-3">
+    {
+      metrics.map(({ count, singular, plural }) => (
+        <div>
+          <dt class="text-xs text-white/45">
+            {count === 1 ? singular : plural}
+          </dt>
+          <dd class="mt-0.5 text-2xl font-semibold tracking-tight text-white">
+            {count.toLocaleString("en-GB")}
+          </dd>
+        </div>
+      ))
+    }
+    <div class="col-span-3 text-xs text-white/45">Last 30 days</div>
+  </dl>
+
+  <div class="flex min-h-0 flex-col pt-3">
+    <p class="text-sm leading-relaxed text-gray-300">{description}</p>
+    {
+      sortedStack && sortedStack.length > 0 && (
+        <div class="mt-auto pt-5">
+          <div class="flex flex-wrap-reverse items-end gap-1.5">
+            {sortedStack.map((item) => (
+              <TagChip label={item} />
+            ))}
+          </div>
+        </div>
+      )
+    }
+  </div>
+</a>

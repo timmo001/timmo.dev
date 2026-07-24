@@ -57,6 +57,48 @@ export type ProfileStats = {
   followers: number;
 };
 
+export type CurrentActivityItem = {
+  nameWithOwner: string;
+  url: string;
+  description?: string;
+  commits: number;
+  pullRequests: number;
+  reviews: number;
+  score: number;
+  latestActivityAt: Date;
+};
+
+export type CurrentActivity = {
+  items: Array<CurrentActivityItem>;
+  from: Date;
+  to: Date;
+  fetchedAt: Date;
+};
+
+type RepositoryContribution = {
+  repository: {
+    nameWithOwner: string;
+    url: string;
+    description: string | null;
+    isArchived: boolean;
+    isPrivate: boolean;
+  };
+  contributions: {
+    totalCount: number;
+    nodes: Array<{ occurredAt: string; commitCount?: number }>;
+  };
+};
+
+type CurrentActivityData = {
+  user: {
+    contributionsCollection: {
+      commitContributionsByRepository: Array<RepositoryContribution>;
+      pullRequestContributionsByRepository: Array<RepositoryContribution>;
+      pullRequestReviewContributionsByRepository: Array<RepositoryContribution>;
+    };
+  };
+};
+
 type LanguageData = {
   user: {
     repositories: Pick<UserNode["repositories"], "nodes">;
@@ -68,6 +110,163 @@ const profileCache = new Map<
   string,
   { value: ProfileStats; expiresAt: number }
 >();
+const currentActivityCache = new Map<
+  string,
+  { value: CurrentActivity; expiresAt: number }
+>();
+
+export async function getCurrentActivity(
+  user: string,
+): Promise<CurrentActivity> {
+  const cached = currentActivityCache.get(user);
+  if (cached && isCacheValid(cached.expiresAt)) {
+    return cached.value;
+  }
+
+  const to = new Date();
+  const from = new Date(to.getTime() - 30 * 24 * 60 * 60 * 1000);
+  const query = `query ($login: String!, $from: DateTime!, $to: DateTime!) {
+  user(login: $login) {
+    contributionsCollection(from: $from, to: $to) {
+      commitContributionsByRepository(maxRepositories: 100) {
+        repository {
+          nameWithOwner
+          url
+          description
+          isArchived
+          isPrivate
+        }
+        contributions(first: 100, orderBy: { field: OCCURRED_AT, direction: DESC }) {
+          totalCount
+          nodes {
+            occurredAt
+            commitCount
+          }
+        }
+      }
+      pullRequestContributionsByRepository(maxRepositories: 100) {
+        repository {
+          nameWithOwner
+          url
+          description
+          isArchived
+          isPrivate
+        }
+        contributions(first: 1, orderBy: { direction: DESC }) {
+          totalCount
+          nodes {
+            occurredAt
+          }
+        }
+      }
+      pullRequestReviewContributionsByRepository(maxRepositories: 100) {
+        repository {
+          nameWithOwner
+          url
+          description
+          isArchived
+          isPrivate
+        }
+        contributions(first: 1, orderBy: { direction: DESC }) {
+          totalCount
+          nodes {
+            occurredAt
+          }
+        }
+      }
+    }
+  }
+}`;
+  let result: CurrentActivityData;
+  try {
+    result = await queryGitHub<CurrentActivityData>(query, {
+      login: user,
+      from: from.toISOString(),
+      to: to.toISOString(),
+    });
+  } catch (error) {
+    if (cached) {
+      console.error(error);
+      return cached.value;
+    }
+    throw error;
+  }
+  const repositories = new Map<string, CurrentActivityItem>();
+
+  const addContributions = (
+    contributions: Array<RepositoryContribution>,
+    kind: "commits" | "pullRequests" | "reviews",
+  ) => {
+    for (const contribution of contributions) {
+      if (
+        contribution.repository.isArchived ||
+        contribution.repository.isPrivate ||
+        contribution.repository.nameWithOwner.toLowerCase() ===
+          `${user}/timmo.dev`.toLowerCase()
+      ) {
+        continue;
+      }
+
+      const latestActivityAt = new Date(
+        contribution.contributions.nodes[0]?.occurredAt ?? from,
+      );
+      const item = repositories.get(contribution.repository.url) ?? {
+        nameWithOwner: contribution.repository.nameWithOwner,
+        url: contribution.repository.url,
+        description: contribution.repository.description ?? undefined,
+        commits: 0,
+        pullRequests: 0,
+        reviews: 0,
+        score: 0,
+        latestActivityAt,
+      };
+      const count =
+        kind === "commits"
+          ? contribution.contributions.nodes.reduce(
+              (total, node) => total + (node.commitCount ?? 0),
+              0,
+            )
+          : contribution.contributions.totalCount;
+      item[kind] += count;
+      item.score += count;
+      if (latestActivityAt > item.latestActivityAt) {
+        item.latestActivityAt = latestActivityAt;
+      }
+      repositories.set(contribution.repository.url, item);
+    }
+  };
+
+  const collection = result.user.contributionsCollection;
+  addContributions(collection.commitContributionsByRepository, "commits");
+  addContributions(
+    collection.pullRequestContributionsByRepository,
+    "pullRequests",
+  );
+  addContributions(
+    collection.pullRequestReviewContributionsByRepository,
+    "reviews",
+  );
+
+  const fetchedAt = new Date();
+  const value = {
+    items: [...repositories.values()]
+      .toSorted(
+        (left, right) =>
+          right.score - left.score ||
+          right.latestActivityAt.getTime() - left.latestActivityAt.getTime() ||
+          (left.nameWithOwner < right.nameWithOwner ? -1 : 1),
+      )
+      .slice(0, 6),
+    from,
+    to,
+    fetchedAt,
+  };
+  currentActivityCache.set(user, {
+    value,
+    expiresAt: addCacheExpiry(fetchedAt.getTime(), STATS_CACHE_TTL_MS),
+  });
+  return value;
+}
 
 export async function getUserData(user: string): Promise<UserDataResult> {
   const cached = userCache.get(user);

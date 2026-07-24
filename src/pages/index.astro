@@ -14,14 +14,13 @@ import Layout from "~/layouts/Layout.astro";
       class="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat px-4 pt-4 sm:px-8 sm:pt-8 md:px-16 md:pt-16"
       style="background-image: url('/logo-wide-nobackground.png')"
     >
-      <div class="flex w-full min-w-0 flex-col items-start gap-2 text-start sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-6">
+      <div
+        class="flex w-full min-w-0 flex-col items-start gap-2 text-start sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-6"
+      >
         <h1 class="hero-title">
           <AnimatedText text="Aidan Timson" />
         </h1>
-        <p
-          class="hero-subtitle hero-reveal"
-          style="animation-delay: 0.45s"
-        >
+        <p class="hero-subtitle hero-reveal" style="animation-delay: 0.45s">
           <span>Timmo</span> / <span>@timmo001</span>
         </p>
       </div>
@@ -42,36 +41,41 @@ import Layout from "~/layouts/Layout.astro";
     <div
       class="stagger-grid container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2"
     >
-      <h3 class="reveal section-heading">
-        About Me
-      </h3>
+      <h3 class="reveal section-heading">About Me</h3>
       <div class="reveal">
         <SectionBlock>
           My name is Aidan, but you might know me better as Timmo / @timmo001
           <br />
           <br />
-          I am a full-stack software developer with a passion for creating and
-          maintaining software. I'm an open source contributor and maintainer, one of which is for Home
-          Assistant working on the frontend and around the project for the Open Home Foundation, working across desktop apps, home automation,
-          and developer tooling.
+          I am a full-stack software developer with a passion for creating and maintaining
+          software. I'm an open source contributor and maintainer, one of which is
+          for Home Assistant working on the frontend and around the project for the
+          Open Home Foundation, working across desktop apps, home automation, and
+          developer tooling.
           <br />
           <br />
-          I'm a tinkerer with a strong interest in technology, automation, and
-          software. I am always looking to improve my skills and learn new
-          things, whether that be a new programming language, framework, or
-          technology.
+          I'm a tinkerer with a strong interest in technology, automation, and software.
+          I am always looking to improve my skills and learn new things, whether that
+          be a new programming language, framework, or technology.
         </SectionBlock>
       </div>
 
-      <h3 class="reveal section-heading">
-        Projects & contributions
-      </h3>
+      <h3 class="reveal section-heading">Current activity</h3>
+      <div class="reveal">
+        <SectionBlock>
+          See what I have been working on recently, ranked from my public GitHub
+          commits, pull requests, and reviews on the{" "}
+          <a class="text-link" href="/activity">current activity</a> page.
+        </SectionBlock>
+      </div>
+
+      <h3 class="reveal section-heading">Projects & contributions</h3>
       <div class="reveal">
         <SectionBlock>
           See my{" "}
-          <a class="text-link" href="/projects">
-            projects & contributions
-          </a>{" "}
+          <a class="text-link" href="/projects"> projects & contributions </a>{
+            " "
+          }
           page for what I am building and contributing to, or browse my{" "}
           <a
             class="text-link"
@@ -85,21 +89,19 @@ import Layout from "~/layouts/Layout.astro";
         </SectionBlock>
       </div>
 
-      <h3 class="reveal section-heading">
-        Top Programming Languages
-      </h3>
+      <h3 class="reveal section-heading">Top Programming Languages</h3>
       <p class="reveal section-subtext mb-8">
-        I have experience in a variety of programming languages. My top programming
-        languages can be found on the{" "}
+        I have experience in a variety of programming languages. My top
+        programming languages can be found on the{" "}
         <a class="text-link" href="/stats">stats</a> page.
       </p>
     </div>
 
     <div class="col-span-full mt-36 flex w-full flex-col items-center gap-8">
-      <h3 class="reveal section-heading mb-8">
-        Contact
-      </h3>
-      <div class="reveal flex w-full flex-row flex-wrap justify-center gap-x-24 gap-y-16">
+      <h3 class="reveal section-heading mb-8">Contact</h3>
+      <div
+        class="reveal flex w-full flex-row flex-wrap justify-center gap-x-24 gap-y-16"
+      >
         <ContactLinks
           classes="h-32 w-32 fill-white transition-transform duration-300 ease-in-out hover:scale-110"
         />
