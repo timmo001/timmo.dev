@@ -2,6 +2,7 @@
 export const prerender = false;
 
 import ActivityItem from "~/components/ActivityItem.astro";
+import SectionBlock from "~/components/SectionBlock.astro";
 import SubpageHeader from "~/components/SubpageHeader.astro";
 import { contributions, projects } from "~/data/navigation";
 import { getEnv } from "~/env";
@@ -43,44 +44,72 @@ const formatTimestamp = (date: Date) =>
     timeStyle: "short",
     timeZone: "UTC",
   }).format(date);
+const displayItems = (activity?.items ?? []).map((item) => {
+  const knownItem = catalogue.get(item.url);
+  return {
+    ...item,
+    knownItem,
+    title:
+      knownItem?.title ??
+      item.nameWithOwner.split("/").at(-1) ??
+      item.nameWithOwner,
+    description:
+      knownItem?.description ??
+      item.description ??
+      "Recent public work on GitHub.",
+  };
+});
+const knownActivity = displayItems.filter(({ knownItem }) => knownItem);
+const prioritisedActivity = [
+  ...knownActivity.slice(0, 6),
+  ...displayItems.filter((item) => !knownActivity.slice(0, 6).includes(item)),
+];
 ---
 
 <Layout
   title="Current activity | Aidan Timson (Timmo)"
-  description="Repositories Aidan Timson is currently working on, ranked from public GitHub activity over the last 30 days"
+  description="Repositories Aidan Timson is currently working on, ranked from public GitHub activity over the last 60 days"
 >
   <SubpageHeader title="Current activity" />
-  <div class="flex w-full flex-col items-center px-4 py-16">
+  <div class="flex w-full flex-col items-center px-4 pb-16 pt-8">
     <div class="container flex w-full flex-col gap-16 px-2">
-      <section aria-label="Recent GitHub activity" class="flex flex-col gap-10">
+      <section aria-label="Recent GitHub activity" class="flex flex-col gap-6">
         {
           activity && activity.items.length > 0 ? (
             <>
+              <div class="reveal px-6 md:px-12">
+                <SectionBlock>
+                  Most of my open source work is on GitHub. This is my public
+                  activity from the last 60 days.
+                </SectionBlock>
+              </div>
               <div class="stagger-grid grid items-stretch gap-x-6 gap-y-12 md:grid-cols-2 xl:grid-cols-3">
-                {activity.items.map((item) => {
-                  const repositoryName = item.nameWithOwner.split("/").at(-1);
-                  const knownItem = catalogue.get(item.url);
-                  return (
+                {prioritisedActivity.map(
+                  ({ knownItem, title, description, ...item }, index) => (
                     <ActivityItem
-                      title={
-                        knownItem?.title ?? repositoryName ?? item.nameWithOwner
-                      }
+                      title={title}
                       nameWithOwner={item.nameWithOwner}
                       href={item.url}
-                      description={
-                        knownItem?.description ??
-                        item.description ??
-                        "Recent public work on GitHub."
-                      }
+                      description={description}
                       commits={item.commits}
                       pullRequests={item.pullRequests}
                       reviews={item.reviews}
                       tags={knownItem?.tags}
                       stack={knownItem?.stack}
+                      hidden={index >= 6}
                     />
-                  );
-                })}
+                  ),
+                )}
               </div>
+              {prioritisedActivity.length > 6 && (
+                <button
+                  type="button"
+                  class="reveal mx-auto rounded-xl border border-white/10 px-6 py-3 text-sm font-medium transition-colors hover:border-indigo-500/40 hover:bg-white/5 focus-visible:border-indigo-400 focus-visible:outline-none"
+                  data-load-more-activity
+                >
+                  Load more
+                </button>
+              )}
               <p class="reveal px-6 text-sm text-white/45 md:px-12">
                 Ranked from my public GitHub commits, pull requests, and
                 reviews. Activity from {formatDate(activity.from)} to{" "}
@@ -113,3 +142,26 @@ const formatTimestamp = (date: Date) =>
     </div>
   </div>
 </Layout>
+
+<script>
+  const initActivityLoadMore = () => {
+    const button = document.querySelector<HTMLButtonElement>(
+      "[data-load-more-activity]",
+    );
+    if (!button || button.dataset.initialized) return;
+
+    button.dataset.initialized = "true";
+    button.addEventListener("click", () => {
+      const hiddenItems = [
+        ...document.querySelectorAll<HTMLElement>(
+          "[data-activity-item][hidden]",
+        ),
+      ];
+      hiddenItems.slice(0, 6).forEach((item) => item.removeAttribute("hidden"));
+      button.hidden = hiddenItems.length <= 6;
+    });
+  };
+
+  initActivityLoadMore();
+  document.addEventListener("astro:page-load", initActivityLoadMore);
+</script>

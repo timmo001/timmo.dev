@@ -125,7 +125,7 @@ export async function getCurrentActivity(
   }
 
   const to = new Date();
-  const from = new Date(to.getTime() - 30 * 24 * 60 * 60 * 1000);
+  const from = new Date(to.getTime() - 60 * 24 * 60 * 60 * 1000);
   const query = `query ($login: String!, $from: DateTime!, $to: DateTime!) {
   user(login: $login) {
     contributionsCollection(from: $from, to: $to) {
@@ -254,14 +254,12 @@ export async function getCurrentActivity(
 
   const fetchedAt = new Date();
   const value = {
-    items: [...repositories.values()]
-      .toSorted(
-        (left, right) =>
-          right.score - left.score ||
-          right.latestActivityAt.getTime() - left.latestActivityAt.getTime() ||
-          (left.nameWithOwner < right.nameWithOwner ? -1 : 1),
-      )
-      .slice(0, 9),
+    items: [...repositories.values()].toSorted(
+      (left, right) =>
+        right.score - left.score ||
+        right.latestActivityAt.getTime() - left.latestActivityAt.getTime() ||
+        (left.nameWithOwner < right.nameWithOwner ? -1 : 1),
+    ),
     from,
     to,
     fetchedAt,
@@ -381,7 +379,6 @@ export async function getProfileStats(user: string): Promise<ProfileStats> {
     }
     return response.json<T>();
   };
-  const year = new Date().getUTCFullYear();
   const [profile, repositories, commits, pullRequests, issues] =
     await Promise.all([
       requestJson<{ public_repos: number; followers: number }>(
@@ -391,7 +388,7 @@ export async function getProfileStats(user: string): Promise<ProfileStats> {
         `https://api.github.com/users/${encodeURIComponent(user)}/repos?per_page=100&type=owner`,
       ),
       requestJson<{ total_count: number }>(
-        `https://api.github.com/search/commits?per_page=1&q=author:${encodeURIComponent(user)}+committer-date:>=${year}-01-01`,
+        `https://api.github.com/search/commits?per_page=1&q=author:${encodeURIComponent(user)}`,
       ),
       requestJson<{ total_count: number }>(
         `https://api.github.com/search/issues?per_page=1&q=author:${encodeURIComponent(user)}+type:pr`,

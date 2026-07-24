@@ -13,6 +13,7 @@ type Props = {
   reviews: number;
   tags?: Array<string>;
   stack?: Array<string>;
+  hidden?: boolean;
 };
 
 const {
@@ -25,11 +26,12 @@ const {
   reviews,
   tags,
   stack,
+  hidden = false,
 } = Astro.props;
 const metrics = [
-  { count: commits, singular: "commit", plural: "commits" },
-  { count: pullRequests, singular: "pull request", plural: "pull requests" },
-  { count: reviews, singular: "review", plural: "reviews" },
+  { count: commits, singular: "Commit", plural: "Commits" },
+  { count: pullRequests, singular: "Pull request", plural: "Pull requests" },
+  { count: reviews, singular: "Review", plural: "Reviews" },
 ];
 const sortedTags = tags ? sortTags(tags) : undefined;
 const sortedStack = stack ? sortStack(stack) : undefined;
@@ -39,6 +41,8 @@ const sortedStack = stack ? sortStack(stack) : undefined;
   href={href}
   target="_blank"
   rel="noopener noreferrer"
+  data-activity-item
+  hidden={hidden}
   class="reveal row-span-3 grid w-full grid-rows-subgrid gap-y-0 rounded-xl border border-white/10 p-6 text-start transition-colors hover:border-indigo-500/40 hover:bg-white/5 focus-visible:border-indigo-400 focus-visible:outline-none"
 >
   <div class="min-h-0 pb-3">
@@ -69,7 +73,6 @@ const sortedStack = stack ? sortStack(stack) : undefined;
         </div>
       ))
     }
-    <div class="col-span-3 text-xs text-white/45">Last 30 days</div>
   </dl>
 
   <div class="flex min-h-0 flex-col pt-3">
