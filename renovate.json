@@ -11,6 +11,11 @@
   "minimumReleaseAge": "2 days",
   "packageRules": [
     {
+      "description": "Update first-party workflows without a release delay.",
+      "matchPackageNames": ["timmo001/workflows"],
+      "minimumReleaseAge": null
+    },
+    {
       "description": "Group GitHub Actions.",
       "groupName": "github actions",
       "matchManagers": ["github-actions"]
