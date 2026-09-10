@@ -10,6 +10,7 @@ const languageLabels = new Set([
   "Lua",
   "Markdown",
   "Python",
+  "QML",
   "Shell",
   "TypeScript",
   "YAML",

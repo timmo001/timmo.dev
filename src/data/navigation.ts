@@ -26,6 +26,14 @@ export const projects: Array<NavItem> = [
       "Public Arch/Omarchy dotfiles with GNU Stow and a compiled dot CLI. Machine bootstrap, multi-repo git tooling, GitHub workflow and notification inboxes, Omarchy desktop sync, optional private overlays, and OpenCode agent publishing.",
   },
   {
+    title: "Skills",
+    tags: ["Skills", "Agents"],
+    stack: ["Markdown", "TypeScript"],
+    href: "https://github.com/timmo001/skills",
+    description:
+      "Portable agent skills following the Agent Skills specification, installable across OpenCode, Claude Code, Codex, Cursor, and other clients. Canonical source for the OpenCode config catalogue, covering TypeScript, Effect, GitHub, Home Assistant, and local workflow skills.",
+  },
+  {
     title: "OpenCode Config",
     tags: ["Skills", "Agents", "Plugins", "Commands"],
     stack: ["Markdown", "TypeScript"],
@@ -34,12 +42,44 @@ export const projects: Array<NavItem> = [
       "Shared OpenCode skills, agents, plugins, and commands, published from dotfiles for standalone browsing and install. Branch-context workflows, permission-scoped agents, refactor commands, env protection, and skills for TypeScript, codebase diagnostics, and Home Assistant frontend work.",
   },
   {
+    title: "Herdr Workflow Watch",
+    tags: ["Plugins", "Herdr", "CI/CD", "GitHub Actions"],
+    stack: ["TypeScript", "Effect"],
+    href: "https://github.com/timmo001/herdr-workflow-watch",
+    description:
+      "Herdr plugin that watches GitHub workflow runs for open workspaces and surfaces failure counts in the sidebar. Open a failed run, paste it into the original agent, or launch a new agent in the same checkout or a fix worktree.",
+  },
+  {
+    title: "Effect GH",
+    tags: ["CLI", "Git"],
+    stack: ["TypeScript", "Effect"],
+    href: "https://github.com/timmo001/effect-gh",
+    description:
+      "An Effect v4 SDK for the GitHub CLI. Typed commands for the REST API, repositories, issues, pull requests, and workflow runs, with schema-decoded JSON, streaming, and tagged errors for consumers that already run authenticated gh.",
+  },
+  {
     title: "Waybar Config",
     tags: ["Omarchy", "Waybar", "Home Assistant"],
     stack: ["Shell", "JSONC", "CSS"],
     href: "https://github.com/timmo001/omarchy-waybar",
     description:
       "Waybar config for Omarchy with desktop and laptop layouts. Custom modules surface git notifications, workflow runs, and diff status via the dot CLI, and Home Assistant entity watches through go-automate's bridge for heating, doorbell, air quality, rain, and more.",
+  },
+  {
+    title: "Omarchy Clock",
+    tags: ["Omarchy", "Plugins"],
+    stack: ["QML"],
+    href: "https://github.com/timmo001/omarchy-clock",
+    description:
+      "Omarchy shell plugin that replaces the built-in clock. Popup with a six-week calendar, ISO week numbers, year progress, world clocks, and a time-offset slider for comparing timezones.",
+  },
+  {
+    title: "Omarchy Notes",
+    tags: ["Omarchy", "Plugins", "Notes"],
+    stack: ["QML"],
+    href: "https://github.com/timmo001/omarchy-notes",
+    description:
+      "Omarchy bar widget and keyboard-first panel for the Notes CLI. Search, filter, edit, capture, and organise repo-scoped notes and handoffs without leaving the shell.",
   },
   {
     title: "Go Automate",
@@ -59,6 +99,23 @@ export const projects: Array<NavItem> = [
       "A utility to run common tasks: keyboard shortcuts and patched apps on Linux to trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging.",
   },
   {
+    title: "Float App",
+    tags: ["CLI", "Omarchy"],
+    stack: ["TypeScript", "Effect", "Astro", "Starlight"],
+    href: "https://float-app.timmo.dev",
+    githubHref: "https://github.com/timmo001/float-app",
+    description:
+      "Persistently float selected Hyprland windows. Pick a window, write exact class rules into a generated include, and keep stowed configs and Omarchy's shared floating rules intact.",
+  },
+  {
+    title: "Twitch Notifications",
+    tags: ["CLI", "TUI", "Omarchy"],
+    stack: ["Go", "TypeScript", "QML"],
+    href: "https://github.com/timmo001/twitch-notifications",
+    description:
+      "Desktop daemon that watches followed Twitch channels over EventSub and sends notifications when they go live, with optional auto-open. Includes a TUI and an Omarchy bar widget for live status and daemon control.",
+  },
+  {
     title: "Context",
     tags: ["CLI", "MCP", "OpenCode", "Git", "Stack"],
     stack: ["TypeScript", "Effect", "Astro", "Starlight"],
@@ -75,6 +132,14 @@ export const projects: Array<NavItem> = [
     githubHref: "https://github.com/timmo001/notes",
     description:
       "A standalone CLI and MCP server for repo-scoped Markdown notes. Gives humans and agents safe note reads and writes, handoff-tagged notes, and generated CLI and MCP docs.",
+  },
+  {
+    title: "Music Assistant TUI",
+    tags: ["TUI", "CLI", "WebSocket"],
+    stack: ["TypeScript", "Effect", "OpenTUI"],
+    href: "https://github.com/timmo001/music-assistant-tui",
+    description:
+      "A terminal client for Music Assistant built with OpenTUI and Effect. Browse players and queues over the WebSocket API, with synchronized local playback, album art in the terminal, and Arch packages for stable and git releases.",
   },
   {
     title: "System Bridge",
@@ -101,6 +166,14 @@ export const projects: Array<NavItem> = [
     href: "https://github.com/timmo001/workflows",
     description:
       "GitHub Actions workflows shared between my projects, including linting, testing, CodeQL, container and language builds, Home Assistant card validation, Dependabot and Renovate automerge, release drafting, and more. Open for reuse and contribution.",
+  },
+  {
+    title: "Oxlint Rules",
+    tags: ["CI/CD"],
+    stack: ["TypeScript"],
+    href: "https://github.com/timmo001/oxlint-rules",
+    description:
+      "Shared Oxlint plugins and configs published as @timmo001/oxlint-rules. Bundles unchanged anti-slop rules with additional generic and Effect diagnostics, plus recommended and Effect-specific configs for consumers.",
   },
   {
     title: "Weather",
