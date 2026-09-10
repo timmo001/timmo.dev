@@ -30,6 +30,9 @@ yarn-error.log*
 .env*.local
 .dev.vars*
 
+# local clones and github dumps
+/temp/
+
 # vercel
 .vercel
 

@@ -6,7 +6,7 @@ const languageLabels = new Set([
   "CSS",
   "Go",
   "JavaScript",
-  "JSONC",
+  "JSON",
   "Lua",
   "Markdown",
   "Python",

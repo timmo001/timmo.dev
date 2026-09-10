@@ -60,7 +60,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Waybar Config",
     tags: ["Omarchy", "Waybar", "Home Assistant"],
-    stack: ["Shell", "JSONC", "CSS"],
+    stack: ["Shell", "JSON", "CSS"],
     href: "https://github.com/timmo001/omarchy-waybar",
     description:
       "Waybar config for Omarchy with desktop and laptop layouts. Custom modules surface git notifications, workflow runs, and diff status via the dot CLI, and Home Assistant entity watches through go-automate's bridge for heating, doorbell, air quality, rain, and more.",
@@ -80,6 +80,14 @@ export const projects: Array<NavItem> = [
     href: "https://github.com/timmo001/omarchy-notes",
     description:
       "Omarchy bar widget and keyboard-first panel for the Notes CLI. Search, filter, edit, capture, and organise repo-scoped notes and handoffs without leaving the shell.",
+  },
+  {
+    title: "Omarchy Momentumctl",
+    tags: ["Omarchy", "Plugins", "Audio"],
+    stack: ["QML"],
+    href: "https://github.com/timmo001/omarchy-momentumctl",
+    description:
+      "Omarchy shell plugin for Sennheiser headphones supported by momentumctl. Shows battery and controls ANC, adaptive noise, transparency, anti-wind, Smart Pause, on-head detection, auto-answer, and Comfort Call.",
   },
   {
     title: "Go Automate",
@@ -106,6 +114,14 @@ export const projects: Array<NavItem> = [
     githubHref: "https://github.com/timmo001/float-app",
     description:
       "Persistently float selected Hyprland windows. Pick a window, write exact class rules into a generated include, and keep stowed configs and Omarchy's shared floating rules intact.",
+  },
+  {
+    title: "Chromium Relaunch As App",
+    tags: ["Omarchy", "Extension"],
+    stack: ["TypeScript", "Effect"],
+    href: "https://github.com/timmo001/chromium-relaunch-as-app",
+    description:
+      "Manifest V3 extension that relaunches the current page as an Omarchy app window through omarchy-launch-webapp and a native messaging host. Supports Chromium, Chrome, Brave, Edge, and Vivaldi, with a context-menu flip back to a normal tab from app windows.",
   },
   {
     title: "Twitch Notifications",
@@ -166,6 +182,14 @@ export const projects: Array<NavItem> = [
     href: "https://github.com/timmo001/workflows",
     description:
       "GitHub Actions workflows shared between my projects, including linting, testing, CodeQL, container and language builds, Home Assistant card validation, Dependabot and Renovate automerge, release drafting, and more. Open for reuse and contribution.",
+  },
+  {
+    title: "Arch Repo",
+    tags: ["Arch", "CI/CD", "GitHub Actions"],
+    stack: ["Shell", "JSON", "YAML", "Cloudflare"],
+    href: "https://github.com/timmo001/arch-repo",
+    description:
+      "Public Arch Linux binary packages for my projects, served from packages.timmo.dev. Add the signed [timmo] repo in pacman; GitHub Actions publishes stable and -git packages to Cloudflare R2, with AUR remaining a source-build fallback.",
   },
   {
     title: "Oxlint Rules",
@@ -283,6 +307,49 @@ export const contributions: Array<NavItem> = [
     href: "https://github.com/home-assistant/frontend",
     description:
       "I am one of the core maintainers of the Home Assistant frontend for the Open Home Foundation.",
+  },
+  {
+    title: "Home Assistant Core",
+    tags: ["Contribution", "Home Assistant"],
+    stack: ["Python"],
+    href: "https://github.com/home-assistant/core",
+    description:
+      "I contribute to Home Assistant core, including the System Bridge, Honeywell Lyric, OVO Energy, and GitHub integrations, plus frontend-related core changes.",
+  },
+  {
+    title: "Home Assistant Developer Docs",
+    tags: ["Contribution", "Home Assistant", "Documentation"],
+    stack: ["Markdown"],
+    href: "https://developers.home-assistant.io",
+    githubHref: "https://github.com/home-assistant/developers.home-assistant",
+    description:
+      "I document frontend architecture, production builds, translation fetching, dashboard strategies, and developer tools on the Home Assistant developers site.",
+  },
+  {
+    title: "Home Assistant Documentation",
+    tags: ["Contribution", "Home Assistant", "Documentation"],
+    stack: ["Markdown"],
+    href: "https://www.home-assistant.io",
+    githubHref: "https://github.com/home-assistant/home-assistant.io",
+    description:
+      "I document frontend cards, card features, dashboards, and integrations I maintain in the Home Assistant user documentation.",
+  },
+  {
+    title: "My Home Assistant",
+    tags: ["Contribution", "Home Assistant"],
+    stack: ["TypeScript"],
+    href: "https://my.home-assistant.io",
+    githubHref: "https://github.com/home-assistant/my.home-assistant.io",
+    description:
+      "I add My Home Assistant links for configuration panels and developer tools so documentation and the UI can deep-link into a running instance.",
+  },
+  {
+    title: "Home Assistant Installer",
+    tags: ["Contribution", "Home Assistant"],
+    stack: ["TypeScript"],
+    href: "https://github.com/home-assistant/installer",
+    description:
+      "I contribute to the Home Assistant installer, a proof-of-concept desktop installer, including opening external links from the Tauri app.",
   },
   {
     title: "System Bridge",

@@ -15,11 +15,17 @@ const tagStyles: Record<string, TagStyle> = {
   Archive: {
     backgroundColor: "#64748b",
   },
+  Arch: {
+    backgroundColor: "#1793d1",
+  },
   Automation: {
     backgroundColor: "#c026d3",
   },
   Astro: {
     backgroundColor: "#bc52ee",
+  },
+  Audio: {
+    backgroundColor: "#f59e0b",
   },
   "Bubble Tea": {
     backgroundColor: "#ff75b7",
@@ -48,14 +54,23 @@ const tagStyles: Record<string, TagStyle> = {
   "CI/CD": {
     backgroundColor: "#ea580c",
   },
+  Cloudflare: {
+    backgroundColor: "#f38020",
+  },
   "Desktop App": {
     backgroundColor: "#b45309",
+  },
+  Documentation: {
+    backgroundColor: "#0369a1",
   },
   Effect: {
     backgroundColor: "#be185d",
   },
   Energy: {
     backgroundColor: "#ca8a04",
+  },
+  Extension: {
+    backgroundColor: "#4285f4",
   },
   Forecast: {
     backgroundColor: "#0284c7",
@@ -84,8 +99,8 @@ const tagStyles: Record<string, TagStyle> = {
   JavaScript: {
     backgroundColor: "#c9a227",
   },
-  JSONC: {
-    backgroundColor: "#8b8000",
+  JSON: {
+    backgroundColor: "#c4a000",
   },
   MUI: {
     backgroundColor: "#007fff",
