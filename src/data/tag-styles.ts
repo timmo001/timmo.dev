@@ -63,6 +63,9 @@ const tagStyles: Record<string, TagStyle> = {
   HACS: {
     backgroundColor: "#6d28d9",
   },
+  Herdr: {
+    backgroundColor: "#0891b2",
+  },
   JavaScript: {
     backgroundColor: "#c9a227",
   },
@@ -125,6 +128,9 @@ const tagStyles: Record<string, TagStyle> = {
   },
   Python: {
     backgroundColor: "#3572A5",
+  },
+  QML: {
+    backgroundColor: "#41cd52",
   },
   React: {
     backgroundColor: "#087ea4",
