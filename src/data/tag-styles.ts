@@ -102,9 +102,6 @@ const tagStyles: Record<string, TagStyle> = {
   JSON: {
     backgroundColor: "#c4a000",
   },
-  JSONC: {
-    backgroundColor: "#8b8000",
-  },
   MUI: {
     backgroundColor: "#007fff",
   },

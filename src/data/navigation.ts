@@ -60,7 +60,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Waybar Config",
     tags: ["Omarchy", "Waybar", "Home Assistant"],
-    stack: ["Shell", "JSONC", "CSS"],
+    stack: ["Shell", "JSON", "CSS"],
     href: "https://github.com/timmo001/omarchy-waybar",
     description:
       "Waybar config for Omarchy with desktop and laptop layouts. Custom modules surface git notifications, workflow runs, and diff status via the dot CLI, and Home Assistant entity watches through go-automate's bridge for heating, doorbell, air quality, rain, and more.",
