@@ -24,6 +24,9 @@ const tagStyles: Record<string, TagStyle> = {
   Astro: {
     backgroundColor: "#bc52ee",
   },
+  Audio: {
+    backgroundColor: "#f59e0b",
+  },
   "Bubble Tea": {
     backgroundColor: "#ff75b7",
   },
@@ -62,6 +65,9 @@ const tagStyles: Record<string, TagStyle> = {
   },
   Energy: {
     backgroundColor: "#ca8a04",
+  },
+  Extension: {
+    backgroundColor: "#4285f4",
   },
   Forecast: {
     backgroundColor: "#0284c7",

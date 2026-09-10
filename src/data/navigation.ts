@@ -82,6 +82,14 @@ export const projects: Array<NavItem> = [
       "Omarchy bar widget and keyboard-first panel for the Notes CLI. Search, filter, edit, capture, and organise repo-scoped notes and handoffs without leaving the shell.",
   },
   {
+    title: "Omarchy Momentumctl",
+    tags: ["Omarchy", "Plugins", "Audio"],
+    stack: ["QML"],
+    href: "https://github.com/timmo001/omarchy-momentumctl",
+    description:
+      "Omarchy shell plugin for Sennheiser headphones supported by momentumctl. Shows battery and controls ANC, adaptive noise, transparency, anti-wind, Smart Pause, on-head detection, auto-answer, and Comfort Call.",
+  },
+  {
     title: "Go Automate",
     tags: ["TUI", "CLI", "Home Assistant", "Automation", "WebSocket"],
     stack: [
@@ -106,6 +114,14 @@ export const projects: Array<NavItem> = [
     githubHref: "https://github.com/timmo001/float-app",
     description:
       "Persistently float selected Hyprland windows. Pick a window, write exact class rules into a generated include, and keep stowed configs and Omarchy's shared floating rules intact.",
+  },
+  {
+    title: "Chromium Relaunch As App",
+    tags: ["Omarchy", "Extension"],
+    stack: ["TypeScript", "Effect"],
+    href: "https://github.com/timmo001/chromium-relaunch-as-app",
+    description:
+      "Manifest V3 extension that relaunches the current page as an Omarchy app window through omarchy-launch-webapp and a native messaging host. Supports Chromium, Chrome, Brave, Edge, and Vivaldi, with a context-menu flip back to a normal tab from app windows.",
   },
   {
     title: "Twitch Notifications",
