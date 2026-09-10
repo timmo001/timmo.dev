@@ -27,7 +27,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Skills",
-    tags: ["Skills", "Agents"],
+    tags: ["Skills", "Agents", "OpenCode"],
     stack: ["Markdown", "TypeScript"],
     href: "https://github.com/timmo001/skills",
     description:
@@ -51,7 +51,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Effect GH",
-    tags: ["CLI", "Git"],
+    tags: ["CLI", "Git", "SDK"],
     stack: ["TypeScript", "Effect"],
     href: "https://github.com/timmo001/effect-gh",
     description:
@@ -67,7 +67,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Omarchy Clock",
-    tags: ["Omarchy", "Plugins"],
+    tags: ["Omarchy", "Plugins", "Calendar"],
     stack: ["QML"],
     href: "https://github.com/timmo001/omarchy-clock",
     description:
@@ -100,7 +100,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Float App",
-    tags: ["CLI", "Omarchy"],
+    tags: ["CLI", "Omarchy", "Hyprland"],
     stack: ["TypeScript", "Effect", "Astro", "Starlight"],
     href: "https://float-app.timmo.dev",
     githubHref: "https://github.com/timmo001/float-app",
@@ -161,7 +161,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "GitHub Workflows",
-    tags: ["CI/CD", "GitHub Actions"],
+    tags: ["CI/CD", "GitHub Actions", "Automation"],
     stack: ["YAML"],
     href: "https://github.com/timmo001/workflows",
     description:
@@ -169,15 +169,15 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Oxlint Rules",
-    tags: ["CI/CD"],
-    stack: ["TypeScript"],
+    tags: ["CI/CD", "Plugins", "Linting"],
+    stack: ["TypeScript", "Oxlint"],
     href: "https://github.com/timmo001/oxlint-rules",
     description:
       "Shared Oxlint plugins and configs published as @timmo001/oxlint-rules. Bundles unchanged anti-slop rules with additional generic and Effect diagnostics, plus recommended and Effect-specific configs for consumers.",
   },
   {
     title: "Weather",
-    tags: ["Forecast"],
+    tags: ["Forecast", "PWA", "Geolocation"],
     stack: ["TypeScript", "Next.js", "React", "Tailwind"],
     href: "https://weather.timmo.dev",
     githubHref: "https://github.com/timmo001/weather.timmo.dev",
@@ -219,7 +219,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Dashboard Maintenance",
-    tags: ["HACS", "Home Assistant Dashboard"],
+    tags: ["HACS", "Home Assistant Dashboard", "Monitoring"],
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-dashboard-maintenance",
     description:
@@ -227,7 +227,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Calendar Agenda",
-    tags: ["HACS", "Home Assistant Card"],
+    tags: ["HACS", "Home Assistant Card", "Calendar"],
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-calendar-agenda",
     description:
@@ -235,7 +235,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Energy Breakdown",
-    tags: ["HACS", "Home Assistant Card"],
+    tags: ["HACS", "Home Assistant Card", "Energy", "Monitoring"],
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-energy-breakdown",
     description:
@@ -243,7 +243,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Tile Popup",
-    tags: ["HACS", "Home Assistant Card"],
+    tags: ["HACS", "Home Assistant Card", "Navigation"],
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-tile-popup",
     description:
@@ -251,7 +251,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Anchor",
-    tags: ["HACS", "Home Assistant Card"],
+    tags: ["HACS", "Home Assistant Card", "Navigation"],
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-anchor",
     description:
@@ -259,7 +259,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Weather Forecast",
-    tags: ["HACS", "Home Assistant Card Feature"],
+    tags: ["HACS", "Home Assistant Card Feature", "Forecast"],
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-feature-weather-forecast",
     description:
@@ -267,7 +267,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "State",
-    tags: ["HACS", "Home Assistant Card Feature"],
+    tags: ["HACS", "Home Assistant Card Feature", "Monitoring"],
     stack: ["TypeScript", "Lit"],
     href: "https://github.com/timmo001/ha-card-feature-state",
     description:
@@ -286,7 +286,12 @@ export const contributions: Array<NavItem> = [
   },
   {
     title: "System Bridge",
-    tags: ["Contribution", "Home Assistant Integration"],
+    tags: [
+      "Contribution",
+      "Home Assistant Integration",
+      "Monitoring",
+      "Automation",
+    ],
     stack: ["Python", "Home Assistant"],
     href: "https://www.home-assistant.io/integrations/system_bridge",
     description:
@@ -294,7 +299,7 @@ export const contributions: Array<NavItem> = [
   },
   {
     title: "Honeywell Lyric",
-    tags: ["Contribution", "Home Assistant Integration"],
+    tags: ["Contribution", "Home Assistant Integration", "Climate"],
     stack: ["Python", "Home Assistant"],
     href: "https://www.home-assistant.io/integrations/lyric",
     description:
@@ -310,7 +315,12 @@ export const contributions: Array<NavItem> = [
   },
   {
     title: "OVO Energy",
-    tags: ["Contribution", "Home Assistant Integration"],
+    tags: [
+      "Contribution",
+      "Home Assistant Integration",
+      "Energy",
+      "Monitoring",
+    ],
     stack: ["Python", "Home Assistant"],
     href: "https://www.home-assistant.io/integrations/ovo_energy",
     description:
@@ -318,7 +328,7 @@ export const contributions: Array<NavItem> = [
   },
   {
     title: "Azure DevOps",
-    tags: ["Contribution", "Home Assistant Integration"],
+    tags: ["Contribution", "Home Assistant Integration", "CI/CD", "Monitoring"],
     stack: ["Python", "Home Assistant"],
     href: "https://www.home-assistant.io/integrations/azure_devops",
     description:
@@ -326,7 +336,7 @@ export const contributions: Array<NavItem> = [
   },
   {
     title: "GitHub",
-    tags: ["Contribution", "Home Assistant Integration"],
+    tags: ["Contribution", "Home Assistant Integration", "Git", "Monitoring"],
     stack: ["Python", "Home Assistant"],
     href: "https://www.home-assistant.io/integrations/github",
     description:

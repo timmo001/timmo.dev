@@ -24,6 +24,12 @@ const tagStyles: Record<string, TagStyle> = {
   "Bubble Tea": {
     backgroundColor: "#ff75b7",
   },
+  Calendar: {
+    backgroundColor: "#2563eb",
+  },
+  Climate: {
+    backgroundColor: "#0891b2",
+  },
   CLI: {
     backgroundColor: "#52525b",
   },
@@ -48,8 +54,14 @@ const tagStyles: Record<string, TagStyle> = {
   Effect: {
     backgroundColor: "#be185d",
   },
+  Energy: {
+    backgroundColor: "#ca8a04",
+  },
   Forecast: {
     backgroundColor: "#0284c7",
+  },
+  Geolocation: {
+    backgroundColor: "#059669",
   },
   Git: {
     backgroundColor: "#f05032",
@@ -64,6 +76,9 @@ const tagStyles: Record<string, TagStyle> = {
     backgroundColor: "#6d28d9",
   },
   Herdr: {
+    backgroundColor: "#0891b2",
+  },
+  Hyprland: {
     backgroundColor: "#0891b2",
   },
   JavaScript: {
@@ -96,6 +111,9 @@ const tagStyles: Record<string, TagStyle> = {
   Lit: {
     backgroundColor: "#324fff",
   },
+  Linting: {
+    backgroundColor: "#65a30d",
+  },
   Lists: {
     backgroundColor: "#db2777",
   },
@@ -104,6 +122,12 @@ const tagStyles: Record<string, TagStyle> = {
   },
   Markdown: {
     backgroundColor: "#374151",
+  },
+  Monitoring: {
+    backgroundColor: "#0d9488",
+  },
+  Navigation: {
+    backgroundColor: "#4f46e5",
   },
   "Next.js": {
     backgroundColor: "#171717",
@@ -120,11 +144,17 @@ const tagStyles: Record<string, TagStyle> = {
   OpenCode: {
     backgroundColor: "#ea580c",
   },
+  Oxlint: {
+    backgroundColor: "#d97706",
+  },
   Plugins: {
     backgroundColor: "#6366f1",
   },
   Prisma: {
     backgroundColor: "#2d3748",
+  },
+  PWA: {
+    backgroundColor: "#7c3aed",
   },
   Python: {
     backgroundColor: "#3572A5",
@@ -137,6 +167,9 @@ const tagStyles: Record<string, TagStyle> = {
   },
   Skills: {
     backgroundColor: "#9333ea",
+  },
+  SDK: {
+    backgroundColor: "#0284c7",
   },
   Shell: {
     backgroundColor: "#3d7c3f",
