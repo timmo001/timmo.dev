@@ -15,6 +15,9 @@ const tagStyles: Record<string, TagStyle> = {
   Archive: {
     backgroundColor: "#64748b",
   },
+  Arch: {
+    backgroundColor: "#1793d1",
+  },
   Automation: {
     backgroundColor: "#c026d3",
   },
@@ -47,6 +50,9 @@ const tagStyles: Record<string, TagStyle> = {
   },
   "CI/CD": {
     backgroundColor: "#ea580c",
+  },
+  Cloudflare: {
+    backgroundColor: "#f38020",
   },
   "Desktop App": {
     backgroundColor: "#b45309",
@@ -83,6 +89,9 @@ const tagStyles: Record<string, TagStyle> = {
   },
   JavaScript: {
     backgroundColor: "#c9a227",
+  },
+  JSON: {
+    backgroundColor: "#c4a000",
   },
   JSONC: {
     backgroundColor: "#8b8000",
