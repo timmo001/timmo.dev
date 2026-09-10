@@ -168,6 +168,14 @@ export const projects: Array<NavItem> = [
       "GitHub Actions workflows shared between my projects, including linting, testing, CodeQL, container and language builds, Home Assistant card validation, Dependabot and Renovate automerge, release drafting, and more. Open for reuse and contribution.",
   },
   {
+    title: "Arch Repo",
+    tags: ["Arch", "CI/CD", "GitHub Actions"],
+    stack: ["Shell", "JSON", "YAML", "Cloudflare"],
+    href: "https://github.com/timmo001/arch-repo",
+    description:
+      "Public Arch Linux binary packages for my projects, served from packages.timmo.dev. Add the signed [timmo] repo in pacman; GitHub Actions publishes stable and -git packages to Cloudflare R2, with AUR remaining a source-build fallback.",
+  },
+  {
     title: "Oxlint Rules",
     tags: ["CI/CD", "Plugins", "Linting"],
     stack: ["TypeScript", "Oxlint"],

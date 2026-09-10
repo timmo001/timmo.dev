@@ -12,6 +12,7 @@ const tagWeights: Record<string, number> = {
   CLI: 7,
   TUI: 8,
   PWA: 9,
+  Arch: 10,
   Omarchy: 10,
   Hyprland: 10,
   Waybar: 11,
