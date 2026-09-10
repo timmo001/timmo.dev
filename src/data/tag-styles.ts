@@ -60,6 +60,9 @@ const tagStyles: Record<string, TagStyle> = {
   "Desktop App": {
     backgroundColor: "#b45309",
   },
+  Documentation: {
+    backgroundColor: "#0369a1",
+  },
   Effect: {
     backgroundColor: "#be185d",
   },

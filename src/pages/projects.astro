@@ -40,11 +40,19 @@ function dedupeByHref(items: Array<NavItem>): Array<NavItem> {
   });
 }
 
-const frontendContribution = contributions.find(
-  (item) => item.href === "https://github.com/home-assistant/frontend",
-);
+function isHomeAssistantOrgContribution(item: NavItem): boolean {
+  try {
+    const { hostname, pathname } = new URL(item.githubHref ?? item.href);
+    const [owner] = pathname.split("/").filter(Boolean);
+    return hostname === "github.com" && owner === "home-assistant";
+  } catch {
+    return false;
+  }
+}
+
+const haOrgContributions = contributions.filter(isHomeAssistantOrgContribution);
 const staticIntegrations = contributions.filter(
-  (item) => item.href !== "https://github.com/home-assistant/frontend",
+  (item) => !isHomeAssistantOrgContribution(item),
 );
 
 const { integrations: rawIntegrationItems, integrationsSynced } =
@@ -53,7 +61,7 @@ const integrationItems = sortArchivedLast(rawIntegrationItems);
 
 const leadingHaItems = sortArchivedLast(
   dedupeByHref([
-    ...(frontendContribution ? [frontendContribution] : []),
+    ...haOrgContributions,
     ...haProjects.filter((item) => !hasHacsTag(item)),
   ]),
 );

@@ -309,6 +309,49 @@ export const contributions: Array<NavItem> = [
       "I am one of the core maintainers of the Home Assistant frontend for the Open Home Foundation.",
   },
   {
+    title: "Home Assistant Core",
+    tags: ["Contribution", "Home Assistant"],
+    stack: ["Python"],
+    href: "https://github.com/home-assistant/core",
+    description:
+      "I contribute to Home Assistant core, including the System Bridge, Honeywell Lyric, OVO Energy, and GitHub integrations, plus frontend-related core changes.",
+  },
+  {
+    title: "Home Assistant Developer Docs",
+    tags: ["Contribution", "Home Assistant", "Documentation"],
+    stack: ["Markdown"],
+    href: "https://developers.home-assistant.io",
+    githubHref: "https://github.com/home-assistant/developers.home-assistant",
+    description:
+      "I document frontend architecture, production builds, translation fetching, dashboard strategies, and developer tools on the Home Assistant developers site.",
+  },
+  {
+    title: "Home Assistant Documentation",
+    tags: ["Contribution", "Home Assistant", "Documentation"],
+    stack: ["Markdown"],
+    href: "https://www.home-assistant.io",
+    githubHref: "https://github.com/home-assistant/home-assistant.io",
+    description:
+      "I document frontend cards, card features, dashboards, and integrations I maintain in the Home Assistant user documentation.",
+  },
+  {
+    title: "My Home Assistant",
+    tags: ["Contribution", "Home Assistant"],
+    stack: ["TypeScript"],
+    href: "https://my.home-assistant.io",
+    githubHref: "https://github.com/home-assistant/my.home-assistant.io",
+    description:
+      "I add My Home Assistant links for configuration panels and developer tools so documentation and the UI can deep-link into a running instance.",
+  },
+  {
+    title: "Home Assistant Installer",
+    tags: ["Contribution", "Home Assistant"],
+    stack: ["TypeScript"],
+    href: "https://github.com/home-assistant/installer",
+    description:
+      "I contribute to the Home Assistant installer, a proof-of-concept desktop installer, including opening external links from the Tauri app.",
+  },
+  {
     title: "System Bridge",
     tags: [
       "Contribution",
