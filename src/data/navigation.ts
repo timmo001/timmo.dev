@@ -50,6 +50,14 @@ export const projects: Array<NavItem> = [
       "Herdr plugin that watches GitHub workflow runs for open workspaces and surfaces failure counts in the sidebar. Open a failed run, paste it into the original agent, or launch a new agent in the same checkout or a fix worktree.",
   },
   {
+    title: "Herdr Mascot",
+    tags: ["Plugins", "Herdr"],
+    stack: ["TypeScript", "Effect"],
+    href: "https://github.com/timmo001/herdr-mascot",
+    description:
+      "Herdr plugin that draws an animated mascot on the active pane. Cat, dog, and robot packs in pixel and illustrated styles hop when you switch panes, with configurable size, position, opacity, and per-directory pack selection.",
+  },
+  {
     title: "Effect GH",
     tags: ["CLI", "Git", "SDK"],
     stack: ["TypeScript", "Effect"],
