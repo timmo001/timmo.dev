@@ -1,24 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    "helpers:pinGitHubActionDigests",
-    "group:monorepos",
-    "group:recommended"
-  ],
-  "dependencyDashboard": true,
-  "labels": ["dependencies"],
-  "minimumReleaseAge": "2 days",
-  "packageRules": [
-    {
-      "description": "Update first-party workflows without a release delay.",
-      "matchPackageNames": ["timmo001/workflows"],
-      "minimumReleaseAge": null
-    },
-    {
-      "description": "Group GitHub Actions.",
-      "groupName": "github actions",
-      "matchManagers": ["github-actions"]
-    }
-  ]
+  "extends": ["github>timmo001/renovate-config"]
 }
