@@ -24,6 +24,7 @@ const { tags, stack } = Astro.props;
 
 function toChip(label: string): Chip {
   const { backgroundColor } = getTagStyle(label);
+
   return {
     label,
     value: label.toLowerCase(),

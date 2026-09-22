@@ -13,6 +13,7 @@ import {
 } from "~/types/github/ha-integration";
 
 const DEFAULT_CORE_STACK = ["Python"] as const;
+
 const PREFERRED_CUSTOM_STACK = ["Python", "TypeScript", "JavaScript"];
 
 function compareLastUpdated(
@@ -21,6 +22,7 @@ function compareLastUpdated(
 ): number {
   const leftTime = left ? Date.parse(left) : 0;
   const rightTime = right ? Date.parse(right) : 0;
+
   return rightTime - leftTime;
 }
 
@@ -50,7 +52,10 @@ function stackFromLanguages(languageNames: Array<string>): Array<string> {
   return [...DEFAULT_CORE_STACK];
 }
 
-function defaultDescription(title: string, source: HaIntegrationSource): string {
+function defaultDescription(
+  title: string,
+  source: HaIntegrationSource,
+): string {
   if (source === "core") {
     return `${title} integration for Home Assistant.`;
   }
@@ -67,7 +72,7 @@ function mergeIntegration(
     staticItem?.title ??
     (githubItem?.source === "custom" && githubItem.key
       ? titleFromCustomIntegrationRepo(githubItem.key)
-      : githubItem?.title ?? "");
+      : (githubItem?.title ?? ""));
 
   const href = staticItem?.href ?? githubItem?.href ?? "";
 
@@ -88,9 +93,9 @@ function mergeIntegration(
     tags: staticItem?.tags ?? defaultTags,
     stack:
       staticItem?.stack ??
-      (githubItem ? stackFromLanguages(githubItem.languageNames) : [
-          ...DEFAULT_CORE_STACK,
-        ]),
+      (githubItem
+        ? stackFromLanguages(githubItem.languageNames)
+        : [...DEFAULT_CORE_STACK]),
   };
 }
 
@@ -112,12 +117,14 @@ function buildIntegrationBlock(
 
   for (const [index, item] of staticIntegrations.entries()) {
     const coreDomain = getCoreDomainFromHref(item.href);
+
     if (coreDomain) {
       staticByCoreDomain.set(coreDomain, item);
       staticIndexByKey.set(`core:${coreDomain}`, index);
     }
 
     const customRepo = getCustomIntegrationRepoFromHref(item.href);
+
     if (customRepo) {
       staticByCustomRepo.set(customRepo, item);
       staticIndexByKey.set(`custom:${customRepo}`, index);
@@ -140,10 +147,12 @@ function buildIntegrationBlock(
   const entries: Array<IntegrationEntry> = [];
 
   for (const compositeKey of keys) {
+    // SAFETY: Every key above has a core/custom prefix followed by a domain or repository name.
     const [source, key] = compositeKey.split(":") as [
       HaIntegrationSource,
       string,
     ];
+
     const githubItem = githubByKey.get(compositeKey);
 
     if (githubItem?.isArchived) {
@@ -151,6 +160,7 @@ function buildIntegrationBlock(
         source === "core"
           ? staticByCoreDomain.has(key)
           : staticByCustomRepo.has(key);
+
       if (!hasStatic) {
         continue;
       }
@@ -166,7 +176,8 @@ function buildIntegrationBlock(
       source,
       item: mergeIntegration(source, staticItem, githubItem),
       lastUpdatedAt: githubItem?.lastUpdatedAt ?? null,
-      staticIndex: staticIndexByKey.get(compositeKey) ?? Number.MAX_SAFE_INTEGER,
+      staticIndex:
+        staticIndexByKey.get(compositeKey) ?? Number.MAX_SAFE_INTEGER,
     });
   }
 
@@ -175,6 +186,7 @@ function buildIntegrationBlock(
       const weightDiff =
         getIntegrationSortWeight(left.item) -
         getIntegrationSortWeight(right.item);
+
       if (weightDiff !== 0) {
         return weightDiff;
       }
@@ -183,6 +195,7 @@ function buildIntegrationBlock(
         left.lastUpdatedAt,
         right.lastUpdatedAt,
       );
+
       if (dateDiff !== 0) {
         return dateDiff;
       }
@@ -199,6 +212,7 @@ export async function mergeIntegrationsWithGitHub(
   integrationsSynced: boolean;
 }> {
   const fetchResult = await fetchHaIntegrationsFromGitHub();
+
   const integrations = buildIntegrationBlock(
     staticIntegrations,
     fetchResult?.integrations ?? [],

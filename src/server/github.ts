@@ -8,6 +8,7 @@ async function queryGitHub<T>(
   variables: Record<string, string>,
 ): Promise<T> {
   const token = getEnv().GITHUB_TOKEN;
+
   if (!token) {
     throw new Error("GITHUB_TOKEN is not configured");
   }
@@ -23,10 +24,12 @@ async function queryGitHub<T>(
     },
     body: JSON.stringify({ query, variables }),
   });
+
   const result = await response.json<{
     data?: T;
     errors?: Array<{ message: string }>;
   }>();
+
   if (!response.ok || result.errors || !result.data) {
     throw new Error(
       result.errors?.map(({ message }) => message).join("; ") ||
@@ -107,10 +110,12 @@ type LanguageData = {
 };
 
 const userCache = new Map<string, CacheEntry>();
+
 const profileCache = new Map<
   string,
   { value: ProfileStats; expiresAt: number }
 >();
+
 const currentActivityCache = new Map<
   string,
   { value: CurrentActivity; expiresAt: number }
@@ -120,12 +125,14 @@ export async function getCurrentActivity(
   user: string,
 ): Promise<CurrentActivity> {
   const cached = currentActivityCache.get(user);
+
   if (cached && isCacheValid(cached.expiresAt)) {
     return cached.value;
   }
 
   const to = new Date();
   const from = new Date(to.getTime() - 60 * 24 * 60 * 60 * 1000);
+
   const query = `query ($login: String!, $from: DateTime!, $to: DateTime!) {
   user(login: $login) {
     contributionsCollection(from: $from, to: $to) {
@@ -181,7 +188,9 @@ export async function getCurrentActivity(
     }
   }
 }`;
+
   let result: CurrentActivityData;
+
   try {
     result = await queryGitHub<CurrentActivityData>(query, {
       login: user,
@@ -191,10 +200,13 @@ export async function getCurrentActivity(
   } catch (error) {
     if (cached) {
       console.error(error);
+
       return cached.value;
     }
+
     throw error;
   }
+
   const repositories = new Map<string, CurrentActivityItem>();
 
   const addContributions = (
@@ -215,6 +227,7 @@ export async function getCurrentActivity(
       const latestActivityAt = new Date(
         contribution.contributions.nodes[0]?.occurredAt ?? from,
       );
+
       const item = repositories.get(contribution.repository.url) ?? {
         nameWithOwner: contribution.repository.nameWithOwner,
         url: contribution.repository.url,
@@ -225,6 +238,7 @@ export async function getCurrentActivity(
         score: 0,
         latestActivityAt,
       };
+
       const count =
         kind === "commits"
           ? contribution.contributions.nodes.reduce(
@@ -232,11 +246,14 @@ export async function getCurrentActivity(
               0,
             )
           : contribution.contributions.totalCount;
+
       item[kind] += count;
       item.score += count;
+
       if (latestActivityAt > item.latestActivityAt) {
         item.latestActivityAt = latestActivityAt;
       }
+
       repositories.set(contribution.repository.url, item);
     }
   };
@@ -253,6 +270,7 @@ export async function getCurrentActivity(
   );
 
   const fetchedAt = new Date();
+
   const value = {
     items: [...repositories.values()].toSorted(
       (left, right) =>
@@ -264,21 +282,25 @@ export async function getCurrentActivity(
     to,
     fetchedAt,
   };
+
   currentActivityCache.set(user, {
     value,
     expiresAt: addCacheExpiry(fetchedAt.getTime(), STATS_CACHE_TTL_MS),
   });
+
   return value;
 }
 
 export async function getUserData(user: string): Promise<UserDataResult> {
   const cached = userCache.get(user);
+
   if (cached && isCacheValid(cached.expiresAt)) {
     return {
       user: cached.value.user,
       fetchedAt: new Date(cached.fetchedAt),
     };
   }
+
   const query = `query ($login: String!) {
   user(login: $login) {
     followers {
@@ -330,9 +352,11 @@ export async function getUserData(user: string): Promise<UserDataResult> {
 
   try {
     const result = await queryGitHub<User>(query, { login: user });
+
     const languageData = await queryGitHub<LanguageData>(languageQuery, {
       login: user,
     });
+
     result.user.repositories.nodes = languageData.user.repositories.nodes;
 
     const fetchedAt = Date.now();
@@ -357,11 +381,13 @@ export async function getUserData(user: string): Promise<UserDataResult> {
 
 export async function getProfileStats(user: string): Promise<ProfileStats> {
   const cached = profileCache.get(user);
+
   if (cached && isCacheValid(cached.expiresAt)) {
     return cached.value;
   }
 
   const token = getEnv().GITHUB_TOKEN;
+
   if (!token) {
     throw new Error("GITHUB_TOKEN is not configured");
   }
@@ -372,13 +398,17 @@ export async function getProfileStats(user: string): Promise<ProfileStats> {
     "User-Agent": "timmo.dev",
     "X-GitHub-Api-Version": "2022-11-28",
   };
+
   const requestJson = async <T>(url: string): Promise<T> => {
     const response = await fetch(url, { headers });
+
     if (!response.ok) {
       throw new Error(`GitHub REST request failed with ${response.status}`);
     }
+
     return response.json<T>();
   };
+
   const [profile, repositories, commits, pullRequests, issues] =
     await Promise.all([
       requestJson<{ public_repos: number; followers: number }>(
@@ -397,6 +427,7 @@ export async function getProfileStats(user: string): Promise<ProfileStats> {
         `https://api.github.com/search/issues?per_page=1&q=author:${encodeURIComponent(user)}+type:issue`,
       ),
     ]);
+
   const value = {
     totalStars: repositories.reduce(
       (total, repository) => total + repository.stargazers_count,
@@ -408,9 +439,11 @@ export async function getProfileStats(user: string): Promise<ProfileStats> {
     publicRepositories: profile.public_repos,
     followers: profile.followers,
   };
+
   profileCache.set(user, {
     value,
     expiresAt: addCacheExpiry(Date.now(), STATS_CACHE_TTL_MS),
   });
+
   return value;
 }

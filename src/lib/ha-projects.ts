@@ -52,6 +52,7 @@ function compareLastUpdated(
 ): number {
   const leftTime = left ? Date.parse(left) : 0;
   const rightTime = right ? Date.parse(right) : 0;
+
   return rightTime - leftTime;
 }
 
@@ -72,6 +73,7 @@ function buildHaProjectBlock(
 
   for (const [index, item] of haStatic.entries()) {
     const repoName = getRepoNameFromHref(item.href);
+
     if (repoName) {
       staticByRepo.set(repoName, item);
       staticIndexByRepo.set(repoName, index);
@@ -88,11 +90,13 @@ function buildHaProjectBlock(
 
   for (const repoName of repoNames) {
     const kind = getHaProjectKind(repoName);
+
     if (!kind) {
       continue;
     }
 
     const githubItem = githubByRepo.get(repoName);
+
     if (githubItem?.isArchived && !staticByRepo.has(repoName)) {
       continue;
     }
@@ -115,6 +119,7 @@ function buildHaProjectBlock(
     .toSorted((left, right) => {
       const kindDiff =
         HA_PROJECT_KIND_ORDER[left.kind] - HA_PROJECT_KIND_ORDER[right.kind];
+
       if (kindDiff !== 0) {
         return kindDiff;
       }
@@ -123,6 +128,7 @@ function buildHaProjectBlock(
         left.lastUpdatedAt,
         right.lastUpdatedAt,
       );
+
       if (dateDiff !== 0) {
         return dateDiff;
       }
@@ -140,9 +146,11 @@ export async function mergeProjectsWithHaGitHub(
   haGitHubSynced: boolean;
 }> {
   const haStatic = staticProjects.filter(isHaProjectNavItem);
+
   const haExtras = staticProjects.filter(
     (item) => isHaSubsectionItem(item) && !isHaProjectNavItem(item),
   );
+
   const projects = staticProjects.filter((item) => !isHaSubsectionItem(item));
 
   const githubProjects = await fetchHaProjectsFromGitHub();

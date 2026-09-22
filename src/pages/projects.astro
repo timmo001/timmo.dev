@@ -36,6 +36,7 @@ function dedupeByHref(items: Array<NavItem>): Array<NavItem> {
     }
 
     seen.add(item.href);
+
     return true;
   });
 }
@@ -44,6 +45,7 @@ function isHomeAssistantOrgContribution(item: NavItem): boolean {
   try {
     const { hostname, pathname } = new URL(item.githubHref ?? item.href);
     const [owner] = pathname.split("/").filter(Boolean);
+
     return hostname === "github.com" && owner === "home-assistant";
   } catch {
     return false;
@@ -51,12 +53,14 @@ function isHomeAssistantOrgContribution(item: NavItem): boolean {
 }
 
 const haOrgContributions = contributions.filter(isHomeAssistantOrgContribution);
+
 const staticIntegrations = contributions.filter(
   (item) => !isHomeAssistantOrgContribution(item),
 );
 
 const { integrations: rawIntegrationItems, integrationsSynced } =
   await mergeIntegrationsWithGitHub(staticIntegrations);
+
 const integrationItems = sortArchivedLast(rawIntegrationItems);
 
 const leadingHaItems = sortArchivedLast(
@@ -73,6 +77,7 @@ const homeAssistantHrefs = new Set(
     (item) => item.href,
   ),
 );
+
 const contributionHrefs = new Set(contributions.map((item) => item.href));
 
 const activeProjects = sortArchivedLast(
@@ -99,6 +104,7 @@ const filterTags = sortTags([
 ]).toSorted(
   (left, right) => Number(left === "Archive") - Number(right === "Archive"),
 );
+
 const filterStack = sortStack([
   ...new Set(filterableItems.flatMap((item) => item.stack ?? [])),
 ]);
@@ -321,5 +327,6 @@ const filterStack = sortStack([
   import { initProjectFilter } from "~/scripts/project-filter";
 
   initProjectFilter();
+
   document.addEventListener("astro:page-load", initProjectFilter);
 </script>

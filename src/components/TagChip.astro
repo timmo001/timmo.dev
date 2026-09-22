@@ -7,7 +7,9 @@ type Props = {
 };
 
 const { label } = Astro.props;
+
 const { backgroundColor } = getTagStyle(label);
+
 const textColor = getContrastColor(getRGBColorFromHex(backgroundColor));
 ---
 

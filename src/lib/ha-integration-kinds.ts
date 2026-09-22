@@ -16,6 +16,7 @@ export function isCustomIntegrationRepo(repoName: string): boolean {
 export function getCoreDomainFromHref(href: string): string | null {
   try {
     const match = new URL(href).pathname.match(/\/integrations\/([^/]+)\/?$/);
+
     return match?.[1] ?? null;
   } catch {
     return null;
@@ -25,9 +26,11 @@ export function getCoreDomainFromHref(href: string): string | null {
 export function getCustomIntegrationRepoFromHref(href: string): string | null {
   try {
     const repoName = new URL(href).pathname.split("/").filter(Boolean).at(-1);
+
     if (!repoName || !isCustomIntegrationRepo(repoName)) {
       return null;
     }
+
     return repoName;
   } catch {
     return null;

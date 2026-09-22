@@ -81,6 +81,7 @@ function isTimmoCodeowner(
   username: string,
 ): boolean {
   const handle = `@${username.toLowerCase()}`;
+
   return codeowners?.some((owner) => owner.toLowerCase() === handle) ?? false;
 }
 
@@ -88,13 +89,16 @@ function getLastUpdatedAt(
   repo: HaIntegrationsQueryResult["user"]["repositories"]["nodes"][number],
 ): string | null {
   const releaseDate = repo.releases.nodes[0]?.publishedAt;
+
   if (releaseDate) {
     return releaseDate;
   }
 
   const tagTarget = repo.tagRefs.nodes[0]?.target;
+
   const tagDate =
     tagTarget?.committedDate ?? tagTarget?.target?.committedDate ?? null;
+
   if (tagDate) {
     return tagDate;
   }
@@ -116,6 +120,7 @@ async function fetchCoreIntegrationDomains(
     const match = item.path.match(
       /^homeassistant\/components\/([^/]+)\/manifest\.json$/,
     );
+
     if (match?.[1]) {
       domains.add(match[1]);
     }
@@ -128,13 +133,15 @@ async function fetchCoreManifest(
   domain: string,
   username: string,
 ): Promise<HaCoreManifest | null> {
-  const response = await fetch(`${HA_CORE_MANIFEST_BASE}/${domain}/manifest.json`);
+  const response = await fetch(
+    `${HA_CORE_MANIFEST_BASE}/${domain}/manifest.json`,
+  );
 
   if (!response.ok) {
     return null;
   }
 
-  const manifest = (await response.json()) as HaCoreManifest;
+  const manifest = await response.json<HaCoreManifest>();
 
   if (!isTimmoCodeowner(manifest.codeowners, username)) {
     return null;
@@ -148,6 +155,7 @@ async function fetchCoreIntegrations(
   username: string,
 ): Promise<Array<GitHubHaIntegration>> {
   const domains = await fetchCoreIntegrationDomains(octokit);
+
   const manifests = await Promise.all(
     domains.map((domain) => fetchCoreManifest(domain, username)),
   );
@@ -198,18 +206,22 @@ async function fetchCustomIntegrations(
 
   return result.user.repositories.nodes
     .map(mapCustomIntegrationRepo)
-    .filter((integration): integration is GitHubHaIntegration => integration !== null);
+    .filter(
+      (integration): integration is GitHubHaIntegration => integration !== null,
+    );
 }
 
 export async function fetchHaIntegrationsFromGitHub(): Promise<HaIntegrationsFetchResult | null> {
   const env = getEnv();
   const token = env.GITHUB_TOKEN;
+
   if (!token) {
     return null;
   }
 
   const cacheKey = env.GITHUB_USERNAME;
   const cached = haIntegrationsCache.get(cacheKey);
+
   if (cached && isCacheValid(cached.expiresAt)) {
     return cached.value;
   }
@@ -225,10 +237,7 @@ export async function fetchHaIntegrationsFromGitHub(): Promise<HaIntegrationsFet
     );
     coreSynced = true;
   } catch (error) {
-    console.warn(
-      "Home Assistant core integration sync unavailable.",
-      error,
-    );
+    console.warn("Home Assistant core integration sync unavailable.", error);
   }
 
   try {
@@ -237,10 +246,7 @@ export async function fetchHaIntegrationsFromGitHub(): Promise<HaIntegrationsFet
     );
     customSynced = true;
   } catch (error) {
-    console.warn(
-      "Home Assistant custom integration sync unavailable.",
-      error,
-    );
+    console.warn("Home Assistant custom integration sync unavailable.", error);
   }
 
   if (!coreSynced && !customSynced) {

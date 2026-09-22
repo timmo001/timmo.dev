@@ -57,13 +57,16 @@ function getLastUpdatedAt(
   repo: HaProjectsQueryResult["user"]["repositories"]["nodes"][number],
 ): string | null {
   const releaseDate = repo.releases.nodes[0]?.publishedAt;
+
   if (releaseDate) {
     return releaseDate;
   }
 
   const tagTarget = repo.tagRefs.nodes[0]?.target;
+
   const tagDate =
     tagTarget?.committedDate ?? tagTarget?.target?.committedDate ?? null;
+
   if (tagDate) {
     return tagDate;
   }
@@ -90,12 +93,14 @@ function mapRepoToHaProject(
 export async function fetchHaProjectsFromGitHub(): Promise<Array<GitHubHaProject> | null> {
   const env = getEnv();
   const token = env.GITHUB_TOKEN;
+
   if (!token) {
     return null;
   }
 
   const cacheKey = env.GITHUB_USERNAME;
   const cached = haProjectsCache.get(cacheKey);
+
   if (cached && isCacheValid(cached.expiresAt)) {
     return cached.value;
   }
@@ -123,6 +128,7 @@ export async function fetchHaProjectsFromGitHub(): Promise<Array<GitHubHaProject
       "GitHub HA project sync unavailable; using static project list.",
       error,
     );
+
     return null;
   }
 }

@@ -7,10 +7,13 @@ import { sortTags } from "~/data/tag-sort";
 type Props = NavItem;
 
 const { title, href, description, tags, stack } = Astro.props;
+
 const sortedTags = tags ? sortTags(tags) : undefined;
+
 const sortedStack = stack ? sortStack(stack) : undefined;
 
 const tagsAttr = (tags ?? []).map((tag) => tag.toLowerCase()).join("|");
+
 const stackAttr = (stack ?? []).map((item) => item.toLowerCase()).join("|");
 ---
 

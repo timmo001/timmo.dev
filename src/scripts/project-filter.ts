@@ -22,7 +22,10 @@ function setVisible(element: HTMLElement, visible: boolean): void {
   element.style.display = visible ? "" : "none";
 }
 
-function hasIntersection(values: Array<string>, selected: Set<string>): boolean {
+function hasIntersection(
+  values: Array<string>,
+  selected: Set<string>,
+): boolean {
   if (selected.size === 0) {
     return true;
   }
@@ -43,6 +46,7 @@ function matchesTokenInText(token: string, text: string): boolean {
     `(^|[\\s\\-/])${escapeRegex(normalized)}($|[\\s\\-/]|[^a-z0-9])`,
     "i",
   );
+
   if (boundaryPattern.test(haystack) || boundaryPattern.test(padded)) {
     return true;
   }
@@ -55,6 +59,7 @@ function matchesTokenInText(token: string, text: string): boolean {
     `(^|[\\s\\-/])${escapeRegex(normalized)}[a-z0-9]*`,
     "i",
   );
+
   return prefixPattern.test(haystack) || prefixPattern.test(padded);
 }
 
@@ -64,6 +69,7 @@ function tokenMatchesEntry(
   fuse: Fuse<FilterEntry>,
 ): boolean {
   const normalized = token.toLowerCase();
+
   const fields = [
     entry.title,
     entry.description,
@@ -90,12 +96,16 @@ function titleIncludesToken(title: string, token: string): boolean {
 
 function scoreEntry(entry: FilterEntry, query: string): number {
   const normalizedQuery = query.toLowerCase().trim();
+
   if (normalizedQuery.length === 0) {
     return 0;
   }
 
   const title = entry.title.toLowerCase();
-  const tokens = normalizedQuery.split(/\s+/).filter((token) => token.length > 0);
+
+  const tokens = normalizedQuery
+    .split(/\s+/)
+    .filter((token) => token.length > 0);
 
   if (title === normalizedQuery) {
     return 1000;
@@ -149,9 +159,11 @@ function reorderGroup(
   entryByElement: Map<HTMLElement, FilterEntry>,
 ): void {
   const grid = getGroupGrid(group);
+
   const cards = Array.from(
     group.querySelectorAll<HTMLElement>("[data-work-item]"),
   );
+
   const visible = cards.filter((card) => card.style.display !== "none");
   const hidden = cards.filter((card) => card.style.display === "none");
 
@@ -159,8 +171,11 @@ function reorderGroup(
     if (isSearchActive(query)) {
       const leftEntry = entryByElement.get(left);
       const rightEntry = entryByElement.get(right);
+
       if (leftEntry && rightEntry) {
-        const scoreDiff = scoreEntry(rightEntry, query) - scoreEntry(leftEntry, query);
+        const scoreDiff =
+          scoreEntry(rightEntry, query) - scoreEntry(leftEntry, query);
+
         if (scoreDiff !== 0) {
           return scoreDiff;
         }
@@ -191,48 +206,65 @@ function getSearchMatches(
     return null;
   }
 
-  const tokens = query.trim().split(/\s+/).filter((token) => token.length > 0);
+  const tokens = query
+    .trim()
+    .split(/\s+/)
+    .filter((token) => token.length > 0);
+
   if (tokens.length === 0) {
     return null;
   }
 
   return new Set(
-    entries
-      .filter((entry) =>
-        tokens.every((token) => tokenMatchesEntry(entry, token, fuse)),
-      )
-      .map((entry) => entry.element),
+    entries.flatMap((entry) =>
+      tokens.every((token) => tokenMatchesEntry(entry, token, fuse))
+        ? [entry.element]
+        : [],
+    ),
   );
 }
 
 export function initProjectFilter(): void {
   const root = document.querySelector<HTMLElement>("[data-project-filters]");
+
   if (!root || root.dataset.filterInit === "true") {
     return;
   }
+
   root.dataset.filterInit = "true";
 
-  const searchInput = root.querySelector<HTMLInputElement>("[data-filter-search]");
+  const searchInput = root.querySelector<HTMLInputElement>(
+    "[data-filter-search]",
+  );
+
   const searchClearButton = root.querySelector<HTMLButtonElement>(
     "[data-filter-search-clear]",
   );
+
   const tagButtons = Array.from(
     root.querySelectorAll<HTMLButtonElement>("[data-filter-tag]"),
   );
+
   const stackButtons = Array.from(
     root.querySelectorAll<HTMLButtonElement>("[data-filter-stack]"),
   );
-  const pickers = Array.from(root.querySelectorAll<HTMLElement>("[data-picker]"));
+
+  const pickers = Array.from(
+    root.querySelectorAll<HTMLElement>("[data-picker]"),
+  );
 
   const cards = Array.from(
     document.querySelectorAll<HTMLElement>("[data-work-item]"),
   );
+
   const groups = Array.from(
     document.querySelectorAll<HTMLElement>("[data-filter-group]"),
   );
+
   const sections = Array.from(
     document.querySelectorAll<HTMLElement>("[data-filter-section]"),
   );
+
   const emptyState = document.querySelector<HTMLElement>("[data-filter-empty]");
 
   const entries: Array<FilterEntry> = cards.map((element) => ({
@@ -242,6 +274,7 @@ export function initProjectFilter(): void {
     tags: splitAttr(element.dataset.tags ?? null),
     stack: splitAttr(element.dataset.stack ?? null),
   }));
+
   const entryByElement = new Map(
     entries.map((entry) => [entry.element, entry]),
   );
@@ -273,10 +306,10 @@ export function initProjectFilter(): void {
 
   function updatePickerCounts(): void {
     for (const picker of pickers) {
-      const count = picker.querySelectorAll(
-        '[aria-pressed="true"]',
-      ).length;
+      const count = picker.querySelectorAll('[aria-pressed="true"]').length;
+
       const badge = picker.querySelector<HTMLElement>("[data-picker-count]");
+
       if (badge) {
         badge.textContent = String(count);
         badge.classList.toggle("hidden", count === 0);
@@ -293,6 +326,7 @@ export function initProjectFilter(): void {
       const clearButton = picker.querySelector<HTMLButtonElement>(
         "[data-picker-clear]",
       );
+
       const count = picker.querySelectorAll('[aria-pressed="true"]').length;
       clearButton?.classList.toggle("hidden", count === 0);
     }
@@ -304,7 +338,9 @@ export function initProjectFilter(): void {
     const searchMatches = getSearchMatches(query, entries, fuse);
 
     for (const entry of entries) {
-      const searchPass = searchMatches === null || searchMatches.has(entry.element);
+      const searchPass =
+        searchMatches === null || searchMatches.has(entry.element);
+
       const tagPass = hasIntersection(entry.tags, selectedTags);
       const stackPass = hasIntersection(entry.stack, selectedStack);
       setVisible(entry.element, searchPass && tagPass && stackPass);
@@ -320,7 +356,9 @@ export function initProjectFilter(): void {
       const groupVisible = Array.from(
         group.querySelectorAll<HTMLElement>("[data-work-item]"),
       ).some((card) => card.style.display !== "none");
+
       setVisible(group, groupVisible);
+
       if (groupVisible) {
         visibleCount += 1;
       }
@@ -330,6 +368,7 @@ export function initProjectFilter(): void {
       const sectionVisible = Array.from(
         section.querySelectorAll<HTMLElement>("[data-filter-group]"),
       ).some((group) => group.style.display !== "none");
+
       setVisible(section, sectionVisible);
     }
 
@@ -350,9 +389,11 @@ export function initProjectFilter(): void {
     const selected = isTagPicker ? selectedTags : selectedStack;
 
     selected.clear();
+
     for (const button of buttons) {
       button.setAttribute("aria-pressed", "false");
     }
+
     applyFilters();
   }
 
@@ -368,11 +409,15 @@ export function initProjectFilter(): void {
       selected.add(value);
       button.setAttribute("aria-pressed", "true");
     }
+
     applyFilters();
   }
 
   function setPickerOpen(picker: HTMLElement, open: boolean): void {
-    const trigger = picker.querySelector<HTMLButtonElement>("[data-picker-trigger]");
+    const trigger = picker.querySelector<HTMLButtonElement>(
+      "[data-picker-trigger]",
+    );
+
     const panel = picker.querySelector<HTMLElement>("[data-picker-panel]");
     trigger?.setAttribute("aria-expanded", String(open));
     panel?.classList.toggle("hidden", !open);
@@ -384,17 +429,26 @@ export function initProjectFilter(): void {
       if (picker === except) {
         continue;
       }
+
       setPickerOpen(picker, false);
     }
   }
 
   for (const picker of pickers) {
     const pickerKey = picker.dataset.picker ?? "";
+
     const clearButton = picker.querySelector<HTMLButtonElement>(
       "[data-picker-clear]",
     );
-    const trigger = picker.querySelector<HTMLButtonElement>("[data-picker-trigger]");
-    const pickerSearch = picker.querySelector<HTMLInputElement>("[data-picker-search]");
+
+    const trigger = picker.querySelector<HTMLButtonElement>(
+      "[data-picker-trigger]",
+    );
+
+    const pickerSearch = picker.querySelector<HTMLInputElement>(
+      "[data-picker-search]",
+    );
+
     const options = Array.from(
       picker.querySelectorAll<HTMLElement>("[data-picker-option]"),
     );
@@ -405,6 +459,7 @@ export function initProjectFilter(): void {
       closeAllPickers(picker);
       const nextOpen = !isOpen;
       setPickerOpen(picker, nextOpen);
+
       if (nextOpen) {
         pickerSearch?.focus();
       }
@@ -412,6 +467,7 @@ export function initProjectFilter(): void {
 
     pickerSearch?.addEventListener("input", () => {
       const query = pickerSearch.value.trim().toLowerCase();
+
       for (const option of options) {
         const label = option.dataset.label ?? "";
         setVisible(option, query.length === 0 || label.includes(query));
@@ -426,6 +482,7 @@ export function initProjectFilter(): void {
 
   document.addEventListener("click", (event) => {
     const target = event.target;
+
     if (target instanceof Node && !root.contains(target)) {
       closeAllPickers();
     }
@@ -441,9 +498,11 @@ export function initProjectFilter(): void {
 
   searchClearButton?.addEventListener("click", (event) => {
     event.stopPropagation();
+
     if (searchInput) {
       searchInput.value = "";
     }
+
     applyFilters();
   });
 

@@ -15,6 +15,7 @@ export const GET = (async () => {
 
   try {
     const { user } = await getUserData(username);
+
     return svgResponse(renderLanguagesCard(username, getTopLanguages(user)));
   } catch {
     return svgResponse(renderErrorCard("Top Languages"), 60);

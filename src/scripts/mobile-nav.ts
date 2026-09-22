@@ -12,6 +12,7 @@ export function initMobileNav(): void {
   const button = document.querySelector<HTMLButtonElement>(
     "[data-mobile-nav-toggle]",
   );
+
   const panel = document.querySelector<HTMLElement>("[data-mobile-nav-panel]");
 
   if (!button || !panel) {

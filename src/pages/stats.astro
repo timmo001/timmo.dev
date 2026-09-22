@@ -8,11 +8,14 @@ import { STATS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
 import { getProfileStats, getUserData } from "~/server/github";
 
 const username = getUsername();
+
 const [{ user, fetchedAt }, profileStats] = await Promise.all([
   getUserData(username),
   getProfileStats(username),
 ]);
+
 const formatNumber = (value: number) => value.toLocaleString("en-GB");
+
 const githubStats = [
   {
     key: "contributions",
@@ -52,6 +55,7 @@ const githubStats = [
     secondaryValue: `(${formatNumber(user.following.totalCount)} following)`,
   },
 ];
+
 const githubTopLanguages = getTopLanguages(user);
 
 Astro.response.headers.set(
@@ -80,9 +84,11 @@ Astro.response.headers.set(
   }
 
   scheduleFormatCacheTimes();
+
   document.addEventListener("astro:page-load", scheduleFormatCacheTimes);
 
   const main = document.querySelector("main");
+
   if (main) {
     new MutationObserver(scheduleFormatCacheTimes).observe(main, {
       childList: true,

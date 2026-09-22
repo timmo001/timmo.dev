@@ -23,30 +23,22 @@ const { githubStats, githubTopLanguages, fetchedAt } = Astro.props;
 >
   <div class="container flex w-full flex-col items-center gap-16 text-center">
     <section class="w-full max-w-6xl">
-      <div
-        class="stagger-stats grid w-full grid-cols-[repeat(2,auto)] justify-around gap-y-12 leading-snug tracking-tight sm:grid-cols-[repeat(3,auto)]"
-      >
+      <div class="stagger-stats grid w-full grid-cols-[repeat(2,auto)] justify-around gap-y-12 leading-snug tracking-tight sm:grid-cols-[repeat(3,auto)]">
         <GitHubStats stats={githubStats} />
       </div>
     </section>
 
     <section class="w-full max-w-6xl">
-      <h3
-        class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white"
-      >
+      <h3 class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white">
         Top Languages
       </h3>
-      <div
-        class="grid grid-cols-3 gap-4 leading-snug tracking-tight sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6"
-      >
+      <div class="grid grid-cols-3 gap-4 leading-snug tracking-tight sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
         <TopLanguages languages={githubTopLanguages} />
       </div>
     </section>
 
     <section>
-      <h3
-        class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white"
-      >
+      <h3 class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white">
         Contribution Graph
       </h3>
       <div class="reveal">
@@ -56,7 +48,8 @@ const { githubStats, githubTopLanguages, fetchedAt } = Astro.props;
           loading="lazy"
           height="120"
           width="670"
-          style="border: 0; background: transparent !important"></iframe>
+          style="border: 0; background: transparent !important"
+        ></iframe>
       </div>
     </section>
   </div>
@@ -72,6 +65,7 @@ const { githubStats, githubTopLanguages, fetchedAt } = Astro.props;
     </time>
   </p>
   <p class="max-w-md text-xs leading-snug text-muted-foreground/70">
-    Cached for {STATS_CACHE_TTL_LABEL} across GraphQL, server memory, and the CDN.
+    Cached for {STATS_CACHE_TTL_LABEL} across GraphQL, server memory, and the
+    CDN.
   </p>
 </section>

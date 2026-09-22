@@ -16,6 +16,7 @@ const catalogue = new Map(
     item,
   ]),
 );
+
 let activity: Awaited<ReturnType<typeof getCurrentActivity>> | undefined;
 
 try {
@@ -38,14 +39,17 @@ const formatDate = (date: Date) =>
     year: "numeric",
     timeZone: "UTC",
   }).format(date);
+
 const formatTimestamp = (date: Date) =>
   new Intl.DateTimeFormat("en-GB", {
     dateStyle: "long",
     timeStyle: "short",
     timeZone: "UTC",
   }).format(date);
+
 const displayItems = (activity?.items ?? []).map((item) => {
   const knownItem = catalogue.get(item.url);
+
   return {
     ...item,
     knownItem,
@@ -59,7 +63,9 @@ const displayItems = (activity?.items ?? []).map((item) => {
       "Recent public work on GitHub.",
   };
 });
+
 const knownActivity = displayItems.filter(({ knownItem }) => knownItem);
+
 const prioritisedActivity = [
   ...knownActivity.slice(0, 6),
   ...displayItems.filter((item) => !knownActivity.slice(0, 6).includes(item)),
@@ -148,6 +154,7 @@ const prioritisedActivity = [
     const button = document.querySelector<HTMLButtonElement>(
       "[data-load-more-activity]",
     );
+
     if (!button || button.dataset.initialized) return;
 
     button.dataset.initialized = "true";
@@ -157,11 +164,13 @@ const prioritisedActivity = [
           "[data-activity-item][hidden]",
         ),
       ];
+
       hiddenItems.slice(0, 6).forEach((item) => item.removeAttribute("hidden"));
       button.hidden = hiddenItems.length <= 6;
     });
   };
 
   initActivityLoadMore();
+
   document.addEventListener("astro:page-load", initActivityLoadMore);
 </script>

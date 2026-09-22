@@ -4,7 +4,9 @@ import type { Language } from "~/types/github/language";
 
 const FONT_FAMILY =
   "system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif";
+
 const CARD_WIDTH = 700;
+
 const CARD_HEIGHT = 200;
 
 const STAT_ICONS = {
@@ -22,6 +24,7 @@ const STAT_ICONS = {
 } as const;
 
 type StatIcon = keyof typeof STAT_ICONS;
+
 type StatItem = readonly [label: string, value: number, icon: StatIcon];
 
 function escapeXml(value: string): string {
@@ -73,6 +76,7 @@ function renderStatGrid(
     .map(([label, value, icon], index) => {
       const x = startX + (index % columns) * columnWidth;
       const y = startY + Math.floor(index / columns) * rowHeight;
+
       return `<svg class="icon" x="${x}" y="${y + 7}" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">${STAT_ICONS[icon]}</svg>
       <text class="label" x="${x + 40}" y="${y + 12}">${escapeXml(label)}</text>
       <text class="value" x="${x + 40}" y="${y + 35}">${value.toLocaleString("en-GB")}</text>`;
@@ -91,10 +95,12 @@ function renderLanguageItems(
   pillWidth: number,
 ): string {
   const displayedLanguages = languages.slice(0, limit);
+
   const totalSize = displayedLanguages.reduce(
     (total, language) => total + language.size,
     0,
   );
+
   const rows = Math.ceil(displayedLanguages.length / columns);
 
   return displayedLanguages
@@ -104,8 +110,10 @@ function renderLanguageItems(
       const x = startX + column * columnWidth + columnWidth / 2;
       const y = startY + row * rowHeight;
       const color = escapeXml(language.color || "#9ca3af");
+
       const percentage =
         totalSize === 0 ? 0 : (language.size / totalSize) * 100;
+
       return `<circle cx="${x - pillWidth / 2 + 5}" cy="${y + 12}" r="5" fill="${color}"/>
       <text class="language" x="${x - pillWidth / 2 + 16}" y="${y + 16}">${escapeXml(language.name)}</text>
       <text class="percentage" x="${x + pillWidth / 2}" y="${y + 16}" text-anchor="end">${percentage.toFixed(1)}%</text>`;

@@ -1,4 +1,5 @@
 const LANGUAGE_SORT_WEIGHT = 0;
+
 const FRAMEWORK_SORT_WEIGHT = 1;
 
 const languageLabels = new Set([
@@ -23,6 +24,7 @@ function getStackSortWeight(label: string): number {
 export function sortStack(items: Array<string>): Array<string> {
   return items.toSorted((a, b) => {
     const weightDiff = getStackSortWeight(a) - getStackSortWeight(b);
+
     if (weightDiff !== 0) {
       return weightDiff;
     }
