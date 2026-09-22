@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@12.5.1",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -15,25 +16,30 @@
     "deploy:dry-run": "pnpm build && wrangler deploy --dry-run",
     "deploy:preview": "wrangler versions upload",
     "typecheck": "astro check",
-    "format": "prettier --plugin=prettier-plugin-astro --check package.json astro.config.mjs wrangler.jsonc README.md AGENTS.md pnpm-workspace.yaml src/env.ts src/layouts/Layout.astro src/components/StatsContent.astro",
+    "lint": "oxlint src redirect-worker astro.config.mjs oxlint.config.ts --deny-warnings",
+    "format": "prettier --plugin=prettier-plugin-astro --check package.json astro.config.mjs oxlint.config.ts tsconfig.json .github/workflows/lint.yml wrangler.jsonc README.md AGENTS.md pnpm-workspace.yaml src/types/oxlint-rules.d.ts src/env.ts src/layouts/Layout.astro src/components/StatsContent.astro",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^14.1.3",
-    "@astrojs/sitemap": "^3.7.3",
-    "@tailwindcss/vite": "^4.3.2",
-    "astro": "^7.2.8",
+    "@astrojs/cloudflare": "^14.3.2",
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.3",
     "date-fns": "^4.4.0",
-    "fuse.js": "^7.4.2",
+    "fuse.js": "^7.5.0",
     "octokit": "^5.0.5",
-    "tailwindcss": "^4.3.2",
-    "zod": "^4.4.3"
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.6",
-    "prettier": "^3.6.2",
-    "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.9.3",
-    "wrangler": "^4.111.0"
+    "@astrojs/check": "^0.9.10",
+    "@oxlint/plugins": "1.83.0",
+    "@timmo001/oxlint-rules": "0.3.5",
+    "oxlint": "1.83.0",
+    "oxlint-tsgolint": "7.0.2002",
+    "prettier": "^3.9.8",
+    "prettier-plugin-astro": "^1.0.1",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.136.1"
   }
 }

@@ -1,0 +1,21 @@
+[tools]
+node = "26.9.0"
+"npm:pnpm" = "12.5.1"
+
+[tasks.lint]
+run = "pnpm lint"
+
+[tasks.typecheck]
+run = "pnpm typecheck"
+
+[tasks.format]
+run = "pnpm format"
+
+[tasks.check]
+depends = ["lint", "typecheck", "format"]
+
+[tasks.build]
+run = "pnpm build"
+
+[tasks."deploy:dry-run"]
+run = "pnpm deploy:dry-run"

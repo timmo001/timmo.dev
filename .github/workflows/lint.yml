@@ -18,6 +18,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: jdx/mise-action@v4
+      - run: pnpm install --frozen-lockfile
+      - run: mise run check
+      - run: mise run deploy:dry-run
   lint-markdown-links:
     uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@master
   lint-markdownlint:

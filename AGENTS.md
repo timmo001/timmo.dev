@@ -4,6 +4,7 @@
 
 - Single-package Astro 7 site using pnpm; `pnpm-lock.yaml` is the package-manager source of truth.
 - Requires Node `>=22.12.0` from `package.json#engines`.
+- `mise.toml` pins Node and pnpm for local checks and CI; `package.json#packageManager` pins the same pnpm version.
 - Astro pages live in `src/pages`; shared layout is `src/layouts/Layout.astro`; global Tailwind v4 theme, custom utilities, font face, and motion live in `src/styles/global.css`.
 - Use the `~/*` import alias for `src/*`; it is configured in both `tsconfig.json` and `astro.config.mjs`.
 
@@ -16,12 +17,15 @@
 - Deploy from Cloudflare Builds: `pnpm deploy:cloudflare`.
 - Upload a preview version from Cloudflare Builds: `pnpm deploy:preview`.
 - Typecheck: `pnpm typecheck`.
+- Lint: `pnpm lint` (type-aware Oxlint and the shared Timmo recommended rules).
 - Format check: `pnpm format`.
+- Run lint, typecheck and format together: `mise run check`.
 - Validate the Worker bundle without deploying: `pnpm deploy:dry-run`.
 
 ## Astro Guidance
 
 - Use the Astro MCP/docs tool for Astro framework questions or API details before relying on memory or generic web searches.
+- Keep `astro check` for `.astro` and TypeScript diagnostics. TypeScript 7 is blocked by Astro's dependency on the old compiler API: https://github.com/withastro/roadmap/discussions/1321. Oxlint's type-aware engine does not replace these checks.
 
 ## Runtime And Environment
 

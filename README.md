@@ -12,9 +12,22 @@ Personal website for Aidan Timson (Timmo), built with [Astro](https://astro.buil
 ## Development
 
 ```sh
+mise install
 pnpm install
 pnpm dev
 ```
+
+Node and pnpm are pinned in `mise.toml`. Run the local and CI checks with:
+
+```sh
+mise run check
+mise run deploy:dry-run
+```
+
+Oxlint checks maintained source and tooling with type-aware rules and the shared
+Timmo recommended config. `astro check` checks TypeScript and `.astro` files.
+TypeScript uses 6.0 until Astro supports the TypeScript 7 compiler API;
+see [Astro's tracking discussion](https://github.com/withastro/roadmap/discussions/1321).
 
 ## Environment
 
