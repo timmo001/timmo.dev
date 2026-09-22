@@ -1,6 +1,6 @@
 [tools]
 node = "26.9.0"
-"npm:pnpm" = "12.5.1"
+"aqua:pnpm/pnpm" = "12.5.1"
 
 [tasks.lint]
 run = "pnpm lint"
