@@ -25,7 +25,7 @@
 ## Astro Guidance
 
 - Use the Astro MCP/docs tool for Astro framework questions or API details before relying on memory or generic web searches.
-- Keep `astro check` for `.astro` and TypeScript diagnostics. TypeScript 7 is blocked by Astro's dependency on the old compiler API: https://github.com/withastro/roadmap/discussions/1321. Oxlint's type-aware engine does not replace these checks.
+- Keep `astro check` for `.astro` and TypeScript diagnostics. TypeScript 7 is blocked by Astro's dependency on the old compiler API; see [Astro's tracking discussion](https://github.com/withastro/roadmap/discussions/1321). Oxlint's type-aware engine does not replace these checks.
 
 ## Runtime And Environment
 
