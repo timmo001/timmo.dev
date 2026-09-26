@@ -29,8 +29,8 @@ jobs:
       - run: mise run check
       - run: mise run deploy:dry-run
   lint-markdown-links:
-    uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@414d822006b46f7d5f2b4d2b6fda12807994c212 # master
+    uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@209ae577fdf6efff60113819532d7c714991a0e0 # master
   lint-markdownlint:
-    uses: timmo001/workflows/.github/workflows/lint-markdownlint.yml@414d822006b46f7d5f2b4d2b6fda12807994c212 # master
+    uses: timmo001/workflows/.github/workflows/lint-markdownlint.yml@209ae577fdf6efff60113819532d7c714991a0e0 # master
   lint-yamllint:
-    uses: timmo001/workflows/.github/workflows/lint-yamllint.yml@414d822006b46f7d5f2b4d2b6fda12807994c212 # master
+    uses: timmo001/workflows/.github/workflows/lint-yamllint.yml@209ae577fdf6efff60113819532d7c714991a0e0 # master
