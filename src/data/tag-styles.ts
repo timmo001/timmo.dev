@@ -185,6 +185,9 @@ const tagStyles = new Map(
     React: {
       backgroundColor: "#087ea4",
     },
+    Renovate: {
+      backgroundColor: "#f9322c",
+    },
     Skills: {
       backgroundColor: "#9333ea",
     },

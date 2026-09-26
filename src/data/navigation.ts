@@ -208,6 +208,14 @@ export const projects: Array<NavItem> = [
       "Shared Oxlint plugins and configs published as @timmo001/oxlint-rules. Bundles unchanged anti-slop rules with additional generic and Effect diagnostics, plus recommended and Effect-specific configs for consumers.",
   },
   {
+    title: "Renovate Config",
+    tags: ["CI/CD", "Renovate"],
+    stack: ["JSON"],
+    href: "https://github.com/timmo001/renovate-config",
+    description:
+      "Shared Renovate dependency policy for my repositories. One-day release delay by default, two hours for Effect and related tooling, no delay for first-party packages, and coordinated Effect, OpenCode, OpenTUI, Lit, and Oxlint groups. Consumers extend github>timmo001/renovate-config.",
+  },
+  {
     title: "Weather",
     tags: ["Forecast", "PWA", "Geolocation"],
     stack: ["TypeScript", "Next.js", "React", "Tailwind"],
