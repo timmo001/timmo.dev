@@ -46,6 +46,7 @@ const tagWeights = new Map(
     "CI/CD": 50,
     "GitHub Actions": 51,
     Linting: 52,
+    Renovate: 53,
   }),
 );
 
