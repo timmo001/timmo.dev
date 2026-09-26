@@ -23,14 +23,14 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
-      - uses: jdx/mise-action@v4
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: jdx/mise-action@c2a87611a18de5b3828c5652fe268e992400cb5c # v4
       - run: pnpm install --frozen-lockfile
       - run: mise run check
       - run: mise run deploy:dry-run
   lint-markdown-links:
-    uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@master
+    uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@22a25f920f0e1d0679340aa5bea0157aff9ea326 # master
   lint-markdownlint:
-    uses: timmo001/workflows/.github/workflows/lint-markdownlint.yml@master
+    uses: timmo001/workflows/.github/workflows/lint-markdownlint.yml@22a25f920f0e1d0679340aa5bea0157aff9ea326 # master
   lint-yamllint:
-    uses: timmo001/workflows/.github/workflows/lint-yamllint.yml@master
+    uses: timmo001/workflows/.github/workflows/lint-yamllint.yml@22a25f920f0e1d0679340aa5bea0157aff9ea326 # master
