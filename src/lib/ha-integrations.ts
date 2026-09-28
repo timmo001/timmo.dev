@@ -147,11 +147,11 @@ function buildIntegrationBlock(
   const entries: Array<IntegrationEntry> = [];
 
   for (const compositeKey of keys) {
-    // SAFETY: Every key above has a core/custom prefix followed by a domain or repository name.
-    const [source, key] = compositeKey.split(":") as [
-      HaIntegrationSource,
-      string,
-    ];
+    const [source, key] = compositeKey.split(":");
+
+    if (source !== "core" && source !== "custom") {
+      continue;
+    }
 
     const githubItem = githubByKey.get(compositeKey);
 
