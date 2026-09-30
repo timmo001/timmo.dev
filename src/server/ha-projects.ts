@@ -115,7 +115,7 @@ export async function fetchHaProjectsFromGitHub(): Promise<Array<GitHubHaProject
 
     const projects = result.user.repositories.nodes
       .map(mapRepoToHaProject)
-      .filter((project): project is GitHubHaProject => project !== null);
+      .filter((project) => project !== null);
 
     haProjectsCache.set(cacheKey, {
       value: projects,

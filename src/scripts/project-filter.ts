@@ -1,5 +1,7 @@
 import Fuse from "fuse.js";
 
+import { queryElement, queryElements } from "~/scripts/dom";
+
 const MIN_SEARCH_LENGTH = 3;
 
 type FilterEntry = {
@@ -150,7 +152,7 @@ function scoreEntry(entry: FilterEntry, query: string): number {
 }
 
 function getGroupGrid(group: HTMLElement): HTMLElement {
-  return group.querySelector<HTMLElement>(".stagger-grid") ?? group;
+  return queryElement(group, ".stagger-grid", HTMLElement) ?? group;
 }
 
 function reorderGroup(
@@ -160,9 +162,7 @@ function reorderGroup(
 ): void {
   const grid = getGroupGrid(group);
 
-  const cards = Array.from(
-    group.querySelectorAll<HTMLElement>("[data-work-item]"),
-  );
+  const cards = queryElements(group, "[data-work-item]", HTMLElement);
 
   const visible = cards.filter((card) => card.style.display !== "none");
   const hidden = cards.filter((card) => card.style.display === "none");
@@ -225,7 +225,7 @@ function getSearchMatches(
 }
 
 export function initProjectFilter(): void {
-  const root = document.querySelector<HTMLElement>("[data-project-filters]");
+  const root = queryElement(document, "[data-project-filters]", HTMLElement);
 
   if (!root || root.dataset.filterInit === "true") {
     return;
@@ -233,39 +233,43 @@ export function initProjectFilter(): void {
 
   root.dataset.filterInit = "true";
 
-  const searchInput = root.querySelector<HTMLInputElement>(
+  const searchInput = queryElement(
+    root,
     "[data-filter-search]",
+    HTMLInputElement,
   );
 
-  const searchClearButton = root.querySelector<HTMLButtonElement>(
+  const searchClearButton = queryElement(
+    root,
     "[data-filter-search-clear]",
+    HTMLButtonElement,
   );
 
-  const tagButtons = Array.from(
-    root.querySelectorAll<HTMLButtonElement>("[data-filter-tag]"),
+  const tagButtons = queryElements(
+    root,
+    "[data-filter-tag]",
+    HTMLButtonElement,
   );
 
-  const stackButtons = Array.from(
-    root.querySelectorAll<HTMLButtonElement>("[data-filter-stack]"),
+  const stackButtons = queryElements(
+    root,
+    "[data-filter-stack]",
+    HTMLButtonElement,
   );
 
-  const pickers = Array.from(
-    root.querySelectorAll<HTMLElement>("[data-picker]"),
+  const pickers = queryElements(root, "[data-picker]", HTMLElement);
+
+  const cards = queryElements(document, "[data-work-item]", HTMLElement);
+
+  const groups = queryElements(document, "[data-filter-group]", HTMLElement);
+
+  const sections = queryElements(
+    document,
+    "[data-filter-section]",
+    HTMLElement,
   );
 
-  const cards = Array.from(
-    document.querySelectorAll<HTMLElement>("[data-work-item]"),
-  );
-
-  const groups = Array.from(
-    document.querySelectorAll<HTMLElement>("[data-filter-group]"),
-  );
-
-  const sections = Array.from(
-    document.querySelectorAll<HTMLElement>("[data-filter-section]"),
-  );
-
-  const emptyState = document.querySelector<HTMLElement>("[data-filter-empty]");
+  const emptyState = queryElement(document, "[data-filter-empty]", HTMLElement);
 
   const entries: Array<FilterEntry> = cards.map((element) => ({
     element,
@@ -280,7 +284,7 @@ export function initProjectFilter(): void {
   );
 
   for (const group of groups) {
-    Array.from(group.querySelectorAll<HTMLElement>("[data-work-item]")).forEach(
+    queryElements(group, "[data-work-item]", HTMLElement).forEach(
       (card, index) => {
         card.dataset.originalOrder = String(index);
       },
@@ -308,7 +312,7 @@ export function initProjectFilter(): void {
     for (const picker of pickers) {
       const count = picker.querySelectorAll('[aria-pressed="true"]').length;
 
-      const badge = picker.querySelector<HTMLElement>("[data-picker-count]");
+      const badge = queryElement(picker, "[data-picker-count]", HTMLElement);
 
       if (badge) {
         badge.textContent = String(count);
@@ -323,8 +327,10 @@ export function initProjectFilter(): void {
     searchClearButton?.classList.toggle("hidden", !hasSearchText);
 
     for (const picker of pickers) {
-      const clearButton = picker.querySelector<HTMLButtonElement>(
+      const clearButton = queryElement(
+        picker,
         "[data-picker-clear]",
+        HTMLButtonElement,
       );
 
       const count = picker.querySelectorAll('[aria-pressed="true"]').length;
@@ -353,8 +359,10 @@ export function initProjectFilter(): void {
     let visibleCount = 0;
 
     for (const group of groups) {
-      const groupVisible = Array.from(
-        group.querySelectorAll<HTMLElement>("[data-work-item]"),
+      const groupVisible = queryElements(
+        group,
+        "[data-work-item]",
+        HTMLElement,
       ).some((card) => card.style.display !== "none");
 
       setVisible(group, groupVisible);
@@ -365,8 +373,10 @@ export function initProjectFilter(): void {
     }
 
     for (const section of sections) {
-      const sectionVisible = Array.from(
-        section.querySelectorAll<HTMLElement>("[data-filter-group]"),
+      const sectionVisible = queryElements(
+        section,
+        "[data-filter-group]",
+        HTMLElement,
       ).some((group) => group.style.display !== "none");
 
       setVisible(section, sectionVisible);
@@ -414,11 +424,13 @@ export function initProjectFilter(): void {
   }
 
   function setPickerOpen(picker: HTMLElement, open: boolean): void {
-    const trigger = picker.querySelector<HTMLButtonElement>(
+    const trigger = queryElement(
+      picker,
       "[data-picker-trigger]",
+      HTMLButtonElement,
     );
 
-    const panel = picker.querySelector<HTMLElement>("[data-picker-panel]");
+    const panel = queryElement(picker, "[data-picker-panel]", HTMLElement);
     trigger?.setAttribute("aria-expanded", String(open));
     panel?.classList.toggle("hidden", !open);
     panel?.classList.toggle("flex", open);
@@ -437,21 +449,25 @@ export function initProjectFilter(): void {
   for (const picker of pickers) {
     const pickerKey = picker.dataset.picker ?? "";
 
-    const clearButton = picker.querySelector<HTMLButtonElement>(
+    const clearButton = queryElement(
+      picker,
       "[data-picker-clear]",
+      HTMLButtonElement,
     );
 
-    const trigger = picker.querySelector<HTMLButtonElement>(
+    const trigger = queryElement(
+      picker,
       "[data-picker-trigger]",
+      HTMLButtonElement,
     );
 
-    const pickerSearch = picker.querySelector<HTMLInputElement>(
+    const pickerSearch = queryElement(
+      picker,
       "[data-picker-search]",
+      HTMLInputElement,
     );
 
-    const options = Array.from(
-      picker.querySelectorAll<HTMLElement>("[data-picker-option]"),
-    );
+    const options = queryElements(picker, "[data-picker-option]", HTMLElement);
 
     trigger?.addEventListener("click", (event) => {
       event.stopPropagation();

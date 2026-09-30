@@ -1,3 +1,5 @@
+import { queryElement } from "~/scripts/dom";
+
 function setMobileNavOpen(
   button: HTMLButtonElement,
   panel: HTMLElement,
@@ -9,11 +11,13 @@ function setMobileNavOpen(
 }
 
 export function initMobileNav(): void {
-  const button = document.querySelector<HTMLButtonElement>(
+  const button = queryElement(
+    document,
     "[data-mobile-nav-toggle]",
+    HTMLButtonElement,
   );
 
-  const panel = document.querySelector<HTMLElement>("[data-mobile-nav-panel]");
+  const panel = queryElement(document, "[data-mobile-nav-panel]", HTMLElement);
 
   if (!button || !panel) {
     return;

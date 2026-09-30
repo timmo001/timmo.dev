@@ -161,7 +161,7 @@ async function fetchCoreIntegrations(
   );
 
   return manifests
-    .filter((manifest): manifest is HaCoreManifest => manifest !== null)
+    .filter((manifest) => manifest !== null)
     .map((manifest) => ({
       key: manifest.domain,
       source: "core",
@@ -207,7 +207,7 @@ async function fetchCustomIntegrations(
   return result.user.repositories.nodes
     .map(mapCustomIntegrationRepo)
     .filter(
-      (integration): integration is GitHubHaIntegration => integration !== null,
+      (integration) => integration !== null,
     );
 }
 

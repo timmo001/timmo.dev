@@ -2,6 +2,7 @@ import { type Locale } from "date-fns";
 import { enGB, enUS } from "date-fns/locale";
 
 import { formatIsoDateTime } from "~/lib/dates";
+import { queryElements } from "~/scripts/dom";
 
 const localeLoaders = new Map(
   Object.entries({
@@ -46,13 +47,13 @@ async function getDateFnsLocale(): Promise<Locale> {
 export async function formatCacheTimes(): Promise<void> {
   const locale = await getDateFnsLocale();
 
-  document
-    .querySelectorAll<HTMLTimeElement>("time[data-local-time]")
-    .forEach((element) => {
+  queryElements(document, "time[data-local-time]", HTMLTimeElement).forEach(
+    (element) => {
       const iso = element.getAttribute("datetime");
 
       if (!iso) return;
 
       element.textContent = formatIsoDateTime(iso, locale);
-    });
+    },
+  );
 }

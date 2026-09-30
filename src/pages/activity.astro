@@ -150,20 +150,24 @@ const prioritisedActivity = [
 </Layout>
 
 <script>
+  import { queryElement, queryElements } from "~/scripts/dom";
+
   const initActivityLoadMore = () => {
-    const button = document.querySelector<HTMLButtonElement>(
+    const button = queryElement(
+      document,
       "[data-load-more-activity]",
+      HTMLButtonElement,
     );
 
     if (!button || button.dataset.initialized) return;
 
     button.dataset.initialized = "true";
     button.addEventListener("click", () => {
-      const hiddenItems = [
-        ...document.querySelectorAll<HTMLElement>(
-          "[data-activity-item][hidden]",
-        ),
-      ];
+      const hiddenItems = queryElements(
+        document,
+        "[data-activity-item][hidden]",
+        HTMLElement,
+      );
 
       hiddenItems.slice(0, 6).forEach((item) => item.removeAttribute("hidden"));
       button.hidden = hiddenItems.length <= 6;
