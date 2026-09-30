@@ -1,4 +1,11 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>timmo001/renovate-config"]
+  "extends": ["github>timmo001/renovate-config"],
+  "packageRules": [
+    {
+      "description": "astro check does not support TypeScript 7. Move to @astrojs/ts-content-mapper once TypeScript 7.1 is stable.",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7"
+    }
+  ]
 }
