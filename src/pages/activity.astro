@@ -74,7 +74,7 @@ const prioritisedActivity = [
 
 <Layout
   title="Current activity | Aidan Timson (Timmo)"
-  description="Repositories Aidan Timson is currently working on, ranked from public GitHub activity over the last 60 days"
+  description="Repositories Aidan Timson is currently working on. The latest public commit, pull request, or review from the last 60 days comes first."
 >
   <SubpageHeader title="Current activity" />
   <div class="flex w-full flex-col items-center px-4 pb-16 pt-8">
@@ -117,10 +117,11 @@ const prioritisedActivity = [
                 </button>
               )}
               <p class="reveal px-6 text-sm text-white/45 md:px-12">
-                Ranked from my public GitHub commits, pull requests, and
-                reviews. Activity from {formatDate(activity.from)} to{" "}
-                {formatDate(activity.to)}. Results are updated hourly and were
-                last fetched {formatTimestamp(activity.fetchedAt)}.
+                The latest commit, pull request, or review comes first, then
+                the amount of activity in this window. Activity from{" "}
+                {formatDate(activity.from)} to {formatDate(activity.to)}.
+                Results are updated hourly and were last fetched{" "}
+                {formatTimestamp(activity.fetchedAt)}.
               </p>
             </>
           ) : (
