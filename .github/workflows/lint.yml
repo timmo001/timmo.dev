@@ -24,13 +24,13 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: jdx/mise-action@9149ea85001c7435d5a66bb127d6a1b6227cb0a5 # v5
+      - uses: jdx/mise-action@7a4e45a543138629540c9a1616d08632b893e492 # v5
       - run: pnpm install --frozen-lockfile
       - run: mise run check
       - run: mise run deploy:dry-run
   lint-markdown-links:
-    uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@36527a2230bed48409ccd595b17f8344efe0acdd # 20261001.1
+    uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@a7b34d53ef8f83b1763fd0d3257a0168416e23ab # 20261001.2
   lint-markdownlint:
-    uses: timmo001/workflows/.github/workflows/lint-markdownlint.yml@36527a2230bed48409ccd595b17f8344efe0acdd # 20261001.1
+    uses: timmo001/workflows/.github/workflows/lint-markdownlint.yml@a7b34d53ef8f83b1763fd0d3257a0168416e23ab # 20261001.2
   lint-yamllint:
-    uses: timmo001/workflows/.github/workflows/lint-yamllint.yml@36527a2230bed48409ccd595b17f8344efe0acdd # 20261001.1
+    uses: timmo001/workflows/.github/workflows/lint-yamllint.yml@a7b34d53ef8f83b1763fd0d3257a0168416e23ab # 20261001.2
