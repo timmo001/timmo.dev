@@ -10,16 +10,8 @@ export type NavItem = {
 export const projects: Array<NavItem> = [
   {
     title: "Dotfiles",
-    tags: ["TUI", "CLI", "OpenCode", "Omarchy", "Stow"],
-    stack: [
-      "TypeScript",
-      "Shell",
-      "Lua",
-      "Effect",
-      "OpenTUI",
-      "Astro",
-      "Starlight",
-    ],
+    tags: ["CLI", "OpenCode", "Omarchy", "Stow"],
+    stack: ["TypeScript", "Shell", "Lua", "QML", "Effect", "OpenTUI", "Solid", "Blume"],
     href: "https://dotfiles.timmo.dev",
     githubHref: "https://github.com/timmo001/dotfiles",
     description:
@@ -28,7 +20,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Skills",
     tags: ["Skills", "Agents", "OpenCode"],
-    stack: ["Markdown", "TypeScript"],
+    stack: ["Markdown", "TypeScript", "Effect"],
     href: "https://github.com/timmo001/skills",
     description:
       "Portable agent skills following the Agent Skills specification, installable across OpenCode, Claude Code, Codex, Cursor, and other clients. Canonical source for the OpenCode config catalogue, covering TypeScript, Effect, GitHub, Home Assistant, and local workflow skills.",
@@ -36,7 +28,7 @@ export const projects: Array<NavItem> = [
   {
     title: "OpenCode Config",
     tags: ["Skills", "Agents", "Plugins", "Commands"],
-    stack: ["Markdown", "TypeScript"],
+    stack: ["Markdown", "TypeScript", "Effect", "OpenTUI", "Solid"],
     href: "https://github.com/timmo001/opencode-config",
     description:
       "Shared OpenCode skills, agents, plugins, and commands, published from dotfiles for standalone browsing and install. Branch-context workflows, permission-scoped agents, refactor commands, env protection, and skills for TypeScript, codebase diagnostics, and Home Assistant frontend work.",
@@ -100,7 +92,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Home Assistant Bridge",
     tags: ["CLI", "SDK", "Home Assistant", "Automation", "WebSocket"],
-    stack: ["TypeScript", "Effect", "Bun", "Astro"],
+    stack: ["TypeScript", "Effect", "Bun", "Blume"],
     href: "https://ha-bridge.timmo.dev",
     githubHref: "https://github.com/timmo001/ha-bridge",
     description:
@@ -108,23 +100,8 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Go Automate",
-    tags: [
-      "Archive",
-      "TUI",
-      "CLI",
-      "Home Assistant",
-      "Automation",
-      "WebSocket",
-    ],
-    stack: [
-      "Go",
-      "TypeScript",
-      "Effect",
-      "OpenTUI",
-      "Bubble Tea",
-      "Astro",
-      "Starlight",
-    ],
+    tags: ["Archive", "CLI", "Home Assistant", "Automation", "WebSocket"],
+    stack: ["Go", "Astro", "Starlight"],
     href: "https://go-automate.timmo.dev",
     githubHref: "https://github.com/timmo001/go-automate",
     description:
@@ -153,7 +130,7 @@ export const projects: Array<NavItem> = [
     stack: ["Go", "QML"],
     href: "https://github.com/timmo001/twitch-notifications",
     description:
-      "Desktop daemon that watches followed Twitch channels over EventSub and sends notifications when they go live, with optional auto-open. Includes an Omarchy bar widget for live status and daemon control.",
+      "Desktop daemon that watches followed Twitch channels over EventSub and sends notifications when they go live, with optional auto-open. Includes a CLI for channel and daemon control, and an Omarchy bar widget for live status.",
   },
   {
     title: "Context",
@@ -166,12 +143,12 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Notes",
-    tags: ["CLI", "MCP", "OpenCode", "Markdown", "Handoffs"],
-    stack: ["TypeScript", "Effect", "Astro", "Starlight"],
+    tags: ["TUI", "CLI", "MCP", "OpenCode", "Markdown", "Handoffs"],
+    stack: ["TypeScript", "Effect", "OpenTUI", "Lit", "Astro", "Starlight"],
     href: "https://notes.timmo.dev",
     githubHref: "https://github.com/timmo001/notes",
     description:
-      "A standalone CLI and MCP server for repo-scoped Markdown notes. Gives humans and agents safe note reads and writes, handoff-tagged notes, and generated CLI and MCP docs.",
+      "A standalone TUI, CLI, and MCP server for repo-scoped Markdown notes. Gives humans and agents safe note reads and writes, handoff-tagged notes, and generated CLI and MCP docs.",
   },
   {
     title: "Music Assistant TUI",
@@ -183,17 +160,8 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "System Bridge",
-    tags: ["TUI", "CLI", "Desktop App", "Home Assistant", "MCP", "WebSocket"],
-    stack: [
-      "Go",
-      "TypeScript",
-      "Lit",
-      "Effect",
-      "OpenTUI",
-      "Tailwind",
-      "Astro",
-      "Starlight",
-    ],
+    tags: ["CLI", "Desktop App", "Home Assistant", "MCP", "WebSocket"],
+    stack: ["Go", "TypeScript", "QML", "Lit", "Tailwind", "Astro", "Starlight"],
     href: "https://system-bridge.timmo.dev",
     githubHref: "https://github.com/timmo001/system-bridge",
     description:
@@ -202,7 +170,7 @@ export const projects: Array<NavItem> = [
   {
     title: "GitHub Workflows",
     tags: ["CI/CD", "GitHub Actions", "Automation"],
-    stack: ["YAML"],
+    stack: ["YAML", "TypeScript", "Effect"],
     href: "https://github.com/timmo001/workflows",
     description:
       "GitHub Actions workflows shared between my projects, including linting, testing, CodeQL, container and language builds, Home Assistant card validation, Dependabot and Renovate automerge, release drafting, and more. Open for reuse and contribution.",
@@ -378,7 +346,7 @@ export const contributions: Array<NavItem> = [
   {
     title: "Home Assistant Installer",
     tags: ["Contribution", "Home Assistant"],
-    stack: ["TypeScript"],
+    stack: ["Rust", "TypeScript", "Lit", "Tauri"],
     href: "https://github.com/home-assistant/installer",
     description:
       "I contribute to the Home Assistant installer, a proof-of-concept desktop installer, including opening external links from the Tauri app.",

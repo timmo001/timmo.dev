@@ -274,8 +274,8 @@ export async function getCurrentActivity(
   const value = {
     items: [...repositories.values()].toSorted(
       (left, right) =>
-        right.score - left.score ||
         right.latestActivityAt.getTime() - left.latestActivityAt.getTime() ||
+        right.score - left.score ||
         (left.nameWithOwner < right.nameWithOwner ? -1 : 1),
     ),
     from,
