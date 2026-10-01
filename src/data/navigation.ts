@@ -10,16 +10,8 @@ export type NavItem = {
 export const projects: Array<NavItem> = [
   {
     title: "Dotfiles",
-    tags: ["TUI", "CLI", "OpenCode", "Omarchy", "Stow"],
-    stack: [
-      "TypeScript",
-      "Shell",
-      "Lua",
-      "Effect",
-      "OpenTUI",
-      "Astro",
-      "Starlight",
-    ],
+    tags: ["CLI", "OpenCode", "Omarchy", "Stow"],
+    stack: ["TypeScript", "Shell", "Lua", "QML", "Effect", "Blume"],
     href: "https://dotfiles.timmo.dev",
     githubHref: "https://github.com/timmo001/dotfiles",
     description:
@@ -100,7 +92,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Home Assistant Bridge",
     tags: ["CLI", "SDK", "Home Assistant", "Automation", "WebSocket"],
-    stack: ["TypeScript", "Effect", "Bun", "Astro"],
+    stack: ["TypeScript", "Effect", "Bun", "Blume"],
     href: "https://ha-bridge.timmo.dev",
     githubHref: "https://github.com/timmo001/ha-bridge",
     description:
@@ -108,23 +100,8 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Go Automate",
-    tags: [
-      "Archive",
-      "TUI",
-      "CLI",
-      "Home Assistant",
-      "Automation",
-      "WebSocket",
-    ],
-    stack: [
-      "Go",
-      "TypeScript",
-      "Effect",
-      "OpenTUI",
-      "Bubble Tea",
-      "Astro",
-      "Starlight",
-    ],
+    tags: ["Archive", "CLI", "Home Assistant", "Automation", "WebSocket"],
+    stack: ["Go", "Astro", "Starlight"],
     href: "https://go-automate.timmo.dev",
     githubHref: "https://github.com/timmo001/go-automate",
     description:
@@ -149,11 +126,11 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Twitch Notifications",
-    tags: ["CLI", "TUI", "Omarchy"],
-    stack: ["Go", "TypeScript", "QML"],
+    tags: ["CLI", "Omarchy"],
+    stack: ["Go", "QML"],
     href: "https://github.com/timmo001/twitch-notifications",
     description:
-      "Desktop daemon that watches followed Twitch channels over EventSub and sends notifications when they go live, with optional auto-open. Includes a TUI and an Omarchy bar widget for live status and daemon control.",
+      "Desktop daemon that watches followed Twitch channels over EventSub and sends notifications when they go live, with optional auto-open. Includes a CLI for channel and daemon control, and an Omarchy bar widget for live status.",
   },
   {
     title: "Context",
@@ -166,12 +143,12 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Notes",
-    tags: ["CLI", "MCP", "OpenCode", "Markdown", "Handoffs"],
-    stack: ["TypeScript", "Effect", "Astro", "Starlight"],
+    tags: ["TUI", "CLI", "MCP", "OpenCode", "Markdown", "Handoffs"],
+    stack: ["TypeScript", "Effect", "OpenTUI", "Astro", "Starlight"],
     href: "https://notes.timmo.dev",
     githubHref: "https://github.com/timmo001/notes",
     description:
-      "A standalone CLI and MCP server for repo-scoped Markdown notes. Gives humans and agents safe note reads and writes, handoff-tagged notes, and generated CLI and MCP docs.",
+      "A standalone TUI, CLI, and MCP server for repo-scoped Markdown notes. Gives humans and agents safe note reads and writes, handoff-tagged notes, and generated CLI and MCP docs.",
   },
   {
     title: "Music Assistant TUI",
@@ -183,17 +160,8 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "System Bridge",
-    tags: ["TUI", "CLI", "Desktop App", "Home Assistant", "MCP", "WebSocket"],
-    stack: [
-      "Go",
-      "TypeScript",
-      "Lit",
-      "Effect",
-      "OpenTUI",
-      "Tailwind",
-      "Astro",
-      "Starlight",
-    ],
+    tags: ["CLI", "Desktop App", "Home Assistant", "MCP", "WebSocket"],
+    stack: ["Go", "TypeScript", "QML", "Lit", "Tailwind", "Astro", "Starlight"],
     href: "https://system-bridge.timmo.dev",
     githubHref: "https://github.com/timmo001/system-bridge",
     description:
