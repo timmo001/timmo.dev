@@ -98,6 +98,22 @@ export const projects: Array<NavItem> = [
       "Omarchy shell plugin for Sennheiser headphones supported by momentumctl. Shows battery and controls ANC, adaptive noise, transparency, anti-wind, Smart Pause, on-head detection, auto-answer, and Comfort Call.",
   },
   {
+    title: "Omarchy Twitch Notifications",
+    tags: ["Omarchy", "Plugins"],
+    stack: ["QML"],
+    href: "https://github.com/timmo001/omarchy-twitch-notifications",
+    description:
+      "Omarchy bar widget and panel for the Twitch Notifications daemon. Shows configured channels, opens streams or recent broadcasts, and rechecks or restarts notifications from the shell.",
+  },
+  {
+    title: "Omarchy System Bridge",
+    tags: ["Omarchy", "Plugins", "Monitoring"],
+    stack: ["QML"],
+    href: "https://github.com/timmo001/omarchy-system-bridge",
+    description:
+      "Omarchy bar widget and panel for local System Bridge health data. CPU and memory stay in the bar, with disk, fan, GPU, temperature, uptime, and reboot details in a filterable panel.",
+  },
+  {
     title: "Home Assistant Bridge",
     tags: ["CLI", "SDK", "Home Assistant", "Automation", "WebSocket"],
     stack: ["TypeScript", "Effect", "Bun", "Astro"],
@@ -148,12 +164,20 @@ export const projects: Array<NavItem> = [
       "Manifest V3 extension that relaunches the current page as an Omarchy app window through omarchy-launch-webapp and a native messaging host. Supports Chromium, Chrome, Brave, Edge, and Vivaldi, with a context-menu flip back to a normal tab from app windows.",
   },
   {
+    title: "Site Defluffer",
+    tags: ["Extension"],
+    stack: ["TypeScript", "CSS", "Lit"],
+    href: "https://github.com/timmo001/site-defluffer",
+    description:
+      "Manifest V3 extension that hides and compacts distracting interface elements on Corridor Digital, Patreon, Twitch, and YouTube. Per-site settings stay in place, with keyboard toggles and a popup for the unpacked Chromium extension.",
+  },
+  {
     title: "Twitch Notifications",
-    tags: ["CLI", "TUI", "Omarchy"],
-    stack: ["Go", "TypeScript", "QML"],
+    tags: ["CLI", "Omarchy"],
+    stack: ["Go", "QML"],
     href: "https://github.com/timmo001/twitch-notifications",
     description:
-      "Desktop daemon that watches followed Twitch channels over EventSub and sends notifications when they go live, with optional auto-open. Includes a TUI and an Omarchy bar widget for live status and daemon control.",
+      "Desktop daemon that watches followed Twitch channels over EventSub and sends notifications when they go live, with optional auto-open. Includes an Omarchy bar widget for live status and daemon control.",
   },
   {
     title: "Context",
