@@ -13,9 +13,13 @@
       "repository": "timmo001/omarchy-waybar",
       "description": "Waybar config for Omarchy with desktop and laptop layouts. Custom modules surface git notifications, workflow runs, and diff status via the dot CLI, plus Home Assistant entity watches through go-automate's bridge."
     },
+    "ha-bridge": {
+      "repository": "timmo001/ha-bridge",
+      "description": "Home Assistant Bridge: one shared Home Assistant WebSocket connection per machine, serving actions, reads, and watches to local apps over a Unix socket. Ships the ha-bridge CLI and systemd user service, plus the effect-ha and effect-ha-bridge Effect libraries."
+    },
     "go-automate": {
       "repository": "timmo001/go-automate",
-      "description": "Utility to run common tasks and trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging."
+      "description": "Archived utility to run common tasks and trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging. Replaced by ha-bridge."
     },
     "system-bridge": {
       "repository": "timmo001/system-bridge",
