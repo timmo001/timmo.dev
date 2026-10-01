@@ -32,6 +32,9 @@ const tagStyles = new Map(
     Audio: {
       backgroundColor: "#f59e0b",
     },
+    Blume: {
+      backgroundColor: "#6182d4",
+    },
     "Bubble Tea": {
       backgroundColor: "#ff75b7",
     },
