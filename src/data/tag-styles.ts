@@ -191,8 +191,14 @@ const tagStyles = new Map(
     Renovate: {
       backgroundColor: "#f9322c",
     },
+    Rust: {
+      backgroundColor: "#dea584",
+    },
     Skills: {
       backgroundColor: "#9333ea",
+    },
+    Solid: {
+      backgroundColor: "#2c4f7c",
     },
     SDK: {
       backgroundColor: "#0284c7",
@@ -211,6 +217,9 @@ const tagStyles = new Map(
     },
     Tailwind: {
       backgroundColor: "#06b6d4",
+    },
+    Tauri: {
+      backgroundColor: "#ffc131",
     },
     TUI: {
       backgroundColor: "#7c3aed",

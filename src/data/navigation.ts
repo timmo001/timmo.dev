@@ -11,7 +11,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Dotfiles",
     tags: ["CLI", "OpenCode", "Omarchy", "Stow"],
-    stack: ["TypeScript", "Shell", "Lua", "QML", "Effect", "Blume"],
+    stack: ["TypeScript", "Shell", "Lua", "QML", "Effect", "OpenTUI", "Solid", "Blume"],
     href: "https://dotfiles.timmo.dev",
     githubHref: "https://github.com/timmo001/dotfiles",
     description:
@@ -20,7 +20,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Skills",
     tags: ["Skills", "Agents", "OpenCode"],
-    stack: ["Markdown", "TypeScript"],
+    stack: ["Markdown", "TypeScript", "Effect"],
     href: "https://github.com/timmo001/skills",
     description:
       "Portable agent skills following the Agent Skills specification, installable across OpenCode, Claude Code, Codex, Cursor, and other clients. Canonical source for the OpenCode config catalogue, covering TypeScript, Effect, GitHub, Home Assistant, and local workflow skills.",
@@ -28,7 +28,7 @@ export const projects: Array<NavItem> = [
   {
     title: "OpenCode Config",
     tags: ["Skills", "Agents", "Plugins", "Commands"],
-    stack: ["Markdown", "TypeScript"],
+    stack: ["Markdown", "TypeScript", "Effect", "OpenTUI", "Solid"],
     href: "https://github.com/timmo001/opencode-config",
     description:
       "Shared OpenCode skills, agents, plugins, and commands, published from dotfiles for standalone browsing and install. Branch-context workflows, permission-scoped agents, refactor commands, env protection, and skills for TypeScript, codebase diagnostics, and Home Assistant frontend work.",
@@ -144,7 +144,7 @@ export const projects: Array<NavItem> = [
   {
     title: "Notes",
     tags: ["TUI", "CLI", "MCP", "OpenCode", "Markdown", "Handoffs"],
-    stack: ["TypeScript", "Effect", "OpenTUI", "Astro", "Starlight"],
+    stack: ["TypeScript", "Effect", "OpenTUI", "Lit", "Astro", "Starlight"],
     href: "https://notes.timmo.dev",
     githubHref: "https://github.com/timmo001/notes",
     description:
@@ -170,7 +170,7 @@ export const projects: Array<NavItem> = [
   {
     title: "GitHub Workflows",
     tags: ["CI/CD", "GitHub Actions", "Automation"],
-    stack: ["YAML"],
+    stack: ["YAML", "TypeScript", "Effect"],
     href: "https://github.com/timmo001/workflows",
     description:
       "GitHub Actions workflows shared between my projects, including linting, testing, CodeQL, container and language builds, Home Assistant card validation, Dependabot and Renovate automerge, release drafting, and more. Open for reuse and contribution.",
@@ -346,7 +346,7 @@ export const contributions: Array<NavItem> = [
   {
     title: "Home Assistant Installer",
     tags: ["Contribution", "Home Assistant"],
-    stack: ["TypeScript"],
+    stack: ["Rust", "TypeScript", "Lit", "Tauri"],
     href: "https://github.com/home-assistant/installer",
     description:
       "I contribute to the Home Assistant installer, a proof-of-concept desktop installer, including opening external links from the Tauri app.",
