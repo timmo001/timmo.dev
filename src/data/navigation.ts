@@ -98,8 +98,24 @@ export const projects: Array<NavItem> = [
       "Omarchy shell plugin for Sennheiser headphones supported by momentumctl. Shows battery and controls ANC, adaptive noise, transparency, anti-wind, Smart Pause, on-head detection, auto-answer, and Comfort Call.",
   },
   {
+    title: "Home Assistant Bridge",
+    tags: ["CLI", "SDK", "Home Assistant", "Automation", "WebSocket"],
+    stack: ["TypeScript", "Effect", "Bun", "Astro"],
+    href: "https://ha-bridge.timmo.dev",
+    githubHref: "https://github.com/timmo001/ha-bridge",
+    description:
+      "One shared Home Assistant connection for your machine. A systemd user service keeps a single WebSocket open and serves actions, reads, and watches to local apps over a Unix socket. Includes a CLI with bar JSON for status bars, Effect libraries on npm and JSR, and Arch, Debian, and RPM packages.",
+  },
+  {
     title: "Go Automate",
-    tags: ["TUI", "CLI", "Home Assistant", "Automation", "WebSocket"],
+    tags: [
+      "Archive",
+      "TUI",
+      "CLI",
+      "Home Assistant",
+      "Automation",
+      "WebSocket",
+    ],
     stack: [
       "Go",
       "TypeScript",
@@ -112,7 +128,7 @@ export const projects: Array<NavItem> = [
     href: "https://go-automate.timmo.dev",
     githubHref: "https://github.com/timmo001/go-automate",
     description:
-      "A utility to run common tasks: keyboard shortcuts and patched apps on Linux to trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging.",
+      "A utility to run common tasks: keyboard shortcuts and patched apps on Linux to trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging. Archived and no longer maintained. Replaced by Home Assistant Bridge.",
   },
   {
     title: "Float App",
