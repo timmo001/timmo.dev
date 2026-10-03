@@ -242,6 +242,14 @@ export const projects: Array<NavItem> = [
       "A terminal UI for Home Assistant built with OpenTUI and Effect. Browse entities by domain and area, search with fuzzy matching, and view favorites from your Home Assistant frontend config.",
   },
   {
+    title: "Dashboard Collections",
+    tags: ["HACS", "Home Assistant Dashboard"],
+    stack: ["TypeScript", "Lit"],
+    href: "https://github.com/timmo001/ha-dashboard-collections",
+    description:
+      "Custom Lovelace strategies that build dashboards from filtered collections of entities, such as temperature, humidity, or batteries, grouped by floor and area. A full dashboard strategy and a section strategy, both with editors.",
+  },
+  {
     title: "Dashboard Maintenance",
     tags: ["HACS", "Home Assistant Dashboard", "Monitoring"],
     stack: ["TypeScript", "Lit"],
