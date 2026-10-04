@@ -9,6 +9,8 @@ export default defineConfig({
   },
   options: {
     typeAware: true,
+    typeCheck: true,
+    maxWarnings: 0,
   },
   ignorePatterns: [".astro/**", "dist/**", "temp/**"],
   rules: {
