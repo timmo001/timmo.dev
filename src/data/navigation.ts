@@ -125,12 +125,13 @@ export const projects: Array<NavItem> = [
       "Manifest V3 extension that relaunches the current page as an Omarchy app window through omarchy-launch-webapp and a native messaging host. Supports Chromium, Chrome, Brave, Edge, and Vivaldi, with a context-menu flip back to a normal tab from app windows.",
   },
   {
-    title: "Twitch Notifications",
-    tags: ["CLI", "Omarchy"],
-    stack: ["Go", "QML"],
-    href: "https://github.com/timmo001/twitch-notifications",
+    title: "Up Next",
+    tags: ["CLI", "Omarchy", "SDK"],
+    stack: ["TypeScript", "Effect", "Bun", "QML", "Blume"],
+    href: "https://upnext.timmo.dev",
+    githubHref: "https://github.com/timmo001/upnext",
     description:
-      "Desktop daemon that watches followed Twitch channels over EventSub and sends notifications when they go live, with optional auto-open. Includes a CLI for channel and daemon control, and an Omarchy bar widget for live status.",
+      "A daemon and CLI for Twitch live channels, YouTube uploads, and a watch-later queue in one feed. Notifies when something goes live, serves the feed to local apps over a Unix socket, and includes an Omarchy bar panel. Effect libraries are published to npm and JSR, with Arch, Debian, and RPM packages. Replaces Twitch Notifications.",
   },
   {
     title: "Context",
