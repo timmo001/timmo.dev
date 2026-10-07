@@ -21,10 +21,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "14.3.3",
+    "@astrojs/cloudflare": "14.3.4",
     "@astrojs/sitemap": "3.7.4",
     "@tailwindcss/vite": "4.3.3",
-    "astro": "7.3.5",
+    "astro": "7.3.6",
     "date-fns": "4.4.0",
     "fuse.js": "7.5.0",
     "octokit": "5.0.5",
