@@ -2,20 +2,32 @@
 node = "26.10.0"
 "aqua:pnpm/pnpm" = "12.10.0"
 
+[tasks.install]
+run = "pnpm install --frozen-lockfile"
+
 [tasks.lint]
+depends = ["install"]
 run = "pnpm lint"
 
 [tasks.typecheck]
+depends = ["install"]
 run = "pnpm typecheck"
 
 [tasks.format]
+depends = ["install"]
 run = "pnpm format"
 
+[tasks."format:check"]
+depends = ["install"]
+run = "pnpm format:check"
+
 [tasks.check]
-depends = ["lint", "typecheck", "format"]
+depends = ["lint", "typecheck", "format:check"]
 
 [tasks.build]
+depends = ["install"]
 run = "pnpm build"
 
 [tasks."deploy:dry-run"]
-run = "pnpm deploy:dry-run"
+depends = ["build"]
+run = "pnpm wrangler deploy --dry-run"

@@ -25,9 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca # v5
-      - run: pnpm install --frozen-lockfile
-      - run: mise run check
-      - run: mise run deploy:dry-run
+      - run: "mise run check ::: deploy:dry-run"
   lint-markdown-links:
     uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@82ee28374d3471231113dabc3dd436f65a47132f # 20261004.0
   lint-markdownlint:

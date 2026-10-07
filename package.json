@@ -17,7 +17,8 @@
     "deploy:preview": "wrangler versions upload",
     "typecheck": "astro check",
     "lint": "oxlint src redirect-worker astro.config.mjs oxlint.config.ts",
-    "format": "prettier --plugin=prettier-plugin-astro --check package.json astro.config.mjs oxlint.config.ts tsconfig.json .github/workflows/lint.yml wrangler.jsonc README.md AGENTS.md pnpm-workspace.yaml src/types/oxlint-rules.d.ts src/env.ts src/layouts/Layout.astro src/components/StatsContent.astro",
+    "format": "prettier --plugin=prettier-plugin-astro --write package.json astro.config.mjs oxlint.config.ts tsconfig.json .github/workflows/lint.yml wrangler.jsonc README.md AGENTS.md pnpm-workspace.yaml src/types/oxlint-rules.d.ts src/env.ts src/layouts/Layout.astro src/components/StatsContent.astro",
+    "format:check": "prettier --plugin=prettier-plugin-astro --check package.json astro.config.mjs oxlint.config.ts tsconfig.json .github/workflows/lint.yml wrangler.jsonc README.md AGENTS.md pnpm-workspace.yaml src/types/oxlint-rules.d.ts src/env.ts src/layouts/Layout.astro src/components/StatsContent.astro",
     "astro": "astro"
   },
   "dependencies": {

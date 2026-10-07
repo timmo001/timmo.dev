@@ -18,9 +18,9 @@
 - Upload a preview version from Cloudflare Builds: `pnpm deploy:preview`.
 - Typecheck: `pnpm typecheck`.
 - Lint: `pnpm lint` (type-aware Oxlint and the shared Timmo recommended rules).
-- Format check: `pnpm format`.
-- Run lint, typecheck and format together: `mise run check`.
-- Validate the Worker bundle without deploying: `pnpm deploy:dry-run`.
+- Format: `pnpm format`; check only: `pnpm format:check`.
+- Run lint, typecheck and format check in parallel: `mise run check`.
+- Validate the Worker bundle without deploying: `pnpm deploy:dry-run`. Run it with the checks in one parallel run: `mise run check ::: deploy:dry-run`.
 
 ## Astro Guidance
 

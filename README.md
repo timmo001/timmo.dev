@@ -17,11 +17,10 @@ pnpm install
 pnpm dev
 ```
 
-Node and pnpm are pinned in `mise.toml`. Run the local and CI checks with:
+Node and pnpm are pinned in `mise.toml`. Run the local and CI checks in parallel with:
 
 ```sh
-mise run check
-mise run deploy:dry-run
+mise run check ::: deploy:dry-run
 ```
 
 Oxlint checks maintained source and tooling with type-aware rules and the shared
