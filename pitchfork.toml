@@ -1,0 +1,11 @@
+# Keeps the Astro dev server running in the background, outside the invoking
+# shell or agent. Manage it with the serve:site* mise tasks. --ignore-lock
+# stops Astro from detaching itself when it detects an agent, so pitchfork
+# keeps hold of the server.
+
+[daemons.site]
+run = 'exec pnpm exec astro dev --ignore-lock --host 127.0.0.1 --port "$PORT"'
+port = { expect = [8090], bump = 10 }
+ready_cmd = 'curl -fsS "http://127.0.0.1:$PORT/"'
+health_cmd = 'curl -fsS "http://127.0.0.1:$PORT/"'
+retry = true

@@ -11,7 +11,7 @@
 ## Commands
 
 - Install: `pnpm install`.
-- Dev server: `pnpm dev`.
+- Dev server: `mise run serve:site` starts it through Pitchfork in the background; see Background Dev Servers. `pnpm dev` is for foreground debugging only.
 - Production build / main verification: `pnpm build`.
 - Preview the built Worker locally: `pnpm preview`.
 - Deploy from Cloudflare Builds: `pnpm deploy:cloudflare`.
@@ -21,6 +21,13 @@
 - Format: `pnpm format`; check only: `pnpm format:check`.
 - Run lint, typecheck and format check in parallel: `mise run check`.
 - Validate the Worker bundle without deploying: `pnpm deploy:dry-run`. Run it with the checks in one parallel run: `mise run check ::: deploy:dry-run`.
+
+## Background Dev Servers
+
+- Start the Astro dev server with `mise run serve:site`, which runs it through Pitchfork in the background and restarts it if it exits or stops responding. Do not run `pnpm dev` or `astro dev` in the foreground from an agent.
+- Use `mise run serve:site:status`, `mise run serve:site:logs`, `mise run serve:site:restart` and `mise run serve:site:stop` to manage it.
+- The daemon is configured in `pitchfork.toml`. It serves `http://127.0.0.1:8090/`, or the next free port, and is always at `https://site.timmo-dev.localhost` through the Pitchfork proxy (Pitchfork turns the dot in the directory name into a hyphen).
+- Test through that HTTPS address, in the browser, with curl and anywhere else. Never add the proxy's own port, such as `:8443`, even if Pitchfork prints one: that means the 443 redirect is missing (it's lost on reboot), so run `pitchfork proxy doctor`, then `pitchfork proxy setup -y` to restore it. Use the `127.0.0.1` port only when the proxy isn't running.
 
 ## Astro Guidance
 

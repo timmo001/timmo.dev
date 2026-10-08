@@ -28,6 +28,22 @@ depends = ["lint", "typecheck", "format:check"]
 depends = ["install"]
 run = "pnpm build"
 
+[tasks."serve:site"]
+depends = ["install"]
+run = "pitchfork start site"
+
+[tasks."serve:site:status"]
+run = "pitchfork status site"
+
+[tasks."serve:site:logs"]
+run = "pitchfork logs -t site"
+
+[tasks."serve:site:restart"]
+run = "pitchfork restart site"
+
+[tasks."serve:site:stop"]
+run = "pitchfork stop site"
+
 [tasks."deploy:dry-run"]
 depends = ["build"]
 run = "pnpm wrangler deploy --dry-run"
