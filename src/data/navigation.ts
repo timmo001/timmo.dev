@@ -59,7 +59,7 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Waybar Config",
-    tags: ["Omarchy", "Waybar", "Home Assistant"],
+    tags: ["Archive", "Omarchy", "Waybar", "Home Assistant"],
     stack: ["Shell", "JSON", "CSS"],
     href: "https://github.com/timmo001/omarchy-waybar",
     description:
@@ -125,6 +125,14 @@ export const projects: Array<NavItem> = [
       "Manifest V3 extension that relaunches the current page as an Omarchy app window through omarchy-launch-webapp and a native messaging host. Supports Chromium, Chrome, Brave, Edge, and Vivaldi, with a context-menu flip back to a normal tab from app windows.",
   },
   {
+    title: "Site Defluffer",
+    tags: ["Extension"],
+    stack: ["TypeScript", "Lit", "CSS"],
+    href: "https://github.com/timmo001/site-defluffer",
+    description:
+      "Chromium extension that hides and compacts distracting interface elements on supported sites. Fills the page with the video player on YouTube, Patreon, Viva+, and Corridor Digital, trims extra Twitch panels, and toggles per site with a keyboard shortcut.",
+  },
+  {
     title: "Up Next",
     tags: ["CLI", "Omarchy", "SDK"],
     stack: ["TypeScript", "Effect", "Bun", "QML", "Blume"],
@@ -150,6 +158,15 @@ export const projects: Array<NavItem> = [
     githubHref: "https://github.com/timmo001/notes",
     description:
       "A standalone TUI, CLI, and MCP server for repo-scoped Markdown notes. Gives humans and agents safe note reads and writes, handoff-tagged notes, and generated CLI and MCP docs.",
+  },
+  {
+    title: "Triage",
+    tags: ["CLI", "MCP", "Monitoring", "SDK"],
+    stack: ["TypeScript", "Effect", "Bun", "Lit", "Blume"],
+    href: "https://triage.timmo.dev",
+    githubHref: "https://github.com/timmo001/triage",
+    description:
+      "Capture crashes and errors from your machines, decide which are worth fixing, and suggest fixes. Reads the systemd journal on each machine, redacts and groups crashes, failed units, and out-of-memory kills into issues on one server, with optional local or hosted decision and language models. Includes a web UI and Effect client libraries.",
   },
   {
     title: "Music Assistant TUI",
@@ -191,6 +208,14 @@ export const projects: Array<NavItem> = [
     href: "https://github.com/timmo001/oxlint-rules",
     description:
       "Shared Oxlint plugins and configs published as @timmo001/oxlint-rules. Bundles unchanged anti-slop rules with additional generic and Effect diagnostics, plus recommended and Effect-specific configs for consumers.",
+  },
+  {
+    title: "Docs Kit",
+    tags: ["Documentation", "Skills"],
+    stack: ["TypeScript", "Astro", "CSS", "Blume"],
+    href: "https://github.com/timmo001/docs-kit",
+    description:
+      "Shared branding, layout, and config for my documentation sites, published as @timmo001/docs-kit on npm and JSR. Powers the Dotfiles, Up Next, Home Assistant Bridge, and Triage docs, with an agent skill for setting up or changing a site.",
   },
   {
     title: "Renovate Config",
