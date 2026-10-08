@@ -1,5 +1,5 @@
 [tools]
-node = "26.10.0"
+node = "26.11.1"
 "aqua:pnpm/pnpm" = "12.10.1"
 
 [tasks.install]
