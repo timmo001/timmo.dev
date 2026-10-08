@@ -34,12 +34,12 @@ export const projects: Array<NavItem> = [
       "Shared OpenCode skills, agents, plugins, and commands, published from dotfiles for standalone browsing and install. Branch-context workflows, permission-scoped agents, refactor commands, env protection, and skills for TypeScript, codebase diagnostics, and Home Assistant frontend work.",
   },
   {
-    title: "Herdr Workflow Watch",
-    tags: ["Plugins", "Herdr", "CI/CD", "GitHub Actions"],
-    stack: ["TypeScript", "Effect"],
-    href: "https://github.com/timmo001/herdr-workflow-watch",
+    title: "Agent Checks",
+    tags: ["Plugins", "Herdr", "Omarchy", "CI/CD", "GitHub Actions", "Linting"],
+    stack: ["TypeScript", "Effect", "QML"],
+    href: "https://github.com/timmo001/agent-checks",
     description:
-      "Herdr plugin that watches GitHub workflow runs for open workspaces and surfaces failure counts in the sidebar. Open a failed run, paste it into the original agent, or launch a new agent in the same checkout or a fix worktree.",
+      "Herdr plugin and Omarchy panel for the CI and lint status of each workspace. Watches GitHub workflow runs for the current branch and lints changed files when an agent finishes, with sidebar indicators. Open a failed run or lint check, paste it into the original agent, or launch a new agent in the same checkout, or in a fix worktree for CI.",
   },
   {
     title: "Herdr Mascot",
