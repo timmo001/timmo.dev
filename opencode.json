@@ -9,17 +9,9 @@
       "repository": "timmo001/opencode-config",
       "description": "Shared OpenCode skills, agents, plugins, and commands published from dotfiles: branch-context workflows, permission-scoped agents, refactor commands, env protection, and skills for TypeScript, codebase diagnostics, and Home Assistant frontend work."
     },
-    "omarchy-waybar": {
-      "repository": "timmo001/omarchy-waybar",
-      "description": "Waybar config for Omarchy with desktop and laptop layouts. Custom modules surface git notifications, workflow runs, and diff status via the dot CLI, plus Home Assistant entity watches through go-automate's bridge."
-    },
     "ha-bridge": {
       "repository": "timmo001/ha-bridge",
       "description": "Home Assistant Bridge: one shared Home Assistant WebSocket connection per machine, serving actions, reads, and watches to local apps over a Unix socket. Ships the ha-bridge CLI and systemd user service, plus the effect-ha and effect-ha-bridge Effect libraries."
-    },
-    "go-automate": {
-      "repository": "timmo001/go-automate",
-      "description": "Archived utility to run common tasks and trigger Home Assistant automations. A local Unix socket bridge multiplexes one Home Assistant WebSocket connection for entity watches and status-bar scripts, shipped as a systemd user service with Arch packaging. Replaced by ha-bridge."
     },
     "system-bridge": {
       "repository": "timmo001/system-bridge",
@@ -32,18 +24,6 @@
     "weather": {
       "repository": "timmo001/weather.timmo.dev",
       "description": "Progressive web app for current conditions and a five-day forecast powered by Tomorrow.io, with coordinate or geolocation location and dark/light themes."
-    },
-    "pouch": {
-      "repository": "timmo001/pouch",
-      "description": "Web app for organising lists and notepads into groups with drag-and-drop reordering and real-time sync, built with Next.js, Convex, and Clerk auth."
-    },
-    "home-panel": {
-      "repository": "timmo001/home-panel",
-      "description": "Archived web frontend for controlling the home, integrated with Home Assistant as an additional frontend. No longer maintained."
-    },
-    "go-commands": {
-      "repository": "timmo001/go-commands",
-      "description": "Archived CLI to run commands on your machine via MQTT and Home Assistant, triggering shell commands remotely from automations."
     },
     "home-assistant-tui": {
       "repository": "timmo001/home-assistant-tui",
@@ -76,10 +56,6 @@
     "ha-card-feature-state": {
       "repository": "timmo001/ha-card-feature-state",
       "description": "Home Assistant tile card feature (HACS) showing an entity's state, attributes, or extra detail like area name, with adjustable text size."
-    },
-    "homeassistant-integration-goxlr-utility": {
-      "repository": "timmo001/homeassistant-integration-goxlr-utility",
-      "description": "Archived Home Assistant integration (HACS) connecting GoXLR Utility: binary sensors, media players with volume control, and profile sensors."
     },
     "home-assistant-frontend": {
       "repository": "home-assistant/frontend",
