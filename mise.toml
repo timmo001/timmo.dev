@@ -1,6 +1,6 @@
 [tools]
 node = "26.11.1"
-"aqua:pnpm/pnpm" = "12.10.1"
+"aqua:pnpm/pnpm" = "12.11.0"
 
 [tasks.install]
 run = "pnpm install --frozen-lockfile"
