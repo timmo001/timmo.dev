@@ -201,8 +201,8 @@ importers:
         specifier: 1.87.0
         version: 1.87.0
       '@timmo001/oxlint-rules':
-        specifier: 0.5.0
-        version: 0.5.0(@oxlint/plugins@1.87.0)(oxlint@1.87.0(oxlint-tsgolint@7.0.2003))
+        specifier: 0.6.2
+        version: 0.6.2(@oxlint/plugins@1.87.0)(oxlint@1.87.0(oxlint-tsgolint@7.0.2003))
       oxlint:
         specifier: 1.87.0
         version: 1.87.0(oxlint-tsgolint@7.0.2003)
@@ -1650,13 +1650,13 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
-  '@timmo001/oxlint-rules@0.5.0':
-    resolution: {integrity: sha512-5Tm1duCF2fzPRSwFGTOIDoR4qWXQIUtf0dYWt4ApoRbtJTPrPi4OZjdmhglaE/IoEaDSuUFp2Jx08Emmno/o1g==}
+  '@timmo001/oxlint-rules@0.6.2':
+    resolution: {integrity: sha512-a2pte8DgmqpSVWcjPo21uabKypyfv0TtOdl36oUG+p17MlIs2zT7DiZhn0tnEXjdXna3KFnmzGEHvW0KspVlXA==}
     engines: {node: '>=20'}
     hasBin: true
     peerDependencies:
-      '@oxlint/plugins': 1.86.0
-      oxlint: 1.86.0
+      '@oxlint/plugins': 1.87.0
+      oxlint: 1.87.0
 
   '@tybys/wasm-util@0.10.4':
     resolution: {integrity: sha512-W3c4gRigFS0T/Ma4qIYF3GDAc5AQdHb1yL5znJT1Zv1YaD9Kitx656wBjvr19qbiosmZT8lWDM5BEMynUqX65A==}
@@ -4073,7 +4073,7 @@ snapshots:
       tailwindcss: 4.3.3
       vite: 8.3.2(@types/node@24.19.1)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
 
-  '@timmo001/oxlint-rules@0.5.0(@oxlint/plugins@1.87.0)(oxlint@1.87.0(oxlint-tsgolint@7.0.2003))':
+  '@timmo001/oxlint-rules@0.6.2(@oxlint/plugins@1.87.0)(oxlint@1.87.0(oxlint-tsgolint@7.0.2003))':
     dependencies:
       '@oxlint/plugins': 1.87.0
       oxlint: 1.87.0(oxlint-tsgolint@7.0.2003)
