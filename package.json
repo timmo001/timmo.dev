@@ -37,7 +37,7 @@
     "@oxlint/plugins": "1.87.0",
     "@timmo001/oxlint-rules": "0.6.2",
     "oxlint": "1.87.0",
-    "oxlint-tsgolint": "7.0.2003",
+    "oxlint-tsgolint": "7.0.2004",
     "prettier": "3.9.10",
     "prettier-plugin-astro": "1.1.1",
     "typescript": "6.0.3",
