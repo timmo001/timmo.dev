@@ -30,18 +30,6 @@ export { renderHeaderCard, type HeaderCardInput } from "~/lib/cards/header";
 
 export { renderLanguagesCard } from "~/lib/cards/languages";
 
-export {
-  LINK_BUTTON_WIDTH,
-  renderLinkButton,
-  type LinkButtonInput,
-} from "~/lib/cards/links";
-
-export {
-  PROJECT_CARD_HEIGHT,
-  renderProjectCard,
-  type ProjectCardInput,
-} from "~/lib/cards/projects";
-
 export { renderReleasesCard, type ReleaseCardItem } from "~/lib/cards/releases";
 
 export { renderStatsCard, type StatsCardInput } from "~/lib/cards/stats";

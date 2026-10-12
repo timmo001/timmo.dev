@@ -1,7 +1,6 @@
 // Data for the GitHub profile README cards that the existing stats and
 // activity fetchers do not already cover: the contribution calendar and
-// streaks, merged pull requests, latest releases, and stars for the featured
-// projects. Each fetcher keeps its last good value when GitHub fails.
+// streaks, merged pull requests, and latest releases. Each fetcher keeps its last good value when GitHub fails.
 import { addCacheExpiry, isCacheValid } from "~/lib/dates";
 import { STATS_CACHE_TTL_MS } from "~/lib/stats-cache";
 import { queryGitHub } from "~/server/github";
@@ -32,12 +31,6 @@ export type LatestRelease = {
   tagName: string;
   publishedAt: Date;
   isPrerelease: boolean;
-};
-
-export type RepositorySummary = {
-  name: string;
-  stargazerCount: number;
-  primaryLanguage: { name: string; color: string | null } | null;
 };
 
 type InsightsData = {
@@ -84,22 +77,11 @@ type ReleasesData = {
   };
 };
 
-type RepositorySummaryData = Record<
-  string,
-  {
-    name: string;
-    stargazerCount: number;
-    primaryLanguage: { name: string; color: string | null } | null;
-  } | null
->;
-
 type Cached<T> = { value: T; expiresAt: number };
 
 const insightsCache = new Map<string, Cached<ContributionInsights>>();
 
 const releasesCache = new Map<string, Cached<Array<LatestRelease>>>();
-
-const summaryCache = new Map<string, Cached<Array<RepositorySummary>>>();
 
 async function withCache<T>(
   cache: Map<string, Cached<T>>,
@@ -331,52 +313,5 @@ export async function getLatestReleases(
         (left, right) =>
           right.publishedAt.getTime() - left.publishedAt.getTime(),
       );
-  });
-}
-
-export async function getRepositorySummaries(
-  user: string,
-  names: Array<string>,
-): Promise<Array<RepositorySummary>> {
-  const unique = [...new Set(names)].filter((name) =>
-    /^[A-Za-z0-9_.-]+$/.test(name),
-  );
-
-  if (unique.length === 0) {
-    return [];
-  }
-
-  return withCache(summaryCache, `${user}:${unique.join(",")}`, async () => {
-    const query = `query ($login: String!) {
-${unique
-  .map(
-    (name, index) =>
-      `  r${index}: repository(owner: $login, name: "${name}") {
-    name
-    stargazerCount
-    primaryLanguage {
-      name
-      color
-    }
-  }`,
-  )
-  .join("\n")}
-}`;
-
-    const data = await queryGitHub<RepositorySummaryData>(query, {
-      login: user,
-    });
-
-    return Object.values(data).flatMap((repository) =>
-      repository
-        ? [
-            {
-              name: repository.name,
-              stargazerCount: repository.stargazerCount,
-              primaryLanguage: repository.primaryLanguage,
-            },
-          ]
-        : [],
-    );
   });
 }
