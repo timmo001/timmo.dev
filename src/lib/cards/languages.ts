@@ -4,7 +4,8 @@ import {
   PADDING,
   palette,
   sectionLabel,
-  tile,
+  card,
+  type CardSpec,
 } from "~/lib/cards/theme";
 import type { Language } from "~/types/github/language";
 
@@ -82,14 +83,14 @@ ${legend}`,
   };
 }
 
-export function renderLanguagesCard(input: LanguagesCardInput): string {
+export function languagesCard(input: LanguagesCardInput): CardSpec {
   const limit = input.limit ?? 9;
 
   const rows = Math.ceil(Math.min(input.languages.length, limit) / COLUMNS);
 
   const height = 56 + 10 + 26 + rows * ROW_HEIGHT + 8 + 8;
 
-  return tile({
+  return card({
     width: CARD_WIDTH,
     height,
     title: "Top languages",

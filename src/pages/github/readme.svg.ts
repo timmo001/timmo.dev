@@ -1,29 +1,23 @@
 import type { APIRoute } from "astro";
 
-import { getTopLanguages, getUsername } from "~/lib/github";
-import {
-  renderErrorCard,
-  renderReadmeCard,
-  svgResponse,
-} from "~/lib/github-card";
-import { getUserData } from "~/server/github";
-import { getStatsCardInput } from "~/server/readme-cards";
+import { getUsername } from "~/lib/github";
+import { renderCardStack, svgResponse } from "~/lib/github-card";
+import { getReadmeCardSet } from "~/server/readme-cards";
 
 export const prerender = false;
 
+/** Every profile card in one image, for the GitHub profile README. */
 export const GET = (async () => {
   const username = getUsername();
 
-  try {
-    const [stats, { user }] = await Promise.all([
-      getStatsCardInput(username),
-      getUserData(username),
-    ]);
+  const { cards, degraded } = await getReadmeCardSet(username);
 
-    return svgResponse(renderReadmeCard(stats, getTopLanguages(user)));
-  } catch (error) {
-    console.error(error);
-
-    return svgResponse(renderErrorCard("GitHub stats"), 60);
-  }
+  return svgResponse(
+    renderCardStack(
+      cards,
+      `${username}'s GitHub profile`,
+      `GitHub profile cards for ${username}: stats, contributions, activity, releases, and languages.`,
+    ),
+    degraded ? 60 : undefined,
+  );
 }) satisfies APIRoute;

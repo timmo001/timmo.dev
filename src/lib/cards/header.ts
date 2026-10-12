@@ -4,9 +4,10 @@ import {
   measureText,
   PADDING,
   palette,
-  tile,
+  card,
   truncateText,
   wrapText,
+  type CardSpec,
 } from "~/lib/cards/theme";
 
 export type HeaderCardInput = {
@@ -20,28 +21,18 @@ export type HeaderCardInput = {
 
 const HEIGHT = 212;
 
-export function renderHeaderCard(input: HeaderCardInput): string {
+export function headerCard(input: HeaderCardInput): CardSpec {
   const description = `${input.name} (@${input.username}). ${input.role}${input.highlight ? ` ${input.highlight}.` : ""}`;
 
-  return tile({
+  return card({
     width: CARD_WIDTH,
     height: HEIGHT,
     title: input.name,
     description,
-    fill: "url(#hero)",
-    defs: `<linearGradient id="hero" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="${palette.accentDeep}"/>
-  <stop offset=".5" stop-color="#1e1b4b"/>
-  <stop offset="1" stop-color="${palette.background}"/>
-</linearGradient>
-<radialGradient id="glow" cx="0.85" cy="0.1" r="0.6">
-  <stop offset="0" stop-color="${palette.accentGlow}" stop-opacity=".45"/>
-  <stop offset="1" stop-color="${palette.accentGlow}" stop-opacity="0"/>
-</radialGradient>`,
-    css: `.name{font-size:40px;font-weight:600;letter-spacing:-1px;fill:#ffffff}
-.handle{font-size:16px;fill:#c7d2fe}
-.role{font-size:14.5px;fill:#e5e7eb}
-.pill{font-size:12px;font-weight:600;fill:#e0e7ff}`,
+    css: `.hero-name{font-size:40px;font-weight:600;letter-spacing:-1px;fill:${palette.text}}
+.hero-handle{font-size:16px;fill:${palette.accentSoft}}
+.hero-role{font-size:14.5px;fill:${palette.textMuted}}
+.hero-pill{font-size:12px;font-weight:600;fill:${palette.text}}`,
     body: (box) => {
       const x = box.x + PADDING;
 
@@ -64,25 +55,24 @@ export function renderHeaderCard(input: HeaderCardInput): string {
             const py = box.y + 22;
 
             return `<g>
-<rect x="${px}" y="${py}" width="${width}" height="28" rx="14" fill="#0b1220" fill-opacity=".75" stroke="${palette.accentGlow}" stroke-opacity=".5"/>
+<rect x="${px}" y="${py}" width="${width}" height="28" rx="14" fill="${palette.surface}" stroke="${palette.border}"/>
 <circle class="pulse" cx="${px + 16}" cy="${py + 14}" r="4" fill="${palette.success}"/>
-<text class="pill" x="${px + 28}" y="${py + 18}">${escapeXml(text)}</text>
+<text class="hero-pill" x="${px + 28}" y="${py + 18}">${escapeXml(text)}</text>
 </g>`;
           })()
         : "";
 
-      return `<rect x="${box.x + 1}" y="${box.y + 1}" width="${box.width - 2}" height="${box.height - 2}" rx="15" fill="url(#glow)"/>
-<g>
-<text class="name" x="${x}" y="${box.y + 84}">${escapeXml(input.name)}</text>
+      return `<g>
+<text class="hero-name" x="${x}" y="${box.y + 84}">${escapeXml(input.name)}</text>
 </g>
 <g>
-<text class="handle" x="${x}" y="${box.y + 112}">${escapeXml(input.handle)} · @${escapeXml(input.username)}</text>
+<text class="hero-handle" x="${x}" y="${box.y + 112}">${escapeXml(input.handle)} · @${escapeXml(input.username)}</text>
 </g>
 <g>
 ${roleLines
   .map(
     (line, index) =>
-      `<text class="role" x="${x}" y="${box.y + 148 + index * 21}">${escapeXml(line)}</text>`,
+      `<text class="hero-role" x="${x}" y="${box.y + 148 + index * 21}">${escapeXml(line)}</text>`,
   )
   .join("\n")}
 </g>

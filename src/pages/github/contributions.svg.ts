@@ -2,8 +2,9 @@ import type { APIRoute } from "astro";
 
 import { getUsername } from "~/lib/github";
 import {
-  renderCalendarCard,
-  renderErrorCard,
+  calendarCard,
+  errorCard,
+  renderCard,
   svgResponse,
 } from "~/lib/github-card";
 import { getContributionInsights } from "~/server/github-readme";
@@ -17,14 +18,13 @@ export const GET = (async () => {
     const insights = await getContributionInsights(username);
 
     return svgResponse(
-      renderCalendarCard({
-        days: insights.days,
-        total: insights.lastYearTotal,
-      }),
+      renderCard(
+        calendarCard({ days: insights.days, total: insights.lastYearTotal }),
+      ),
     );
   } catch (error) {
     console.error(error);
 
-    return svgResponse(renderErrorCard("Contributions"), 60);
+    return svgResponse(renderCard(errorCard("Contributions")), 60);
   }
 }) satisfies APIRoute;

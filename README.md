@@ -52,9 +52,11 @@ only when that change is intended.
 
 The Worker publishes cached SVG cards for the GitHub profile README at
 [timmo001/timmo001](https://github.com/timmo001/timmo001). Each card is a
-self-contained SVG with Geist embedded, rendered from `src/lib/cards/*` and
-served by `src/pages/github/*.svg.ts`:
+self-contained SVG with Geist embedded, built as a `CardSpec` in
+`src/lib/cards/*` and served by `src/pages/github/*.svg.ts`. The README uses
+the combined image; every section is also available on its own:
 
+- `https://timmo.dev/github/readme.svg`: every card below in one image
 - `https://timmo.dev/github/header.svg`: name, role, and the busiest upstream repo
 - `https://timmo.dev/github/stats.svg`: contributions, pull requests, streaks
 - `https://timmo.dev/github/contributions.svg`: contribution calendar
@@ -63,7 +65,6 @@ served by `src/pages/github/*.svg.ts`:
 - `https://timmo.dev/github/releases.svg`: latest releases across repos
 - `https://timmo.dev/github/top-languages.svg`: language share
 - `https://timmo.dev/github/footer.svg`: generation stamp
-- `https://timmo.dev/github/readme.svg`: stats and languages in one image
 
 The endpoints use the existing `GITHUB_TOKEN` Worker secret and configured
 `GITHUB_USERNAME`. The identity text lives in `src/data/readme.ts`. The embedded font subset in `src/generated/geist-subset.ts`

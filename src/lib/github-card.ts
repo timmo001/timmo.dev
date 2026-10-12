@@ -1,91 +1,37 @@
-import { renderLanguageSection } from "~/lib/cards/languages";
-import {
-  renderStatGrid,
-  type StatsCardInput,
-  statsCells,
-} from "~/lib/cards/stats";
 import {
   CARD_WIDTH,
+  type CardSpec,
+  card,
   escapeXml,
   PADDING,
   sectionLabel,
-  tile,
 } from "~/lib/cards/theme";
 import { STATS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
-import type { Language } from "~/types/github/language";
 
-export {
-  renderActivityCard,
-  type ActivityCardInput,
-} from "~/lib/cards/activity";
+export { activityCard, type ActivityCardInput } from "~/lib/cards/activity";
 
-export {
-  renderCalendarCard,
-  type CalendarCardInput,
-} from "~/lib/cards/calendar";
+export { calendarCard, type CalendarCardInput } from "~/lib/cards/calendar";
 
-export { renderFooterCard } from "~/lib/cards/footer";
+export { footerCard } from "~/lib/cards/footer";
 
-export { renderHeaderCard, type HeaderCardInput } from "~/lib/cards/header";
+export { headerCard, type HeaderCardInput } from "~/lib/cards/header";
 
-export { renderLanguagesCard } from "~/lib/cards/languages";
+export { languagesCard } from "~/lib/cards/languages";
 
-export { renderReleasesCard, type ReleaseCardItem } from "~/lib/cards/releases";
+export { releasesCard, type ReleaseCardItem } from "~/lib/cards/releases";
 
-export { renderStatsCard, type StatsCardInput } from "~/lib/cards/stats";
+export { statsCard, type StatsCardInput } from "~/lib/cards/stats";
 
-/** Stats and top languages in one image, for the original readme.svg URL. */
-export function renderReadmeCard(
-  input: StatsCardInput,
-  languages: Array<Language>,
-): string {
-  const cells = statsCells(input);
+export { type CardSpec, renderCard, renderCardStack } from "~/lib/cards/theme";
 
-  const languageLimit = 9;
-
-  const languageRows = Math.ceil(Math.min(languages.length, languageLimit) / 3);
-
-  const languagesTop = 58 + 2 * 78 + 24;
-
-  const height = languagesTop + 30 + 10 + 26 + languageRows * 24 + 16;
-
-  return tile({
-    width: CARD_WIDTH,
-    height,
-    title: `${input.username}'s GitHub stats and top languages`,
-    description: cells.map((cell) => `${cell.label}: ${cell.value}`).join(". "),
-    body: (box) => {
-      const section = renderLanguageSection(
-        languages,
-        box.x + PADDING,
-        box.y + languagesTop + 30,
-        box.width - PADDING * 2,
-        languageLimit,
-      );
-
-      return `${sectionLabel(box, "GitHub stats")}
-${renderStatGrid(cells, box.x + PADDING + 4, box.y + 58, (box.width - PADDING * 2) / 4)}
-${sectionLabel(box, "Top languages", undefined, box.y + languagesTop + 8)}
-${section.svg}`;
-    },
-  });
-}
-
-export function renderErrorCard(title: string): string {
-  return tile({
+export function errorCard(title: string): CardSpec {
+  return card({
     width: CARD_WIDTH,
     height: 96,
     title,
-    description: "GitHub data is temporarily unavailable",
+    description: `${title}: GitHub data is temporarily unavailable`,
     body: (box) => `${sectionLabel(box, title)}
 <text class="body" x="${box.x + PADDING}" y="${box.y + 64}">${escapeXml("Data is temporarily unavailable. Try again in a minute.")}</text>`,
-  });
-}
-
-export function notFoundResponse(): Response {
-  return new Response("Not found", {
-    status: 404,
-    headers: { "Cache-Control": "public, s-maxage=60" },
   });
 }
 

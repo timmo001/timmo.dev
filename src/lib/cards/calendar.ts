@@ -7,7 +7,8 @@ import {
   PADDING,
   palette,
   sectionLabel,
-  tile,
+  card,
+  type CardSpec,
 } from "~/lib/cards/theme";
 
 export type CalendarDay = {
@@ -38,7 +39,7 @@ function level(count: number, max: number): number {
   return Math.min(4, Math.max(1, Math.ceil((count / max) * 4)));
 }
 
-export function renderCalendarCard(input: CalendarCardInput): string {
+export function calendarCard(input: CalendarCardInput): CardSpec {
   const columns = Math.ceil(input.days.length / 7);
 
   const max = input.days.reduce((best, day) => Math.max(best, day.count), 0);
@@ -56,13 +57,13 @@ export function renderCalendarCard(input: CalendarCardInput): string {
       : ""
   }.`;
 
-  return tile({
+  return card({
     width: CARD_WIDTH,
     height: HEIGHT,
     title: "Contributions in the last year",
     description,
-    css: `.month{font-size:10px;fill:${palette.textFaint}}
-.cell{stroke:${palette.background};stroke-width:.5}`,
+    css: `.cal-month{font-size:10px;fill:${palette.textFaint}}
+.cal-cell{stroke:${palette.background};stroke-width:.5}`,
     body: (box) => {
       const gridWidth = columns * STEP - GAP;
 
@@ -90,7 +91,7 @@ export function renderCalendarCard(input: CalendarCardInput): string {
         const fill = palette.calendar[level(day.count, max)];
 
         cells.push(
-          `<rect class="cell" x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2.5" fill="${fill}"><title>${escapeXml(`${format(parseISO(day.date), "d MMM yyyy")}: ${formatNumber(day.count)}`)}</title></rect>`,
+          `<rect class="cal-cell" x="${x}" y="${y}" width="${CELL}" height="${CELL}" rx="2.5" fill="${fill}"><title>${escapeXml(`${format(parseISO(day.date), "d MMM yyyy")}: ${formatNumber(day.count)}`)}</title></rect>`,
         );
 
         if (row === 0) {
@@ -99,7 +100,7 @@ export function renderCalendarCard(input: CalendarCardInput): string {
           if (month !== lastMonth) {
             if (lastMonth && x - lastLabelX >= 32) {
               months.push(
-                `<text class="month" x="${x}" y="${y0 - 10}">${format(parseISO(day.date), "MMM")}</text>`,
+                `<text class="cal-month" x="${x}" y="${y0 - 10}">${format(parseISO(day.date), "MMM")}</text>`,
               );
 
               lastLabelX = x;

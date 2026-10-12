@@ -9,8 +9,9 @@ import {
   PADDING,
   palette,
   sectionLabel,
-  tile,
+  card,
   truncateText,
+  type CardSpec,
 } from "~/lib/cards/theme";
 
 export type ReleaseCardItem = {
@@ -31,14 +32,14 @@ const ROW_HEIGHT = 38;
 
 const HEADER_HEIGHT = 54;
 
-export function renderReleasesCard(input: ReleasesCardInput): string {
+export function releasesCard(input: ReleasesCardInput): CardSpec {
   const items = input.items.slice(0, input.maxItems ?? 6);
 
   const rows = Math.max(items.length, 1);
 
   const height = HEADER_HEIGHT + rows * ROW_HEIGHT + 16;
 
-  return tile({
+  return card({
     width: CARD_WIDTH,
     height,
     title: "Latest releases",
@@ -51,10 +52,10 @@ export function renderReleasesCard(input: ReleasesCardInput): string {
             )
             .join(". ")
         : "No releases yet.",
-    css: `.repo{font-size:13px;font-weight:600}
-.tag{font-size:12px;font-weight:600;fill:${palette.accent}}
-.name{font-size:12px;fill:${palette.textMuted}}
-.when{font-size:11px;fill:${palette.textFaint}}`,
+    css: `.rel-repo{font-size:13px;font-weight:600}
+.rel-tag{font-size:12px;font-weight:600;fill:${palette.accent}}
+.rel-name{font-size:12px;fill:${palette.textMuted}}
+.rel-when{font-size:11px;fill:${palette.textFaint}}`,
     body: (box) => {
       const x = box.x + PADDING;
 
@@ -87,11 +88,11 @@ export function renderReleasesCard(input: ReleasesCardInput): string {
 
           let cursor = x + 26;
 
-          const repoText = `<text class="repo" x="${cursor}" y="${baseline}">${escapeXml(item.repository)}</text>`;
+          const repoText = `<text class="rel-repo" x="${cursor}" y="${baseline}">${escapeXml(item.repository)}</text>`;
 
           cursor += repoWidth + 12;
 
-          const tagText = `<text class="tag" x="${cursor}" y="${baseline}">${escapeXml(item.tagName)}</text>`;
+          const tagText = `<text class="rel-tag" x="${cursor}" y="${baseline}">${escapeXml(item.tagName)}</text>`;
 
           cursor += tagWidth + 12;
 
@@ -113,7 +114,7 @@ export function renderReleasesCard(input: ReleasesCardInput): string {
 
           const name =
             item.name && item.name !== item.tagName && nameMax > 60
-              ? `<text class="name" x="${cursor}" y="${baseline}">${escapeXml(truncateText(item.name, nameMax, 12, 400))}</text>`
+              ? `<text class="rel-name" x="${cursor}" y="${baseline}">${escapeXml(truncateText(item.name, nameMax, 12, 400))}</text>`
               : "";
 
           const separator =
@@ -128,7 +129,7 @@ ${repoText}
 ${tagText}
 ${prereleaseSvg?.svg ?? ""}
 ${name}
-<text class="when" x="${right}" y="${baseline}" text-anchor="end">${escapeXml(when)}</text>
+<text class="rel-when" x="${right}" y="${baseline}" text-anchor="end">${escapeXml(when)}</text>
 </g>`;
         })
         .join("\n");

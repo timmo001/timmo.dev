@@ -6,8 +6,9 @@ import {
   PADDING,
   palette,
   sectionLabel,
-  tile,
+  card,
   truncateText,
+  type CardSpec,
 } from "~/lib/cards/theme";
 
 export type ActivityCardItem = {
@@ -33,7 +34,7 @@ const HEADER_HEIGHT = 56;
 
 const METRIC_COLUMN_WIDTH = 92;
 
-export function renderActivityCard(input: ActivityCardInput): string {
+export function activityCard(input: ActivityCardInput): CardSpec {
   const items = input.items.slice(0, input.maxItems ?? 6);
 
   const rows = Math.max(items.length, 1);
@@ -50,15 +51,15 @@ export function renderActivityCard(input: ActivityCardInput): string {
           .join(". ")
       : input.emptyText;
 
-  return tile({
+  return card({
     width: CARD_WIDTH,
     height,
     title: input.title,
     description: `${input.title}. ${description}.`,
-    css: `.owner{font-size:14px;fill:${palette.textFaint}}
-.repo{font-size:14px;font-weight:600;fill:${palette.accent}}
-.metric{font-size:15px;font-weight:600}
-.metric-label{font-size:9.5px;font-weight:600;letter-spacing:.8px;fill:${palette.textFaint}}`,
+    css: `.act-owner{font-size:14px;fill:${palette.textFaint}}
+.act-repo{font-size:14px;font-weight:600;fill:${palette.accent}}
+.act-metric{font-size:15px;font-weight:600}
+.act-metric-label{font-size:9.5px;font-weight:600;letter-spacing:.8px;fill:${palette.textFaint}}`,
     body: (box) => {
       const x = box.x + PADDING;
 
@@ -103,8 +104,8 @@ export function renderActivityCard(input: ActivityCardInput): string {
               (
                 metric,
                 column,
-              ) => `<text class="metric" x="${metricsX + column * METRIC_COLUMN_WIDTH}" y="${y + 20}">${formatNumber(metric.value)}</text>
-<text class="metric-label" x="${metricsX + column * METRIC_COLUMN_WIDTH}" y="${y + 35}">${metric.label.toUpperCase()}</text>`,
+              ) => `<text class="act-metric" x="${metricsX + column * METRIC_COLUMN_WIDTH}" y="${y + 20}">${formatNumber(metric.value)}</text>
+<text class="act-metric-label" x="${metricsX + column * METRIC_COLUMN_WIDTH}" y="${y + 35}">${metric.label.toUpperCase()}</text>`,
             )
             .join("\n");
 
@@ -115,7 +116,7 @@ export function renderActivityCard(input: ActivityCardInput): string {
 
           return `${separator}
 <g>
-<text x="${x}" y="${y + 20}"><tspan class="owner">${escapeXml(ownerText)}</tspan><tspan class="repo">${escapeXml(repoText)}</tspan></text>
+<text x="${x}" y="${y + 20}"><tspan class="act-owner">${escapeXml(ownerText)}</tspan><tspan class="act-repo">${escapeXml(repoText)}</tspan></text>
 ${descriptionText ? `<text class="sub" x="${x}" y="${y + 36}" style="font-size:12px">${escapeXml(descriptionText)}</text>` : ""}
 ${metrics}
 </g>`;

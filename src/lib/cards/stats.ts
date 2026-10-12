@@ -9,7 +9,8 @@ import {
   PADDING,
   plural,
   sectionLabel,
-  tile,
+  card,
+  type CardSpec,
 } from "~/lib/cards/theme";
 
 export type StatsCardInput = {
@@ -117,10 +118,10 @@ ${cell.sub ? `<text class="sub" x="${x + 34}" y="${y + 60}">${escapeXml(cell.sub
     .join("\n");
 }
 
-export function renderStatsCard(input: StatsCardInput): string {
+export function statsCard(input: StatsCardInput): CardSpec {
   const cells = statsCells(input);
 
-  return tile({
+  return card({
     width: CARD_WIDTH,
     height: HEIGHT,
     title: `${input.username}'s GitHub stats`,

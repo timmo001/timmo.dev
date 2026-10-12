@@ -189,7 +189,7 @@ export type Box = {
   height: number;
 };
 
-type TileOptions = {
+export type CardSpec = {
   width: number;
   height: number;
   title: string;
@@ -201,36 +201,103 @@ type TileOptions = {
   inset?: Partial<Record<"top" | "right" | "bottom" | "left", number>>;
 };
 
-export function tile(options: TileOptions): string {
+/** Identity helper that keeps card builders readable and typed. */
+export function card(spec: CardSpec): CardSpec {
+  return spec;
+}
+
+function cardBox(spec: CardSpec, offsetY: number): Box {
   const inset = {
     top: GUTTER,
     right: GUTTER,
     bottom: GUTTER,
     left: GUTTER,
-    ...options.inset,
+    ...spec.inset,
   };
 
-  const box: Box = {
+  return {
     x: inset.left,
-    y: inset.top,
-    width: options.width - inset.left - inset.right,
-    height: options.height - inset.top - inset.bottom,
+    y: offsetY + inset.top,
+    width: spec.width - inset.left - inset.right,
+    height: spec.height - inset.top - inset.bottom,
   };
+}
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${options.width}" height="${options.height}" viewBox="0 0 ${options.width} ${options.height}" role="img" aria-labelledby="title description">
-<title id="title">${escapeXml(options.title)}</title>
-<desc id="description">${escapeXml(options.description)}</desc>
+function cardSurface(spec: CardSpec, box: Box): string {
+  return `<rect x="${box.x + 0.5}" y="${box.y + 0.5}" width="${box.width - 1}" height="${box.height - 1}" rx="${RADIUS}" fill="${spec.fill ?? palette.background}" stroke="${palette.border}"/>
+${spec.body(box)}`;
+}
+
+function svgDocument(
+  width: number,
+  height: number,
+  title: string,
+  description: string,
+  css: Array<string | undefined>,
+  defs: Array<string | undefined>,
+  content: string,
+): string {
+  const extraCss = [...new Set(css.filter((rule) => rule?.trim()))].join("\n");
+
+  const extraDefs = [...new Set(defs.filter((def) => def?.trim()))].join("\n");
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title description">
+<title id="title">${escapeXml(title)}</title>
+<desc id="description">${escapeXml(description)}</desc>
 <style>
 ${baseCss()}
-${options.css ?? ""}
+${extraCss}
 </style>
 <defs>
-${options.defs ?? ""}
+${extraDefs}
 </defs>
-<rect x="${box.x + 0.5}" y="${box.y + 0.5}" width="${box.width - 1}" height="${box.height - 1}" rx="${RADIUS}" fill="${options.fill ?? palette.background}" stroke="${palette.border}"/>
-${options.body(box)}
+${content}
 </svg>
 `;
+}
+
+/** One card as a standalone SVG document. */
+export function renderCard(spec: CardSpec): string {
+  return svgDocument(
+    spec.width,
+    spec.height,
+    spec.title,
+    spec.description,
+    [spec.css],
+    [spec.defs],
+    cardSurface(spec, cardBox(spec, 0)),
+  );
+}
+
+/** Several cards stacked into one SVG document, each keeping its own gutter. */
+export function renderCardStack(
+  cards: Array<CardSpec>,
+  title: string,
+  description?: string,
+): string {
+  const width = Math.max(...cards.map((spec) => spec.width), CARD_WIDTH);
+
+  let offsetY = 0;
+
+  const content = cards
+    .map((spec) => {
+      const surface = cardSurface(spec, cardBox(spec, offsetY));
+
+      offsetY += spec.height;
+
+      return surface;
+    })
+    .join("\n");
+
+  return svgDocument(
+    width,
+    offsetY,
+    title,
+    description ?? cards.map((spec) => spec.description).join(" "),
+    cards.map((spec) => spec.css),
+    cards.map((spec) => spec.defs),
+    content,
+  );
 }
 
 export function sectionLabel(
