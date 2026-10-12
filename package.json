@@ -30,7 +30,7 @@
     "fuse.js": "7.5.0",
     "octokit": "5.0.5",
     "tailwindcss": "4.3.3",
-    "zod": "4.6.5"
+    "zod": "4.6.6"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
