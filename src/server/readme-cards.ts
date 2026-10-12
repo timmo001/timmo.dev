@@ -4,7 +4,6 @@
 import { profile, SOURCE_REPOSITORY } from "~/data/readme";
 import { type ActivityCardItem } from "~/lib/cards/activity";
 import { type StatsCardInput } from "~/lib/cards/stats";
-import { formatNumber } from "~/lib/cards/theme";
 import { getTopLanguages } from "~/lib/github";
 import {
   activityCard,
@@ -94,35 +93,6 @@ export async function getSplitActivity(
   };
 }
 
-/** A one-line status for the header pill, from the busiest upstream repo. */
-export async function getHeaderHighlight(
-  username: string,
-): Promise<string | undefined> {
-  try {
-    const { upstream } = await getSplitActivity(username);
-
-    const [top] = upstream;
-
-    if (!top) {
-      return undefined;
-    }
-
-    const parts = [
-      top.pullRequests > 0 ? `${formatNumber(top.pullRequests)} PRs` : null,
-      top.reviews > 0 ? `${formatNumber(top.reviews)} reviews` : null,
-      top.commits > 0 && top.pullRequests === 0
-        ? `${formatNumber(top.commits)} commits`
-        : null,
-    ].filter((part) => part !== null);
-
-    return `Active in ${top.nameWithOwner}${parts.length ? ` · ${parts.join(", ")} in 60 days` : ""}`;
-  } catch (error) {
-    console.error(error);
-
-    return undefined;
-  }
-}
-
 export function contributingCard(items: Array<ActivityCardItem>): CardSpec {
   return activityCard({
     title: "Contributing to",
@@ -173,7 +143,6 @@ export async function getReadmeCardSet(
         handle: profile.handle,
         username,
         role: profile.role,
-        highlight: await getHeaderHighlight(username),
       }),
     ]),
     section("GitHub stats", async () => [

@@ -57,7 +57,7 @@ self-contained SVG with Geist embedded, built as a `CardSpec` in
 the combined image; every section is also available on its own:
 
 - `https://timmo.dev/github/readme.svg`: every card below in one image
-- `https://timmo.dev/github/header.svg`: name, role, and the busiest upstream repo
+- `https://timmo.dev/github/header.svg`: name and role
 - `https://timmo.dev/github/stats.svg`: contributions, pull requests, streaks
 - `https://timmo.dev/github/contributions.svg`: contribution calendar
 - `https://timmo.dev/github/contributing.svg`: upstream repos, last 60 days
