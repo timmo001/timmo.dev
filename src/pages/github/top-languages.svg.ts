@@ -16,8 +16,12 @@ export const GET = (async () => {
   try {
     const { user } = await getUserData(username);
 
-    return svgResponse(renderLanguagesCard(username, getTopLanguages(user)));
-  } catch {
-    return svgResponse(renderErrorCard("Top Languages"), 60);
+    return svgResponse(
+      renderLanguagesCard({ languages: getTopLanguages(user) }),
+    );
+  } catch (error) {
+    console.error(error);
+
+    return svgResponse(renderErrorCard("Top languages"), 60);
   }
 }) satisfies APIRoute;

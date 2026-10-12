@@ -6,7 +6,7 @@ import {
   renderStatsCard,
   svgResponse,
 } from "~/lib/github-card";
-import { getProfileStats } from "~/server/github";
+import { getStatsCardInput } from "~/server/readme-cards";
 
 export const prerender = false;
 
@@ -14,10 +14,10 @@ export const GET = (async () => {
   const username = getUsername();
 
   try {
-    return svgResponse(
-      renderStatsCard(username, await getProfileStats(username)),
-    );
-  } catch {
+    return svgResponse(renderStatsCard(await getStatsCardInput(username)));
+  } catch (error) {
+    console.error(error);
+
     return svgResponse(renderErrorCard("GitHub stats"), 60);
   }
 }) satisfies APIRoute;

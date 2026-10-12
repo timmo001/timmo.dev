@@ -3,7 +3,7 @@ import { getEnv } from "~/env";
 import { STATS_CACHE_TTL_MS } from "~/lib/stats-cache";
 import { type User, type UserNode } from "~/types/github/user";
 
-async function queryGitHub<T>(
+export async function queryGitHub<T>(
   query: string,
   variables: Record<string, string>,
 ): Promise<T> {

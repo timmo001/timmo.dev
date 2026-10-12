@@ -6,7 +6,8 @@ import {
   renderReadmeCard,
   svgResponse,
 } from "~/lib/github-card";
-import { getProfileStats, getUserData } from "~/server/github";
+import { getUserData } from "~/server/github";
+import { getStatsCardInput } from "~/server/readme-cards";
 
 export const prerender = false;
 
@@ -14,13 +15,15 @@ export const GET = (async () => {
   const username = getUsername();
 
   try {
-    const stats = await getProfileStats(username);
-    const { user } = await getUserData(username);
+    const [stats, { user }] = await Promise.all([
+      getStatsCardInput(username),
+      getUserData(username),
+    ]);
 
-    return svgResponse(
-      renderReadmeCard(username, stats, getTopLanguages(user)),
-    );
-  } catch {
+    return svgResponse(renderReadmeCard(stats, getTopLanguages(user)));
+  } catch (error) {
+    console.error(error);
+
     return svgResponse(renderErrorCard("GitHub stats"), 60);
   }
 }) satisfies APIRoute;
