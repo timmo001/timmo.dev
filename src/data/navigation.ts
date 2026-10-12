@@ -26,14 +26,6 @@ export const projects: Array<NavItem> = [
       "Portable agent skills following the Agent Skills specification, installable across OpenCode, Claude Code, Codex, Cursor, and other clients. Canonical source for the OpenCode config catalogue, covering TypeScript, Effect, GitHub, Home Assistant, and local workflow skills.",
   },
   {
-    title: "OpenCode Config",
-    tags: ["Skills", "Agents", "Plugins", "Commands"],
-    stack: ["Markdown", "TypeScript", "Effect", "OpenTUI", "Solid"],
-    href: "https://github.com/timmo001/opencode-config",
-    description:
-      "Shared OpenCode skills, agents, plugins, and commands, published from dotfiles for standalone browsing and install. Branch-context workflows, permission-scoped agents, refactor commands, env protection, and skills for TypeScript, codebase diagnostics, and Home Assistant frontend work.",
-  },
-  {
     title: "Agent Checks",
     tags: ["Plugins", "Herdr", "Omarchy", "CI/CD", "GitHub Actions", "Linting"],
     stack: ["TypeScript", "Effect", "QML"],

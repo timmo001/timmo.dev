@@ -3,11 +3,7 @@
   "references": {
     "dotfiles": {
       "repository": "timmo001/dotfiles",
-      "description": "Public Arch/Omarchy dotfiles with GNU Stow and a compiled dot CLI: machine bootstrap, multi-repo git tooling, GitHub workflow and notification inboxes, Omarchy desktop sync, optional private overlays, and OpenCode agent publishing."
-    },
-    "opencode-config": {
-      "repository": "timmo001/opencode-config",
-      "description": "Shared OpenCode skills, agents, plugins, and commands published from dotfiles: branch-context workflows, permission-scoped agents, refactor commands, env protection, and skills for TypeScript, codebase diagnostics, and Home Assistant frontend work."
+      "description": "Public Arch/Omarchy dotfiles with GNU Stow and a compiled dot CLI: machine bootstrap, multi-repo git tooling, GitHub workflow and notification inboxes, Omarchy desktop sync, optional private overlays, and OpenCode config."
     },
     "ha-bridge": {
       "repository": "timmo001/ha-bridge",
