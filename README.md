@@ -13,11 +13,11 @@ Personal website for Aidan Timson (Timmo), built with [Astro](https://astro.buil
 
 ```sh
 mise install
-pnpm install
-pnpm dev
+aube install
+aube run dev
 ```
 
-Node and pnpm are pinned in `mise.toml`. Run the local and CI checks in parallel with:
+Node and aube are pinned in `mise.toml`. aube installs from `pnpm-lock.yaml`, which stays the lockfile so Renovate keeps updating it. Run the local and CI checks in parallel with:
 
 ```sh
 mise run check ::: deploy:dry-run
@@ -40,11 +40,11 @@ static fallback when no token is available during the build.
 ## Cloudflare Workers
 
 ```sh
-pnpm deploy:dry-run
-pnpm preview
+aube run deploy:dry-run
+aube run preview
 ```
 
-The Worker is configured in `wrangler.jsonc`. `pnpm deploy` builds and deploys
+The Worker is configured in `wrangler.jsonc`. `aube run deploy` builds and deploys
 it; deployment can create or update the configured custom domain, so run it
 only when that change is intended.
 

@@ -4,7 +4,7 @@
 # keeps hold of the server.
 
 [daemons.site]
-run = 'exec pnpm exec astro dev --ignore-lock --host 127.0.0.1 --port "$PORT"'
+run = 'exec aube exec astro dev --ignore-lock --host 127.0.0.1 --port "$PORT"'
 port = { expect = [8090], bump = 10 }
 ready_cmd = 'curl -fsS "http://127.0.0.1:$PORT/"'
 health_cmd = 'curl -fsS "http://127.0.0.1:$PORT/"'
