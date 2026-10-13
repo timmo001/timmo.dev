@@ -6,17 +6,57 @@ import Layout from "~/layouts/Layout.astro";
 import { getTopLanguages, getUsername } from "~/lib/github";
 import { STATS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
 import { getProfileStats, getUserData } from "~/server/github";
+import {
+  getContributionInsights,
+  getLatestReleases,
+} from "~/server/github-readme";
+import type { Stat } from "~/types/github/stat";
 
 const username = getUsername();
 
-const [{ user, fetchedAt }, profileStats] = await Promise.all([
-  getUserData(username),
-  getProfileStats(username),
-]);
+// The calendar, streaks and releases are extras: the page still renders
+// without them if those queries fail.
+async function settle<T>(promise: Promise<T>) {
+  try {
+    return { ok: true as const, value: await promise };
+  } catch (error) {
+    console.error(error);
+
+    return { ok: false as const };
+  }
+}
+
+const [{ user, fetchedAt }, profileStats, insightsResult, releasesResult] =
+  await Promise.all([
+    getUserData(username),
+    getProfileStats(username),
+    settle(getContributionInsights(username)),
+    settle(getLatestReleases(username)),
+  ]);
+
+const insights = insightsResult.ok ? insightsResult.value : undefined;
+
+const releases = releasesResult.ok
+  ? releasesResult.value.slice(0, 8)
+  : undefined;
 
 const formatNumber = (value: number) => value.toLocaleString("en-GB");
 
-const githubStats = [
+const plural = (count: number, singular: string) =>
+  `${formatNumber(count)} ${count === 1 ? singular : `${singular}s`}`;
+
+const githubStats: Array<Stat> = [
+  ...(insights
+    ? [
+        {
+          key: "calendar",
+          url: `https://github.com/${username}`,
+          title: `Contributions ${insights.year}`,
+          value: formatNumber(insights.thisYearTotal),
+          secondaryValue: `${formatNumber(insights.allTimeTotal)} since ${insights.memberSince}`,
+        },
+      ]
+    : []),
   {
     key: "contributions",
     url: `https://github.com/${username}`,
@@ -28,6 +68,9 @@ const githubStats = [
     url: `https://github.com/pulls?q=is%3Apr+author%3A${username}`,
     title: "Pull requests",
     value: formatNumber(profileStats.totalPullRequests),
+    secondaryValue: insights
+      ? `${formatNumber(insights.mergedPullRequests)} merged`
+      : undefined,
   },
   {
     key: "issues",
@@ -54,6 +97,17 @@ const githubStats = [
     value: formatNumber(profileStats.followers),
     secondaryValue: `(${formatNumber(user.following.totalCount)} following)`,
   },
+  ...(insights
+    ? [
+        {
+          key: "streak",
+          url: `https://github.com/${username}`,
+          title: "Streak",
+          value: plural(insights.currentStreak, "day"),
+          secondaryValue: `longest ${plural(insights.longestStreak, "day")}`,
+        },
+      ]
+    : []),
 ];
 
 const githubTopLanguages = getTopLanguages(user);
@@ -66,9 +120,15 @@ Astro.response.headers.set(
 
 <Layout
   title="Stats | Aidan Timson (Timmo)"
-  description="Aggregated stats for Aidan Timson (Timmo/timmo001)"
+  description="GitHub stats for Aidan Timson (Timmo/timmo001): contributions, streaks, releases, and languages"
 >
-  <StatsContent {githubStats} {githubTopLanguages} {fetchedAt} />
+  <StatsContent
+    {githubStats}
+    {githubTopLanguages}
+    {insights}
+    {releases}
+    {fetchedAt}
+  />
 </Layout>
 
 <script>

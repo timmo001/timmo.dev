@@ -7,13 +7,13 @@ export async function queryGitHub<T>(
   query: string,
   variables: Record<string, string>,
 ): Promise<T> {
-  const token = getEnv().GITHUB_TOKEN;
+  const { GITHUB_TOKEN: token, GITHUB_API_URL: apiUrl } = getEnv();
 
   if (!token) {
     throw new Error("GITHUB_TOKEN is not configured");
   }
 
-  const response = await fetch("https://api.github.com/graphql", {
+  const response = await fetch(`${apiUrl}/graphql`, {
     method: "POST",
     headers: {
       Accept: "application/vnd.github+json",
@@ -386,7 +386,7 @@ export async function getProfileStats(user: string): Promise<ProfileStats> {
     return cached.value;
   }
 
-  const token = getEnv().GITHUB_TOKEN;
+  const { GITHUB_TOKEN: token, GITHUB_API_URL: apiUrl } = getEnv();
 
   if (!token) {
     throw new Error("GITHUB_TOKEN is not configured");
@@ -412,19 +412,19 @@ export async function getProfileStats(user: string): Promise<ProfileStats> {
   const [profile, repositories, commits, pullRequests, issues] =
     await Promise.all([
       requestJson<{ public_repos: number; followers: number }>(
-        `https://api.github.com/users/${encodeURIComponent(user)}`,
+        `${apiUrl}/users/${encodeURIComponent(user)}`,
       ),
       requestJson<Array<{ stargazers_count: number }>>(
-        `https://api.github.com/users/${encodeURIComponent(user)}/repos?per_page=100&type=owner`,
+        `${apiUrl}/users/${encodeURIComponent(user)}/repos?per_page=100&type=owner`,
       ),
       requestJson<{ total_count: number }>(
-        `https://api.github.com/search/commits?per_page=1&q=author:${encodeURIComponent(user)}`,
+        `${apiUrl}/search/commits?per_page=1&q=author:${encodeURIComponent(user)}`,
       ),
       requestJson<{ total_count: number }>(
-        `https://api.github.com/search/issues?per_page=1&q=author:${encodeURIComponent(user)}+type:pr`,
+        `${apiUrl}/search/issues?per_page=1&q=author:${encodeURIComponent(user)}+type:pr`,
       ),
       requestJson<{ total_count: number }>(
-        `https://api.github.com/search/issues?per_page=1&q=author:${encodeURIComponent(user)}+type:issue`,
+        `${apiUrl}/search/issues?per_page=1&q=author:${encodeURIComponent(user)}+type:issue`,
       ),
     ]);
 

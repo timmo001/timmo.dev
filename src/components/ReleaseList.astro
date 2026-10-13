@@ -1,0 +1,44 @@
+---
+import { format, formatDistanceToNowStrict } from "date-fns";
+
+import { type LatestRelease } from "~/server/github-readme";
+
+type Props = {
+  releases: Array<LatestRelease>;
+};
+
+const { releases } = Astro.props;
+---
+
+<ul class="flex w-full list-none flex-col divide-y divide-white/10">
+  {releases.map((release) => (
+    <li class="reveal">
+      <a
+        href={release.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex flex-wrap items-baseline gap-x-3 gap-y-1 px-2 py-3 text-start transition-colors hover:bg-white/5"
+      >
+        <span class="font-semibold text-white">{release.repository}</span>
+        <span class="font-medium text-indigo-400">{release.tagName}</span>
+        {release.isPrerelease && (
+          <span class="rounded-full bg-white/10 px-2 py-0.5 text-xs font-medium text-gray-300">
+            pre-release
+          </span>
+        )}
+        {release.name !== release.tagName && (
+          <span class="min-w-0 flex-1 truncate text-sm text-gray-300">
+            {release.name}
+          </span>
+        )}
+        <time
+          class="ml-auto text-sm text-white/45"
+          datetime={release.publishedAt.toISOString()}
+          title={format(release.publishedAt, "d MMMM yyyy, HH:mm")}
+        >
+          {formatDistanceToNowStrict(release.publishedAt, { addSuffix: true })}
+        </time>
+      </a>
+    </li>
+  ))}
+</ul>

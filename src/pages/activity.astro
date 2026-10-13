@@ -8,7 +8,9 @@ import { contributions, projects } from "~/data/navigation";
 import { getEnv } from "~/env";
 import Layout from "~/layouts/Layout.astro";
 import { STATS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
-import { getCurrentActivity } from "~/server/github";
+import { type CurrentActivityItem, getCurrentActivity } from "~/server/github";
+
+const username = getEnv().GITHUB_USERNAME;
 
 const catalogue = new Map(
   [...projects, ...contributions].map((item) => [
@@ -20,7 +22,7 @@ const catalogue = new Map(
 let activity: Awaited<ReturnType<typeof getCurrentActivity>> | undefined;
 
 try {
-  activity = await getCurrentActivity(getEnv().GITHUB_USERNAME);
+  activity = await getCurrentActivity(username);
 } catch (error) {
   console.error(error);
 }
@@ -47,50 +49,116 @@ const formatTimestamp = (date: Date) =>
     timeZone: "UTC",
   }).format(date);
 
-const displayItems = (activity?.items ?? []).map((item) => {
-  const knownItem = catalogue.get(item.url);
+const formatNumber = (value: number) => value.toLocaleString("en-GB");
 
-  return {
-    ...item,
-    knownItem,
-    title:
-      knownItem?.title ??
-      item.nameWithOwner.split("/").at(-1) ??
-      item.nameWithOwner,
-    description:
-      knownItem?.description ??
-      item.description ??
-      "Recent public work on GitHub.",
-  };
-});
+const isOwnRepository = (item: CurrentActivityItem) =>
+  item.nameWithOwner.toLowerCase().startsWith(`${username.toLowerCase()}/`);
 
-const knownActivity = displayItems.filter(({ knownItem }) => knownItem);
+function toDisplayItems(items: Array<CurrentActivityItem>) {
+  const displayItems = items.map((item) => {
+    const knownItem = catalogue.get(item.url);
 
-const prioritisedActivity = [
-  ...knownActivity.slice(0, 6),
-  ...displayItems.filter((item) => !knownActivity.slice(0, 6).includes(item)),
-];
+    return {
+      ...item,
+      knownItem,
+      title:
+        knownItem?.title ??
+        item.nameWithOwner.split("/").at(-1) ??
+        item.nameWithOwner,
+      description:
+        knownItem?.description ??
+        item.description ??
+        "Recent public work on GitHub.",
+    };
+  });
+
+  // Catalogued repos lead so the cards with tags and stack come first.
+  const known = displayItems.filter(({ knownItem }) => knownItem).slice(0, 6);
+
+  return [...known, ...displayItems.filter((item) => !known.includes(item))];
+}
+
+const INITIAL_ITEMS = 6;
+
+const groups = activity
+  ? [
+      {
+        id: "contributing",
+        heading: "Contributing to",
+        intro:
+          "Projects I maintain or contribute to that belong to someone else, led by the Home Assistant frontend for the Open Home Foundation.",
+        items: toDisplayItems(
+          activity.items.filter((item) => !isOwnRepository(item)),
+        ),
+      },
+      {
+        id: "working-on",
+        heading: "Working on",
+        intro: "My own repositories with public activity in this window.",
+        items: toDisplayItems(activity.items.filter(isOwnRepository)),
+      },
+    ].filter((group) => group.items.length > 0)
+  : [];
+
+const totals = activity
+  ? activity.items.reduce(
+      (sum, item) => ({
+        commits: sum.commits + item.commits,
+        pullRequests: sum.pullRequests + item.pullRequests,
+        reviews: sum.reviews + item.reviews,
+      }),
+      { commits: 0, pullRequests: 0, reviews: 0 },
+    )
+  : undefined;
 ---
 
 <Layout
   title="Current activity | Aidan Timson (Timmo)"
-  description="Repositories Aidan Timson is currently working on. The latest public commit, pull request, or review from the last 60 days comes first."
+  description="Repositories Aidan Timson is contributing to and working on. The latest public commit, pull request, or review from the last 60 days comes first."
 >
   <SubpageHeader title="Current activity" />
   <div class="flex w-full flex-col items-center px-4 pb-16 pt-8">
-    <div class="container flex w-full flex-col gap-16 px-2">
-      <section aria-label="Recent GitHub activity" class="flex flex-col gap-6">
-        {
-          activity && activity.items.length > 0 ? (
-            <>
+    <div class="container flex w-full flex-col gap-20 px-2">
+      {activity && totals && groups.length > 0 ? (
+        <>
+          <section aria-label="Activity summary" class="flex flex-col gap-8">
+            <div class="reveal px-6 md:px-12">
+              <SectionBlock>
+                Most of my open source work is on GitHub. This is my public
+                activity from the last 60 days, split between projects I
+                contribute to and my own.
+              </SectionBlock>
+            </div>
+            <dl class="reveal grid grid-cols-2 gap-4 px-6 sm:grid-cols-4 md:px-12">
+              {[
+                { label: "Repositories", value: activity.items.length },
+                { label: "Commits", value: totals.commits },
+                { label: "Pull requests", value: totals.pullRequests },
+                { label: "Reviews", value: totals.reviews },
+              ].map(({ label, value }) => (
+                <div class="rounded-xl border border-white/10 px-5 py-4">
+                  <dt class="text-xs text-white/45">{label}</dt>
+                  <dd class="mt-1 text-3xl font-semibold tracking-tight text-white">
+                    {formatNumber(value)}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          {groups.map((group) => (
+            <section
+              aria-label={group.heading}
+              class="flex flex-col gap-6"
+              data-activity-group
+            >
               <div class="reveal px-6 md:px-12">
-                <SectionBlock>
-                  Most of my open source work is on GitHub. This is my public
-                  activity from the last 60 days.
+                <SectionBlock heading={group.heading}>
+                  {group.intro}
                 </SectionBlock>
               </div>
               <div class="stagger-grid grid items-stretch gap-x-6 gap-y-12 md:grid-cols-2 xl:grid-cols-3">
-                {prioritisedActivity.map(
+                {group.items.map(
                   ({ knownItem, title, description, ...item }, index) => (
                     <ActivityItem
                       title={title}
@@ -102,50 +170,53 @@ const prioritisedActivity = [
                       reviews={item.reviews}
                       tags={knownItem?.tags}
                       stack={knownItem?.stack}
-                      hidden={index >= 12}
+                      hidden={index >= INITIAL_ITEMS}
                     />
                   ),
                 )}
               </div>
-              {prioritisedActivity.length > 12 && (
+              {group.items.length > INITIAL_ITEMS && (
                 <button
                   type="button"
                   class="reveal mx-auto rounded-xl border border-white/10 px-6 py-3 text-sm font-medium transition-colors hover:border-indigo-500/40 hover:bg-white/5 focus-visible:border-indigo-400 focus-visible:outline-none"
                   data-load-more-activity
                 >
-                  Load more
+                  Show {formatNumber(group.items.length - INITIAL_ITEMS)} more
                 </button>
               )}
-              <p class="reveal px-6 text-sm text-white/45 md:px-12">
-                The latest commit, pull request, or review comes first, then
-                the amount of activity in this window. Activity from{" "}
-                {formatDate(activity.from)} to {formatDate(activity.to)}.
-                Results are updated hourly and were last fetched{" "}
-                {formatTimestamp(activity.fetchedAt)}.
-              </p>
-            </>
-          ) : (
-            <div class="reveal px-6 md:px-12">
-              <p class="section-subtext">
-                Current activity is unavailable right now. See my{" "}
-                <a class="text-link" href="/projects">
-                  projects and contributions
-                </a>{" "}
-                or browse my{" "}
-                <a
-                  class="text-link"
-                  href="https://github.com/timmo001"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub profile
-                </a>
-                .
-              </p>
-            </div>
-          )
-        }
-      </section>
+            </section>
+          ))}
+
+          <p class="reveal px-6 text-sm text-white/45 md:px-12">
+            Within each group, the latest commit, pull request, or review comes
+            first, then the amount of activity in this window. Activity from{" "}
+            {formatDate(activity.from)} to {formatDate(activity.to)}. Results
+            are updated hourly and were last fetched{" "}
+            {formatTimestamp(activity.fetchedAt)}.
+          </p>
+        </>
+      ) : (
+        <section aria-label="Recent GitHub activity">
+          <div class="reveal px-6 md:px-12">
+            <p class="section-subtext">
+              Current activity is unavailable right now. See my{" "}
+              <a class="text-link" href="/projects">
+                projects and contributions
+              </a>{" "}
+              or browse my{" "}
+              <a
+                class="text-link"
+                href="https://github.com/timmo001"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub profile
+              </a>
+              .
+            </p>
+          </div>
+        </section>
+      )}
     </div>
   </div>
 </Layout>
@@ -154,25 +225,33 @@ const prioritisedActivity = [
   import { queryElement, queryElements } from "~/scripts/dom";
 
   const initActivityLoadMore = () => {
-    const button = queryElement(
+    for (const group of queryElements(
       document,
-      "[data-load-more-activity]",
-      HTMLButtonElement,
-    );
-
-    if (!button || button.dataset.initialized) return;
-
-    button.dataset.initialized = "true";
-    button.addEventListener("click", () => {
-      const hiddenItems = queryElements(
-        document,
-        "[data-activity-item][hidden]",
-        HTMLElement,
+      "[data-activity-group]",
+      HTMLElement,
+    )) {
+      const button = queryElement(
+        group,
+        "[data-load-more-activity]",
+        HTMLButtonElement,
       );
 
-      hiddenItems.slice(0, 6).forEach((item) => item.removeAttribute("hidden"));
-      button.hidden = hiddenItems.length <= 6;
-    });
+      if (!button || button.dataset.initialized) continue;
+
+      button.dataset.initialized = "true";
+      button.addEventListener("click", () => {
+        const hiddenItems = queryElements(
+          group,
+          "[data-activity-item][hidden]",
+          HTMLElement,
+        );
+
+        hiddenItems
+          .slice(0, 6)
+          .forEach((item) => item.removeAttribute("hidden"));
+        button.hidden = hiddenItems.length <= 6;
+      });
+    }
   };
 
   initActivityLoadMore();

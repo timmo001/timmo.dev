@@ -1,19 +1,32 @@
 ---
+import ContributionCalendar from "~/components/ContributionCalendar.astro";
 import GitHubStats from "~/components/GitHubStats.astro";
+import LanguageShare from "~/components/LanguageShare.astro";
+import ReleaseList from "~/components/ReleaseList.astro";
 import SubpageHeader from "~/components/SubpageHeader.astro";
 import TopLanguages from "~/components/TopLanguages.astro";
 import { formatDateTimeFallback } from "~/lib/dates";
 import { STATS_CACHE_TTL_LABEL } from "~/lib/stats-cache";
+import {
+  type ContributionInsights,
+  type LatestRelease,
+} from "~/server/github-readme";
 import type { Language } from "~/types/github/language";
 import type { Stat } from "~/types/github/stat";
 
 type Props = {
   githubStats: Array<Stat>;
   githubTopLanguages: Array<Language>;
+  insights?: ContributionInsights;
+  releases?: Array<LatestRelease>;
   fetchedAt: Date;
 };
 
-const { githubStats, githubTopLanguages, fetchedAt } = Astro.props;
+const { githubStats, githubTopLanguages, insights, releases, fetchedAt } =
+  Astro.props;
+
+const headingClass =
+  "reveal mb-6 text-2xl leading-snug font-normal tracking-tight text-white";
 ---
 
 <SubpageHeader title="Stats" />
@@ -21,35 +34,41 @@ const { githubStats, githubTopLanguages, fetchedAt } = Astro.props;
   class="flex w-full flex-col items-center justify-start px-4 py-16"
   role="main"
 >
-  <div class="container flex w-full flex-col items-center gap-16 text-center">
-    <section class="w-full max-w-6xl">
-      <div class="stagger-stats grid w-full grid-cols-[repeat(2,auto)] justify-around gap-y-12 leading-snug tracking-tight sm:grid-cols-[repeat(3,auto)]">
+  <div class="container flex w-full flex-col items-center gap-20 text-center">
+    <section class="w-full max-w-6xl" aria-label="GitHub stats">
+      <div class="stagger-stats grid w-full grid-cols-[repeat(2,auto)] justify-around gap-x-6 gap-y-12 leading-snug tracking-tight sm:grid-cols-[repeat(3,auto)] lg:grid-cols-[repeat(4,auto)]">
         <GitHubStats stats={githubStats} />
       </div>
     </section>
 
-    <section class="w-full max-w-6xl">
-      <h3 class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white">
-        Top Languages
-      </h3>
-      <div class="grid grid-cols-3 gap-4 leading-snug tracking-tight sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
-        <TopLanguages languages={githubTopLanguages} />
-      </div>
+    <section class="w-full max-w-6xl" aria-label="Contributions">
+      <h3 class={headingClass}>Contributions</h3>
+      {insights ? (
+        <ContributionCalendar
+          days={insights.days}
+          total={insights.lastYearTotal}
+        />
+      ) : (
+        <p class="reveal section-subtext text-center">
+          The contribution calendar is unavailable right now.
+        </p>
+      )}
     </section>
 
-    <section>
-      <h3 class="reveal mb-4 text-2xl leading-snug font-normal tracking-tight text-white">
-        Contribution Graph
-      </h3>
-      <div class="reveal">
-        <iframe
-          src="https://ghchart.rshah.org/timmo001"
-          title="timmo001"
-          loading="lazy"
-          height="120"
-          width="670"
-          style="border: 0; background: transparent !important"
-        ></iframe>
+    {releases && releases.length > 0 && (
+      <section class="w-full max-w-4xl" aria-label="Latest releases">
+        <h3 class={headingClass}>Latest releases</h3>
+        <ReleaseList releases={releases} />
+      </section>
+    )}
+
+    <section class="w-full max-w-4xl" aria-label="Top languages">
+      <h3 class={headingClass}>Top languages</h3>
+      <div class="flex flex-col gap-8">
+        <LanguageShare languages={githubTopLanguages} />
+        <div class="flex flex-wrap justify-center gap-3 leading-snug tracking-tight">
+          <TopLanguages languages={githubTopLanguages} />
+        </div>
       </div>
     </section>
   </div>
