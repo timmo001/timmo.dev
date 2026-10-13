@@ -2,8 +2,9 @@ import type { APIRoute } from "astro";
 
 import { getTopLanguages, getUsername } from "~/lib/github";
 import {
-  renderErrorCard,
-  renderLanguagesCard,
+  errorCard,
+  languagesCard,
+  renderCard,
   svgResponse,
 } from "~/lib/github-card";
 import { getUserData } from "~/server/github";
@@ -16,8 +17,12 @@ export const GET = (async () => {
   try {
     const { user } = await getUserData(username);
 
-    return svgResponse(renderLanguagesCard(username, getTopLanguages(user)));
-  } catch {
-    return svgResponse(renderErrorCard("Top Languages"), 60);
+    return svgResponse(
+      renderCard(languagesCard({ languages: getTopLanguages(user) })),
+    );
+  } catch (error) {
+    console.error(error);
+
+    return svgResponse(renderCard(errorCard("Top languages")), 60);
   }
 }) satisfies APIRoute;

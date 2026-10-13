@@ -2,11 +2,12 @@ import type { APIRoute } from "astro";
 
 import { getUsername } from "~/lib/github";
 import {
-  renderErrorCard,
-  renderStatsCard,
+  errorCard,
+  renderCard,
+  statsCard,
   svgResponse,
 } from "~/lib/github-card";
-import { getProfileStats } from "~/server/github";
+import { getStatsCardInput } from "~/server/readme-cards";
 
 export const prerender = false;
 
@@ -15,9 +16,11 @@ export const GET = (async () => {
 
   try {
     return svgResponse(
-      renderStatsCard(username, await getProfileStats(username)),
+      renderCard(statsCard(await getStatsCardInput(username))),
     );
-  } catch {
-    return svgResponse(renderErrorCard("GitHub stats"), 60);
+  } catch (error) {
+    console.error(error);
+
+    return svgResponse(renderCard(errorCard("GitHub stats")), 60);
   }
 }) satisfies APIRoute;
