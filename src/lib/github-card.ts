@@ -43,8 +43,8 @@ export function svgResponse(
     headers: {
       "Cache-Control":
         cacheTtlSeconds === STATS_CACHE_TTL_SECONDS
-          ? `public, s-maxage=${STATS_CACHE_TTL_SECONDS}, stale-while-revalidate=${STATS_CACHE_TTL_SECONDS * 24}`
-          : `public, s-maxage=${cacheTtlSeconds}`,
+          ? `public, max-age=${STATS_CACHE_TTL_SECONDS}, s-maxage=${STATS_CACHE_TTL_SECONDS}, stale-while-revalidate=${STATS_CACHE_TTL_SECONDS * 24}`
+          : `public, max-age=${cacheTtlSeconds}, s-maxage=${cacheTtlSeconds}`,
       "Content-Type": "image/svg+xml; charset=utf-8",
       "X-Content-Type-Options": "nosniff",
     },
