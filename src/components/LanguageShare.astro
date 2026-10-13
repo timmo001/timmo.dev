@@ -1,0 +1,48 @@
+---
+import { type Language } from "~/types/github/language";
+
+type Props = {
+  languages: Array<Language>;
+  limit?: number;
+};
+
+const { languages, limit = 9 } = Astro.props;
+
+const shown = languages.slice(0, limit);
+
+const total = shown.reduce((sum, language) => sum + language.size, 0);
+
+const share = (language: Language) =>
+  total === 0 ? 0 : (language.size / total) * 100;
+---
+
+<div class="reveal flex w-full flex-col gap-4">
+  <div
+    class="flex h-3 w-full overflow-hidden rounded-full bg-white/5"
+    role="img"
+    aria-label={shown
+      .map((language) => `${language.name} ${share(language).toFixed(1)}%`)
+      .join(", ")}
+  >
+    {shown.map((language) => (
+      <span
+        class="h-full border-r border-gray-950 last:border-r-0"
+        style={`width: ${share(language)}%; background-color: ${language.color}`}
+        title={`${language.name} ${share(language).toFixed(1)}%`}
+      />
+    ))}
+  </div>
+  <dl class="grid grid-cols-2 gap-x-8 gap-y-2 text-start text-sm sm:grid-cols-3">
+    {shown.map((language) => (
+      <div class="flex items-center gap-2">
+        <span
+          class="inline-block h-2.5 w-2.5 shrink-0 rounded-full"
+          style={`background-color: ${language.color}`}
+          aria-hidden="true"
+        />
+        <dt class="font-medium text-white">{language.name}</dt>
+        <dd class="ml-auto text-white/45">{share(language).toFixed(1)}%</dd>
+      </div>
+    ))}
+  </dl>
+</div>

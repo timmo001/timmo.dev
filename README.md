@@ -37,6 +37,10 @@ production, configure `GITHUB_TOKEN` as a Worker secret and optionally set the
 non-secret `GITHUB_USERNAME` build and runtime variable. `/projects` keeps its
 static fallback when no token is available during the build.
 
+`GITHUB_API_URL` is optional and points the GitHub fetchers at another API
+base, such as a local mock, when working on the stats, activity, and card
+pages offline.
+
 ## Cloudflare Workers
 
 ```sh
