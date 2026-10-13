@@ -10,10 +10,10 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "pnpm build && wrangler dev",
-    "deploy": "pnpm build && wrangler deploy",
+    "preview": "aube run build && wrangler dev",
+    "deploy": "aube run build && wrangler deploy",
     "deploy:cloudflare": "wrangler deploy",
-    "deploy:dry-run": "pnpm build && wrangler deploy --dry-run",
+    "deploy:dry-run": "aube run build && wrangler deploy --dry-run",
     "deploy:preview": "wrangler versions upload",
     "typecheck": "astro check",
     "font:subset": "node --experimental-strip-types scripts/build-font-subset.ts",

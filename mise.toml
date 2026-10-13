@@ -1,32 +1,32 @@
 [tools]
 node = "26.11.1"
-"aqua:pnpm/pnpm" = "12.12.0"
+aube = "2.7.0"
 
 [tasks.install]
-run = "pnpm install --frozen-lockfile"
+run = "aube install --frozen-lockfile"
 
 [tasks.lint]
 depends = ["install"]
-run = "pnpm lint"
+run = "aube run --no-install lint"
 
 [tasks.typecheck]
 depends = ["install"]
-run = "pnpm typecheck"
+run = "aube run --no-install typecheck"
 
 [tasks.format]
 depends = ["install"]
-run = "pnpm format"
+run = "aube run --no-install format"
 
 [tasks."format:check"]
 depends = ["install"]
-run = "pnpm format:check"
+run = "aube run --no-install format:check"
 
 [tasks.check]
 depends = ["lint", "typecheck", "format:check"]
 
 [tasks.build]
 depends = ["install"]
-run = "pnpm build"
+run = "aube run --no-install build"
 
 [tasks."serve:site"]
 depends = ["install"]
@@ -46,4 +46,4 @@ run = "pitchfork stop site"
 
 [tasks."deploy:dry-run"]
 depends = ["build"]
-run = "pnpm wrangler deploy --dry-run"
+run = "aube exec wrangler deploy --dry-run"

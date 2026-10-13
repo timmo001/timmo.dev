@@ -2,52 +2,60 @@
 
 lockfile_version = 2
 
-[[tools."aqua:pnpm/pnpm"]]
-version = "12.12.0"
-backend = "aqua:pnpm/pnpm"
-specifiers = ["12.12.0"]
+[[tools.aube]]
+version = "2.7.0"
+backend = "packslip:github.com/aubepkg/aube"
+specifiers = ["2.7.0"]
 
-[tools."aqua:pnpm/pnpm"."platforms.linux-arm64"]
-checksum = "sha256:cf3e59a576d3561b721ab214a8abde7a37982777001c4ba75019edeed1098ae6"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.12.0/pnpm-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/628841238"
-provenance = "github-attestations"
+[tools.aube."platforms.linux-arm64"]
+checksum = "sha256:51ae6018283347ca5c8d663066c77145bb1f5ff4d5e432fbc808d012d82aea03"
+url = "https://github.com/aubepkg/aube/releases/download/v2.7.0/aube-v2.7.0-aarch64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release.yml"
 
-[tools."aqua:pnpm/pnpm"."platforms.linux-arm64-musl"]
-checksum = "sha256:8396c4ffe3e894132d144ea484df3c12fe6a70bd007268bc2d1276917872160b"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.12.0/pnpm-linux-arm64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/628841233"
-provenance = "github-attestations"
+[tools.aube."platforms.linux-arm64-musl"]
+checksum = "sha256:4f27aff8ffd9497cf16eaedd8c50be6a239d9c86ac1795004ad2be8189208ca7"
+url = "https://github.com/aubepkg/aube/releases/download/v2.7.0/aube-v2.7.0-aarch64-unknown-linux-musl.tar.gz"
+signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release.yml"
 
-[tools."aqua:pnpm/pnpm"."platforms.linux-x64"]
-checksum = "sha256:20d68d53bfa89ba9cf727c1ffd0d3c1c3193e933d097b36e7f29f743257713d9"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.12.0/pnpm-linux-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/628841231"
-provenance = "github-attestations"
+[tools.aube."platforms.linux-x64"]
+checksum = "sha256:1a1c1771a7ee3619e774f2108124f4c8c2aa877e7deacf747be9847b3bbc1231"
+url = "https://github.com/aubepkg/aube/releases/download/v2.7.0/aube-v2.7.0-x86_64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release.yml"
 
-[tools."aqua:pnpm/pnpm"."platforms.linux-x64-musl"]
-checksum = "sha256:2e16d0f5fc23bdd29b7e0cd9934d93c7d44cb6fb987b4ed425c7f735795b2979"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.12.0/pnpm-linux-x64-musl.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/628841243"
-provenance = "github-attestations"
+[tools.aube."platforms.linux-x64-baseline"]
+checksum = "sha256:1a1c1771a7ee3619e774f2108124f4c8c2aa877e7deacf747be9847b3bbc1231"
+url = "https://github.com/aubepkg/aube/releases/download/v2.7.0/aube-v2.7.0-x86_64-unknown-linux-gnu.tar.gz"
+signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release.yml"
 
-[tools."aqua:pnpm/pnpm"."platforms.macos-arm64"]
-checksum = "sha256:b7bad987d4ddf7bafc30882e29d46f9825946d4a55417b02bb9680691498a544"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.12.0/pnpm-darwin-arm64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/628841234"
-provenance = "github-attestations"
+[tools.aube."platforms.linux-x64-musl"]
+checksum = "sha256:fc2384d58c560415f6afdfdc7c0f2d10b10f464da608bf1d8be5c8936db68666"
+url = "https://github.com/aubepkg/aube/releases/download/v2.7.0/aube-v2.7.0-x86_64-unknown-linux-musl.tar.gz"
+signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release.yml"
 
-[tools."aqua:pnpm/pnpm"."platforms.macos-x64"]
-checksum = "sha256:f71b928c630eec2760903c0a4472f1757bddf4ce40572d1d1497d3fb5ab6cc16"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.12.0/pnpm-darwin-x64.tar.gz"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/628841230"
-provenance = "github-attestations"
+[tools.aube."platforms.linux-x64-musl-baseline"]
+checksum = "sha256:fc2384d58c560415f6afdfdc7c0f2d10b10f464da608bf1d8be5c8936db68666"
+url = "https://github.com/aubepkg/aube/releases/download/v2.7.0/aube-v2.7.0-x86_64-unknown-linux-musl.tar.gz"
+signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release.yml"
 
-[tools."aqua:pnpm/pnpm"."platforms.windows-x64"]
-checksum = "sha256:2ec165178c682a82dfbe608ddcf0c55108b61b0941342bce2ca4b1a26faa2c7c"
-url = "https://github.com/pnpm/pnpm/releases/download/v12.12.0/pnpm-win32-x64.zip"
-url_api = "https://api.github.com/repos/pnpm/pnpm/releases/assets/628841235"
-provenance = "github-attestations"
+[tools.aube."platforms.macos-arm64"]
+checksum = "sha256:d67dcf1ea36629445595417ea6d7de9859fa723e422394cbbcd677d0164a5fa0"
+url = "https://github.com/aubepkg/aube/releases/download/v2.7.0/aube-v2.7.0-aarch64-apple-darwin.tar.gz"
+signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release.yml"
+
+[tools.aube."platforms.windows-arm64"]
+checksum = "sha256:6b6a91e7060bf9f6ce239cb65dee86b6dbc145cf8ac3efd055a0e21d53678cda"
+url = "https://github.com/aubepkg/aube/releases/download/v2.7.0/aube-v2.7.0-aarch64-pc-windows-msvc.zip"
+signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release.yml"
+
+[tools.aube."platforms.windows-x64"]
+checksum = "sha256:a5eb939dbf76d83880659e45f1f05aa06c4b33d92888aa41dd7c6cca5ce7dd63"
+url = "https://github.com/aubepkg/aube/releases/download/v2.7.0/aube-v2.7.0-x86_64-pc-windows-msvc.zip"
+signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release.yml"
+
+[tools.aube."platforms.windows-x64-baseline"]
+checksum = "sha256:a5eb939dbf76d83880659e45f1f05aa06c4b33d92888aa41dd7c6cca5ce7dd63"
+url = "https://github.com/aubepkg/aube/releases/download/v2.7.0/aube-v2.7.0-x86_64-pc-windows-msvc.zip"
+signer = "sigstore-oidc:https://github.com/aubepkg/aube/.github/workflows/release.yml"
 
 [[tools.node]]
 version = "26.11.1"
