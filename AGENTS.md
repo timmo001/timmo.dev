@@ -4,7 +4,7 @@
 
 - Single-package Astro 7 site using [aube](https://aube.sh) as the package manager; `pnpm-lock.yaml` is the lockfile and aube reads and writes it in place, so Renovate keeps updating it as a pnpm lockfile.
 - Requires Node `>=22.12.0` from `package.json#engines`.
-- `mise.toml` pins Node and aube for local checks and CI. There is no `package.json#packageManager`; aube is pinned by mise only.
+- `mise.toml` pins Node and aube for local checks and CI. `package.json#packageManager` still pins pnpm: Cloudflare Builds reads it to pick its pnpm version, and aube accepts a pnpm pin without complaint.
 - `pnpm-workspace.yaml` holds the build approvals (`allowBuilds`) and release-age setting; aube reads it as its workspace config.
 - Astro pages live in `src/pages`; shared layout is `src/layouts/Layout.astro`; global Tailwind v4 theme, custom utilities, font face, and motion live in `src/styles/global.css`.
 - Use the `~/*` import alias for `src/*`; it is configured in both `tsconfig.json` and `astro.config.mjs`.
