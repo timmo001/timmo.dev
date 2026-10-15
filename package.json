@@ -36,7 +36,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.10",
     "@oxlint/plugins": "1.88.0",
-    "@timmo001/oxlint-rules": "0.6.2",
+    "@timmo001/oxlint-rules": "0.6.3",
     "fontkit": "2.0.4",
     "oxlint": "1.88.0",
     "oxlint-tsgolint": "7.0.2004",
