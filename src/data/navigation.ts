@@ -178,8 +178,8 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "System Bridge",
-    tags: ["CLI", "Desktop App", "Home Assistant", "MCP", "WebSocket"],
-    stack: ["Go", "TypeScript", "QML", "Lit", "Tailwind", "Astro", "Starlight"],
+    tags: ["CLI", "Desktop App", "Home Assistant", "Omarchy", "MCP", "SDK", "WebSocket"],
+    stack: ["Go", "TypeScript", "Python", "Effect", "Lit", "QML", "Bun", "Blume"],
     href: "https://system-bridge.timmo.dev",
     githubHref: "https://github.com/timmo001/system-bridge",
     description:
