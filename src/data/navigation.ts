@@ -161,6 +161,14 @@ export const projects: Array<NavItem> = [
       "Capture crashes and errors from your machines, decide which are worth fixing, and suggest fixes. Reads the systemd journal on each machine, redacts and groups crashes, failed units, and out-of-memory kills into issues on one server, with optional local or hosted decision and language models. Includes a web UI and Effect client libraries.",
   },
   {
+    title: "Home Assistant Apps",
+    tags: ["Home Assistant"],
+    stack: ["YAML"],
+    href: "https://github.com/timmo001/home-assistant-apps",
+    description:
+      "Home Assistant app repository for Triage and OpenCode. Add it once to install every app, including OpenCode with the Supervisor's manager role. Each app's release copies its folder in after the container image is published.",
+  },
+  {
     title: "Music Assistant TUI",
     tags: ["TUI", "CLI", "WebSocket"],
     stack: ["TypeScript", "Effect", "OpenTUI"],
@@ -216,6 +224,14 @@ export const projects: Array<NavItem> = [
     href: "https://github.com/timmo001/renovate-config",
     description:
       "Shared Renovate dependency policy for my repositories. One-day release delay by default, two hours for Effect and related tooling, no delay for first-party packages, and coordinated Effect, OpenCode, OpenTUI, Lit, and Oxlint groups. Consumers extend github>timmo001/renovate-config.",
+  },
+  {
+    title: "Tooling Drift",
+    tags: ["CLI", "CI/CD", "Automation"],
+    stack: ["TypeScript", "Effect"],
+    href: "https://github.com/timmo001/tooling-drift",
+    description:
+      "CLI that compares the tools a repository wraps, configures, or forks with their latest releases. A tooling.yml records each GitHub repository and the tag last reviewed, and tooling-drift opens one pull request per tool that moved. Published as @timmo001/tooling-drift.",
   },
   {
     title: "Weather",
