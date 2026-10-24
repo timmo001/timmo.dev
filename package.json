@@ -41,7 +41,7 @@
     "oxlint": "1.89.0",
     "oxlint-tsgolint": "7.0.2004",
     "prettier": "3.9.10",
-    "prettier-plugin-astro": "1.1.1",
+    "prettier-plugin-astro": "1.1.2",
     "subset-font": "2.9.0",
     "typescript": "6.0.3",
     "wrangler": "4.151.3"
