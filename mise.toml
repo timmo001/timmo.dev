@@ -1,6 +1,6 @@
 [tools]
 node = "26.12.0"
-aube = "v2.8.1"
+aube = "v2.8.2"
 
 [tasks.install]
 run = "aube install --frozen-lockfile"
