@@ -44,6 +44,6 @@
     "prettier-plugin-astro": "1.1.2",
     "subset-font": "2.9.0",
     "typescript": "6.0.3",
-    "wrangler": "4.151.3"
+    "wrangler": "4.152.0"
   }
 }
