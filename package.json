@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "CLOUDFLARE_INCLUDE_PROCESS_ENV=true astro build",
     "preview": "aube run build && wrangler dev",
     "deploy": "aube run build && wrangler deploy",
     "deploy:cloudflare": "wrangler deploy",
