@@ -48,7 +48,7 @@
 - Project and contribution cards start from `src/data/navigation.ts`.
 - `src/pages/projects.astro` augments Home Assistant projects and integrations from GitHub when `GITHUB_TOKEN` is available, then falls back to static data when sync fails.
 - Home Assistant project classification lives in `src/lib/ha-project-kinds.ts`; integration classification lives in `src/lib/ha-integration-kinds.ts`.
-- A Home Assistant project gets a live demo when its latest release has a `demo.yaml` (mocked `entities` and `cards`) and exactly one `.js` asset. `src/lib/ha-project-demo.ts` parses it, `HaCardDemo.astro` renders it with Home Assistant's embed components, `/demos/<repo>` is its page and `/demos/<repo>/<asset>.js` serves the release script, as GitHub sends no CORS headers.
+- A Home Assistant project gets a live demo when its latest release has a `demo.yaml` (mocked `entities`, optional `areas`, `calendars` and `energy`, and `cards`) and exactly one `.js` asset. `src/lib/ha-project-demo.ts` parses it, `HaCardDemo.astro` renders it with Home Assistant's embed components, `/demos/<repo>` is its page and `/demos/<repo>/<asset>.js` serves the release script, as GitHub sends no CORS headers.
 
 ## Styling Notes
 
