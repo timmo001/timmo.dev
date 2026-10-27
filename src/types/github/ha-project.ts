@@ -26,11 +26,6 @@ export type HaProjectsQueryResult = {
         };
         latestRelease: {
           tagName: string;
-          tagCommit: {
-            demoFile: {
-              object: { text?: string | null } | null;
-            } | null;
-          } | null;
           releaseAssets: {
             nodes: Array<{
               name: string;
@@ -53,3 +48,8 @@ export type HaProjectsQueryResult = {
     };
   };
 };
+
+export type HaProjectDemoFilesQueryResult = Record<
+  string,
+  { object: { text?: string | null } | null } | null
+>;
