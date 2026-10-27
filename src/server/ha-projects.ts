@@ -43,6 +43,7 @@ const HA_PROJECTS_QUERY = `query ($login: String!) {
         latestRelease {
           tagName
           releaseAssets(first: 100) {
+            totalCount
             nodes {
               name
               downloadUrl
@@ -125,26 +126,33 @@ async function fetchDemoFiles(
     `$expression${index}: String!`,
   ]);
 
-  const result = await octokit.graphql<HaProjectDemoFilesQueryResult>(
-    `query ($owner: String!, ${declarations.join(", ")}) {
-      ${fields.join("\n")}
-    }`,
-    Object.fromEntries<string>([
-      ["owner", owner],
-      ...released.flatMap(({ name, tagName }, index) => [
-        [`name${index}`, name] as const,
-        [`expression${index}`, `${tagName}:${HA_DEMO_FILE}`] as const,
+  try {
+    const result = await octokit.graphql<HaProjectDemoFilesQueryResult>(
+      `query ($owner: String!, ${declarations.join(", ")}) {
+        ${fields.join("\n")}
+      }`,
+      Object.fromEntries<string>([
+        ["owner", owner],
+        ...released.flatMap(({ name, tagName }, index) => [
+          [`name${index}`, name] as const,
+          [`expression${index}`, `${tagName}:${HA_DEMO_FILE}`] as const,
+        ]),
       ]),
-    ]),
-  );
+    );
 
-  return new Map(
-    released.flatMap((repo, index) => {
-      const text = result[`repo${index}`]?.object?.text;
+    return new Map(
+      released.flatMap((repo, index) => {
+        const text = result[`repo${index}`]?.object?.text;
 
-      return text ? [[repo.name, text] as const] : [];
-    }),
-  );
+        return text ? [[repo.name, text] as const] : [];
+      }),
+    );
+  } catch (error) {
+    // Keep the synced projects when only their demos can't be read.
+    console.warn("GitHub HA demo sync unavailable; skipping demos.", error);
+
+    return new Map();
+  }
 }
 
 function getDemo(
@@ -157,8 +165,18 @@ function getDemo(
     return null;
   }
 
-  const [script, ...otherScripts] = release.releaseAssets.nodes.filter(
-    (asset) => asset.name.endsWith(".js"),
+  const assets = release.releaseAssets;
+
+  if (assets.totalCount > assets.nodes.length) {
+    console.warn(
+      `${repo.name} ${release.tagName} has more than ${assets.nodes.length} assets; skipping its demo.`,
+    );
+
+    return null;
+  }
+
+  const [script, ...otherScripts] = assets.nodes.filter((asset) =>
+    asset.name.endsWith(".js"),
   );
 
   if (!script || otherScripts.length > 0) {

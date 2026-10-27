@@ -27,6 +27,7 @@ export type HaProjectsQueryResult = {
         latestRelease: {
           tagName: string;
           releaseAssets: {
+            totalCount: number;
             nodes: Array<{
               name: string;
               downloadUrl: string;
