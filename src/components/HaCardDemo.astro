@@ -7,9 +7,16 @@ type Props = {
 
 const { demo } = Astro.props;
 
+const providerData = {
+  entities: demo.entities,
+  areas: demo.areas,
+  calendars: demo.calendars,
+  energy: demo.energy,
+};
+
 // Keeps a "</script>" in the data from closing the script element.
 const toScriptJson = (
-  value: HaProjectDemo["entities"] | HaProjectDemo["cards"][number],
+  value: typeof providerData | HaProjectDemo["cards"][number],
 ) => JSON.stringify(value).replaceAll("<", "\\u003c");
 ---
 
@@ -17,19 +24,13 @@ const toScriptJson = (
   <script
     is:inline
     type="application/json"
-    set:html={toScriptJson(demo.entities)}
+    set:html={toScriptJson(providerData)}
   />
-  {
-    demo.cards.map((card) => (
-      <ha-embed-card>
-        <script
-          is:inline
-          type="application/json"
-          set:html={toScriptJson(card)}
-        />
-      </ha-embed-card>
-    ))
-  }
+  {demo.cards.map((card) => (
+    <ha-embed-card>
+      <script is:inline type="application/json" set:html={toScriptJson(card)} />
+    </ha-embed-card>
+  ))}
 </ha-embed-provider>
 <script is:inline type="module" src={HA_EMBED_SCRIPT_URL}></script>
 <script is:inline type="module" src={demo.script.path}></script>
