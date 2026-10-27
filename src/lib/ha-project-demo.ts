@@ -9,14 +9,34 @@ export const HA_EMBED_SCRIPT_URL = "https://demo.home-assistant.io/embed.js";
 // the latest release tag, so it matches the script of that release.
 export const HA_DEMO_FILE = "demo.yaml";
 
+// Home Assistant accepts a date or date and time string, or either in an object
+const calendarDateSchema = z.union([
+  z.string(),
+  z.looseObject({ dateTime: z.string() }),
+  z.looseObject({ date: z.string() }),
+]);
+
 // The provider data of Home Assistant's embed components: the entities, and
 // optionally areas, calendar events and energy preferences.
 const haDemoFileSchema = z.object({
-  entities: z.array(z.looseObject({ entity_id: z.string() })).default([]),
+  entities: z
+    .array(z.looseObject({ entity_id: z.string(), state: z.string() }))
+    .default([]),
   areas: z
     .array(z.looseObject({ area_id: z.string(), name: z.string() }))
     .optional(),
-  calendars: z.record(z.string(), z.array(z.looseObject({}))).optional(),
+  calendars: z
+    .record(
+      z.string(),
+      z.array(
+        z.looseObject({
+          summary: z.string(),
+          start: calendarDateSchema,
+          end: calendarDateSchema,
+        }),
+      ),
+    )
+    .optional(),
   energy: z.looseObject({}).optional(),
   cards: z.array(z.looseObject({ type: z.string() })).min(1),
 });
