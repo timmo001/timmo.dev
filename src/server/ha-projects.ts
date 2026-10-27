@@ -1,6 +1,11 @@
 import { Octokit } from "octokit";
 
 import { getEnv } from "~/env";
+import {
+  HA_DEMO_FILE,
+  parseHaDemoFile,
+  type HaProjectDemo,
+} from "~/lib/ha-project-demo";
 import { getHaProjectKind } from "~/lib/ha-project-kinds";
 import { addCacheExpiry, isCacheValid } from "~/lib/dates";
 import { STATS_CACHE_TTL_MS } from "~/lib/stats-cache";
@@ -29,6 +34,24 @@ const HA_PROJECTS_QUERY = `query ($login: String!) {
           nodes {
             tagName
             publishedAt
+          }
+        }
+        latestRelease {
+          tagName
+          tagCommit {
+            demoFile: file(path: "${HA_DEMO_FILE}") {
+              object {
+                ... on Blob {
+                  text
+                }
+              }
+            }
+          }
+          releaseAssets(first: 20) {
+            nodes {
+              name
+              downloadUrl
+            }
           }
         }
         tagRefs: refs(refPrefix: "refs/tags/", first: 1, orderBy: { field: TAG_COMMIT_DATE, direction: DESC }) {
@@ -74,6 +97,50 @@ function getLastUpdatedAt(
   return repo.pushedAt ?? null;
 }
 
+function getDemo(
+  repo: HaProjectsQueryResult["user"]["repositories"]["nodes"][number],
+): HaProjectDemo | null {
+  const release = repo.latestRelease;
+  const demoText = release?.tagCommit?.demoFile?.object?.text;
+
+  if (!release || !demoText) {
+    return null;
+  }
+
+  const [script, ...otherScripts] = release.releaseAssets.nodes.filter(
+    (asset) => asset.name.endsWith(".js"),
+  );
+
+  if (!script || otherScripts.length > 0) {
+    console.warn(
+      `${repo.name} ${release.tagName} has ${HA_DEMO_FILE} but not exactly one script asset; skipping its demo.`,
+    );
+
+    return null;
+  }
+
+  const pagePath = `/demos/${repo.name}`;
+
+  try {
+    return {
+      ...parseHaDemoFile(demoText),
+      pagePath,
+      script: {
+        name: script.name,
+        path: `${pagePath}/${script.name}`,
+        downloadUrl: script.downloadUrl,
+      },
+    };
+  } catch (error) {
+    console.warn(
+      `${repo.name} ${release.tagName} has an invalid ${HA_DEMO_FILE}; skipping its demo.`,
+      error,
+    );
+
+    return null;
+  }
+}
+
 function mapRepoToHaProject(
   repo: HaProjectsQueryResult["user"]["repositories"]["nodes"][number],
 ): GitHubHaProject | null {
@@ -87,6 +154,7 @@ function mapRepoToHaProject(
     url: repo.url,
     isArchived: repo.isArchived,
     lastUpdatedAt: getLastUpdatedAt(repo),
+    demo: getDemo(repo),
   };
 }
 

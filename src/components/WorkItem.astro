@@ -1,4 +1,5 @@
 ---
+import HaCardDemo from "~/components/HaCardDemo.astro";
 import TagChip from "~/components/TagChip.astro";
 import { type NavItem } from "~/data/navigation";
 import { sortStack } from "~/data/stack-sort";
@@ -6,7 +7,7 @@ import { sortTags } from "~/data/tag-sort";
 
 type Props = NavItem;
 
-const { title, href, description, tags, stack } = Astro.props;
+const { title, href, description, tags, stack, demo } = Astro.props;
 
 const sortedTags = tags ? sortTags(tags) : undefined;
 
@@ -48,5 +49,13 @@ const stackAttr = (stack ?? []).map((item) => item.toLowerCase()).join("|");
         <TagChip label={item} />
       ))}
     </gw-row>
+  )}
+  {demo && (
+    <div class="card-demo">
+      <HaCardDemo demo={demo} />
+      <a class="text-link" href={demo.pagePath}>
+        Open demo
+      </a>
+    </div>
   )}
 </gw-card>
