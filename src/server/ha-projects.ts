@@ -47,7 +47,7 @@ const HA_PROJECTS_QUERY = `query ($login: String!) {
               }
             }
           }
-          releaseAssets(first: 20) {
+          releaseAssets(first: 100) {
             nodes {
               name
               downloadUrl
