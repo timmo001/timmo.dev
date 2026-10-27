@@ -1,4 +1,5 @@
 ---
+import HaCardDemo from "~/components/HaCardDemo.astro";
 import TagChip from "~/components/TagChip.astro";
 import { type NavItem } from "~/data/navigation";
 import { sortStack } from "~/data/stack-sort";
@@ -6,7 +7,7 @@ import { sortTags } from "~/data/tag-sort";
 
 type Props = NavItem;
 
-const { title, href, description, tags, stack } = Astro.props;
+const { title, href, description, tags, stack, demo } = Astro.props;
 
 const sortedTags = tags ? sortTags(tags) : undefined;
 
@@ -15,20 +16,41 @@ const sortedStack = stack ? sortStack(stack) : undefined;
 const tagsAttr = (tags ?? []).map((tag) => tag.toLowerCase()).join("|");
 
 const stackAttr = (stack ?? []).map((item) => item.toLowerCase()).join("|");
+
+// A live demo can't sit inside a link, so with one the title links to the
+// project and stretches over the card, and the demo sits above it.
+const Root = demo ? "div" : "a";
+
+const linkAttrs = {
+  href,
+  target: "_blank",
+  rel: "noopener noreferrer",
+};
 ---
 
-<a
-  href={href}
-  target="_blank"
-  rel="noopener noreferrer"
-  class="reveal flex w-full flex-col rounded-xl border border-white/10 p-5 text-start transition-colors hover:border-indigo-500/40 hover:bg-white/5"
+<Root
+  {...(demo ? {} : linkAttrs)}
+  class:list={[
+    "reveal flex w-full flex-col rounded-xl border border-white/10 p-5 text-start transition-colors hover:border-indigo-500/40 hover:bg-white/5",
+    { relative: demo },
+  ]}
   data-work-item
   data-title={title}
   data-description={description}
   data-tags={tagsAttr}
   data-stack={stackAttr}
 >
-  <h4 class="text-lg font-bold leading-snug text-indigo-400">{title}</h4>
+  <h4 class="text-lg font-bold leading-snug text-indigo-400">
+    {
+      demo ? (
+        <a {...linkAttrs} class="after:absolute after:inset-0">
+          {title}
+        </a>
+      ) : (
+        title
+      )
+    }
+  </h4>
   {
     sortedTags && sortedTags.length > 0 && (
       <div class="mt-2 flex flex-wrap gap-1.5">
@@ -51,4 +73,14 @@ const stackAttr = (stack ?? []).map((item) => item.toLowerCase()).join("|");
       </>
     )
   }
-</a>
+  {
+    demo && (
+      <div class="relative z-10 mt-4 flex flex-col gap-3">
+        <HaCardDemo demo={demo} />
+        <a class="text-link self-start text-sm" href={demo.pagePath}>
+          Open demo
+        </a>
+      </div>
+    )
+  }
+</Root>

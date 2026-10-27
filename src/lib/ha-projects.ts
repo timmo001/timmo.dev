@@ -1,4 +1,5 @@
-import { type NavItem } from "~/data/navigation";
+import { projects as staticProjects, type NavItem } from "~/data/navigation";
+import { type HaProjectDemo } from "~/lib/ha-project-demo";
 import {
   getHaProjectKind,
   getRepoNameFromHref,
@@ -43,6 +44,7 @@ function mergeHaProject(
     description,
     tags: staticItem?.tags ?? HA_PROJECT_DEFAULT_TAGS[kind],
     stack: staticItem?.stack ?? [...DEFAULT_HA_STACK],
+    demo: githubItem?.demo ?? undefined,
   };
 }
 
@@ -136,6 +138,18 @@ function buildHaProjectBlock(
       return left.staticIndex - right.staticIndex;
     })
     .map((entry) => entry.item);
+}
+
+export async function getHaProjectDemos(): Promise<
+  Array<{ repoName: string; item: NavItem; demo: HaProjectDemo }>
+> {
+  const { haProjects } = await mergeProjectsWithHaGitHub(staticProjects);
+
+  return haProjects.flatMap((item) => {
+    const repoName = getRepoNameFromHref(item.href);
+
+    return repoName && item.demo ? [{ repoName, item, demo: item.demo }] : [];
+  });
 }
 
 export async function mergeProjectsWithHaGitHub(

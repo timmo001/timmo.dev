@@ -1,0 +1,35 @@
+---
+import { HA_EMBED_SCRIPT_URL, type HaProjectDemo } from "~/lib/ha-project-demo";
+
+type Props = {
+  demo: HaProjectDemo;
+};
+
+const { demo } = Astro.props;
+
+// Keeps a "</script>" in the data from closing the script element.
+const toScriptJson = (
+  value: HaProjectDemo["entities"] | HaProjectDemo["cards"][number],
+) => JSON.stringify(value).replaceAll("<", "\\u003c");
+---
+
+<ha-embed-provider color-scheme="dark" class="flex flex-col gap-4">
+  <script
+    is:inline
+    type="application/json"
+    set:html={toScriptJson(demo.entities)}
+  />
+  {
+    demo.cards.map((card) => (
+      <ha-embed-card>
+        <script
+          is:inline
+          type="application/json"
+          set:html={toScriptJson(card)}
+        />
+      </ha-embed-card>
+    ))
+  }
+</ha-embed-provider>
+<script is:inline type="module" src={HA_EMBED_SCRIPT_URL}></script>
+<script is:inline type="module" src={demo.script.path}></script>
