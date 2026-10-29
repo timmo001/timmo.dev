@@ -1,5 +1,5 @@
 [tools]
-node = "26.12.1"
+node = "26.13.0"
 aube = "v2.8.4"
 
 [tasks.install]
