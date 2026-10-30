@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "CLOUDFLARE_INCLUDE_PROCESS_ENV=true astro build",
     "preview": "aube run build && wrangler dev",
     "deploy": "aube run build && wrangler deploy",
     "deploy:cloudflare": "wrangler deploy",
@@ -31,6 +31,7 @@
     "fuse.js": "7.5.0",
     "octokit": "5.0.5",
     "tailwindcss": "4.3.3",
+    "yaml": "2.9.1",
     "zod": "4.6.7"
   },
   "devDependencies": {
