@@ -6,6 +6,7 @@
   --gw-font-weight-regular: 400;
   --gw-font-weight-strong: 600;
   --gw-density: 1;
+  --gw-control-scale: 1;
   --gw-space-0-5: calc(0.125rem * var(--gw-density));
   --gw-space-1: calc(0.25rem * var(--gw-density));
   --gw-space-2: calc(0.5rem * var(--gw-density));

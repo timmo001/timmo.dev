@@ -83,7 +83,7 @@ export function releasesCard(input: ReleasesCardInput): CardSpec {
           const tagWidth = measureText(item.tagName, 12, 600);
 
           const prerelease = item.isPrerelease
-            ? chip(0, 0, "pre-release", "#1f2937", palette.textMuted)
+            ? chip(0, 0, "pre-release", palette.warningFill, palette.warning)
             : undefined;
 
           let cursor = x + 26;
@@ -101,8 +101,8 @@ export function releasesCard(input: ReleasesCardInput): CardSpec {
                 cursor,
                 baseline - 13,
                 "pre-release",
-                "#1f2937",
-                palette.textMuted,
+                palette.warningFill,
+                palette.warning,
               )
             : undefined;
 

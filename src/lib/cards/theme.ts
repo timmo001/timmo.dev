@@ -3,6 +3,11 @@ import {
   GEIST_WIDTHS,
   type GeistWeight,
 } from "~/generated/geist-subset";
+// The Timmo theme's dark roles, written by `aube run theme:gen`, so the cards
+// follow the site's colours
+import { palette } from "~/generated/timmo-palette";
+
+export { palette };
 
 export const CARD_WIDTH = 880;
 
@@ -12,24 +17,6 @@ export const GUTTER = 4;
 export const RADIUS = 16;
 
 export const PADDING = 32;
-
-export const palette = {
-  background: "#030712",
-  surface: "#0b1220",
-  surfaceRaised: "#111a2e",
-  border: "#1f2937",
-  borderSoft: "#182033",
-  text: "#f9fafb",
-  textMuted: "#9ca3af",
-  textFaint: "#6b7280",
-  accent: "#818cf8",
-  accentSoft: "#a5b4fc",
-  accentDeep: "#4c1d95",
-  accentGlow: "#6366f1",
-  success: "#34d399",
-  star: "#fbbf24",
-  calendar: ["#111a2e", "#312e81", "#4338ca", "#6366f1", "#a5b4fc"],
-} as const;
 
 export const FONT_STACK =
   "'Geist',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif";
