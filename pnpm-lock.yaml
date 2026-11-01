@@ -176,8 +176,8 @@ importers:
         specifier: 0.9.32
         version: 0.9.32
       '@timmo001/groundwork-ui':
-        specifier: 0.9.28
-        version: 0.9.28
+        specifier: 0.9.32
+        version: 0.9.32
       astro:
         specifier: 7.4.4
         version: 7.4.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
@@ -1336,8 +1336,8 @@ packages:
   '@timmo001/groundwork-tokens@0.9.32':
     resolution: {integrity: sha512-PjUNFW/eVmy6e/EvqLWqq9sS1yEBYvvh+qAY2Zb40EO3oV1egZcWRM/ojDvB/F4xvmMYLeNd82Fk73qf42D7sw==}
 
-  '@timmo001/groundwork-ui@0.9.28':
-    resolution: {integrity: sha512-YdVQZTJfr7+9xWUiQ4mz1XnTwDKSz4OpnMVvOT/ww74tfjbs8b7AC1dKmOAPh8kdc67aW9zxAS/d+QoJDd+X/w==}
+  '@timmo001/groundwork-ui@0.9.32':
+    resolution: {integrity: sha512-qcj1fa1SvxGRgH4/ryPANbF1P30Sy1KFz0+qXhsGKTCqaQsrT1vNq3rJlWVjvaBZiZNKD5wUkN5R7BdbDvEOJQ==}
 
   '@timmo001/oxlint-rules@0.6.3':
     resolution: {integrity: sha512-DxIid4Bu5t8bLuWcAIZlikLVLabSrJ1ai2siFB+E+7HdY3TPMgsUU44/Is+9RAQYVH8LEYjOQFVedH5MOXL5YQ==}
@@ -3509,7 +3509,7 @@ snapshots:
       culori: 4.0.2
       effect: 4.1.1
 
-  '@timmo001/groundwork-ui@0.9.28': {}
+  '@timmo001/groundwork-ui@0.9.32': {}
 
   '@timmo001/oxlint-rules@0.6.3(@oxlint/plugins@1.90.0)(oxlint@1.90.0(oxlint-tsgolint@7.0.2005))':
     dependencies:
