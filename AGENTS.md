@@ -6,7 +6,7 @@
 - Requires Node `>=22.12.0` from `package.json#engines`.
 - `mise.toml` pins Node and aube for local checks and CI. `package.json#packageManager` still pins pnpm: Cloudflare Builds reads it to pick its pnpm version, and aube accepts a pnpm pin without complaint.
 - `pnpm-workspace.yaml` holds the build approvals (`allowBuilds`) and release-age setting; aube reads it as its workspace config.
-- Astro pages live in `src/pages`; shared layout is `src/layouts/Layout.astro`; global Tailwind v4 theme, custom utilities, font face, and motion live in `src/styles/global.css`.
+- Astro pages live in `src/pages`; shared layout is `src/layouts/Layout.astro`. The UI is built from [Groundwork](https://groundwork.timmo.dev)'s `gw-` web components (`@timmo001/groundwork-ui`) and `--gw-*` tokens (`@timmo001/groundwork-tokens`); site-only styles, the font face and motion live in `src/styles/site.css`.
 - Use the `~/*` import alias for `src/*`; it is configured in both `tsconfig.json` and `astro.config.mjs`.
 
 ## Commands
@@ -51,6 +51,10 @@
 
 ## Styling Notes
 
-- Tailwind is wired through `@tailwindcss/vite` in `astro.config.mjs`; there is no `tailwind.config.*` file.
-- The site is always rendered with `<html class="dark">` in `Layout.astro`; dark styling is the baseline, not a toggle.
-- Motion utilities intentionally respect `prefers-reduced-motion` in `global.css`; keep new reveal/animation patterns inside that media-query structure.
+- There's no Tailwind or CSS framework. Build UI from `gw-` elements first, styled through `--gw-*` tokens and the elements' parts; `src/styles/site.css` holds only what's specific to this site (hero type, page layout, the calendar), in plain CSS on tokens.
+- When Groundwork lacks something the site needs, add it to Groundwork and release it rather than working around it here.
+- The theme is `src/theme/timmo.json`. `aube run theme:gen` (Bun, pinned in `mise.toml`) solves it into `src/styles/theme.generated.css` and `src/generated/timmo-palette.ts`, the dark roles as hex for the README cards; it fails when a role misses its contrast target. Commit both generated files.
+- The site is dark only: `Layout.astro` renders `<html data-gw-theme="timmo" data-gw-mode="dark">` and there's no theme switcher, since the logo is drawn for a dark page.
+- Pages put their content in `gw-page`, which lines up with `gw-app-bar`; the site's content width is `--gw-content-width` in `site.css`.
+- `public/og.png` was drawn from the home hero at 1200×630 in the browser; redraw it the same way if the hero or theme changes.
+- Motion respects `prefers-reduced-motion` in `site.css`; keep new reveal/animation patterns inside that media-query structure.

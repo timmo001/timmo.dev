@@ -11,21 +11,19 @@ const { languages } = Astro.props;
 const username = getUsername();
 ---
 
-{
-  languages.map((language) => (
-    <gw-button
-      class="reveal"
-      variant="neutral"
-      appearance="outlined"
-      swatch={language.color}
+{languages.map((language) => (
+  <gw-button
+    class="reveal"
+    variant="neutral"
+    appearance="outlined"
+    swatch={language.color}
+  >
+    <a
+      href={`https://github.com/${username}?tab=repositories&language=${language.name.toLowerCase()}`}
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      <a
-        href={`https://github.com/${username}?tab=repositories&language=${language.name.toLowerCase()}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {language.name}
-      </a>
-    </gw-button>
-  ))
-}
+      {language.name}
+    </a>
+  </gw-button>
+))}

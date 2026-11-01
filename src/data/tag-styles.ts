@@ -89,6 +89,9 @@ const tagStyles = new Map(
     Git: {
       backgroundColor: "#f05032",
     },
+    Groundwork: {
+      backgroundColor: "#818cf8",
+    },
     Go: {
       backgroundColor: "#00758F",
     },

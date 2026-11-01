@@ -9,15 +9,10 @@ const navItems = [
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
-{
-  navItems.map((item) => (
-    <gw-button variant="neutral" appearance="plain">
-      <a
-        href={item.href}
-        aria-current={item.href === path ? "page" : undefined}
-      >
-        {item.label}
-      </a>
-    </gw-button>
-  ))
-}
+{navItems.map((item) => (
+  <gw-button variant="neutral" appearance="plain">
+    <a href={item.href} aria-current={item.href === path ? "page" : undefined}>
+      {item.label}
+    </a>
+  </gw-button>
+))}

@@ -31,7 +31,7 @@ const { githubStats, githubTopLanguages, insights, releases, fetchedAt } =
   <gw-page>
     <div class="page-sections stats">
       <section class="stats-section" aria-label="GitHub stats">
-        <gw-grid class="stagger-stats stat-grid">
+        <gw-grid max="4" class="stagger-stats stat-grid">
           <GitHubStats stats={githubStats} />
         </gw-grid>
       </section>

@@ -5,7 +5,7 @@ Personal website for Aidan Timson (Timmo), built with [Astro](https://astro.buil
 ## Stack
 
 - Astro
-- Tailwind CSS
+- [Groundwork](https://groundwork.timmo.dev) web components and tokens, with the site's own Timmo theme
 - Cloudflare Workers (on-demand rendering for `/stats`)
 - GitHub GraphQL API via Octokit
 
@@ -56,7 +56,7 @@ only when that change is intended.
 
 The Worker publishes cached SVG cards for the GitHub profile README at
 [timmo001/timmo001](https://github.com/timmo001/timmo001). Each card is a
-self-contained SVG with Geist embedded, built as a `CardSpec` in
+self-contained SVG with Geist embedded, coloured from the Timmo theme's dark roles (`src/generated/timmo-palette.ts`, written by `aube run theme:gen`), built as a `CardSpec` in
 `src/lib/cards/*` and served by `src/pages/github/*.svg.ts`. The README uses
 the combined image; every section is also available on its own:
 

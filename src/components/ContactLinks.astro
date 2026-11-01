@@ -49,19 +49,19 @@ const links = [
 
 <div
   class:list={["contact-links", className]}
-  slot={slot} style={`--gw-button-scale: ${scale}`}>
-  {
-    links.map((link) => (
-      <gw-button
-        variant="neutral"
-        appearance="plain"
-        labels="hide"
-        icon={link.icon}
-      >
-        <a href={link.href} rel="me" target="_blank">
-          {link.label}
-        </a>
-      </gw-button>
-    ))
-  }
+  slot={slot}
+  style={`--gw-button-scale: ${scale}`}
+>
+  {links.map((link) => (
+    <gw-button
+      variant="neutral"
+      appearance="plain"
+      labels="hide"
+      icon={link.icon}
+    >
+      <a href={link.href} rel="me" target="_blank">
+        {link.label}
+      </a>
+    </gw-button>
+  ))}
 </div>

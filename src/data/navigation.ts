@@ -221,7 +221,7 @@ export const projects: Array<NavItem> = [
   {
     title: "timmo.dev",
     tags: ["Portfolio", "Cloudflare"],
-    stack: ["TypeScript", "Astro", "Tailwind", "Cloudflare"],
+    stack: ["TypeScript", "Astro", "Groundwork", "Cloudflare"],
     href: "https://timmo.dev",
     githubHref: "https://github.com/timmo001/timmo.dev",
     description:
@@ -369,13 +369,13 @@ export const contributions: Array<NavItem> = [
       "I contribute to Home Assistant core, including the System Bridge, Honeywell Lyric, OVO Energy, and GitHub integrations, plus frontend-related core changes.",
   },
   {
-    title: "Home Assistant Developer Docs",
+    title: "Home Assistant Contributor Docs",
     tags: ["Contribution", "Home Assistant", "Documentation"],
     stack: ["Markdown"],
-    href: "https://developers.home-assistant.io",
-    githubHref: "https://github.com/home-assistant/developers.home-assistant",
+    href: "https://contributors.home-assistant.io",
+    githubHref: "https://github.com/home-assistant/contributors.home-assistant.io",
     description:
-      "I document frontend architecture, production builds, translation fetching, dashboard strategies, and developer tools on the Home Assistant developers site.",
+      "I document frontend architecture, production builds, translation fetching, dashboard strategies, and developer tools on the Home Assistant contributors site.",
   },
   {
     title: "Home Assistant Documentation",

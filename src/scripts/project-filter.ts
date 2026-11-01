@@ -262,11 +262,7 @@ export function initProjectFilter(): void {
 
   const searchInput = queryElement(root, "[data-filter-search]", GwInput);
 
-  const tagSelect = queryElement(
-    root,
-    "[data-filter-picker='tags']",
-    GwSelect,
-  );
+  const tagSelect = queryElement(root, "[data-filter-picker='tags']", GwSelect);
 
   const stackSelect = queryElement(
     root,

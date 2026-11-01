@@ -4,7 +4,6 @@ import { fileURLToPath } from "node:url";
 
 import cloudflare from "@astrojs/cloudflare";
 import sitemap from "@astrojs/sitemap";
-import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, sessionDrivers } from "astro/config";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -23,7 +22,6 @@ export default defineConfig({
     driver: sessionDrivers.lruCache({ max: 100 }),
   },
   vite: {
-    plugins: [tailwindcss()],
     resolve: {
       alias: {
         "~": path.resolve(__dirname, "./src"),

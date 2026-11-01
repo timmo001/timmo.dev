@@ -13,8 +13,10 @@ const { key, url, title, value, secondaryValue } = Astro.props;
     class="stat-title"
     href={url}
     target="_blank"
-    rel="noopener noreferrer">{title}</a
+    rel="noopener noreferrer"
   >
+    {title}
+  </a>
   <StatIcon statKey={key} />
   <span class="stat-value">{value}</span>
   <span class="stat-secondary muted">{secondaryValue ?? " "}</span>

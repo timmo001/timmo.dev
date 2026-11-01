@@ -24,28 +24,24 @@ const share = (language: Language) =>
       .map((language) => `${language.name} ${share(language).toFixed(1)}%`)
       .join(", ")}
   >
-    {
-      shown.map((language) => (
-        <span
-          style={`width: ${share(language)}%; background-color: ${language.color}`}
-          title={`${language.name} ${share(language).toFixed(1)}%`}
-        />
-      ))
-    }
+    {shown.map((language) => (
+      <span
+        style={`width: ${share(language)}%; background-color: ${language.color}`}
+        title={`${language.name} ${share(language).toFixed(1)}%`}
+      />
+    ))}
   </div>
   <dl class="language-legend">
-    {
-      shown.map((language) => (
-        <div>
-          <span
-            class="tag-dot"
-            style={`background-color: ${language.color}`}
-            aria-hidden="true"
-          />
-          <dt>{language.name}</dt>
-          <dd class="muted">{share(language).toFixed(1)}%</dd>
-        </div>
-      ))
-    }
+    {shown.map((language) => (
+      <div>
+        <span
+          class="tag-dot"
+          style={`background-color: ${language.color}`}
+          aria-hidden="true"
+        />
+        <dt>{language.name}</dt>
+        <dd class="muted">{share(language).toFixed(1)}%</dd>
+      </div>
+    ))}
   </dl>
 </div>

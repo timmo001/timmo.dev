@@ -19,21 +19,19 @@
     "font:subset": "node --experimental-strip-types scripts/build-font-subset.ts",
     "theme:gen": "bun scripts/build-theme.ts",
     "lint": "oxlint src scripts redirect-worker astro.config.mjs oxlint.config.ts",
-    "format": "prettier --plugin=prettier-plugin-astro --write package.json astro.config.mjs oxlint.config.ts tsconfig.json .github/workflows/lint.yml wrangler.jsonc README.md AGENTS.md pnpm-workspace.yaml src/types/oxlint-rules.d.ts src/env.ts src/layouts/Layout.astro src/components/StatsContent.astro",
-    "format:check": "prettier --plugin=prettier-plugin-astro --check package.json astro.config.mjs oxlint.config.ts tsconfig.json .github/workflows/lint.yml wrangler.jsonc README.md AGENTS.md pnpm-workspace.yaml src/types/oxlint-rules.d.ts src/env.ts src/layouts/Layout.astro src/components/StatsContent.astro",
+    "format": "prettier --plugin=prettier-plugin-astro --write package.json astro.config.mjs oxlint.config.ts tsconfig.json .github/workflows/lint.yml wrangler.jsonc README.md AGENTS.md pnpm-workspace.yaml src/types/oxlint-rules.d.ts src/env.ts src/layouts/Layout.astro src/components/StatsContent.astro src/styles/site.css scripts/build-theme.ts src/scripts/project-tools.ts src/scripts/project-filter.ts src/components/ProjectFilters.astro src/components/ContactLinks.astro src/components/Navigation.astro src/components/TagChip.astro src/components/TopLanguages.astro src/components/WorkItem.astro src/components/ActivityItem.astro src/components/Stat.astro src/components/SectionBlock.astro src/components/ReleaseList.astro src/components/LanguageShare.astro src/components/Footer.astro src/components/StatsLoading.astro src/components/SubpageHeader.astro",
+    "format:check": "prettier --plugin=prettier-plugin-astro --check package.json astro.config.mjs oxlint.config.ts tsconfig.json .github/workflows/lint.yml wrangler.jsonc README.md AGENTS.md pnpm-workspace.yaml src/types/oxlint-rules.d.ts src/env.ts src/layouts/Layout.astro src/components/StatsContent.astro src/styles/site.css scripts/build-theme.ts src/scripts/project-tools.ts src/scripts/project-filter.ts src/components/ProjectFilters.astro src/components/ContactLinks.astro src/components/Navigation.astro src/components/TagChip.astro src/components/TopLanguages.astro src/components/WorkItem.astro src/components/ActivityItem.astro src/components/Stat.astro src/components/SectionBlock.astro src/components/ReleaseList.astro src/components/LanguageShare.astro src/components/Footer.astro src/components/StatsLoading.astro src/components/SubpageHeader.astro",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.4.3",
     "@astrojs/sitemap": "3.7.4",
-    "@tailwindcss/vite": "4.3.3",
-    "@timmo001/groundwork-tokens": "0.8.0",
-    "@timmo001/groundwork-ui": "0.8.0",
+    "@timmo001/groundwork-tokens": "0.9.0",
+    "@timmo001/groundwork-ui": "0.9.0",
     "astro": "7.4.4",
     "date-fns": "4.4.0",
     "fuse.js": "7.5.0",
     "octokit": "5.0.5",
-    "tailwindcss": "4.3.3",
     "zod": "4.6.7"
   },
   "devDependencies": {

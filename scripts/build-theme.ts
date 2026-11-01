@@ -51,7 +51,9 @@ const parsed = parseTheme(
 );
 
 if (parsed._tag === "Failure") {
-  throw new Error(`src/theme/timmo.json isn't a theme: ${String(parsed.failure)}`);
+  throw new Error(
+    `src/theme/timmo.json isn't a theme: ${String(parsed.failure)}`,
+  );
 }
 
 const { css, checks, theme } = runtimeTheme(parsed.success);

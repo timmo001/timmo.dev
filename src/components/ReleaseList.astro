@@ -11,27 +11,25 @@ const { releases } = Astro.props;
 ---
 
 <ul class="release-list">
-  {
-    releases.map((release) => (
-      <li class="reveal">
-        <a href={release.url} target="_blank" rel="noopener noreferrer">
-          <span class="release-repo">{release.repository}</span>
-          <span class="release-tag">{release.tagName}</span>
-          {release.isPrerelease && <gw-chip tone="warning">pre-release</gw-chip>}
-          {release.name !== release.tagName && (
-            <span class="release-name">{release.name}</span>
-          )}
-          <time
-            class="muted release-time"
-            datetime={release.publishedAt.toISOString()}
-            title={format(release.publishedAt, "d MMMM yyyy, HH:mm")}
-          >
-            {formatDistanceToNowStrict(release.publishedAt, {
-              addSuffix: true,
-            })}
-          </time>
-        </a>
-      </li>
-    ))
-  }
+  {releases.map((release) => (
+    <li class="reveal">
+      <a href={release.url} target="_blank" rel="noopener noreferrer">
+        <span class="release-repo">{release.repository}</span>
+        <span class="release-tag">{release.tagName}</span>
+        {release.isPrerelease && <gw-chip tone="warning">pre-release</gw-chip>}
+        {release.name !== release.tagName && (
+          <span class="release-name">{release.name}</span>
+        )}
+        <time
+          class="muted release-time"
+          datetime={release.publishedAt.toISOString()}
+          title={format(release.publishedAt, "d MMMM yyyy, HH:mm")}
+        >
+          {formatDistanceToNowStrict(release.publishedAt, {
+            addSuffix: true,
+          })}
+        </time>
+      </a>
+    </li>
+  ))}
 </ul>

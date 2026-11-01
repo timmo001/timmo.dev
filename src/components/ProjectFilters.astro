@@ -23,27 +23,25 @@ const pickers = [
     autocomplete="off"
     data-filter-search
   ></gw-input>
-  {
-    pickers.map((picker) => (
-      <gw-select
-        class="project-picker"
-        multiple
-        search="always"
-        label={picker.label}
-        placeholder={picker.placeholder}
-        data-filter-picker={picker.key}
-      >
-        {picker.items.map((item) => (
-          <option
-            value={item.toLowerCase()}
-            data-swatch={getTagStyle(item).backgroundColor}
-          >
-            {item}
-          </option>
-        ))}
-      </gw-select>
-    ))
-  }
+  {pickers.map((picker) => (
+    <gw-select
+      class="project-picker"
+      multiple
+      search="always"
+      label={picker.label}
+      placeholder={picker.placeholder}
+      data-filter-picker={picker.key}
+    >
+      {picker.items.map((item) => (
+        <option
+          value={item.toLowerCase()}
+          data-swatch={getTagStyle(item).backgroundColor}
+        >
+          {item}
+        </option>
+      ))}
+    </gw-select>
+  ))}
 </div>
 
 <gw-empty-state heading="No matching projects" hidden data-filter-empty>

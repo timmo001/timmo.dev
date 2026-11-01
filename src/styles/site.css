@@ -33,10 +33,7 @@
 /* The site's content width, which gw-app-bar keeps its content to as well:
    1400px with a 3rem gutter, growing on very wide screens */
 :root {
-  --gw-content-width: max(
-    min(87.5rem, 100vw - 6rem),
-    min(66.67vw, 160rem)
-  );
+  --gw-content-width: max(min(87.5rem, 100vw - 6rem), min(66.67vw, 160rem));
 }
 
 @media (width < 40rem) {
@@ -186,7 +183,11 @@ h4 {
 }
 
 .text-link:hover {
-  color: color-mix(in oklab, var(--gw-color-accent) 70%, var(--gw-color-text-strong));
+  color: color-mix(
+    in oklab,
+    var(--gw-color-accent) 70%,
+    var(--gw-color-text-strong)
+  );
 }
 
 /* A page section with its intro: heading and text indented from the grid */
@@ -253,17 +254,15 @@ h4 {
   color: var(--gw-color-text-primary);
 }
 
-/* Column caps: each column is at least the minimum, and never narrower than
-   a quarter (or third) of the row, so wide screens stop at 4 (or 3).
-   TODO: swap for gw-grid's own column cap once Groundwork has one */
+/* Columns stop at the grid's max: 3 for activity, 4 for projects and stats */
 .card-grid {
-  --gw-grid-min: max(20rem, (100% - 2 * var(--gw-gap)) / 3);
+  --gw-grid-min: 20rem;
 
   align-items: stretch;
 }
 
 .project-grid {
-  --gw-grid-min: max(18rem, (100% - 3 * var(--gw-gap)) / 4);
+  --gw-grid-min: 18rem;
 
   align-items: stretch;
 }
@@ -396,7 +395,7 @@ h4 {
 }
 
 .stat-grid {
-  --gw-grid-min: max(14rem, (100% - 3 * var(--gw-gap, var(--gw-space-3))) / 4);
+  --gw-grid-min: 14rem;
 
   width: 100%;
 }
@@ -493,15 +492,27 @@ h4 {
 }
 
 .calendar-cell[data-level="1"] {
-  background: color-mix(in oklab, var(--gw-color-accent) 25%, var(--gw-color-surface-default));
+  background: color-mix(
+    in oklab,
+    var(--gw-color-accent) 25%,
+    var(--gw-color-surface-default)
+  );
 }
 
 .calendar-cell[data-level="2"] {
-  background: color-mix(in oklab, var(--gw-color-accent) 50%, var(--gw-color-surface-default));
+  background: color-mix(
+    in oklab,
+    var(--gw-color-accent) 50%,
+    var(--gw-color-surface-default)
+  );
 }
 
 .calendar-cell[data-level="3"] {
-  background: color-mix(in oklab, var(--gw-color-accent) 75%, var(--gw-color-surface-default));
+  background: color-mix(
+    in oklab,
+    var(--gw-color-accent) 75%,
+    var(--gw-color-surface-default)
+  );
 }
 
 .calendar-cell[data-level="4"] {
@@ -722,10 +733,7 @@ gw-app-bar [slot="brand"] img {
   min-height: 18rem;
   padding-block: var(--gw-space-4);
   overflow-x: clip;
-  background: linear-gradient(
-    var(--gw-color-fill-accent-quiet),
-    transparent
-  );
+  background: linear-gradient(var(--gw-color-fill-accent-quiet), transparent);
 }
 
 .hero-tall {

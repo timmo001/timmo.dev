@@ -156,7 +156,7 @@ const totals = activity
                   {group.intro}
                 </SectionBlock>
               </div>
-              <gw-grid gap="l" class="stagger-grid card-grid">
+              <gw-grid gap="l" max="3" class="stagger-grid card-grid">
                 {group.items.map(
                   ({ knownItem, title, description, ...item }, index) => (
                     <ActivityItem

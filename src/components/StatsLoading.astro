@@ -3,16 +3,13 @@ import SubpageHeader from "~/components/SubpageHeader.astro";
 ---
 
 <SubpageHeader title="Loading..." />
-<div
-  class="page-body"
-  role="main"
-  aria-busy="true"
-  aria-label="Loading stats"
->
+<div class="page-body" role="main" aria-busy="true" aria-label="Loading stats">
   <gw-page>
     <div class="page-sections stats">
-      <gw-grid class="stat-grid">
-        {Array.from({ length: 8 }, () => <gw-card loading lines={4} />)}
+      <gw-grid max="4" class="stat-grid">
+        {Array.from({ length: 8 }, () => (
+          <gw-card loading lines={4} />
+        ))}
       </gw-grid>
       <gw-skeleton class="calendar-skeleton" />
     </div>
