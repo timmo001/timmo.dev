@@ -210,12 +210,22 @@ export const projects: Array<NavItem> = [
       "Shared Oxlint plugins and configs published as @timmo001/oxlint-rules. Bundles unchanged anti-slop rules with additional generic and Effect diagnostics, plus recommended and Effect-specific configs for consumers.",
   },
   {
-    title: "Docs Kit",
-    tags: ["Documentation", "Skills"],
-    stack: ["TypeScript", "Astro", "CSS", "Blume"],
-    href: "https://github.com/timmo001/docs-kit",
+    title: "Groundwork",
+    tags: ["Design System", "Documentation", "Skills", "Omarchy"],
+    stack: ["TypeScript", "Lit", "CSS", "QML", "Effect", "Astro", "Blume"],
+    href: "https://groundwork.timmo.dev",
+    githubHref: "https://github.com/timmo001/groundwork",
     description:
-      "Shared branding, layout, and config for my documentation sites, published as @timmo001/docs-kit on npm and JSR. Powers the Dotfiles, Up Next, Home Assistant Bridge, and Triage docs, with an agent skill for setting up or changing a site.",
+      "The groundwork for designing and building my apps, sites, CLIs, terminal UIs, Omarchy panels, and agents. Shared themes and tokens, gw- web components, Omarchy panel components, and repository conventions, so each app builds on the same base and adds its own theme. Also home to @timmo001/docs-kit, which powers the Dotfiles, Up Next, Home Assistant Bridge, and Triage docs.",
+  },
+  {
+    title: "timmo.dev",
+    tags: ["Portfolio", "Cloudflare"],
+    stack: ["TypeScript", "Astro", "Tailwind", "Cloudflare"],
+    href: "https://timmo.dev",
+    githubHref: "https://github.com/timmo001/timmo.dev",
+    description:
+      "This site. My projects and contributions, with Home Assistant projects and integrations synced from GitHub, a recent activity feed, GitHub stats, and SVG cards for my GitHub profile. Built with Astro and served from Cloudflare Workers.",
   },
   {
     title: "Renovate Config",
