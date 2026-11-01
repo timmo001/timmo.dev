@@ -1,3 +1,4 @@
+import { GwInput, GwSelect } from "@timmo001/groundwork-ui";
 import Fuse from "fuse.js";
 
 import { queryElement, queryElements } from "~/scripts/dom";
@@ -224,6 +225,32 @@ function getSearchMatches(
   );
 }
 
+/** What the projects are filtered by: free text, and tags and stack chosen. */
+export type Filters = {
+  query: string;
+  tags: ReadonlySet<string>;
+  stack: ReadonlySet<string>;
+};
+
+/** The project filter, once the page has one: its state and its controls. */
+export type ProjectFilter = {
+  /** The filters in use. */
+  readonly state: () => Filters;
+  /** Changes some filters, mirrors them in the controls, and filters. */
+  readonly setFilters: (next: Partial<Filters>) => void;
+  /** Every tag and stack value the pickers offer. */
+  readonly options: () => { tags: Array<string>; stack: Array<string> };
+  /** The titles of the projects showing. */
+  readonly visibleTitles: () => Array<string>;
+};
+
+let current: ProjectFilter | undefined;
+
+/** The page's project filter, once `initProjectFilter` has run. */
+export function projectFilter(): ProjectFilter | undefined {
+  return current;
+}
+
 export function initProjectFilter(): void {
   const root = queryElement(document, "[data-project-filters]", HTMLElement);
 
@@ -233,31 +260,19 @@ export function initProjectFilter(): void {
 
   root.dataset.filterInit = "true";
 
-  const searchInput = queryElement(
+  const searchInput = queryElement(root, "[data-filter-search]", GwInput);
+
+  const tagSelect = queryElement(
     root,
-    "[data-filter-search]",
-    HTMLInputElement,
+    "[data-filter-picker='tags']",
+    GwSelect,
   );
 
-  const searchClearButton = queryElement(
+  const stackSelect = queryElement(
     root,
-    "[data-filter-search-clear]",
-    HTMLButtonElement,
+    "[data-filter-picker='stack']",
+    GwSelect,
   );
-
-  const tagButtons = queryElements(
-    root,
-    "[data-filter-tag]",
-    HTMLButtonElement,
-  );
-
-  const stackButtons = queryElements(
-    root,
-    "[data-filter-stack]",
-    HTMLButtonElement,
-  );
-
-  const pickers = queryElements(root, "[data-picker]", HTMLElement);
 
   const cards = queryElements(document, "[data-work-item]", HTMLElement);
 
@@ -305,41 +320,14 @@ export function initProjectFilter(): void {
     ],
   });
 
-  const selectedTags = new Set<string>();
-  const selectedStack = new Set<string>();
-
-  function updatePickerCounts(): void {
-    for (const picker of pickers) {
-      const count = picker.querySelectorAll('[aria-pressed="true"]').length;
-
-      const badge = queryElement(picker, "[data-picker-count]", HTMLElement);
-
-      if (badge) {
-        badge.textContent = String(count);
-        badge.classList.toggle("hidden", count === 0);
-        badge.classList.toggle("inline-flex", count > 0);
-      }
-    }
-  }
-
-  function updateClearButtons(): void {
-    const hasSearchText = (searchInput?.value.length ?? 0) > 0;
-    searchClearButton?.classList.toggle("hidden", !hasSearchText);
-
-    for (const picker of pickers) {
-      const clearButton = queryElement(
-        picker,
-        "[data-picker-clear]",
-        HTMLButtonElement,
-      );
-
-      const count = picker.querySelectorAll('[aria-pressed="true"]').length;
-      clearButton?.classList.toggle("hidden", count === 0);
-    }
-  }
+  const state = {
+    query: "",
+    tags: new Set<string>(),
+    stack: new Set<string>(),
+  };
 
   function applyFilters(): void {
-    const query = searchInput?.value.trim() ?? "";
+    const query = state.query.trim();
 
     const searchMatches = getSearchMatches(query, entries, fuse);
 
@@ -347,8 +335,8 @@ export function initProjectFilter(): void {
       const searchPass =
         searchMatches === null || searchMatches.has(entry.element);
 
-      const tagPass = hasIntersection(entry.tags, selectedTags);
-      const stackPass = hasIntersection(entry.stack, selectedStack);
+      const tagPass = hasIntersection(entry.tags, state.tags);
+      const stackPass = hasIntersection(entry.stack, state.stack);
       setVisible(entry.element, searchPass && tagPass && stackPass);
     }
 
@@ -383,158 +371,65 @@ export function initProjectFilter(): void {
     }
 
     const hasActiveFilter =
-      isSearchActive(query) || selectedTags.size > 0 || selectedStack.size > 0;
+      isSearchActive(query) || state.tags.size > 0 || state.stack.size > 0;
 
     if (emptyState) {
-      setVisible(emptyState, hasActiveFilter && visibleCount === 0);
-    }
-
-    updateClearButtons();
-    updatePickerCounts();
-  }
-
-  function clearPickerSelection(pickerKey: string): void {
-    const isTagPicker = pickerKey === "tag";
-    const buttons = isTagPicker ? tagButtons : stackButtons;
-    const selected = isTagPicker ? selectedTags : selectedStack;
-
-    selected.clear();
-
-    for (const button of buttons) {
-      button.setAttribute("aria-pressed", "false");
-    }
-
-    applyFilters();
-  }
-
-  function toggleSelection(
-    button: HTMLButtonElement,
-    value: string,
-    selected: Set<string>,
-  ): void {
-    if (selected.has(value)) {
-      selected.delete(value);
-      button.setAttribute("aria-pressed", "false");
-    } else {
-      selected.add(value);
-      button.setAttribute("aria-pressed", "true");
-    }
-
-    applyFilters();
-  }
-
-  function setPickerOpen(picker: HTMLElement, open: boolean): void {
-    const trigger = queryElement(
-      picker,
-      "[data-picker-trigger]",
-      HTMLButtonElement,
-    );
-
-    const panel = queryElement(picker, "[data-picker-panel]", HTMLElement);
-    trigger?.setAttribute("aria-expanded", String(open));
-    panel?.classList.toggle("hidden", !open);
-    panel?.classList.toggle("flex", open);
-  }
-
-  function closeAllPickers(except?: HTMLElement): void {
-    for (const picker of pickers) {
-      if (picker === except) {
-        continue;
-      }
-
-      setPickerOpen(picker, false);
+      emptyState.hidden = !(hasActiveFilter && visibleCount === 0);
     }
   }
 
-  for (const picker of pickers) {
-    const pickerKey = picker.dataset.picker ?? "";
-
-    const clearButton = queryElement(
-      picker,
-      "[data-picker-clear]",
-      HTMLButtonElement,
-    );
-
-    const trigger = queryElement(
-      picker,
-      "[data-picker-trigger]",
-      HTMLButtonElement,
-    );
-
-    const pickerSearch = queryElement(
-      picker,
-      "[data-picker-search]",
-      HTMLInputElement,
-    );
-
-    const options = queryElements(picker, "[data-picker-option]", HTMLElement);
-
-    trigger?.addEventListener("click", (event) => {
-      event.stopPropagation();
-      const isOpen = trigger.getAttribute("aria-expanded") === "true";
-      closeAllPickers(picker);
-      const nextOpen = !isOpen;
-      setPickerOpen(picker, nextOpen);
-
-      if (nextOpen) {
-        pickerSearch?.focus();
-      }
-    });
-
-    pickerSearch?.addEventListener("input", () => {
-      const query = pickerSearch.value.trim().toLowerCase();
-
-      for (const option of options) {
-        const label = option.dataset.label ?? "";
-        setVisible(option, query.length === 0 || label.includes(query));
-      }
-    });
-
-    clearButton?.addEventListener("click", (event) => {
-      event.stopPropagation();
-      clearPickerSelection(pickerKey);
-    });
-  }
-
-  document.addEventListener("click", (event) => {
-    const target = event.target;
-
-    if (target instanceof Node && !root.contains(target)) {
-      closeAllPickers();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeAllPickers();
-    }
-  });
-
-  searchInput?.addEventListener("input", applyFilters);
-
-  searchClearButton?.addEventListener("click", (event) => {
-    event.stopPropagation();
-
-    if (searchInput) {
-      searchInput.value = "";
-    }
-
+  // The controls write to the state; setFilters writes to both
+  searchInput?.addEventListener("input", () => {
+    state.query = searchInput.value;
     applyFilters();
   });
 
-  for (const button of tagButtons) {
-    const value = button.dataset.filterTag ?? "";
-    button.addEventListener("click", () =>
-      toggleSelection(button, value, selectedTags),
-    );
-  }
+  tagSelect?.addEventListener("change", () => {
+    state.tags = new Set(tagSelect.values);
+    applyFilters();
+  });
 
-  for (const button of stackButtons) {
-    const value = button.dataset.filterStack ?? "";
-    button.addEventListener("click", () =>
-      toggleSelection(button, value, selectedStack),
-    );
-  }
+  stackSelect?.addEventListener("change", () => {
+    state.stack = new Set(stackSelect.values);
+    applyFilters();
+  });
+
+  // gw-select reads its <option>s into options, then removes them
+  const optionValues = (select: GwSelect | null) =>
+    select === null ? [] : select.options.map((option) => option.value);
+
+  current = {
+    state: () => ({ ...state }),
+    setFilters: (next) => {
+      if (next.query !== undefined) {
+        state.query = next.query;
+
+        if (searchInput) searchInput.value = next.query;
+      }
+
+      if (next.tags !== undefined) {
+        state.tags = new Set(next.tags);
+
+        if (tagSelect) tagSelect.values = [...state.tags];
+      }
+
+      if (next.stack !== undefined) {
+        state.stack = new Set(next.stack);
+
+        if (stackSelect) stackSelect.values = [...state.stack];
+      }
+
+      applyFilters();
+    },
+    options: () => ({
+      tags: optionValues(tagSelect),
+      stack: optionValues(stackSelect),
+    }),
+    visibleTitles: () =>
+      entries.flatMap((entry) =>
+        entry.element.style.display === "none" ? [] : [entry.title],
+      ),
+  };
 
   applyFilters();
 }

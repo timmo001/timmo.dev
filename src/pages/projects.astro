@@ -316,8 +316,11 @@ const filterStack = sortStack([
 
 <script>
   import { initProjectFilter } from "~/scripts/project-filter";
+  import { registerProjectTools } from "~/scripts/project-tools";
 
   initProjectFilter();
+
+  registerProjectTools();
 
   document.addEventListener("astro:page-load", initProjectFilter);
 </script>

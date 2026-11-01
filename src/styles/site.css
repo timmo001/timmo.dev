@@ -274,6 +274,19 @@ h4 {
   flex: 1;
 }
 
+/* Search, then the tag and stack pickers, on one row from 640px */
+.project-filters {
+  display: grid;
+  gap: var(--gw-space-3);
+  align-items: end;
+}
+
+@media (width >= 40rem) {
+  .project-filters {
+    grid-template-columns: 1fr repeat(2, minmax(10rem, 14rem));
+  }
+}
+
 .project-group {
   display: flex;
   flex-direction: column;
