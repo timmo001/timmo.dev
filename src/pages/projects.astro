@@ -115,13 +115,10 @@ const filterStack = sortStack([
   description="What I'm building and contributing to. Projects and open-source work by Aidan Timson (Timmo/timmo001)"
 >
   <SubpageHeader title="Projects & contributions" />
-  <div
-    class="flex w-full flex-col items-center justify-start py-16"
-    role="main"
-  >
-    <div class="content flex flex-col gap-36">
-      <section aria-label="Introduction" class="flex flex-col gap-8">
-        <div class="reveal px-6 md:px-12">
+  <div class="page-body" role="main">
+    <div class="content page-sections">
+      <section aria-label="Introduction" class="page-section">
+        <div class="reveal intro">
           <SectionBlock>
             Most of my open-source work is in{" "}
             <a
@@ -201,16 +198,17 @@ const filterStack = sortStack([
 
         <ProjectFilters tags={filterTags} stack={filterStack} />
 
-        <div
-          class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        <gw-grid
+          gap="l"
+          class="stagger-grid project-grid"
           data-filter-group="active"
         >
           {activeProjects.map((item) => <WorkItem {...item} />)}
-        </div>
+        </gw-grid>
 
         {
           hasHomeAssistantSection ? (
-            <div class="flex flex-col gap-8" data-filter-section>
+            <div class="page-section" data-filter-section>
               <h4
                 id="home-assistant-heading"
                 class="reveal subsection-heading"
@@ -220,28 +218,27 @@ const filterStack = sortStack([
 
               {
                 leadingHaItems.length > 0 ? (
-                  <div
-                    class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                  <gw-grid
+                    gap="l"
+                    class="stagger-grid project-grid"
                     data-filter-group="ha-leading"
                   >
                     {leadingHaItems.map((item) => <WorkItem {...item} />)}
-                  </div>
+                  </gw-grid>
                 ) : null
               }
 
               {
                 hacsItems.length > 0 ? (
-                  <div class="flex flex-col gap-6" data-filter-group="ha-hacs">
+                  <div class="project-group" data-filter-group="ha-hacs">
                     <h5
                       id="community-heading"
-                      class="reveal subsubsection-heading inline-flex items-center gap-2"
+                      class="reveal subsubsection-heading"
                     >
                       Community Dashboards and Cards
                       <span
-                        class:list={[
-                          "inline-flex",
-                          haGitHubSynced ? "text-white/25" : "text-white/15",
-                        ]}
+                        class="sync-mark"
+                        data-synced={haGitHubSynced ? "" : undefined}
                         title={
                           haGitHubSynced
                             ? "Synced from GitHub"
@@ -254,7 +251,6 @@ const filterStack = sortStack([
                         }
                       >
                         <svg
-                          class="h-3.5 w-3.5 fill-current"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           aria-hidden="true"
@@ -263,28 +259,24 @@ const filterStack = sortStack([
                         </svg>
                       </span>
                     </h5>
-                    <div
-                      class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-                    >
+                    <gw-grid gap="l" class="stagger-grid project-grid">
                       {hacsItems.map((item) => <WorkItem {...item} />)}
-                    </div>
+                    </gw-grid>
                   </div>
                 ) : null
               }
 
               {
                 integrationItems.length > 0 ? (
-                  <div class="flex flex-col gap-6" data-filter-group="ha-integrations">
+                  <div class="project-group" data-filter-group="ha-integrations">
                     <h5
                       id="integrations-heading"
-                      class="reveal subsubsection-heading inline-flex items-center gap-2"
+                      class="reveal subsubsection-heading"
                     >
                       Integrations
                       <span
-                        class:list={[
-                          "inline-flex",
-                          integrationsSynced ? "text-white/25" : "text-white/15",
-                        ]}
+                        class="sync-mark"
+                        data-synced={integrationsSynced ? "" : undefined}
                         title={
                           integrationsSynced
                             ? "Synced from GitHub"
@@ -297,7 +289,6 @@ const filterStack = sortStack([
                         }
                       >
                         <svg
-                          class="h-3.5 w-3.5 fill-current"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           aria-hidden="true"
@@ -306,11 +297,9 @@ const filterStack = sortStack([
                         </svg>
                       </span>
                     </h5>
-                    <div
-                      class="stagger-grid grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-                    >
+                    <gw-grid gap="l" class="stagger-grid project-grid">
                       {integrationItems.map((item) => <WorkItem {...item} />)}
-                    </div>
+                    </gw-grid>
                   </div>
                 ) : null
               }

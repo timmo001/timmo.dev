@@ -45,8 +45,60 @@
   }
 }
 
+/* A small reset in place of Tailwind's: margins and list styles come from
+   the classes below, never the browser */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
 /* Dark only: the logo is drawn for a dark page */
 html {
+  line-height: 1.5;
   color-scheme: dark;
 }
 
@@ -84,6 +136,549 @@ h4 {
   word-break: normal;
   hyphens: none;
   text-wrap: pretty;
+}
+
+/* The site's type scale, fluid from small screens up */
+.section-heading {
+  font-size: clamp(2.25rem, 1.75rem + 1.8svw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.375;
+  letter-spacing: -0.025em;
+  color: var(--gw-color-text-strong);
+}
+
+.section-block-heading {
+  margin-block-end: var(--gw-space-3);
+  font-size: clamp(1.875rem, 1.5rem + 1.2svw, 2.625rem);
+  font-weight: 700;
+  line-height: 1.375;
+  letter-spacing: -0.025em;
+  color: var(--gw-color-text-strong);
+}
+
+.subsection-heading {
+  font-size: clamp(1.5rem, 1.3rem + 0.6svw, 1.875rem);
+  font-weight: 600;
+  line-height: 1.375;
+  letter-spacing: -0.025em;
+  color: var(--gw-color-text-strong);
+}
+
+.subsubsection-heading {
+  display: inline-flex;
+  gap: var(--gw-space-2);
+  align-items: center;
+  font-size: clamp(1.25rem, 1.1rem + 0.4svw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.375;
+  letter-spacing: -0.025em;
+  color: var(--gw-color-text-primary);
+}
+
+.section-subtext {
+  font-size: clamp(1.125rem, 1.05rem + 0.25svw, 1.3125rem);
+  line-height: 1.625;
+  color: var(--gw-color-text-primary);
+  text-align: start;
+}
+
+.muted {
+  font-size: var(--gw-font-size-s);
+  color: var(--gw-color-text-secondary);
+}
+
+.text-link {
+  color: var(--gw-color-accent);
+  transition: color var(--gw-motion-fast) var(--gw-motion-easing);
+}
+
+.text-link:hover {
+  color: color-mix(in oklab, var(--gw-color-accent) 70%, var(--gw-color-text-strong));
+}
+
+/* A page section with its intro: heading and text indented from the grid */
+.page-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-block: var(--gw-space-16);
+}
+
+.page-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-20);
+}
+
+.page-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-8);
+}
+
+.intro {
+  padding-inline: var(--gw-space-6);
+}
+
+/* The home page: each heading beside its text from 768px up */
+.about-grid {
+  display: grid;
+  gap: 9rem var(--gw-space-4);
+}
+
+@media (width >= 48rem) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-16);
+  align-items: center;
+  margin-block-start: 9rem;
+}
+
+@media (width >= 48rem) {
+  .intro {
+    padding-inline: var(--gw-space-12);
+  }
+}
+
+/* Project and activity cards: the title links to the repository, and the
+   stack sits under a rule at the foot */
+.card-title {
+  font-size: var(--gw-font-size-l);
+  font-weight: 700;
+  line-height: 1.375;
+  color: var(--gw-color-accent);
+}
+
+.card-text {
+  font-size: var(--gw-font-size-s);
+  line-height: 1.625;
+  color: var(--gw-color-text-primary);
+}
+
+/* An element's own display beats the hidden attribute "Show more" toggles */
+gw-card[hidden],
+gw-button[hidden] {
+  display: none;
+}
+
+.card-grid {
+  --gw-grid-min: 20rem;
+
+  align-items: stretch;
+}
+
+.project-grid {
+  --gw-grid-min: 16rem;
+
+  align-items: start;
+}
+
+.project-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-6);
+}
+
+/* Whether a Home Assistant list came from GitHub or the static fallback */
+.sync-mark {
+  display: inline-flex;
+  color: var(--gw-color-text-disabled);
+  opacity: 0.6;
+}
+
+.sync-mark[data-synced] {
+  opacity: 1;
+}
+
+.sync-mark svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  fill: currentColor;
+}
+
+.load-more {
+  align-self: center;
+}
+
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gw-space-4);
+}
+
+@media (width >= 40rem) {
+  .summary-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.summary-stats > div {
+  padding: var(--gw-space-4) var(--gw-space-5);
+  background: var(--gw-color-surface-raised);
+  border: var(--gw-border-width) solid var(--gw-color-border-normal);
+  border-radius: var(--gw-radius-panel);
+}
+
+.summary-stats dd {
+  margin-block-start: var(--gw-space-1);
+  font-size: var(--gw-font-size-3xl);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+  color: var(--gw-color-text-strong);
+}
+
+.card-repo {
+  margin-block-start: calc(var(--gw-space-2) * -1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gw-space-4);
+  padding-block: var(--gw-space-3);
+  border-block: var(--gw-border-width) solid var(--gw-color-border-quiet);
+}
+
+.card-metrics dd {
+  font-size: var(--gw-font-size-2xl);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+  color: var(--gw-color-text-strong);
+}
+
+.card-stack {
+  padding-block-start: var(--gw-space-3);
+  margin-block-start: auto;
+  border-block-start: var(--gw-border-width) solid var(--gw-color-border-quiet);
+}
+
+/* Stats */
+.stats {
+  align-items: center;
+  text-align: center;
+}
+
+.stats-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-6);
+  width: 100%;
+}
+
+.stats-section.narrow {
+  max-width: 56rem;
+}
+
+.stats-heading {
+  font-size: clamp(1.5rem, 1.3rem + 0.6svw, 1.875rem);
+  line-height: 1.375;
+  letter-spacing: -0.025em;
+  color: var(--gw-color-text-strong);
+}
+
+.stat-grid {
+  --gw-grid-min: 13rem;
+
+  width: 100%;
+}
+
+.stat-card::part(header) {
+  justify-content: center;
+}
+
+.stat-card::part(body) {
+  align-items: center;
+}
+
+.stat-title {
+  font-size: var(--gw-font-size-xl);
+  font-weight: 300;
+}
+
+.stat-icon {
+  width: 5rem;
+  height: 5rem;
+  color: var(--gw-color-accent);
+}
+
+.stat-value {
+  font-size: var(--gw-font-size-3xl);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--gw-color-text-strong);
+}
+
+.calendar-skeleton {
+  width: 100%;
+  height: 9rem;
+}
+
+/* The contribution calendar: 12px cells, the accent mixed in by level */
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-4);
+  align-items: center;
+}
+
+.calendar-scroll {
+  width: 100%;
+  padding-block-end: var(--gw-space-2);
+  overflow-x: auto;
+}
+
+.contribution-calendar {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  column-gap: var(--gw-space-6);
+  width: max-content;
+  margin-inline: auto;
+  font-size: var(--gw-font-size-xs);
+  color: var(--gw-color-text-secondary);
+}
+
+.calendar-months {
+  display: grid;
+  grid-column-start: 2;
+  column-gap: 3px;
+  height: 1rem;
+  white-space: nowrap;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-rows: repeat(7, 12px);
+  grid-row-start: 2;
+  grid-column-start: 1;
+  row-gap: 3px;
+  line-height: 12px;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-rows: repeat(7, 12px);
+  grid-auto-columns: 12px;
+  grid-auto-flow: column;
+  grid-row-start: 2;
+  grid-column-start: 2;
+  gap: 3px;
+}
+
+.calendar-cell {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: var(--gw-color-fill-neutral-resting);
+  border-radius: 3px;
+}
+
+.calendar-cell[data-level="1"] {
+  background: color-mix(in oklab, var(--gw-color-accent) 25%, var(--gw-color-surface-default));
+}
+
+.calendar-cell[data-level="2"] {
+  background: color-mix(in oklab, var(--gw-color-accent) 50%, var(--gw-color-surface-default));
+}
+
+.calendar-cell[data-level="3"] {
+  background: color-mix(in oklab, var(--gw-color-accent) 75%, var(--gw-color-surface-default));
+}
+
+.calendar-cell[data-level="4"] {
+  background: var(--gw-color-accent);
+}
+
+.calendar-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gw-space-2) var(--gw-space-6);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 48rem;
+  padding-inline: var(--gw-space-2);
+}
+
+.calendar-key {
+  display: flex;
+  gap: 0.375rem;
+  align-items: center;
+}
+
+/* Latest releases */
+.release-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: start;
+}
+
+.release-list > li + li {
+  border-block-start: var(--gw-border-width) solid var(--gw-color-border-quiet);
+}
+
+.release-list a {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gw-space-1) var(--gw-space-3);
+  align-items: baseline;
+  padding: var(--gw-space-3) var(--gw-space-2);
+  border-radius: var(--gw-radius-control);
+  transition: background-color var(--gw-motion-fast) var(--gw-motion-easing);
+}
+
+.release-list a:hover {
+  background: var(--gw-color-fill-neutral-hovered);
+}
+
+.release-repo {
+  font-weight: 600;
+  color: var(--gw-color-text-strong);
+}
+
+.release-tag {
+  font-weight: 500;
+  color: var(--gw-color-accent);
+}
+
+.release-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--gw-font-size-s);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.release-time {
+  margin-inline-start: auto;
+}
+
+/* Top languages: a share bar, its legend, then a link per language */
+.language-share {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-4);
+  width: 100%;
+}
+
+.language-bar {
+  display: flex;
+  width: 100%;
+  height: 0.75rem;
+  overflow: hidden;
+  background: var(--gw-color-fill-neutral-resting);
+  border-radius: var(--gw-radius-pill);
+}
+
+.language-bar > span {
+  height: 100%;
+  border-inline-end: 1px solid var(--gw-color-surface-lower);
+}
+
+.language-bar > span:last-child {
+  border-inline-end: 0;
+}
+
+.language-legend {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gw-space-2) var(--gw-space-8);
+  font-size: var(--gw-font-size-s);
+  text-align: start;
+}
+
+@media (width >= 40rem) {
+  .language-legend {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.language-legend > div {
+  display: flex;
+  gap: var(--gw-space-2);
+  align-items: center;
+}
+
+.language-legend .tag-dot {
+  flex: none;
+  margin: 0;
+}
+
+.language-legend dt {
+  font-weight: 500;
+  color: var(--gw-color-text-strong);
+}
+
+.language-legend dd {
+  margin-inline-start: auto;
+}
+
+.top-languages {
+  justify-content: center;
+}
+
+.cache-status {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-1);
+  align-items: center;
+  padding: 0 var(--gw-space-4) var(--gw-space-6);
+  text-align: center;
+}
+
+.cache-note {
+  max-width: 28rem;
+  font-size: var(--gw-font-size-xs);
+  opacity: 0.7;
+}
+
+/* AnimatedText: each word stays whole, each letter animates on its own */
+.hero-space,
+.hero-letter {
+  display: inline-block;
+}
+
+.hero-word {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.site-footer {
+  width: 100%;
+  padding: var(--gw-space-6) var(--gw-space-4);
+  text-align: center;
+}
+
+.site-footer p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gw-space-1) var(--gw-space-3);
+  align-items: center;
+  justify-content: center;
+}
+
+/* A tag's or language's own colour, as a dot in a neutral chip or button */
+.tag-dot {
+  display: block;
+  width: 0.625rem;
+  height: 0.625rem;
+  margin: auto;
+  border-radius: 50%;
 }
 
 gw-app-bar [slot="brand"] img {

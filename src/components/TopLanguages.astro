@@ -13,14 +13,17 @@ const username = getUsername();
 
 {
   languages.map((language) => (
-    <a
-      class="reveal inline-flex items-center rounded-full px-5 py-2 text-lg leading-5 font-medium transition-transform duration-300 ease-in-out hover:scale-110"
-      href={`https://github.com/${username}?tab=repositories&language=${language.name.toLowerCase()}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={`color: ${language.contrastColor}; background-color: ${language.color}`}
-    >
-      {language.name}
-    </a>
+    <gw-button class="reveal" variant="neutral" appearance="outlined">
+      <svg slot="icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="6" fill={language.color} />
+      </svg>
+      <a
+        href={`https://github.com/${username}?tab=repositories&language=${language.name.toLowerCase()}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {language.name}
+      </a>
+    </gw-button>
   ))
 }

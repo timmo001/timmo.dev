@@ -17,38 +17,38 @@ const tagsAttr = (tags ?? []).map((tag) => tag.toLowerCase()).join("|");
 const stackAttr = (stack ?? []).map((item) => item.toLowerCase()).join("|");
 ---
 
-<a
-  href={href}
-  target="_blank"
-  rel="noopener noreferrer"
-  class="reveal flex w-full flex-col rounded-xl border border-white/10 p-5 text-start transition-colors hover:border-indigo-500/40 hover:bg-white/5"
+<gw-card
+  class="reveal work-card"
   data-work-item
   data-title={title}
   data-description={description}
   data-tags={tagsAttr}
   data-stack={stackAttr}
 >
-  <h4 class="text-lg font-bold leading-snug text-indigo-400">{title}</h4>
+  <a
+    slot="heading"
+    class="card-title"
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer">{title}</a
+  >
   {
     sortedTags && sortedTags.length > 0 && (
-      <div class="mt-2 flex flex-wrap gap-1.5">
+      <gw-row gap="s">
         {sortedTags.map((tag) => (
           <TagChip label={tag} />
         ))}
-      </div>
+      </gw-row>
     )
   }
-  <p class="mt-4 text-sm leading-relaxed text-gray-300">{description}</p>
+  <p class="card-text">{description}</p>
   {
     sortedStack && sortedStack.length > 0 && (
-      <>
-        <hr class="my-4 border-0 border-t border-white/10" />
-        <div class="flex flex-wrap gap-1.5">
-          {sortedStack.map((item) => (
-            <TagChip label={item} />
-          ))}
-        </div>
-      </>
+      <gw-row gap="s" class="card-stack">
+        {sortedStack.map((item) => (
+          <TagChip label={item} />
+        ))}
+      </gw-row>
     )
   }
-</a>
+</gw-card>

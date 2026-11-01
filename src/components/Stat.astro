@@ -7,20 +7,15 @@ type Props = Stat;
 const { key, url, title, value, secondaryValue } = Astro.props;
 ---
 
-<a
-  href={url}
-  target="_blank"
-  rel="noopener noreferrer"
-  class="stat-card reveal grid cursor-pointer grid-cols-1 justify-self-center justify-items-center fill-white"
->
+<gw-card class="reveal stat-card">
+  <a
+    slot="heading"
+    class="stat-title"
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer">{title}</a
+  >
   <StatIcon statKey={key} />
-  <h3 class="mt-2 text-3xl font-light">{title}</h3>
-  <span class="text-3xl font-medium">{value}</span>
-  {
-    secondaryValue ? (
-      <span class="text-base font-normal">{secondaryValue}</span>
-    ) : (
-      <span class="h-6" aria-hidden="true" />
-    )
-  }
-</a>
+  <span class="stat-value">{value}</span>
+  <span class="stat-secondary muted">{secondaryValue ?? " "}</span>
+</gw-card>

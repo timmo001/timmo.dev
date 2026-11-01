@@ -24,63 +24,55 @@ type Props = {
 
 const { githubStats, githubTopLanguages, insights, releases, fetchedAt } =
   Astro.props;
-
-const headingClass =
-  "reveal mb-6 text-2xl leading-snug font-normal tracking-tight text-white";
 ---
 
 <SubpageHeader title="Stats" />
-<div class="flex w-full flex-col items-center justify-start py-16" role="main">
-  <div class="content flex flex-col items-center gap-20 text-center">
-    <section class="w-full max-w-6xl" aria-label="GitHub stats">
-      <div class="stagger-stats grid w-full grid-cols-[repeat(2,auto)] justify-around gap-x-6 gap-y-12 leading-snug tracking-tight sm:grid-cols-[repeat(3,auto)] lg:grid-cols-[repeat(4,auto)]">
+<div class="page-body" role="main">
+  <div class="content page-sections stats">
+    <section class="stats-section" aria-label="GitHub stats">
+      <gw-grid class="stagger-stats stat-grid">
         <GitHubStats stats={githubStats} />
-      </div>
+      </gw-grid>
     </section>
 
-    <section class="w-full max-w-6xl" aria-label="Contributions">
-      <h3 class={headingClass}>Contributions</h3>
+    <section class="stats-section" aria-label="Contributions">
+      <h2 class="reveal stats-heading">Contributions</h2>
       {insights ? (
         <ContributionCalendar
           days={insights.days}
           total={insights.lastYearTotal}
         />
       ) : (
-        <p class="reveal section-subtext text-center">
+        <p class="reveal section-subtext">
           The contribution calendar is unavailable right now.
         </p>
       )}
     </section>
 
     {releases && releases.length > 0 && (
-      <section class="w-full max-w-4xl" aria-label="Latest releases">
-        <h3 class={headingClass}>Latest releases</h3>
+      <section class="stats-section narrow" aria-label="Latest releases">
+        <h2 class="reveal stats-heading">Latest releases</h2>
         <ReleaseList releases={releases} />
       </section>
     )}
 
-    <section class="w-full max-w-4xl" aria-label="Top languages">
-      <h3 class={headingClass}>Top languages</h3>
-      <div class="flex flex-col gap-8">
-        <LanguageShare languages={githubTopLanguages} />
-        <div class="flex flex-wrap justify-center gap-3 leading-snug tracking-tight">
-          <TopLanguages languages={githubTopLanguages} />
-        </div>
-      </div>
+    <section class="stats-section narrow" aria-label="Top languages">
+      <h2 class="reveal stats-heading">Top languages</h2>
+      <LanguageShare languages={githubTopLanguages} />
+      <gw-row class="top-languages">
+        <TopLanguages languages={githubTopLanguages} />
+      </gw-row>
     </section>
   </div>
 </div>
-<section
-  aria-label="Cache status"
-  class="flex w-full flex-col items-center gap-1 px-4 pb-6 text-center text-muted-foreground"
->
-  <p class="text-sm">
+<section aria-label="Cache status" class="cache-status muted">
+  <p>
     Last updated{" "}
     <time datetime={fetchedAt.toISOString()} data-local-time>
       {formatDateTimeFallback(fetchedAt)}
     </time>
   </p>
-  <p class="max-w-md text-xs leading-snug text-muted-foreground/70">
+  <p class="cache-note">
     Cached for {STATS_CACHE_TTL_LABEL} across GraphQL, server memory, and the
     CDN.
   </p>

@@ -33,13 +33,13 @@ const wordGroups: Array<Array<LetterSpan>> = words.map((word, wordIndex) => {
   wordGroups.map((letters, groupIndex) => (
     <>
       {groupIndex > 0 && (
-        <span class="inline-block" aria-hidden="true">
+        <span class="hero-space" aria-hidden="true">
           {"\u00A0"}
         </span>
       )}
-      <span class="inline-block max-w-full break-words">
+      <span class="hero-word">
         {letters.map(({ char, delay }) => (
-          <span class="hero-letter inline-block" style={`animation-delay: ${delay}s`}>
+          <span class="hero-letter" style={`animation-delay: ${delay}s`}>
             {char}
           </span>
         ))}
