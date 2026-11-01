@@ -117,8 +117,10 @@ const palette = {
   border: toHex(role("border-normal")),
   borderSoft: toHex(role("border-quiet")),
   text: toHex(role("text-strong")),
-  textMuted: toHex(role("text-secondary")),
-  textFaint: toHex(role("text-disabled")),
+  // The cards' small print (labels, timestamps, percentages) has to stay
+  // readable, so it never drops below the secondary text's 4.6:1
+  textMuted: toHex(role("text-primary")),
+  textFaint: toHex(role("text-secondary")),
   accent: toHex(accent),
   accentSoft: toHex(role("fill-accent-hovered")),
   warning: toHex(warning),
