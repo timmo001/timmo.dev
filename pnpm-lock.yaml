@@ -173,8 +173,8 @@ importers:
         specifier: 3.7.4
         version: 3.7.4
       '@timmo001/groundwork-tokens':
-        specifier: 0.9.0
-        version: 0.9.0
+        specifier: 0.9.16
+        version: 0.9.16
       '@timmo001/groundwork-ui':
         specifier: 0.9.0
         version: 0.9.0
@@ -1333,8 +1333,8 @@ packages:
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
 
-  '@timmo001/groundwork-tokens@0.9.0':
-    resolution: {integrity: sha512-4IDiIGvUnk3UPj/rRMhyzMbxaPmwdHloseHv8fzP/sAXCNPFm/4MQ7iNw6CTxPSAZMfqMMLZsKM+NL5HgCmztg==}
+  '@timmo001/groundwork-tokens@0.9.16':
+    resolution: {integrity: sha512-QfmV+WKcaZquh/hEz7UKo71AFC3LyvwkBULfDIdnsZTF4InV98b9KeGFEZfYp+XfRI5MeVkWm3jrq0MAll+hbw==}
 
   '@timmo001/groundwork-ui@0.9.0':
     resolution: {integrity: sha512-0B1nqV4SP+O9Mm6Y+mmm6i7IaLUgM+xB5lxVio8fEIhSBS8Se4g5Y/RFqBaotCfYkCEUteVglPwD9AEONAr7ig==}
@@ -3500,7 +3500,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@timmo001/groundwork-tokens@0.9.0':
+  '@timmo001/groundwork-tokens@0.9.16':
     dependencies:
       culori: 4.0.2
       effect: 4.1.1
