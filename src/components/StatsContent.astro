@@ -28,42 +28,44 @@ const { githubStats, githubTopLanguages, insights, releases, fetchedAt } =
 
 <SubpageHeader title="Stats" />
 <div class="page-body" role="main">
-  <div class="content page-sections stats">
-    <section class="stats-section" aria-label="GitHub stats">
-      <gw-grid class="stagger-stats stat-grid">
-        <GitHubStats stats={githubStats} />
-      </gw-grid>
-    </section>
-
-    <section class="stats-section" aria-label="Contributions">
-      <h2 class="reveal stats-heading">Contributions</h2>
-      {insights ? (
-        <ContributionCalendar
-          days={insights.days}
-          total={insights.lastYearTotal}
-        />
-      ) : (
-        <p class="reveal section-subtext">
-          The contribution calendar is unavailable right now.
-        </p>
-      )}
-    </section>
-
-    {releases && releases.length > 0 && (
-      <section class="stats-section narrow" aria-label="Latest releases">
-        <h2 class="reveal stats-heading">Latest releases</h2>
-        <ReleaseList releases={releases} />
+  <gw-page>
+    <div class="page-sections stats">
+      <section class="stats-section" aria-label="GitHub stats">
+        <gw-grid class="stagger-stats stat-grid">
+          <GitHubStats stats={githubStats} />
+        </gw-grid>
       </section>
-    )}
 
-    <section class="stats-section narrow" aria-label="Top languages">
-      <h2 class="reveal stats-heading">Top languages</h2>
-      <LanguageShare languages={githubTopLanguages} />
-      <gw-row class="top-languages">
-        <TopLanguages languages={githubTopLanguages} />
-      </gw-row>
-    </section>
-  </div>
+      <section class="stats-section" aria-label="Contributions">
+        <h2 class="reveal stats-heading">Contributions</h2>
+        {insights ? (
+          <ContributionCalendar
+            days={insights.days}
+            total={insights.lastYearTotal}
+          />
+        ) : (
+          <p class="reveal section-subtext">
+            The contribution calendar is unavailable right now.
+          </p>
+        )}
+      </section>
+
+      {releases && releases.length > 0 && (
+        <section class="stats-section narrow" aria-label="Latest releases">
+          <h2 class="reveal stats-heading">Latest releases</h2>
+          <ReleaseList releases={releases} />
+        </section>
+      )}
+
+      <section class="stats-section narrow" aria-label="Top languages">
+        <h2 class="reveal stats-heading">Top languages</h2>
+        <LanguageShare languages={githubTopLanguages} />
+        <gw-row class="top-languages">
+          <TopLanguages languages={githubTopLanguages} />
+        </gw-row>
+      </section>
+    </div>
+  </gw-page>
 </div>
 <section aria-label="Cache status" class="cache-status muted">
   <p>

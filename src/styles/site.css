@@ -102,13 +102,6 @@ html {
   color-scheme: dark;
 }
 
-/* The same box as the app bar's content, so the two line up */
-.content {
-  box-sizing: border-box;
-  width: min(100% - 2 * var(--gw-space-3), var(--gw-content-width));
-  margin-inline: auto;
-}
-
 body {
   display: flex;
   flex-direction: column;
@@ -197,10 +190,8 @@ h4 {
 }
 
 /* A page section with its intro: heading and text indented from the grid */
+/* gw-page centres its column at the content width, lined up with the bar */
 .page-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
   padding-block: var(--gw-space-16);
 }
@@ -260,12 +251,6 @@ h4 {
   font-size: var(--gw-font-size-s);
   line-height: 1.625;
   color: var(--gw-color-text-primary);
-}
-
-/* An element's own display beats the hidden attribute "Show more" toggles */
-gw-card[hidden],
-gw-button[hidden] {
-  display: none;
 }
 
 .card-grid {
@@ -613,11 +598,6 @@ gw-button[hidden] {
   align-items: center;
 }
 
-.language-legend .tag-dot {
-  flex: none;
-  margin: 0;
-}
-
 .language-legend dt {
   font-weight: 500;
   color: var(--gw-color-text-strong);
@@ -672,12 +652,12 @@ gw-button[hidden] {
   justify-content: center;
 }
 
-/* A tag's or language's own colour, as a dot in a neutral chip or button */
+/* A language's own colour, as a dot in the share bar's legend */
 .tag-dot {
   display: block;
+  flex: none;
   width: 0.625rem;
   height: 0.625rem;
-  margin: auto;
   border-radius: 50%;
 }
 

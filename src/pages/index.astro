@@ -27,7 +27,8 @@ import Layout from "~/layouts/Layout.astro";
   </header>
 
   <div class="page-body" role="main">
-    <div class="stagger-grid content about-grid">
+    <gw-page>
+    <div class="stagger-grid about-grid">
       <h3 class="reveal section-heading">About Me</h3>
       <div class="reveal">
         <SectionBlock>
@@ -90,5 +91,6 @@ import Layout from "~/layouts/Layout.astro";
         <ContactLinks scale={2.5} />
       </div>
     </div>
+    </gw-page>
   </div>
 </Layout>

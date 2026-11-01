@@ -118,7 +118,8 @@ const totals = activity
 >
   <SubpageHeader title="Current activity" />
   <div class="page-body">
-    <div class="content page-sections">
+    <gw-page>
+    <div class="page-sections">
       {activity && totals && groups.length > 0 ? (
         <>
           <section aria-label="Activity summary" class="page-section">
@@ -217,6 +218,7 @@ const totals = activity
         </section>
       )}
     </div>
+    </gw-page>
   </div>
 </Layout>
 

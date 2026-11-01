@@ -10,8 +10,4 @@ const { label } = Astro.props;
 const { backgroundColor } = getTagStyle(label);
 ---
 
-<gw-chip>
-  <span slot="icon" class="tag-dot" style={`background: ${backgroundColor}`}
-  ></span>
-  {label}
-</gw-chip>
+<gw-chip swatch={backgroundColor}>{label}</gw-chip>
