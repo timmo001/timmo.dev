@@ -241,28 +241,37 @@ h4 {
 /* Project and activity cards: the title links to the repository, and the
    stack sits under a rule at the foot */
 .card-title {
-  font-size: var(--gw-font-size-l);
+  font-size: var(--gw-font-size-xl);
   font-weight: 700;
-  line-height: 1.375;
+  line-height: 1.3;
   color: var(--gw-color-accent);
 }
 
 .card-text {
-  font-size: var(--gw-font-size-s);
-  line-height: 1.625;
+  font-size: var(--gw-font-size-m);
+  line-height: 1.6;
   color: var(--gw-color-text-primary);
 }
 
+/* Column caps: each column is at least the minimum, and never narrower than
+   a quarter (or third) of the row, so wide screens stop at 4 (or 3).
+   TODO: swap for gw-grid's own column cap once Groundwork has one */
 .card-grid {
-  --gw-grid-min: 20rem;
+  --gw-grid-min: max(20rem, (100% - 2 * var(--gw-gap)) / 3);
 
   align-items: stretch;
 }
 
 .project-grid {
-  --gw-grid-min: 16rem;
+  --gw-grid-min: max(18rem, (100% - 3 * var(--gw-gap)) / 4);
 
-  align-items: start;
+  align-items: stretch;
+}
+
+/* Cards in a row share a height, with the stack pinned to the foot */
+.work-card::part(body),
+.activity-card::part(body) {
+  flex: 1;
 }
 
 .project-group {
@@ -374,7 +383,7 @@ h4 {
 }
 
 .stat-grid {
-  --gw-grid-min: 13rem;
+  --gw-grid-min: max(14rem, (100% - 3 * var(--gw-gap, var(--gw-space-3))) / 4);
 
   width: 100%;
 }
@@ -393,8 +402,8 @@ h4 {
 }
 
 .stat-icon {
-  width: 5rem;
-  height: 5rem;
+  width: 6rem;
+  height: 6rem;
   color: var(--gw-color-accent);
 }
 
