@@ -6,17 +6,9 @@ import Layout from "~/layouts/Layout.astro";
 ---
 
 <Layout>
-  <header
-    class="relative h-[75svh] min-h-72 w-full overflow-x-clip bg-linear-to-b from-violet-900 to-gray-950 p-4 sm:min-h-96"
-    role="banner"
-  >
-    <div
-      class="relative z-10 flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat px-4 pt-4 sm:px-8 sm:pt-8 md:px-16 md:pt-16"
-      style="background-image: url('/logo-wide-nobackground.png')"
-    >
-      <div
-        class="flex w-full min-w-0 flex-col items-start gap-2 text-start sm:flex-row sm:flex-wrap sm:items-baseline sm:gap-x-6"
-      >
+  <header class="hero hero-tall" data-hero role="banner">
+    <div class="hero-inner">
+      <div class="hero-names">
         <h1 class="hero-title">
           <AnimatedText text="Aidan Timson" />
         </h1>
@@ -24,7 +16,7 @@ import Layout from "~/layouts/Layout.astro";
           <span>Timmo</span> / <span>@timmo001</span>
         </p>
       </div>
-      <p class="hero-tagline mt-4 w-full min-w-0">
+      <p class="hero-tagline">
         <AnimatedText
           text="Software Developer"
           delayPerLetter={0.015}
@@ -35,11 +27,11 @@ import Layout from "~/layouts/Layout.astro";
   </header>
 
   <div
-    class="flex w-full flex-col items-center justify-start px-4 py-16"
+    class="flex w-full flex-col items-center justify-start py-16"
     role="main"
   >
     <div
-      class="stagger-grid container grid gap-x-4 gap-y-36 px-2 sm:grid-cols-1 md:grid-cols-2"
+      class="stagger-grid content grid gap-x-4 gap-y-36 sm:grid-cols-1 md:grid-cols-2"
     >
       <h3 class="reveal section-heading">About Me</h3>
       <div class="reveal">
@@ -102,9 +94,7 @@ import Layout from "~/layouts/Layout.astro";
       <div
         class="reveal flex w-full flex-row flex-wrap justify-center gap-x-24 gap-y-16"
       >
-        <ContactLinks
-          classes="h-32 w-32 fill-white transition-transform duration-300 ease-in-out hover:scale-110"
-        />
+        <ContactLinks scale={2.5} />
       </div>
     </div>
   </div>

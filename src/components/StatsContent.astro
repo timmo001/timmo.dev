@@ -30,11 +30,8 @@ const headingClass =
 ---
 
 <SubpageHeader title="Stats" />
-<div
-  class="flex w-full flex-col items-center justify-start px-4 py-16"
-  role="main"
->
-  <div class="container flex w-full flex-col items-center gap-20 text-center">
+<div class="flex w-full flex-col items-center justify-start py-16" role="main">
+  <div class="content flex flex-col items-center gap-20 text-center">
     <section class="w-full max-w-6xl" aria-label="GitHub stats">
       <div class="stagger-stats grid w-full grid-cols-[repeat(2,auto)] justify-around gap-x-6 gap-y-12 leading-snug tracking-tight sm:grid-cols-[repeat(3,auto)] lg:grid-cols-[repeat(4,auto)]">
         <GitHubStats stats={githubStats} />

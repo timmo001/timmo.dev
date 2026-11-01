@@ -3,26 +3,19 @@ import Layout from "~/layouts/Layout.astro";
 ---
 
 <Layout title="Not Found | Aidan Timson (Timmo)">
-  <header
-    class="h-[50svh] min-h-96 w-full bg-linear-to-b from-violet-900 to-gray-950 p-4"
-    role="banner"
-  >
-    <div
-      class="flex h-full w-full max-w-screen flex-col items-start justify-end bg-contain bg-center bg-no-repeat px-4 pt-4 sm:px-8 sm:pt-8 md:px-16 md:pt-16"
-      style="background-image: url('/logo-wide-nobackground.png')"
-    >
-      <div class="w-full min-w-0 text-start" role="main">
-        <h1 class="hero-title hero-reveal">
-          Page not found
-        </h1>
+  <header class="hero" data-hero role="banner">
+    <div class="hero-inner">
+      <div role="main">
+        <h1 class="hero-title hero-reveal">Page not found</h1>
       </div>
-      <a
+      <gw-button
         href="/"
-        class="hero-reveal mt-10 inline-flex h-10 items-center justify-center rounded-2xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+        size="large"
+        class="hero-reveal hero-action"
         style="animation-delay: 0.1s"
       >
         Return Home
-      </a>
+      </gw-button>
     </div>
   </header>
 </Layout>

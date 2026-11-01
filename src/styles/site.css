@@ -1,0 +1,312 @@
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* The site's content width, which gw-app-bar keeps its content to as well:
+   1400px with a 3rem gutter, growing on very wide screens */
+:root {
+  --gw-content-width: max(
+    min(87.5rem, 100vw - 6rem),
+    min(66.67vw, 160rem)
+  );
+}
+
+@media (width < 40rem) {
+  :root {
+    --gw-content-width: calc(100vw - 2rem);
+  }
+}
+
+/* Dark only: the logo is drawn for a dark page */
+html {
+  color-scheme: dark;
+}
+
+/* The same box as the app bar's content, so the two line up */
+.content {
+  box-sizing: border-box;
+  width: min(100% - 2 * var(--gw-space-3), var(--gw-content-width));
+  margin-inline: auto;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  margin: 0;
+  font-family: var(--gw-font-sans);
+  color: var(--gw-color-text-primary);
+  background: var(--gw-color-surface-lower);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: pretty;
+}
+
+gw-app-bar [slot="brand"] img {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gw-space-1);
+  align-items: center;
+  justify-content: center;
+}
+
+/* The bar folds its nav into a menu below 1024px (menu-below), leaving room
+   for the contact links beside it. Under 600px they join the menu too */
+.contact-links-menu {
+  justify-content: flex-start;
+}
+
+@media (width >= 600px) {
+  .contact-links-menu {
+    display: none;
+  }
+}
+
+@media (width < 600px) {
+  .contact-links-bar {
+    display: none;
+  }
+}
+
+.hero {
+  box-sizing: border-box;
+  width: 100%;
+  height: 50svh;
+  min-height: 18rem;
+  padding-block: var(--gw-space-4);
+  overflow-x: clip;
+  background: linear-gradient(
+    var(--gw-color-fill-accent-quiet),
+    transparent
+  );
+}
+
+.hero-tall {
+  height: 75svh;
+}
+
+.hero-inner {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: min(100% - 2 * var(--gw-space-3), var(--gw-content-width));
+  height: 100%;
+  margin-inline: auto;
+  padding-block-start: var(--gw-space-16);
+  background: url("/logo-wide-nobackground.png") center / contain no-repeat;
+}
+
+.hero-names {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-2);
+  width: 100%;
+  min-width: 0;
+}
+
+.hero-action {
+  margin-block-start: var(--gw-space-10);
+}
+
+@media (min-width: 640px) {
+  .hero {
+    min-height: 24rem;
+  }
+
+  .hero-names {
+    flex-flow: row wrap;
+    column-gap: var(--gw-space-6);
+    align-items: baseline;
+  }
+}
+
+.hero-title {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  font-size: clamp(3rem, 2.25rem + 2.5svw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--gw-color-text-strong);
+}
+
+.hero-subtitle {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  font-size: clamp(1.125rem, 1.05rem + 0.25svw, 1.3125rem);
+  font-weight: 700;
+  line-height: 1.375;
+  color: var(--gw-color-text-primary);
+}
+
+.hero-tagline {
+  width: 100%;
+  min-width: 0;
+  margin: var(--gw-space-4) 0 0;
+  font-size: clamp(1.5rem, 1.3rem + 0.6svw, 1.875rem);
+  font-weight: 600;
+  line-height: 1.375;
+  letter-spacing: -0.025em;
+  color: var(--gw-color-text-strong);
+}
+
+@media (min-width: 640px) {
+  .hero-subtitle {
+    font-size: clamp(1.25rem, 1.1rem + 0.4svw, 1.5rem);
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.875rem, 1.5rem + 1.2svw, 2.625rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: clamp(3.75rem, 2.75rem + 3.2svw, 5.75rem);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.5rem, 1.3rem + 0.6svw, 1.875rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-letter,
+  .hero-reveal {
+    animation: hero-pop var(--gw-motion-slow) var(--gw-motion-easing) both;
+  }
+
+  .reveal {
+    animation: fade-in-up var(--gw-motion-slow) var(--gw-motion-easing) both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 12%;
+  }
+
+  .stagger-grid > .reveal:nth-child(1) {
+    animation-range: entry 0% cover 10%;
+  }
+
+  .stagger-grid > .reveal:nth-child(2) {
+    animation-range: entry 2% cover 12%;
+  }
+
+  .stagger-grid > .reveal:nth-child(3) {
+    animation-range: entry 4% cover 14%;
+  }
+
+  .stagger-grid > .reveal:nth-child(4) {
+    animation-range: entry 6% cover 16%;
+  }
+
+  .stagger-grid > .reveal:nth-child(5) {
+    animation-range: entry 8% cover 18%;
+  }
+
+  .stagger-grid > .reveal:nth-child(6) {
+    animation-range: entry 10% cover 20%;
+  }
+
+  .stagger-grid > .reveal:nth-child(7) {
+    animation-range: entry 12% cover 22%;
+  }
+
+  .stagger-grid > .reveal:nth-child(8) {
+    animation-range: entry 14% cover 24%;
+  }
+
+  .stagger-stats > .reveal:nth-child(1) {
+    animation-range: entry 0% cover 8%;
+  }
+
+  .stagger-stats > .reveal:nth-child(2) {
+    animation-range: entry 2% cover 10%;
+  }
+
+  .stagger-stats > .reveal:nth-child(3) {
+    animation-range: entry 4% cover 12%;
+  }
+
+  .stagger-stats > .reveal:nth-child(4) {
+    animation-range: entry 6% cover 14%;
+  }
+
+  .stagger-stats > .reveal:nth-child(5) {
+    animation-range: entry 8% cover 16%;
+  }
+
+  .stagger-stats > .reveal:nth-child(6) {
+    animation-range: entry 10% cover 18%;
+  }
+
+  .stagger-stats > .reveal:nth-child(7) {
+    animation-range: entry 12% cover 20%;
+  }
+
+  .stagger-stats > .reveal:nth-child(8) {
+    animation-range: entry 14% cover 22%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-letter,
+  .hero-reveal,
+  .reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
