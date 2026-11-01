@@ -175,6 +175,12 @@ importers:
       '@tailwindcss/vite':
         specifier: 4.3.3
         version: 4.3.3(vite@8.3.5(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
+      '@timmo001/groundwork-tokens':
+        specifier: 0.6.0
+        version: 0.6.0
+      '@timmo001/groundwork-ui':
+        specifier: 0.6.0
+        version: 0.6.0
       astro:
         specifier: 7.4.4
         version: 7.4.4(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
@@ -1436,6 +1442,12 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
+  '@timmo001/groundwork-tokens@0.6.0':
+    resolution: {integrity: sha512-txEdG4+99doL9e6rHOLfhP5ilF2DLN+Y7vi24a6kZqTjE/cj1Q31sAob/ZMwjPHw/zfEOIc+fTNQHc/OQ6NdBg==}
+
+  '@timmo001/groundwork-ui@0.6.0':
+    resolution: {integrity: sha512-kSAIww29UXd6gubF+4sBbjVhYn1HCSIe6xNeD/JuO0W/MqDORfnq1j88oGKC/oG0rCGfrO90BJvGr9nzcTR0Og==}
+
   '@timmo001/oxlint-rules@0.6.3':
     resolution: {integrity: sha512-DxIid4Bu5t8bLuWcAIZlikLVLabSrJ1ai2siFB+E+7HdY3TPMgsUU44/Is+9RAQYVH8LEYjOQFVedH5MOXL5YQ==}
     engines: {node: '>=20'}
@@ -1672,6 +1684,10 @@ packages:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
 
+  culori@4.0.2:
+    resolution: {integrity: sha512-1+BhOB8ahCn4O0cep0Sh2l9KCOfOdY+BXJnKMHFFzDEouSr/el18QwXEMRlOj9UY5nCeA8UN3a/82rUWRBeyBw==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
   date-fns@4.4.0:
     resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
 
@@ -1719,6 +1735,9 @@ packages:
   dset@3.1.4:
     resolution: {integrity: sha512-2QF/g9/zTaPDc3BjNcVTGoBbXBgYfMTTceLaYcFJ/W9kggFUkhxD/hMEeuLKbugyef9SqAx8cpgwlIP/jinUTA==}
     engines: {node: '>=4'}
+
+  effect@4.1.1:
+    resolution: {integrity: sha512-XYu65BrcmNqu5i7PPvP4dqL+R5ma37zIsfuSPjcn78mog+6e5PkilNg7Xo+pBpjXJYlWEIpH4j91tMrfW05CMw==}
 
   emmet@2.4.11:
     resolution: {integrity: sha512-23QPJB3moh/U9sT4rQzGgeyyGIrcM+GH5uVYg2C6wZIxAIJq7Ng3QLT79tl8FUwDXhyq9SusfknOrofAKqvgyQ==}
@@ -3764,6 +3783,13 @@ snapshots:
       tailwindcss: 4.3.3
       vite: 8.3.5(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
 
+  '@timmo001/groundwork-tokens@0.6.0':
+    dependencies:
+      culori: 4.0.2
+      effect: 4.1.1
+
+  '@timmo001/groundwork-ui@0.6.0': {}
+
   '@timmo001/oxlint-rules@0.6.3(@oxlint/plugins@1.90.0)(oxlint@1.90.0(oxlint-tsgolint@7.0.2005))':
     dependencies:
       '@oxlint/plugins': 1.90.0
@@ -4067,6 +4093,8 @@ snapshots:
     dependencies:
       css-tree: 2.2.1
 
+  culori@4.0.2: {}
+
   date-fns@4.4.0: {}
 
   defu@6.1.7: {}
@@ -4106,6 +4134,8 @@ snapshots:
       domhandler: 5.0.3
 
   dset@3.1.4: {}
+
+  effect@4.1.1: {}
 
   emmet@2.4.11:
     dependencies:

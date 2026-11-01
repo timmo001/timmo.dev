@@ -1,0 +1,21 @@
+{
+  "kind": "solved",
+  "id": "timmo",
+  "name": "Timmo",
+  "description": "timmo.dev's indigo on near-black. Large radii, soft borders, pill chips and a sheen on accent surfaces.",
+  "examples": ["timmo.dev"],
+  "background": "#030712",
+  "accent": "#818cf8",
+  "style": {
+    "font": "Geist",
+    "mono": "Geist Mono",
+    "radius": { "panel": 16, "control": 12, "chip": 999 },
+    "border": { "width": 1, "strength": "soft" },
+    "weights": { "regular": 400, "strong": 600 },
+    "density": "normal",
+    "capitals": false,
+    "link": { "color": "accent", "underline": "thin" },
+    "surfaceAccent": "sheen",
+    "rows": "cards"
+  }
+}
