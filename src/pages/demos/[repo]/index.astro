@@ -1,0 +1,59 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import { stringify } from "yaml";
+
+import HaCardDemo from "~/components/HaCardDemo.astro";
+import SectionBlock from "~/components/SectionBlock.astro";
+import SubpageHeader from "~/components/SubpageHeader.astro";
+import Layout from "~/layouts/Layout.astro";
+import { getHaProjectDemos } from "~/lib/ha-projects";
+
+export const getStaticPaths = (async () =>
+  (await getHaProjectDemos()).map(({ repoName, item, demo }) => ({
+    params: { repo: repoName },
+    props: { item, demo },
+  }))) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { item, demo } = Astro.props;
+---
+
+<Layout
+  title={`${item.title} demo | Aidan Timson (Timmo)`}
+  description={item.description}
+>
+  <SubpageHeader title={item.title} />
+  <div class="flex w-full flex-col items-center px-4 pb-16 pt-8">
+    <div class="container flex w-full flex-col gap-12 px-2">
+      <section aria-label="About" class="reveal px-6 md:px-12">
+        <SectionBlock>
+          {item.description}{" "}
+          <a
+            class="text-link"
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on GitHub
+          </a>
+        </SectionBlock>
+      </section>
+
+      <section aria-label="Demo" class="mx-auto w-full max-w-md px-6 md:px-0">
+        <HaCardDemo demo={demo} />
+      </section>
+
+      <section
+        aria-label="Configuration"
+        class="flex flex-col gap-4 px-6 md:px-12"
+      >
+        <p class="section-subtext">
+          A live card running against a mocked Home Assistant in your browser,
+          with this configuration:
+        </p>
+        <pre class="overflow-x-auto rounded-xl border border-white/10 p-5 text-sm text-gray-300"><code>{stringify(demo.cards.length === 1 ? demo.cards[0] : demo.cards)}</code></pre>
+      </section>
+    </div>
+  </div>
+</Layout>
