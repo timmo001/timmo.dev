@@ -173,8 +173,8 @@ importers:
         specifier: 3.7.4
         version: 3.7.4
       '@timmo001/groundwork-tokens':
-        specifier: 0.9.16
-        version: 0.9.16
+        specifier: 0.9.28
+        version: 0.9.28
       '@timmo001/groundwork-ui':
         specifier: 0.9.28
         version: 0.9.28
@@ -1333,8 +1333,8 @@ packages:
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
 
-  '@timmo001/groundwork-tokens@0.9.16':
-    resolution: {integrity: sha512-QfmV+WKcaZquh/hEz7UKo71AFC3LyvwkBULfDIdnsZTF4InV98b9KeGFEZfYp+XfRI5MeVkWm3jrq0MAll+hbw==}
+  '@timmo001/groundwork-tokens@0.9.28':
+    resolution: {integrity: sha512-9WOTAmR9HhBEyaXqfbb4V+1Monib0bLXl9GZkuYq1Ir0M9/VAFixtKph0JqeY2wLplJqJH1cgLq99bvcUYWS1A==}
 
   '@timmo001/groundwork-ui@0.9.28':
     resolution: {integrity: sha512-YdVQZTJfr7+9xWUiQ4mz1XnTwDKSz4OpnMVvOT/ww74tfjbs8b7AC1dKmOAPh8kdc67aW9zxAS/d+QoJDd+X/w==}
@@ -1352,6 +1352,9 @@ packages:
 
   '@types/aws-lambda@8.10.164':
     resolution: {integrity: sha512-XOnrazWcOd6yWPnR7DxqCBPPYciDjHq+NN8LPwwqBCJNXLyPJgKo47fZpJ113+oyAn9Zti0Cf6H4k6yPcE3WFg==}
+
+  '@types/culori@4.0.1':
+    resolution: {integrity: sha512-43M51r/22CjhbOXyGT361GZ9vncSVQ39u62x5eJdBQFviI8zWp2X5jzqg7k4M6PVgDQAClpy2bUe2dtwEgEDVQ==}
 
   '@types/estree-jsx@1.0.5':
     resolution: {integrity: sha512-52CcUVNFyfb1A2ALocQw/Dd1BQFNmSdkuC3BkZ6iqhdMfQz7JWOFRuJFloOzjk+6WijU56m9oKXFAXc7o3Towg==}
@@ -3500,8 +3503,9 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@timmo001/groundwork-tokens@0.9.16':
+  '@timmo001/groundwork-tokens@0.9.28':
     dependencies:
+      '@types/culori': 4.0.1
       culori: 4.0.2
       effect: 4.1.1
 
@@ -3517,6 +3521,8 @@ snapshots:
       tslib: 2.8.1
 
   '@types/aws-lambda@8.10.164': {}
+
+  '@types/culori@4.0.1': {}
 
   '@types/estree-jsx@1.0.5':
     dependencies:
