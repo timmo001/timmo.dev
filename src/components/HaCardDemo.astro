@@ -3,9 +3,12 @@ import { HA_EMBED_SCRIPT_URL, type HaProjectDemo } from "~/lib/ha-project-demo";
 
 type Props = {
   demo: HaProjectDemo;
+  // Load Home Assistant's embed and the card's script only when the demo
+  // nears the viewport, for pages with several demos.
+  lazy?: boolean;
 };
 
-const { demo } = Astro.props;
+const { demo, lazy = false } = Astro.props;
 
 const providerData = {
   entities: demo.entities,
@@ -20,7 +23,12 @@ const toScriptJson = (
 ) => JSON.stringify(value).replaceAll("<", "\\u003c");
 ---
 
-<ha-embed-provider color-scheme="dark" class="ha-card-demo">
+<ha-embed-provider
+  color-scheme="dark"
+  class="ha-card-demo"
+  data-embed-src={lazy ? HA_EMBED_SCRIPT_URL : undefined}
+  data-card-src={lazy ? demo.script.path : undefined}
+>
   <script
     is:inline
     type="application/json"
@@ -32,5 +40,17 @@ const toScriptJson = (
     </ha-embed-card>
   ))}
 </ha-embed-provider>
-<script is:inline type="module" src={HA_EMBED_SCRIPT_URL}></script>
-<script is:inline type="module" src={demo.script.path}></script>
+{!lazy && (
+  <>
+    <script is:inline type="module" src={HA_EMBED_SCRIPT_URL} />
+    <script is:inline type="module" src={demo.script.path} />
+  </>
+)}
+
+<script>
+  import { initLazyHaDemos } from "~/scripts/lazy-ha-demos";
+
+  initLazyHaDemos();
+
+  document.addEventListener("astro:page-load", initLazyHaDemos);
+</script>
