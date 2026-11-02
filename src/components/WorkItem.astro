@@ -43,19 +43,27 @@ const stackAttr = (stack ?? []).map((item) => item.toLowerCase()).join("|");
     </gw-row>
   )}
   <p class="card-text">{description}</p>
+  {demo && (
+    <div class="card-demo">
+      <a
+        class="card-demo-preview"
+        href={demo.pagePath}
+        aria-label={`Open the ${title} demo`}
+      >
+        <div inert>
+          <HaCardDemo demo={demo} />
+        </div>
+      </a>
+      <a class="text-link" href={demo.pagePath}>
+        Open demo
+      </a>
+    </div>
+  )}
   {sortedStack && sortedStack.length > 0 && (
     <gw-row gap="s" class="card-stack">
       {sortedStack.map((item) => (
         <TagChip label={item} />
       ))}
     </gw-row>
-  )}
-  {demo && (
-    <div class="card-demo">
-      <HaCardDemo demo={demo} />
-      <a class="text-link" href={demo.pagePath}>
-        Open demo
-      </a>
-    </div>
   )}
 </gw-card>

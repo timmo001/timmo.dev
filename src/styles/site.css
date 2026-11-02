@@ -370,12 +370,52 @@ h4 {
   border-block-start: var(--gw-border-width) solid var(--gw-color-border-quiet);
 }
 
-/* A live Home Assistant card demo under a project card's stack */
+/* A live Home Assistant card demo above a project card's stack, under a rule
+   like the stack's: a preview of fixed height that fades out, and opens the
+   full demo when clicked. Pinned to the foot with the stack, so the stacks in
+   a row line up whether a card has a demo or not. */
 .card-demo {
   display: flex;
   flex-direction: column;
   gap: var(--gw-space-3);
   align-items: flex-start;
+  padding-block-start: var(--gw-space-5);
+  margin-block-start: auto;
+  border-block-start: var(--gw-border-width) solid var(--gw-color-border-quiet);
+}
+
+.card-demo + .card-stack {
+  margin-block-start: 0;
+}
+
+/* Short demos sit in the middle; tall ones start at the top and fade out */
+.card-demo-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  align-self: stretch;
+  box-sizing: border-box;
+  height: 12rem;
+  /* Room for the cards' borders and shadows, which the clip would cut */
+  padding: var(--gw-space-1);
+  overflow: hidden;
+  border-radius: var(--gw-radius-panel);
+  mask-image: linear-gradient(to bottom, black 70%, transparent);
+  transition: opacity var(--gw-motion-fast) var(--gw-motion-easing);
+}
+
+.card-demo-preview:hover {
+  opacity: 0.85;
+}
+
+.card-demo-preview:focus-visible {
+  outline: 2px solid var(--gw-color-accent);
+  outline-offset: 2px;
+}
+
+/* The cards are only a preview here; the link takes every click */
+.card-demo-preview > [inert] {
+  pointer-events: none;
 }
 
 .ha-card-demo {
