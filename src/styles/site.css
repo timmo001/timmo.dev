@@ -413,11 +413,10 @@ h4 {
   margin-block-start: 0;
 }
 
-/* Short demos sit in the middle; tall ones start at the top and fade out */
+/* Its gw-stack puts short demos in the middle; tall ones start at the top and
+   fade out */
 .card-demo-preview {
-  display: flex;
-  flex-direction: column;
-  justify-content: safe center;
+  display: block;
   align-self: stretch;
   box-sizing: border-box;
   height: 12rem;
@@ -439,7 +438,8 @@ h4 {
 }
 
 /* The cards are only a preview here; the link takes every click */
-.card-demo-preview > [inert] {
+.card-demo-preview > gw-stack {
+  height: 100%;
   pointer-events: none;
 }
 

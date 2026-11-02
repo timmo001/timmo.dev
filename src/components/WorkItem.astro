@@ -50,9 +50,9 @@ const stackAttr = (stack ?? []).map((item) => item.toLowerCase()).join("|");
         href={demo.pagePath}
         aria-label={`Open the ${title} demo`}
       >
-        <div inert>
+        <gw-stack justify="center" inert>
           <HaCardDemo demo={demo} />
-        </div>
+        </gw-stack>
       </a>
       <a class="text-link" href={demo.pagePath}>
         Open demo
