@@ -9,7 +9,10 @@ import SectionBlock from "~/components/SectionBlock.astro";
 import SubpageHeader from "~/components/SubpageHeader.astro";
 import Layout from "~/layouts/Layout.astro";
 import { getHaProjectDemos } from "~/lib/ha-projects";
-import { PROJECTS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
+import {
+  PROJECTS_CACHE_TTL_SECONDS,
+  PROJECTS_STALE_SECONDS,
+} from "~/lib/stats-cache";
 
 const entry = (await getHaProjectDemos()).find(
   ({ repoName }) => repoName === Astro.params.repo,
@@ -26,7 +29,7 @@ const { item, demo } = entry;
 
 Astro.response.headers.set(
   "Cache-Control",
-  `public, s-maxage=${PROJECTS_CACHE_TTL_SECONDS}, stale-while-revalidate=${PROJECTS_CACHE_TTL_SECONDS}`,
+  `public, s-maxage=${PROJECTS_CACHE_TTL_SECONDS}, stale-while-revalidate=${PROJECTS_STALE_SECONDS}`,
 );
 ---
 
