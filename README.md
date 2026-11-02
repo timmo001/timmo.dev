@@ -34,8 +34,9 @@ Copy `.env.example` to `.env` and set `GITHUB_TOKEN` for the stats page.
 
 For local Worker previews, use an untracked `.dev.vars` file instead. In
 production, configure `GITHUB_TOKEN` as a Worker secret and optionally set the
-non-secret `GITHUB_USERNAME` build and runtime variable. `/projects` keeps its
-static fallback when no token is available during the build.
+non-secret `GITHUB_USERNAME` build and runtime variable. `/projects` and the
+card demos are rendered per request with that secret, and `/projects` keeps its
+static fallback when GitHub isn't available.
 
 `GITHUB_API_URL` is optional and points the GitHub fetchers at another API
 base, such as a local mock, when working on the stats, activity, and card

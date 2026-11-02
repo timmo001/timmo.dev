@@ -8,7 +8,7 @@ import {
 } from "~/lib/ha-project-demo";
 import { getHaProjectKind } from "~/lib/ha-project-kinds";
 import { addCacheExpiry, isCacheValid } from "~/lib/dates";
-import { STATS_CACHE_TTL_MS } from "~/lib/stats-cache";
+import { PROJECTS_CACHE_TTL_MS } from "~/lib/stats-cache";
 import {
   type GitHubHaProject,
   type HaProjectDemoFilesQueryResult,
@@ -195,7 +195,8 @@ function getDemo(
       pagePath,
       script: {
         name: script.name,
-        path: `${pagePath}/${script.name}`,
+        // The release tag gives each release's script its own cache entry.
+        path: `${pagePath}/${script.name}?v=${encodeURIComponent(release.tagName)}`,
         downloadUrl: script.downloadUrl,
       },
     };
@@ -258,7 +259,7 @@ export async function fetchHaProjectsFromGitHub(): Promise<Array<GitHubHaProject
 
     haProjectsCache.set(cacheKey, {
       value: projects,
-      expiresAt: addCacheExpiry(Date.now(), STATS_CACHE_TTL_MS),
+      expiresAt: addCacheExpiry(Date.now(), PROJECTS_CACHE_TTL_MS),
     });
 
     return projects;

@@ -1,4 +1,8 @@
 ---
+// Rendered per request and cached at the edge, so new releases and their demos
+// show up without a rebuild.
+export const prerender = false;
+
 import ProjectFilters from "~/components/ProjectFilters.astro";
 import SectionBlock from "~/components/SectionBlock.astro";
 import SubpageHeader from "~/components/SubpageHeader.astro";
@@ -9,6 +13,7 @@ import { sortStack } from "~/data/stack-sort";
 import { sortTags } from "~/data/tag-sort";
 import { mergeIntegrationsWithGitHub } from "~/lib/ha-integrations";
 import { mergeProjectsWithHaGitHub } from "~/lib/ha-projects";
+import { PROJECTS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
 
 const { projects, haProjects, haGitHubSynced } =
   await mergeProjectsWithHaGitHub(staticProjects);
@@ -108,6 +113,14 @@ const filterTags = sortTags([
 const filterStack = sortStack([
   ...new Set(filterableItems.flatMap((item) => item.stack ?? [])),
 ]);
+
+// Don't cache the static fallback, so the next request retries GitHub.
+Astro.response.headers.set(
+  "Cache-Control",
+  haGitHubSynced && integrationsSynced
+    ? `public, s-maxage=${PROJECTS_CACHE_TTL_SECONDS}, stale-while-revalidate=${PROJECTS_CACHE_TTL_SECONDS}`
+    : "no-store",
+);
 ---
 
 <Layout

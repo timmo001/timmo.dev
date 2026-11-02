@@ -1,5 +1,7 @@
 ---
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+// Rendered per request, so a new release's demo shows up without a rebuild.
+export const prerender = false;
+
 import { stringify } from "yaml";
 
 import HaCardDemo from "~/components/HaCardDemo.astro";
@@ -7,16 +9,25 @@ import SectionBlock from "~/components/SectionBlock.astro";
 import SubpageHeader from "~/components/SubpageHeader.astro";
 import Layout from "~/layouts/Layout.astro";
 import { getHaProjectDemos } from "~/lib/ha-projects";
+import { PROJECTS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
 
-export const getStaticPaths = (async () =>
-  (await getHaProjectDemos()).map(({ repoName, item, demo }) => ({
-    params: { repo: repoName },
-    props: { item, demo },
-  }))) satisfies GetStaticPaths;
+const entry = (await getHaProjectDemos()).find(
+  ({ repoName }) => repoName === Astro.params.repo,
+);
 
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+if (!entry) {
+  return new Response(null, {
+    status: 404,
+    headers: { "Cache-Control": "no-store" },
+  });
+}
 
-const { item, demo } = Astro.props;
+const { item, demo } = entry;
+
+Astro.response.headers.set(
+  "Cache-Control",
+  `public, s-maxage=${PROJECTS_CACHE_TTL_SECONDS}, stale-while-revalidate=${PROJECTS_CACHE_TTL_SECONDS}`,
+);
 ---
 
 <Layout
