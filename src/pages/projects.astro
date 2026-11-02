@@ -13,7 +13,10 @@ import { sortStack } from "~/data/stack-sort";
 import { sortTags } from "~/data/tag-sort";
 import { mergeIntegrationsWithGitHub } from "~/lib/ha-integrations";
 import { mergeProjectsWithHaGitHub } from "~/lib/ha-projects";
-import { PROJECTS_CACHE_TTL_SECONDS } from "~/lib/stats-cache";
+import {
+  PROJECTS_CACHE_TTL_SECONDS,
+  PROJECTS_STALE_SECONDS,
+} from "~/lib/stats-cache";
 
 const { projects, haProjects, haGitHubSynced } =
   await mergeProjectsWithHaGitHub(staticProjects);
@@ -118,7 +121,7 @@ const filterStack = sortStack([
 Astro.response.headers.set(
   "Cache-Control",
   haGitHubSynced && integrationsSynced
-    ? `public, s-maxage=${PROJECTS_CACHE_TTL_SECONDS}, stale-while-revalidate=${PROJECTS_CACHE_TTL_SECONDS}`
+    ? `public, s-maxage=${PROJECTS_CACHE_TTL_SECONDS}, stale-while-revalidate=${PROJECTS_STALE_SECONDS}`
     : "no-store",
 );
 ---
@@ -224,11 +227,10 @@ Astro.response.headers.set(
         {
           hasHomeAssistantSection ? (
             <div class="page-section" data-filter-section>
-              <h4
-                id="home-assistant-heading"
-                class="reveal subsection-heading"
-              >
-                Home Assistant
+              <h4 id="home-assistant" class="reveal subsection-heading">
+                <a class="heading-anchor" href="#home-assistant">
+                  Home Assistant
+                </a>
               </h4>
 
               {
@@ -248,10 +250,15 @@ Astro.response.headers.set(
                 hacsItems.length > 0 ? (
                   <div class="project-group" data-filter-group="ha-hacs">
                     <h5
-                      id="community-heading"
+                      id="community-dashboards-and-cards"
                       class="reveal subsubsection-heading"
                     >
-                      Community Dashboards and Cards
+                      <a
+                        class="heading-anchor"
+                        href="#community-dashboards-and-cards"
+                      >
+                        Community Dashboards and Cards
+                      </a>
                       <span
                         class="sync-mark"
                         data-synced={haGitHubSynced ? "" : undefined}
@@ -286,10 +293,12 @@ Astro.response.headers.set(
                 integrationItems.length > 0 ? (
                   <div class="project-group" data-filter-group="ha-integrations">
                     <h5
-                      id="integrations-heading"
+                      id="integrations"
                       class="reveal subsubsection-heading"
                     >
-                      Integrations
+                      <a class="heading-anchor" href="#integrations">
+                        Integrations
+                      </a>
                       <span
                         class="sync-mark"
                         data-synced={integrationsSynced ? "" : undefined}
