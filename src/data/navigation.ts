@@ -1,3 +1,5 @@
+import { type HaProjectDemo } from "~/lib/ha-project-demo";
+
 export type NavItem = {
   title: string;
   href: string;
@@ -5,6 +7,7 @@ export type NavItem = {
   description: string;
   tags?: Array<string>;
   stack?: Array<string>;
+  demo?: HaProjectDemo;
 };
 
 export const projects: Array<NavItem> = [
