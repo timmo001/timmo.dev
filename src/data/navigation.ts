@@ -240,11 +240,11 @@ export const projects: Array<NavItem> = [
   },
   {
     title: "Tooling Drift",
-    tags: ["CLI", "CI/CD", "Automation"],
+    tags: ["Archive", "CLI", "CI/CD", "Automation"],
     stack: ["TypeScript", "Effect"],
     href: "https://github.com/timmo001/tooling-drift",
     description:
-      "CLI that compares the tools a repository wraps, configures, or forks with their latest releases. A tooling.yml records each GitHub repository and the tag last reviewed, and tooling-drift opens one pull request per tool that moved. Published as @timmo001/tooling-drift.",
+      "CLI that compares the tools a repository wraps, configures, or forks with their latest releases. A tooling.yml records each GitHub repository and the tag last reviewed, and tooling-drift opens one pull request per tool that moved. Published as @timmo001/tooling-drift. Archived and no longer maintained. Replaced by the drift job in Upkeep, which reads the same tooling.yml files.",
   },
   {
     title: "Weather",
