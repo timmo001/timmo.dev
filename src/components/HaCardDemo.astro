@@ -1,32 +1,59 @@
 ---
-import { HA_EMBED_SCRIPT_URL, type HaProjectDemo } from "~/lib/ha-project-demo";
+import { getEnv } from "~/env";
+import {
+  HA_EMBED_SCRIPT_URL,
+  type HaDemoConfig,
+  type HaProjectDemo,
+} from "~/lib/ha-project-demo";
 
 type Props = {
   demo: HaProjectDemo;
   // Load Home Assistant's embed and the card's script only when the demo
-  // nears the viewport, for pages with several demos.
+  // nears the viewport, for pages with several demos. Lazy demos are
+  // previews, so they show only the main part of the demo.
   lazy?: boolean;
 };
 
 const { demo, lazy = false } = Astro.props;
 
+const embedScriptUrl = getEnv().HA_EMBED_SCRIPT_URL ?? HA_EMBED_SCRIPT_URL;
+
 const providerData = {
   entities: demo.entities,
   areas: demo.areas,
+  devices: demo.devices,
   calendars: demo.calendars,
   energy: demo.energy,
 };
 
+// A demo renders its dashboard, views, sections and cards, in that order. A
+// preview renders only the first of them it has, so a dashboard project
+// previews its dashboard.
+type Part = "dashboard" | "views" | "sections" | "cards";
+
+const main: Part = demo.dashboard
+  ? "dashboard"
+  : demo.views.length > 0
+    ? "views"
+    : demo.sections.length > 0
+      ? "sections"
+      : "cards";
+
+const isShown = (part: Part) => !lazy || part === main;
+
+// A preview of a dashboard or view is drawn at a dashboard's width and scaled
+// down, so it shows the layout rather than its first corner
+const zoomed = lazy && (main === "dashboard" || main === "views");
+
 // Keeps a "</script>" in the data from closing the script element.
-const toScriptJson = (
-  value: typeof providerData | HaProjectDemo["cards"][number],
-) => JSON.stringify(value).replaceAll("<", "\\u003c");
+const toScriptJson = (value: HaDemoConfig) =>
+  JSON.stringify(value).replaceAll("<", "\\u003c");
 ---
 
 <ha-embed-provider
   color-scheme="dark"
-  class="ha-card-demo"
-  data-embed-src={lazy ? HA_EMBED_SCRIPT_URL : undefined}
+  class:list={["ha-card-demo", { zoomed }]}
+  data-embed-src={lazy ? embedScriptUrl : undefined}
   data-card-src={lazy ? demo.script.path : undefined}
 >
   <script
@@ -34,15 +61,50 @@ const toScriptJson = (
     type="application/json"
     set:html={toScriptJson(providerData)}
   />
-  {demo.cards.map((card) => (
-    <ha-embed-card>
-      <script is:inline type="application/json" set:html={toScriptJson(card)} />
-    </ha-embed-card>
+  {isShown("dashboard") && demo.dashboard && (
+    <ha-embed-dashboard>
+      <script
+        is:inline
+        type="application/json"
+        set:html={toScriptJson(demo.dashboard)}
+      />
+    </ha-embed-dashboard>
+  )}
+  {isShown("views") && demo.views.map((view) => (
+    <ha-embed-view>
+      <script is:inline type="application/json" set:html={toScriptJson(view)} />
+    </ha-embed-view>
   ))}
+  {isShown("sections") && demo.sections.length > 0 && (
+    <div class="ha-card-demo-grid">
+      {demo.sections.map((section) => (
+        <ha-embed-section>
+          <script
+            is:inline
+            type="application/json"
+            set:html={toScriptJson(section)}
+          />
+        </ha-embed-section>
+      ))}
+    </div>
+  )}
+  {isShown("cards") && demo.cards.length > 0 && (
+    <div class="ha-card-demo-cards">
+      {demo.cards.map((card) => (
+        <ha-embed-card>
+          <script
+            is:inline
+            type="application/json"
+            set:html={toScriptJson(card)}
+          />
+        </ha-embed-card>
+      ))}
+    </div>
+  )}
 </ha-embed-provider>
 {!lazy && (
   <>
-    <script is:inline type="module" src={HA_EMBED_SCRIPT_URL} />
+    <script is:inline type="module" src={embedScriptUrl} />
     <script is:inline type="module" src={demo.script.path} />
   </>
 )}

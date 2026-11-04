@@ -27,6 +27,22 @@ if (!entry) {
 
 const { item, demo } = entry;
 
+// The configuration of what the demo renders, without the mocked backend
+const config = Object.fromEntries(
+  Object.entries({
+    dashboard: demo.dashboard,
+    views: demo.views,
+    sections: demo.sections,
+    cards: demo.cards,
+  }).filter(([, value]) =>
+    Array.isArray(value) ? value.length > 0 : value !== undefined,
+  ),
+);
+
+// Dashboards and views take the width of a dashboard, cards and sections the
+// width of a column
+const wide = demo.dashboard !== undefined || demo.views.length > 0;
+
 Astro.response.headers.set(
   "Cache-Control",
   `public, s-maxage=${PROJECTS_CACHE_TTL_SECONDS}, stale-while-revalidate=${PROJECTS_STALE_SECONDS}`,
@@ -55,18 +71,39 @@ Astro.response.headers.set(
           </SectionBlock>
         </section>
 
-        <section aria-label="Demo" class="demo-stage">
-          <HaCardDemo demo={demo} />
+        <section aria-label="Demo" class:list={["demo-stage", { wide }]}>
+          <div
+            class="demo-theme"
+            data-demo-theme
+            data-gw-theme="timmo"
+            data-gw-mode="dark"
+          >
+            <gw-theme-picker
+              layout="inline"
+              modes="light dark"
+              mode="dark"
+              label="Demo colours"
+            ></gw-theme-picker>
+            <HaCardDemo demo={demo} />
+          </div>
         </section>
 
         <section aria-label="Configuration" class="page-section intro">
           <p class="section-subtext">
-            A live card running against a mocked Home Assistant in your
-            browser, with this configuration:
+            Live dashboard content running against a mocked Home Assistant in
+            your browser, with this configuration:
           </p>
-          <pre class="demo-config"><code>{stringify(demo.cards.length === 1 ? demo.cards[0] : demo.cards)}</code></pre>
+          <pre class="demo-config"><code>{stringify(config)}</code></pre>
         </section>
       </div>
     </gw-page>
   </div>
 </Layout>
+
+<script>
+  import { initDemoTheme } from "~/scripts/demo-theme";
+
+  initDemoTheme();
+
+  document.addEventListener("astro:page-load", initDemoTheme);
+</script>
