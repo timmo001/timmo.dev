@@ -3,6 +3,7 @@ import { Octokit } from "octokit";
 import { getEnv } from "~/env";
 import {
   HA_DEMO_FILE,
+  LOCAL_DEMO_TAG,
   parseHaDemoFile,
   type HaProjectDemo,
 } from "~/lib/ha-project-demo";
@@ -18,8 +19,10 @@ import {
 type HaProjectRepo =
   HaProjectsQueryResult["user"]["repositories"]["nodes"][number];
 
+// What GitHub gave: the projects and the demo files of their releases
 type CacheEntry = {
-  value: Array<GitHubHaProject>;
+  repos: Array<HaProjectRepo>;
+  demoFiles: Map<string, string>;
   expiresAt: number;
 };
 
@@ -155,11 +158,44 @@ async function fetchDemoFiles(
   }
 }
 
+// The demo files of local checkouts, which replace those of the releases.
+async function fetchLocalDemoFiles(
+  localUrl: string,
+  repos: Array<HaProjectRepo>,
+): Promise<Map<string, string>> {
+  const files = await Promise.all(
+    repos.map(async ({ name }) => {
+      try {
+        const response = await fetch(`${localUrl}/${name}/${HA_DEMO_FILE}`);
+
+        if (!response.ok) {
+          // An unread body keeps its connection open, and they run out
+          await response.body?.cancel();
+
+          return [];
+        }
+
+        return [[name, await response.text()] as const];
+      } catch {
+        return [];
+      }
+    }),
+  );
+
+  return new Map(files.flat());
+}
+
+// A local checkout's demo file replaces the release's, and its build of the
+// release's script replaces the release asset.
+type LocalDemo = { url: string; demoText: string };
+
 function getDemo(
   repo: HaProjectRepo,
-  demoText: string | undefined,
+  releaseDemoText: string | undefined,
+  local: LocalDemo | undefined,
 ): HaProjectDemo | null {
   const release = repo.latestRelease;
+  const demoText = local?.demoText ?? releaseDemoText;
 
   if (!release || !demoText) {
     return null;
@@ -188,6 +224,9 @@ function getDemo(
   }
 
   const pagePath = `/demos/${repo.name}`;
+  const source = local ? "local checkout" : release.tagName;
+  // The tag gives each release's script its own cache entry.
+  const tag = local ? LOCAL_DEMO_TAG : release.tagName;
 
   try {
     return {
@@ -195,14 +234,15 @@ function getDemo(
       pagePath,
       script: {
         name: script.name,
-        // The release tag gives each release's script its own cache entry.
-        path: `${pagePath}/${script.name}?v=${encodeURIComponent(release.tagName)}`,
-        downloadUrl: script.downloadUrl,
+        path: `${pagePath}/${script.name}?v=${encodeURIComponent(tag)}`,
+        downloadUrl: local
+          ? `${local.url}/${repo.name}/dist/${script.name}`
+          : script.downloadUrl,
       },
     };
   } catch (error) {
     console.warn(
-      `${repo.name} ${release.tagName} has an invalid ${HA_DEMO_FILE}; skipping its demo.`,
+      `${repo.name} ${source} has an invalid ${HA_DEMO_FILE}; skipping its demo.`,
       error,
     );
 
@@ -212,7 +252,8 @@ function getDemo(
 
 function mapRepoToHaProject(
   repo: HaProjectRepo,
-  demoText: string | undefined,
+  releaseDemoText: string | undefined,
+  local: LocalDemo | undefined,
 ): GitHubHaProject {
   return {
     name: repo.name,
@@ -220,7 +261,7 @@ function mapRepoToHaProject(
     url: repo.url,
     isArchived: repo.isArchived,
     lastUpdatedAt: getLastUpdatedAt(repo),
-    demo: getDemo(repo, demoText),
+    demo: getDemo(repo, releaseDemoText, local),
   };
 }
 
@@ -232,11 +273,41 @@ export async function fetchHaProjectsFromGitHub(): Promise<Array<GitHubHaProject
     return null;
   }
 
-  const cacheKey = env.GITHUB_USERNAME;
-  const cached = haProjectsCache.get(cacheKey);
+  const github = await fetchGitHubData(token, env.GITHUB_USERNAME);
+
+  if (!github) {
+    return null;
+  }
+
+  // Local demos change as they're edited, so they're read on every request,
+  // while GitHub's data stays cached
+  const localUrl = env.HA_DEMO_LOCAL_URL;
+
+  const localDemoFiles = localUrl
+    ? await fetchLocalDemoFiles(localUrl, github.repos)
+    : new Map<string, string>();
+
+  return github.repos.map((repo) => {
+    const localDemoText = localDemoFiles.get(repo.name);
+
+    return mapRepoToHaProject(
+      repo,
+      github.demoFiles.get(repo.name),
+      localUrl && localDemoText
+        ? { url: localUrl, demoText: localDemoText }
+        : undefined,
+    );
+  });
+}
+
+async function fetchGitHubData(
+  token: string,
+  username: string,
+): Promise<CacheEntry | null> {
+  const cached = haProjectsCache.get(username);
 
   if (cached && isCacheValid(cached.expiresAt)) {
-    return cached.value;
+    return cached;
   }
 
   const octokit = new Octokit({ auth: token });
@@ -244,25 +315,22 @@ export async function fetchHaProjectsFromGitHub(): Promise<Array<GitHubHaProject
   try {
     const result = await octokit.graphql<HaProjectsQueryResult>(
       HA_PROJECTS_QUERY,
-      { login: env.GITHUB_USERNAME },
+      { login: username },
     );
 
     const repos = result.user.repositories.nodes.filter(
       (repo) => getHaProjectKind(repo.name) !== null,
     );
 
-    const demoFiles = await fetchDemoFiles(octokit, env.GITHUB_USERNAME, repos);
-
-    const projects = repos.map((repo) =>
-      mapRepoToHaProject(repo, demoFiles.get(repo.name)),
-    );
-
-    haProjectsCache.set(cacheKey, {
-      value: projects,
+    const entry: CacheEntry = {
+      repos,
+      demoFiles: await fetchDemoFiles(octokit, username, repos),
       expiresAt: addCacheExpiry(Date.now(), PROJECTS_CACHE_TTL_MS),
-    });
+    };
 
-    return projects;
+    haProjectsCache.set(username, entry);
+
+    return entry;
   } catch (error) {
     console.warn(
       "GitHub HA project sync unavailable; using static project list.",
