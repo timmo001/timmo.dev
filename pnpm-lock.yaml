@@ -173,8 +173,8 @@ importers:
         specifier: 3.7.4
         version: 3.7.4
       '@timmo001/groundwork-tokens':
-        specifier: 0.9.35
-        version: 0.9.35
+        specifier: 0.9.36
+        version: 0.9.36
       '@timmo001/groundwork-ui':
         specifier: 0.9.35
         version: 0.9.35
@@ -1346,8 +1346,8 @@ packages:
   '@tanstack/virtual-core@3.19.10':
     resolution: {integrity: sha512-/ltpH0qUCs5XQYE7fIhgA+aqgC5NzSfLTDQkC+N1wOOdvIYx1FH/kz2LGfSeanNbekqy3WBu6mNIbqXhxE/pew==}
 
-  '@timmo001/groundwork-tokens@0.9.35':
-    resolution: {integrity: sha512-AYRoQspa6puf4jHpFpj9EaHdTXgowfLfYP+GGaAkIIm93I35jszNCkEuGqOG8A+ANfYH824xJgqrnjYbIkU6Tw==}
+  '@timmo001/groundwork-tokens@0.9.36':
+    resolution: {integrity: sha512-P+k1mC22tOHQhoVEK0YEgV/zpzEvuwggNWy74sNvS6ApAZlSNL978ik35MeW4BvEpmWOdLgoahptEL14WcV5ug==}
 
   '@timmo001/groundwork-ui@0.9.35':
     resolution: {integrity: sha512-M2UVnRuCcKnNCq9pHAy3jRfOvQJBJS5+CHu/gYeJ9O/KDEtiHiRDP8R5cfiri4LPeBfAO0M7NqS+HAP7st9R9g==}
@@ -3516,7 +3516,7 @@ snapshots:
 
   '@tanstack/virtual-core@3.19.10': {}
 
-  '@timmo001/groundwork-tokens@0.9.35':
+  '@timmo001/groundwork-tokens@0.9.36':
     dependencies:
       '@types/culori': 4.0.1
       culori: 4.0.2
