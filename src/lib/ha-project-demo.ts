@@ -43,18 +43,18 @@ const haDemoFileSchema = z
     devices: z
       .array(z.looseObject({ id: z.string(), name: z.string() }))
       .optional(),
-  calendars: z
-    .record(
-      z.string(),
-      z.array(
-        z.looseObject({
-          summary: z.string(),
-          start: calendarDateSchema,
-          end: calendarDateSchema,
-        }),
-      ),
-    )
-    .optional(),
+    calendars: z
+      .record(
+        z.string(),
+        z.array(
+          z.looseObject({
+            summary: z.string(),
+            start: calendarDateSchema,
+            end: calendarDateSchema,
+          }),
+        ),
+      )
+      .optional(),
     energy: z.looseObject({}).optional(),
     // A dashboard's `views` or `strategy`
     dashboard: z
