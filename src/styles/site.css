@@ -450,13 +450,66 @@ h4 {
   align-self: stretch;
 }
 
-/* A card demo's page: the cards centred at about a dashboard column's width,
-   with their configuration below */
+/* A dashboard or view preview, zoomed out so it lays out at two and a half
+   times the preview's width and still fits it */
+.ha-card-demo.zoomed {
+  zoom: 0.4;
+}
+
+.ha-card-demo.zoomed ha-embed-dashboard {
+  height: calc(12rem / 0.4);
+}
+
+/* Cards one under another, at a dashboard column's width. Not a grid: each
+   card spans the columns it takes in a section's grid of 12. */
+.ha-card-demo-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-4);
+  width: 100%;
+  max-width: 28rem;
+}
+
+/* Sections side by side in columns, like a sections view */
+.ha-card-demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  gap: var(--gw-space-6);
+  align-items: start;
+}
+
+/* A demo's page: the content centred at about a dashboard column's width, or
+   a dashboard's for dashboards and views, with its configuration below */
 .demo-stage {
   width: 100%;
   max-width: 28rem;
   margin-inline: auto;
   padding-inline: var(--gw-space-6);
+}
+
+.demo-stage.wide {
+  max-width: 72rem;
+}
+
+/* The demo's own light or dark mode, on a panel of its page colour, with the
+   toggle above it at the end */
+.demo-theme {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gw-space-4);
+  padding: var(--gw-space-5);
+  color: var(--gw-color-text-primary);
+  background: var(--gw-color-surface-lower);
+  border-radius: var(--gw-radius-panel);
+}
+
+/* Only the mode, in place: there's one theme and nothing to import or reset */
+.demo-theme > gw-theme-picker {
+  justify-content: flex-end;
+}
+
+.demo-theme > gw-theme-picker::part(actions) {
+  display: none;
 }
 
 .demo-config {

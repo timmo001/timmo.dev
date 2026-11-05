@@ -42,6 +42,14 @@ static fallback when GitHub isn't available.
 base, such as a local mock, when working on the stats, activity, and card
 pages offline.
 
+Two optional overrides help when working on Home Assistant project demos
+locally. `HA_EMBED_SCRIPT_URL` loads Home Assistant's embed from another
+server, such as a local build of its demo. `HA_DEMO_LOCAL_URL` is a server of
+local checkouts: a project's `<repo>/demo.yaml` and its release script's name
+in `<repo>/dist/` from there replace those of its latest release, so build
+each project with a `demo.yaml` first. Projects still need a release to show
+up.
+
 ## Cloudflare Workers
 
 ```sh

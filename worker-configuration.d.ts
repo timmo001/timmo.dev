@@ -6,6 +6,8 @@ interface __BaseEnv_Env {
 	GITHUB_TOKEN: string;
 	GITHUB_USERNAME: string;
 	GITHUB_API_URL?: string;
+	HA_EMBED_SCRIPT_URL?: string;
+	HA_DEMO_LOCAL_URL?: string;
 	VERCEL_OIDC_TOKEN: string;
 }
 declare namespace Cloudflare {
