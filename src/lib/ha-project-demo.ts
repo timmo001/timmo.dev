@@ -2,11 +2,10 @@ import { parse } from "yaml";
 import { z } from "zod";
 
 // Home Assistant's embed components, which render dashboard content against a
-// mocked backend in the browser. Served from the dev demo until they reach
-// demo.home-assistant.io. `HA_EMBED_SCRIPT_URL` in the environment replaces it,
-// such as with a local build of the demo.
-export const HA_EMBED_SCRIPT_URL =
-  "https://home-assistant-demo-dev.netlify.app/embed.js";
+// mocked backend in the browser, from demo.home-assistant.io.
+// `HA_EMBED_SCRIPT_URL` in the environment replaces it, such as with a local
+// build of the demo.
+export const HA_EMBED_SCRIPT_URL = "https://demo.home-assistant.io/embed.js";
 
 // The file a project adds to its repository to get a live demo. It is read at
 // the latest release tag, so it matches the script of that release.
