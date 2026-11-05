@@ -176,8 +176,8 @@ importers:
         specifier: 0.9.36
         version: 0.9.36
       '@timmo001/groundwork-ui':
-        specifier: 0.9.35
-        version: 0.9.35
+        specifier: 0.9.36
+        version: 0.9.36
       astro:
         specifier: 7.4.5
         version: 7.4.5(@types/node@24.19.2)(esbuild@0.28.2)(yaml@2.9.1)
@@ -1343,14 +1343,14 @@ packages:
     resolution: {integrity: sha512-zQvlxSNi2qGM3L4jh85Z6hqMfdIR5qOfD9KHOU32nuKFJGN0RlJ7UvV1lsPb1fPVhpFYI0VP3jJGxLdLDpTKjQ==}
     engines: {node: '>=20'}
 
-  '@tanstack/virtual-core@3.19.10':
-    resolution: {integrity: sha512-/ltpH0qUCs5XQYE7fIhgA+aqgC5NzSfLTDQkC+N1wOOdvIYx1FH/kz2LGfSeanNbekqy3WBu6mNIbqXhxE/pew==}
+  '@tanstack/virtual-core@3.19.11':
+    resolution: {integrity: sha512-/5iHb0RHBvj8Di59FDs4ESNm45jls33aZAi4zccVXZjc/6ZvwQP6nzEYeT6weXjTf9E6/vrp2JhYWRyO+ZP13A==}
 
   '@timmo001/groundwork-tokens@0.9.36':
     resolution: {integrity: sha512-P+k1mC22tOHQhoVEK0YEgV/zpzEvuwggNWy74sNvS6ApAZlSNL978ik35MeW4BvEpmWOdLgoahptEL14WcV5ug==}
 
-  '@timmo001/groundwork-ui@0.9.35':
-    resolution: {integrity: sha512-M2UVnRuCcKnNCq9pHAy3jRfOvQJBJS5+CHu/gYeJ9O/KDEtiHiRDP8R5cfiri4LPeBfAO0M7NqS+HAP7st9R9g==}
+  '@timmo001/groundwork-ui@0.9.36':
+    resolution: {integrity: sha512-TjHQiZ2pnEDFabfvx1G2ws1qchmNNs1Dn22D2ARlpcnusZ+TcMErN9Me0me5YuOo2rFdCxqFHPcDMViw6y5XFg==}
 
   '@timmo001/oxlint-rules@0.6.4':
     resolution: {integrity: sha512-FHVvFrgyhw8JuE+eL+1/ABEWTynttmornkOU5a2WutAZeAkNQK38olP//u0OGOEKgtmHORTbUWD9jq9CmeJXmA==}
@@ -3514,7 +3514,7 @@ snapshots:
     dependencies:
       '@tanstack/store': 0.11.2
 
-  '@tanstack/virtual-core@3.19.10': {}
+  '@tanstack/virtual-core@3.19.11': {}
 
   '@timmo001/groundwork-tokens@0.9.36':
     dependencies:
@@ -3522,10 +3522,10 @@ snapshots:
       culori: 4.0.2
       effect: 4.1.2
 
-  '@timmo001/groundwork-ui@0.9.35':
+  '@timmo001/groundwork-ui@0.9.36':
     dependencies:
       '@tanstack/table-core': 9.3.1
-      '@tanstack/virtual-core': 3.19.10
+      '@tanstack/virtual-core': 3.19.11
 
   '@timmo001/oxlint-rules@0.6.4(@oxlint/plugins@1.91.0)(oxlint@1.91.0(oxlint-tsgolint@7.0.2005))':
     dependencies:
