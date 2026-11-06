@@ -41,7 +41,7 @@
     "@timmo001/oxlint-rules": "0.6.4",
     "fontkit": "2.0.4",
     "oxlint": "1.91.0",
-    "oxlint-tsgolint": "7.0.2005",
+    "oxlint-tsgolint": "7.0.2006",
     "prettier": "3.9.10",
     "prettier-plugin-astro": "1.1.2",
     "subset-font": "2.9.0",
