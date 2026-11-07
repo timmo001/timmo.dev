@@ -239,6 +239,15 @@ export const projects: Array<NavItem> = [
       "Shared Renovate dependency policy for my repositories. One-day release delay by default, two hours for Effect and related tooling, no delay for first-party packages, and coordinated Effect, OpenCode, OpenTUI, Lit, and Oxlint groups. Consumers extend github>timmo001/renovate-config.",
   },
   {
+    title: "Upkeep",
+    tags: ["CLI", "OpenCode", "Home Assistant", "MCP", "Automation"],
+    stack: ["TypeScript", "Effect", "Bun", "Lit", "Blume"],
+    href: "https://upkeep.timmo.dev",
+    githubHref: "https://github.com/timmo001/upkeep",
+    description:
+      "Keeps repositories and the projects that depend on them up to date, and shows what needs doing. A Home Assistant app queues the jobs and serves the dashboard in the sidebar. Workers on desktop machines roll out first-party releases, update dependencies, apply labels and check drift. Each change is checked before it is pushed. One upkeep binary also provides the CLI, MCP and an OpenCode plugin.",
+  },
+  {
     title: "Tooling Drift",
     tags: ["Archive", "CLI", "CI/CD", "Automation"],
     stack: ["TypeScript", "Effect"],
