@@ -173,8 +173,8 @@ importers:
         specifier: 3.7.4
         version: 3.7.4
       '@timmo001/groundwork-tokens':
-        specifier: 0.14.0
-        version: 0.14.0(redis@6.3.1)
+        specifier: 0.15.0
+        version: 0.15.0(redis@6.3.1)
       '@timmo001/groundwork-ui':
         specifier: 0.14.0
         version: 0.14.0(supports-color@10.2.2)
@@ -1405,8 +1405,8 @@ packages:
   '@tanstack/virtual-core@3.19.11':
     resolution: {integrity: sha512-/5iHb0RHBvj8Di59FDs4ESNm45jls33aZAi4zccVXZjc/6ZvwQP6nzEYeT6weXjTf9E6/vrp2JhYWRyO+ZP13A==}
 
-  '@timmo001/groundwork-tokens@0.14.0':
-    resolution: {integrity: sha512-ZoWT8X6T5kDe8dgeJrMZ+VaFbup2zCC1LITtP/OTPvWF8xH4AEeVDX/RS8cwqOghylalZp2R/KX5ATnH4KVHUQ==}
+  '@timmo001/groundwork-tokens@0.15.0':
+    resolution: {integrity: sha512-i9aYllnqRzCeywYy2YcnA1vbuUB+egM2co5V1xajkPlk9x7qV3tDVykWsSC9if/QtE9UMeTt9+d/zFcnzzp6wg==}
     hasBin: true
 
   '@timmo001/groundwork-ui@0.14.0':
@@ -3724,7 +3724,7 @@ snapshots:
 
   '@tanstack/virtual-core@3.19.11': {}
 
-  '@timmo001/groundwork-tokens@0.14.0(redis@6.3.1)':
+  '@timmo001/groundwork-tokens@0.15.0(redis@6.3.1)':
     dependencies:
       '@effect/platform-node': 4.1.2(effect@4.1.2)(redis@6.3.1)
       '@types/culori': 4.0.1
