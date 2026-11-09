@@ -176,8 +176,8 @@ importers:
         specifier: 0.15.0
         version: 0.15.0(redis@6.3.1)
       '@timmo001/groundwork-ui':
-        specifier: 0.14.0
-        version: 0.14.0(supports-color@10.2.2)
+        specifier: 0.15.0
+        version: 0.15.0(supports-color@10.2.2)
       astro:
         specifier: 7.4.7
         version: 7.4.7(@types/node@24.19.2)(esbuild@0.28.2)(yaml@2.9.1)
@@ -1409,8 +1409,8 @@ packages:
     resolution: {integrity: sha512-i9aYllnqRzCeywYy2YcnA1vbuUB+egM2co5V1xajkPlk9x7qV3tDVykWsSC9if/QtE9UMeTt9+d/zFcnzzp6wg==}
     hasBin: true
 
-  '@timmo001/groundwork-ui@0.14.0':
-    resolution: {integrity: sha512-Yzryql7ptjg0QC/k35R2qSuaLV+2enzouDQ0pfVFsUVC1ITrN7+jm7ctiNokF14T8MpySJOypuvG4srMMacdBQ==}
+  '@timmo001/groundwork-ui@0.15.0':
+    resolution: {integrity: sha512-DMLRqOdmkJ7R42oCLzwiOsiM+nXUdp86K6il516I7ixM5xQtjm6S1ozYavudeOUcCWei9QXVUclfNoOvFxk4DA==}
 
   '@timmo001/oxlint-rules@0.6.4':
     resolution: {integrity: sha512-FHVvFrgyhw8JuE+eL+1/ABEWTynttmornkOU5a2WutAZeAkNQK38olP//u0OGOEKgtmHORTbUWD9jq9CmeJXmA==}
@@ -3735,7 +3735,7 @@ snapshots:
       - redis
       - utf-8-validate
 
-  '@timmo001/groundwork-ui@0.14.0(supports-color@10.2.2)':
+  '@timmo001/groundwork-ui@0.15.0(supports-color@10.2.2)':
     dependencies:
       '@tanstack/table-core': 9.3.1
       '@tanstack/virtual-core': 3.19.11
