@@ -176,8 +176,8 @@ importers:
         specifier: 0.18.0
         version: 0.18.0(redis@6.3.1)
       '@timmo001/groundwork-ui':
-        specifier: 0.18.0
-        version: 0.18.0(supports-color@10.2.2)
+        specifier: 0.20.0
+        version: 0.20.0(supports-color@10.2.2)
       astro:
         specifier: 7.4.7
         version: 7.4.7(@types/node@24.19.2)(esbuild@0.28.2)(yaml@2.9.1)
@@ -1442,8 +1442,8 @@ packages:
     resolution: {integrity: sha512-hYzs0LI+aKmug6boyAGue2V1T+nspxP9gBh6G5FD8rCpRPwrB2vbN4ZxC/qSpdA4FhvdHCyNMgi/f9bYuWc0/w==}
     hasBin: true
 
-  '@timmo001/groundwork-ui@0.18.0':
-    resolution: {integrity: sha512-ycDE6L7MzBHKg+cEuLsfVnvWl+Tm1kfJB+5O1rW712AMuxB8MIwoH2kfxm7DdF3XAtabJUEWOOQxZHfdxXeZRg==}
+  '@timmo001/groundwork-ui@0.20.0':
+    resolution: {integrity: sha512-fOmFObIFClihjhCcClyPBNqDOOVWIqd5b8jQamArAeiYtEqaDq5IYH+lJH8Fr6KvNeo+QO7g52iPZx57EfmwGA==}
 
   '@timmo001/oxlint-rules@0.6.4':
     resolution: {integrity: sha512-FHVvFrgyhw8JuE+eL+1/ABEWTynttmornkOU5a2WutAZeAkNQK38olP//u0OGOEKgtmHORTbUWD9jq9CmeJXmA==}
@@ -3829,7 +3829,7 @@ snapshots:
       - redis
       - utf-8-validate
 
-  '@timmo001/groundwork-ui@0.18.0(supports-color@10.2.2)':
+  '@timmo001/groundwork-ui@0.20.0(supports-color@10.2.2)':
     dependencies:
       '@codemirror/lang-json': 6.0.2
       '@codemirror/language': 6.13.1
