@@ -26,8 +26,8 @@
   "dependencies": {
     "@astrojs/cloudflare": "14.4.6",
     "@astrojs/sitemap": "3.7.4",
-    "@timmo001/groundwork-tokens": "0.20.2",
-    "@timmo001/groundwork-ui": "0.20.2",
+    "@timmo001/groundwork-tokens": "0.20.3",
+    "@timmo001/groundwork-ui": "0.20.3",
     "astro": "7.4.7",
     "date-fns": "4.4.0",
     "fuse.js": "7.5.0",
