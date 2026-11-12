@@ -24,7 +24,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: jdx/mise-action@b44d12e7d0d8ee7461bb893e1b1993500433185b # v5
+      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5
       - run: "mise run check ::: deploy:dry-run"
   lint-markdown-links:
     uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@ec70016a91999259142a156104978174490a0831 # 20261110.0
