@@ -27,8 +27,8 @@ jobs:
       - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5
       - run: "mise run check ::: deploy:dry-run"
   lint-markdown-links:
-    uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@ec70016a91999259142a156104978174490a0831 # 20261110.0
+    uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@9bb6ae3c2a1542cec4195b63f9516c83001e578e # 20261113.0
   lint-markdownlint:
-    uses: timmo001/workflows/.github/workflows/lint-markdownlint.yml@ec70016a91999259142a156104978174490a0831 # 20261110.0
+    uses: timmo001/workflows/.github/workflows/lint-markdownlint.yml@9bb6ae3c2a1542cec4195b63f9516c83001e578e # 20261113.0
   lint-yamllint:
-    uses: timmo001/workflows/.github/workflows/lint-yamllint.yml@ec70016a91999259142a156104978174490a0831 # 20261110.0
+    uses: timmo001/workflows/.github/workflows/lint-yamllint.yml@9bb6ae3c2a1542cec4195b63f9516c83001e578e # 20261113.0
