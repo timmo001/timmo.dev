@@ -39,7 +39,7 @@
     "@astrojs/check": "0.9.12",
     "@oxlint/plugins": "1.93.0",
     "@timmo001/oxlint-rules": "0.6.5",
-    "fontkit": "2.0.4",
+    "fontkit": "3.0.0",
     "oxlint": "1.93.0",
     "oxlint-tsgolint": "7.0.2006",
     "prettier": "3.10.0",
