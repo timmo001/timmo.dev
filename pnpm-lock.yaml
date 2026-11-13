@@ -173,11 +173,11 @@ importers:
         specifier: 3.7.4
         version: 3.7.4
       '@timmo001/groundwork-tokens':
-        specifier: 0.27.0
-        version: 0.27.0(redis@6.3.1)
+        specifier: 0.28.0
+        version: 0.28.0(redis@6.3.1)
       '@timmo001/groundwork-ui':
-        specifier: 0.27.0
-        version: 0.27.0(supports-color@10.2.2)
+        specifier: 0.28.0
+        version: 0.28.0(supports-color@10.2.2)
       astro:
         specifier: 7.4.11
         version: 7.4.11(@types/node@26.6.6)(esbuild@0.28.2)(yaml@2.9.1)
@@ -1443,12 +1443,12 @@ packages:
   '@tanstack/virtual-core@3.19.11':
     resolution: {integrity: sha512-/5iHb0RHBvj8Di59FDs4ESNm45jls33aZAi4zccVXZjc/6ZvwQP6nzEYeT6weXjTf9E6/vrp2JhYWRyO+ZP13A==}
 
-  '@timmo001/groundwork-tokens@0.27.0':
-    resolution: {integrity: sha512-qak0GPc5/GQ45QvC2Dsj46DcmX1h81GSqLnLsGjDL/poVT8e14xTjYtZn3yDR7mSoL//X3uqsE7PrprteyISiQ==}
+  '@timmo001/groundwork-tokens@0.28.0':
+    resolution: {integrity: sha512-ZG45D+CGV8st229rjzE8NFPVblY0UUPZ/YfcF1Y+DuLlBpUdBZuBKIDmYcmA7BfNLs9mIOdfdGgHwFAri7j8bQ==}
     hasBin: true
 
-  '@timmo001/groundwork-ui@0.27.0':
-    resolution: {integrity: sha512-58JTmiIYJcNLuE54Z2j3j7jIcnEkDy3VFzLsGuHukpOzg0mPI2HUBKETy19OLdDFibZch7PzwWyj8gU9uro4lQ==}
+  '@timmo001/groundwork-ui@0.28.0':
+    resolution: {integrity: sha512-Rn1Lyk2G4hXBluw+pID4EyjsZtMpxtS/w+xTlN5NJIUk4Rs2tqmebB7Qm2aAQ1ra/VC5SbWfeigAoltm/hUXRw==}
 
   '@timmo001/oxlint-rules@0.6.5':
     resolution: {integrity: sha512-BFDZ+yFyzT0jQA3A5Cgb533e5BwJBS4wWG4Z7JNQ+yjyZJspzssMLRRdoFk1bx7g1mWWvSFgl920vmtTXJJGZQ==}
@@ -3848,7 +3848,7 @@ snapshots:
 
   '@tanstack/virtual-core@3.19.11': {}
 
-  '@timmo001/groundwork-tokens@0.27.0(redis@6.3.1)':
+  '@timmo001/groundwork-tokens@0.28.0(redis@6.3.1)':
     dependencies:
       '@effect/platform-node': 4.1.4(effect@4.1.4)(redis@6.3.1)
       '@types/culori': 4.0.1
@@ -3859,7 +3859,7 @@ snapshots:
       - redis
       - utf-8-validate
 
-  '@timmo001/groundwork-ui@0.27.0(supports-color@10.2.2)':
+  '@timmo001/groundwork-ui@0.28.0(supports-color@10.2.2)':
     dependencies:
       '@codemirror/lang-json': 6.0.2
       '@codemirror/language': 6.13.1
