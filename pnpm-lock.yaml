@@ -173,11 +173,11 @@ importers:
         specifier: 3.7.4
         version: 3.7.4
       '@timmo001/groundwork-tokens':
-        specifier: 0.35.0
-        version: 0.35.0(redis@6.3.1)
+        specifier: 0.36.0
+        version: 0.36.0(redis@6.3.1)
       '@timmo001/groundwork-ui':
-        specifier: 0.35.0
-        version: 0.35.0(supports-color@10.2.2)
+        specifier: 0.36.0
+        version: 0.36.0(supports-color@10.2.2)
       astro:
         specifier: 7.4.11
         version: 7.4.11(@types/node@26.6.6)(esbuild@0.28.2)(yaml@2.9.1)
@@ -1443,12 +1443,12 @@ packages:
   '@tanstack/virtual-core@3.19.11':
     resolution: {integrity: sha512-/5iHb0RHBvj8Di59FDs4ESNm45jls33aZAi4zccVXZjc/6ZvwQP6nzEYeT6weXjTf9E6/vrp2JhYWRyO+ZP13A==}
 
-  '@timmo001/groundwork-tokens@0.35.0':
-    resolution: {integrity: sha512-6zzTLdymiv4sFsCoiDOrwyFiJSoGJxYXmWzQNW4MveDAaruhMfE0VFV9TlSdUS9aCTC84px7zh+Che/n7Xjl5g==}
+  '@timmo001/groundwork-tokens@0.36.0':
+    resolution: {integrity: sha512-fWX/HsrNYFnZ2xhFoZNS0pEKkXReYF+1yoIMIRdFARug4IWWk0Rf132EfOfGeYm5DOSgNwOBWnwMdRULYqBJmw==}
     hasBin: true
 
-  '@timmo001/groundwork-ui@0.35.0':
-    resolution: {integrity: sha512-1icuLQOchJ6BzISYTPINxAlN4+OYhjzjNGsrTGzHpG8dLzl9MIhOcR2GHBi5+KeeSKycyBuWtCpzvLLSj9qtEQ==}
+  '@timmo001/groundwork-ui@0.36.0':
+    resolution: {integrity: sha512-wi7282XyBiP0tTrB6ktmS3IJVLactTMTaep6pz+ttHnQq80YIN51K2AUqllWXu3/oqanQ9yGBChKEEEy/+CtJA==}
 
   '@timmo001/oxlint-rules@0.6.5':
     resolution: {integrity: sha512-BFDZ+yFyzT0jQA3A5Cgb533e5BwJBS4wWG4Z7JNQ+yjyZJspzssMLRRdoFk1bx7g1mWWvSFgl920vmtTXJJGZQ==}
@@ -2543,6 +2543,9 @@ packages:
         optional: true
       uploadthing:
         optional: true
+
+  uqr@0.1.3:
+    resolution: {integrity: sha512-0rjE8iEJe4YmT9TOhwsZtqCMRLc5DXZUI2UEYUUg63ikBkqqE5EYWaI0etFe/5KUcmcYwLih2RND1kq+hrUJXA==}
 
   verkit@0.5.0:
     resolution: {integrity: sha512-u4J1hr6Y+C/hit34GwL3eIcUf3wngT8TlYUjK7tk0jxydKLAq3sYvifjdTDA6U3KCKRcQCQDGf/srjxfZF3l7g==}
@@ -3848,7 +3851,7 @@ snapshots:
 
   '@tanstack/virtual-core@3.19.11': {}
 
-  '@timmo001/groundwork-tokens@0.35.0(redis@6.3.1)':
+  '@timmo001/groundwork-tokens@0.36.0(redis@6.3.1)':
     dependencies:
       '@effect/platform-node': 4.1.4(effect@4.1.4)(redis@6.3.1)
       '@types/culori': 4.0.1
@@ -3859,7 +3862,7 @@ snapshots:
       - redis
       - utf-8-validate
 
-  '@timmo001/groundwork-ui@0.35.0(supports-color@10.2.2)':
+  '@timmo001/groundwork-ui@0.36.0(supports-color@10.2.2)':
     dependencies:
       '@codemirror/lang-json': 6.0.2
       '@codemirror/language': 6.13.1
@@ -3871,6 +3874,7 @@ snapshots:
       '@tanstack/virtual-core': 3.19.11
       micromark: 4.0.3(supports-color@10.2.2)
       micromark-extension-gfm: 3.0.0
+      uqr: 0.1.3
     transitivePeerDependencies:
       - supports-color
 
@@ -5145,6 +5149,8 @@ snapshots:
       node-fetch-native: 1.6.7
       ofetch: 1.5.1
       ufo: 1.6.4
+
+  uqr@0.1.3: {}
 
   verkit@0.5.0: {}
 
