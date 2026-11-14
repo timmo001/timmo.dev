@@ -164,12 +164,21 @@ export const projects: Array<NavItem> = [
       "Capture crashes and errors from your machines, decide which are worth fixing, and suggest fixes. Reads the systemd journal on each machine, redacts and groups crashes, failed units, and out-of-memory kills into issues on one server, with optional local or hosted decision and language models. Includes a web UI and Effect client libraries.",
   },
   {
+    title: "Kestrel",
+    tags: ["Desktop App", "CLI", "PWA", "OpenCode", "Home Assistant", "MCP"],
+    stack: ["TypeScript", "Effect", "Bun", "Groundwork", "Blume"],
+    href: "https://kestrel.timmo.dev",
+    githubHref: "https://github.com/timmo001/kestrel",
+    description:
+      "One app for cameras and recorders on your own network: live view, recordings, events, and health, with nothing sent through a vendor's cloud. It talks to Raysharp recorders such as Swann, Reolink cameras, stream addresses, a Bambu Lab printer camera, and web live streams. Includes a desktop app, an installable web app, a Home Assistant app, a container image, and a CLI with MCP and an OpenCode plugin. Packages for Arch, Debian, RPM, and Windows.",
+  },
+  {
     title: "Home Assistant Apps",
     tags: ["Home Assistant"],
     stack: ["YAML"],
     href: "https://github.com/timmo001/home-assistant-apps",
     description:
-      "Home Assistant app repository for Triage and OpenCode. Add it once to install every app, including OpenCode with the Supervisor's manager role. Each app's release copies its folder in after the container image is published.",
+      "Home Assistant app repository for Triage, OpenCode, Upkeep, and Kestrel. Add it once to install every app, including OpenCode with the Supervisor's manager role. Each app's release copies its folder in after the container image is published.",
   },
   {
     title: "Music Assistant TUI",
