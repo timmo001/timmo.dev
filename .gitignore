@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+.claude/settings.local.json
 /.pnp
 .pnp.js
 
