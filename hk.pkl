@@ -1,0 +1,24 @@
+// Pre-push checks: the shared base from timmo001/workflows, with Oxlint run
+// through aube, the package manager this repository uses. Tests, types and
+// generated files are left to CI and `mise run check`. Run them by hand with
+// `hk check --all`.
+amends "package://github.com/timmo001/workflows/releases/download/20261108.2/hk-base@20261108.2.0#/base.pkl"
+
+hooks {
+  ["pre-push"] {
+    steps {
+      ["oxlint"] {
+        check = "aube exec oxlint {{files}}"
+        exclude = List(".agents/skills/**")
+      }
+    }
+  }
+  ["check"] {
+    steps {
+      ["oxlint"] {
+        check = "aube exec oxlint {{files}}"
+        exclude = List(".agents/skills/**")
+      }
+    }
+  }
+}

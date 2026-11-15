@@ -21,6 +21,7 @@
 - Lint: `aube run lint` (type-aware Oxlint and the shared Timmo recommended rules).
 - Format: `aube run format`; check only: `aube run format:check`.
 - Run lint, typecheck and format check in parallel: `mise run check`.
+- Pre-push hooks: `hk.pkl` runs the shared Markdown, YAML, Actions and shell lints plus Oxlint on the files a push changes. Run them by hand with `hk check --all`; `hk install --global --mise` once per machine installs the hook.
 - Validate the Worker bundle without deploying: `aube run deploy:dry-run`. Run it with the checks in one parallel run: `mise run check ::: deploy:dry-run`.
 
 ## Background Dev Servers
