@@ -213,8 +213,8 @@ importers:
         specifier: 1.93.0
         version: 1.93.0
       '@timmo001/oxlint-rules':
-        specifier: 0.6.5
-        version: 0.6.5(@oxlint/plugins@1.93.0)(oxlint@1.93.0(oxlint-tsgolint@7.0.2007))
+        specifier: 0.6.4
+        version: 0.6.4(@oxlint/plugins@1.93.0)(oxlint@1.93.0(oxlint-tsgolint@7.0.2007))
       fontkit:
         specifier: 3.0.0
         version: 3.0.0
@@ -1459,8 +1459,8 @@ packages:
   '@timmo001/groundwork-ui@0.46.0':
     resolution: {integrity: sha512-VRtZnyJDgs0flKWprMrzkqMUrDtp/R5I6R0qL4qP3FmFkmUF2L3GzC4BoWTBMth25054z+ibmcco3yIcxwVopQ==}
 
-  '@timmo001/oxlint-rules@0.6.5':
-    resolution: {integrity: sha512-BFDZ+yFyzT0jQA3A5Cgb533e5BwJBS4wWG4Z7JNQ+yjyZJspzssMLRRdoFk1bx7g1mWWvSFgl920vmtTXJJGZQ==}
+  '@timmo001/oxlint-rules@0.6.4':
+    resolution: {integrity: sha512-FHVvFrgyhw8JuE+eL+1/ABEWTynttmornkOU5a2WutAZeAkNQK38olP//u0OGOEKgtmHORTbUWD9jq9CmeJXmA==}
     engines: {node: '>=20'}
     hasBin: true
     peerDependencies:
@@ -3878,7 +3878,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@timmo001/oxlint-rules@0.6.5(@oxlint/plugins@1.93.0)(oxlint@1.93.0(oxlint-tsgolint@7.0.2007))':
+  '@timmo001/oxlint-rules@0.6.4(@oxlint/plugins@1.93.0)(oxlint@1.93.0(oxlint-tsgolint@7.0.2007))':
     dependencies:
       '@oxlint/plugins': 1.93.0
       oxlint: 1.93.0(oxlint-tsgolint@7.0.2007)
