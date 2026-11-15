@@ -1,5 +1,17 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "permissions": [
+    {
+      "action": "gh.write *",
+      "resource": "gh_* timmo001/timmo.dev*",
+      "effect": "allow"
+    },
+    {
+      "action": "gh.write *",
+      "resource": "gh_*delete* timmo001/timmo.dev*",
+      "effect": "ask"
+    }
+  ],
   "references": {
     "dotfiles": {
       "repository": "timmo001/dotfiles",
