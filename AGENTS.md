@@ -4,7 +4,7 @@
 
 - Single-package Astro 7 site using [aube](https://aube.sh) as the package manager; `pnpm-lock.yaml` is the lockfile and aube reads and writes it in place, so Renovate keeps updating it as a pnpm lockfile.
 - Requires Node `>=22.12.0` from `package.json#engines`.
-- `mise.toml` pins Node and aube for local checks and CI. `package.json#packageManager` still pins pnpm: Cloudflare Builds reads it to pick its pnpm version, and aube accepts a pnpm pin without complaint.
+- `mise.toml` pins Node, aube and Bun for local checks, CI and deploys. `package.json#packageManager` still pins pnpm so Renovate updates `pnpm-lock.yaml` with a matching pnpm; aube accepts a pnpm pin without complaint.
 - `pnpm-workspace.yaml` holds the build approvals (`allowBuilds`) and release-age setting; aube reads it as its workspace config.
 - Astro pages live in `src/pages`; shared layout is `src/layouts/Layout.astro`. The UI is built from [Groundwork](https://groundwork.timmo.dev)'s `gw-` web components (`@timmo001/groundwork-ui`) and `--gw-*` tokens (`@timmo001/groundwork-tokens`); site-only styles, the font face and motion live in `src/styles/site.css`.
 - Use the `~/*` import alias for `src/*`; it is configured in both `tsconfig.json` and `astro.config.mjs`.
@@ -15,14 +15,16 @@
 - Dev server: `mise run serve:site` starts it through Pitchfork in the background; see Background Dev Servers. `aube run dev` is for foreground debugging only.
 - Production build / main verification: `aube run build`.
 - Preview the built Worker locally: `aube run preview`.
-- Deploy from Cloudflare Builds: the `deploy:cloudflare` script. Cloudflare Builds runs it with pnpm, detected from the lockfile, so keep that script and `deploy:preview` free of aube commands.
-- Upload a preview version from Cloudflare Builds: the `deploy:preview` script.
+- Deploy: pushing to `master` deploys the prod stage of the Alchemy stack in `alchemy.run.ts` from `.github/workflows/deploy.yml`. By hand, `mise run plan` shows what would change and `mise run deploy` applies it. Both Workers and their custom domains are in the stack, so only deploy when that change is intended.
+- Preview stages: `bun alchemy deploy --stage <name>` deploys the site as a Preview of the prod Worker, with no custom domain and no redirect Worker; `bun alchemy destroy --stage <name>` removes it. CI doesn't deploy previews yet.
+- CI's Cloudflare token: `mise run deploy:github` deploys `stacks/github.ts`, which mints a scoped token into the repository's Actions secrets; run it again to rotate.
+- Alchemy builds the site with its own Cloudflare adapter and fails on a declared one, so `alchemy.run.ts` sets `ALCHEMY_ASTRO_BUILD=1` and `astro.config.mjs` leaves out `@astrojs/cloudflare` then. That adapter stays for `astro dev`, `astro build` and `astro preview`, with `wrangler` as its peer.
 - Typecheck: `aube run typecheck`.
 - Lint: `aube run lint` (type-aware Oxlint and the shared Timmo recommended rules).
 - Format: `aube run format`; check only: `aube run format:check`.
 - Run lint, typecheck and format check in parallel: `mise run check`.
 - Pre-push hooks: `hk.pkl` runs the shared Markdown, YAML, Actions and shell lints plus Oxlint on the files a push changes. Run them by hand with `hk check --all`; `hk install --global --mise` once per machine installs the hook.
-- Validate the Worker bundle without deploying: `aube run deploy:dry-run`. Run it with the checks in one parallel run: `mise run check ::: deploy:dry-run`.
+- Run lint, typecheck, format check and the build in parallel, as CI does: `mise run check ::: build`.
 
 ## Background Dev Servers
 
@@ -42,7 +44,7 @@
 - `GITHUB_USERNAME` is optional and defaults to `timmo001` in `src/env.ts`.
 - `/stats` is server-rendered (`prerender = false`) and uses `server:defer`; cache behaviour is shared between the optional module memory cache and Cloudflare Workers response caching via `src/lib/stats-cache.ts` and the page's `Cache-Control` header.
 - Module-level `Map` caches are isolate-local optimisations only. Do not rely on them for persistence or cross-isolate consistency.
-- `wrangler.jsonc` contains only non-secret Worker configuration. Configure `GITHUB_TOKEN` as a Worker secret, never as a Wrangler variable or committed value.
+- `alchemy.run.ts` holds only non-secret Worker configuration. `GITHUB_TOKEN` is a Worker secret set outside the stack, which Alchemy leaves in place; never commit it or declare it as a plain variable.
 
 ## Data Flow
 
