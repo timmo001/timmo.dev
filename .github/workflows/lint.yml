@@ -19,13 +19,13 @@ concurrency:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
     permissions:
       contents: read
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5
-      - run: "mise run check ::: deploy:dry-run"
+    uses: timmo001/workflows/.github/workflows/run-mise-task.yml@5451f6867a5cb2b9b6318a82e00f7dd9f9fc279a # 20261116.0
+    with:
+      name: check
+      task: "check ::: deploy:dry-run"
+      install-args: node aube
   lint-markdown-links:
     uses: timmo001/workflows/.github/workflows/lint-markdown-links.yml@5451f6867a5cb2b9b6318a82e00f7dd9f9fc279a # 20261116.0
   lint-markdownlint:
