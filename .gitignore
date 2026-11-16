@@ -40,6 +40,9 @@ yarn-error.log*
 # cloudflare
 .wrangler
 
+# alchemy
+.alchemy/
+
 # typescript
 *.tsbuildinfo
 

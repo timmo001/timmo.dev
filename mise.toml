@@ -53,6 +53,17 @@ run = "pitchfork restart site"
 [tasks."serve:site:stop"]
 run = "pitchfork stop site"
 
-[tasks."deploy:dry-run"]
-depends = ["build"]
-run = "aube exec wrangler deploy --dry-run"
+[tasks.plan]
+description = "Show what deploying the site's prod stage would change"
+depends = ["install"]
+run = "aube run --no-install plan"
+
+[tasks.deploy]
+description = "Build the site and deploy its prod stage with Alchemy"
+depends = ["install"]
+run = "aube run --no-install deploy"
+
+[tasks."deploy:github"]
+description = "Mint CI's Cloudflare token into the repository's secrets"
+depends = ["install"]
+run = "aube run --no-install deploy:github"

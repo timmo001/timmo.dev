@@ -17,7 +17,12 @@ export default defineConfig({
     "/projects-and-contributions": "/projects",
   },
   integrations: [sitemap()],
-  adapter: cloudflare({ imageService: "compile" }),
+  // Alchemy's deploy builds with its own Cloudflare adapter and fails on a
+  // declared one, so alchemy.run.ts sets ALCHEMY_ASTRO_BUILD for its builds
+  adapter:
+    process.env.ALCHEMY_ASTRO_BUILD === "1"
+      ? undefined
+      : cloudflare({ imageService: "compile" }),
   session: {
     driver: sessionDrivers.lruCache({ max: 100 }),
   },
