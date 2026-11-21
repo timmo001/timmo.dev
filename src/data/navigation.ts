@@ -173,6 +173,15 @@ export const projects: Array<NavItem> = [
       "One app for cameras and recorders on your own network: live view, recordings, events, and health, with nothing sent through a vendor's cloud. It talks to Raysharp recorders such as Swann, Reolink cameras, stream addresses, a Bambu Lab printer camera, and web live streams. Includes a desktop app, an installable web app, a Home Assistant app, a container image, and a CLI with MCP and an OpenCode plugin. Packages for Arch, Debian, RPM, and Windows.",
   },
   {
+    title: "Cardstock",
+    tags: ["PWA", "CLI", "MCP", "Agents", "Skills"],
+    stack: ["TypeScript", "Effect", "Bun", "Groundwork", "Three.js", "GSAP", "Cloudflare"],
+    href: "https://cardstock.timmo.dev",
+    githubHref: "https://github.com/timmo001/cardstock",
+    description:
+      "Greeting cards that open as paper. Make one in the web app or with the cardstock CLI: the words, a design, an effect, and pictures, video and music from their web addresses. The whole card is sealed into its link, so the server stores nothing and never sees one. Opening it shows an envelope that opens into a 3D paper card. The app at cards.timmo.dev installs on a phone or computer, and a still, MP4 or GIF can be saved to send in a chat.",
+  },
+  {
     title: "Home Assistant Apps",
     tags: ["Home Assistant"],
     stack: ["YAML"],
