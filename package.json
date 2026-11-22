@@ -46,7 +46,7 @@
     "effect": "4.1.5",
     "fontkit": "3.0.0",
     "oxlint": "1.94.0",
-    "oxlint-tsgolint": "7.0.2007",
+    "oxlint-tsgolint": "7.0.2008",
     "prettier": "3.10.1",
     "prettier-plugin-astro": "1.1.2",
     "subset-font": "2.9.0",
