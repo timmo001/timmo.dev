@@ -190,6 +190,14 @@ export const projects: Array<NavItem> = [
       "Home Assistant app repository for Triage, OpenCode, Upkeep, and Kestrel. Add it once to install every app, including OpenCode with the Supervisor's manager role. Each app's release copies its folder in after the container image is published.",
   },
   {
+    title: "OpenCode Integration",
+    tags: ["Home Assistant Integration", "OpenCode", "Home Assistant"],
+    stack: ["Python", "Home Assistant"],
+    href: "https://github.com/timmo001/ha-integration-opencode",
+    description:
+      "Lets OpenCode agents answer Home Assistant Assist, from the chat or a voice satellite. Each OpenCode server is one entry, and each agent on it is its own conversation agent, with its own model and instructions. It pairs with the OpenCode app or a server you run, streams the answer, and can use Home Assistant's tools on the entities exposed to Assist. Automations can hand it AI tasks. Install from the Marketplace.",
+  },
+  {
     title: "Music Assistant TUI",
     tags: ["TUI", "CLI", "WebSocket"],
     stack: ["TypeScript", "Effect", "OpenTUI"],
